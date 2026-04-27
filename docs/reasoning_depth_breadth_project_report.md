@@ -9,6 +9,13 @@
 
 本课题定义为：**把大模型的显式推理过程从“线性文本”抽象成“推理树/图”，分别衡量其每一步是否真的向目标推进（Depth），以及是否在关键决策点覆盖了足够多的有效候选分支（Beadth）**，并最终输出自动化、可复现、可扩展的过程评测框架。
 
+<p align="center">
+  <img src="figures/system_overview.svg" alt="System overview diagram of the reasoning process evaluation framework" width="100%">
+</p>
+
+<p align="center"><b>Figure 1.</b> System overview of the proposed reasoning process evaluation framework. Structured task JSON and graph-based ground truth feed multi-strategy reasoning generation (CoT, Self-Consistency, ToT); model traces are canonicalized into reasoning graphs and assessed by verifier/critic, symbolic checker, and gold-graph alignment along Depth, Breadth, and Consistency, producing structured process-level metrics.</p>
+
+
 ---
 
 ## 1. 题目Brief：Input / Output / Boundary
