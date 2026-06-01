@@ -1,0 +1,2 @@
+[console_scripts]
+reasoning-graph = reasoning_graph.cli:main
