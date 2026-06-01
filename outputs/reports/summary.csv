@@ -1,0 +1,7 @@
+﻿output_type,answer_accuracy,avg_depth,avg_breadth,avg_consistency,avg_branch_coverage,missing_premise_rate,first_error_rate
+broad,1.0,100.0,100.0,100.0,1.0,0.0,0.0
+correct_full,1.0,100.0,,100.0,,0.0,0.0
+correct_jump,1.0,30.0,,50.0,,1.0,1.0
+narrow_repeated,1.0,100.0,41.6665,100.0,0.4165,0.0,0.0
+verbose_redundant,1.0,100.0,,90.0,,0.0,0.0
+wrong,0.0,0.0,,50.0,,0.0,1.0

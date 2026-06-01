@@ -1,20 +1,74 @@
-# LLM-Reasoning-Depth-Breadth-Eval
-一套自动化、多维度、过程导向的大模型逻辑推理能力评估框架。通过树形结构抽象 CoT（思维链），量化评估模型在关键决策节点的推理深度与广度。
+# LLM Reasoning Depth/Breadth Eval
 
-核心目标： 建立自动化评分机制，量化输出“逻辑深度指数”和“思维发散指数”。
+这是一个小规模但完整闭环的大模型推理过程评估原型。它不只看 final answer accuracy，而是把模型输出的 Chain-of-Thought 拆成步骤，映射到 gold reasoning DAG 上，检查模型是否沿着合法规则逐步推进。
 
-评估维度：
+第一版只支持规则逻辑题，不接入真实 API 也能运行完整 demo。
 
-- 逻辑断裂检测： 识别“看似连贯实则瞬移”的步骤（检测隐含前提缺失）。
+## 四个模块
 
-- 深度（Depth）： 非冗余的逻辑增益，衡量每一步的“逻辑推进力”（如利用信息熵或图论路径）。
+- **Dataset**：处理规则数据集，解析 facts/rules，生成标准 DAG。
+- **Model Test**：构造 prompt，读取手写 demo 模型输出，并预留未来 API 接口。
+- **Scorer**：拆分模型步骤，映射到 DAG 节点，验证每一步，点亮 DAG，并计算 Depth / Breadth / Consistency。
+- **Analysis**：统计结果并生成 DAG 可视化和总体图表，展示推理断裂、跳步、冗余和分支覆盖。
 
-- 广度（Breadth）： 有效假设空间的覆盖率，评估反事实、边缘情况及分支多样性。
+## 核心创新点
 
-交付产物：
+- **Depth = 有效逻辑推进量**，不是 CoT 长度或 token 数。
+- **Breadth = 关键分叉覆盖率**，不是采样次数。
+- **Consistency = 推理断裂检测**，不只是答案一致。
+- **DAG Lighting = 推理过程可视化**，将模型步骤映射并点亮标准推理图，直观看到 lit / jump / redundant / wrong 等状态。
 
-- 动态逻辑基准集（JSON 格式，2000+ 题目）。
+## 技术栈
 
-- 评分算法（Score_Depth, Score_Breadth, Score_Consistency）。
+Python 3.10+、dataclass、networkx、pandas、matplotlib、pytest、argparse、python-dotenv、JSON/JSONL。
 
-- 技术白皮书。
+## 快速开始
+
+```bash
+pip install -r requirements.txt
+python scripts/run_all_demo.py
+pytest
+```
+
+也可以分步运行：
+
+```bash
+python scripts/01_build_dataset.py --raw data/raw/demo_raw_rules.jsonl --save data/processed/demo_benchmark.jsonl
+python scripts/02_run_model_demo.py --benchmark data/processed/demo_benchmark.jsonl --outputs data/model_outputs/demo_model_outputs.jsonl
+python scripts/03_score_outputs.py --benchmark data/processed/demo_benchmark.jsonl --outputs data/model_outputs/demo_model_outputs.jsonl --save outputs/results/demo_results.jsonl
+python scripts/04_analyze_results.py --results outputs/results/demo_results.jsonl --benchmark data/processed/demo_benchmark.jsonl --report outputs/reports/summary.csv --figures outputs/figures
+```
+
+## 输出结果
+
+- `data/processed/demo_benchmark.jsonl`：由 raw rules 生成的 benchmark，包含 gold DAG。
+- `outputs/results/demo_results.jsonl`：逐条模型输出的评分结果和点亮后的 DAG。
+- `outputs/reports/summary.csv`：按 output_type 聚合的 Accuracy / Depth / Breadth / Consistency。
+- `outputs/figures/*.png`：DAG Lighting 图和总体柱状图。
+
+## Demo 类型
+
+- `correct_full`：答案正确，推理过程完整。
+- `correct_jump`：答案正确，但跳过中间前提。
+- `verbose_redundant`：答案正确，但重复啰嗦，重复步骤不增加 Depth。
+- `wrong`：答案错误或使用错误规则。
+- `broad`：覆盖多个关键分支，Breadth 高。
+- `narrow_repeated`：多次采样但反复走同一分支，Breadth 低。
+
+## 当前局限
+
+- 只支持规则逻辑题。
+- step-node mapper 是规则匹配，不是语义 embedding。
+- verifier 是 rule-based，不是训练模型。
+- 反事实分支第一版只做检测和报告预留，不纳入主分数。
+- DAG 可视化比较基础，目标是清晰展示节点和边状态。
+
+## 后续扩展
+
+- 接入真实 LLM API，例如 OpenAI / DeepSeek / Qwen。
+- 使用 sentence-transformers 做 step-node mapping。
+- 使用 LLM-as-judge 或训练 verifier。
+- 接入 z3 / symbolic prover。
+- 扩展到 GSM8K / MATH / FOLIO / ProofWriter。
+- 做交互式 DAG 展示，例如 Streamlit / Dash / Gradio。
+
