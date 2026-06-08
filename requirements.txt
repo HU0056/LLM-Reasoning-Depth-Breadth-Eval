@@ -3,4 +3,6 @@ pandas>=2.0
 matplotlib>=3.7
 pytest>=7.0
 python-dotenv>=1.0
+# feature/zhangluyu
+datasets>=2.20.0
 
