@@ -1,3 +1,8 @@
-# Third-party runtime dependencies for this project.
-# Everything else currently used is from the Python standard library.
+networkx>=3.0
+pandas>=2.0
+matplotlib>=3.7
+pytest>=7.0
+python-dotenv>=1.0
+# feature/zhangluyu
 datasets>=2.20.0
+
