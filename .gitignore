@@ -5,3 +5,4 @@ __pycache__/
 # data/raw/gsm8k/*.jsonl
 # data/processed/gsm8k/*.jsonl
 data/*
+.env
