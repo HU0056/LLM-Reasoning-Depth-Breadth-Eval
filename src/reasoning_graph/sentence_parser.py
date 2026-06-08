@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 
 
-SENTENCE_SPLIT_PATTERN = re.compile(r"(?:\.\.\.|[.!?\n])+")
+SENTENCE_SPLIT_PATTERN = re.compile(r"(?:\.\.\.|[.!?](?=\s|$)|\r\n|[\r\n])+")
 FINAL_ANSWER_PATTERN = re.compile(r"^\s*####\s*(.+?)\s*$")
 
 
@@ -22,5 +22,5 @@ def extract_final_answer(answer_nodes: list[str]) -> str:
 
     match = FINAL_ANSWER_PATTERN.match(answer_nodes[-1])
     if not match:
-        raise ValueError("last answer node must match '#### [ans]'")
+        raise ValueError(f"last answer node must match '#### [ans]', but got: {answer_nodes[-1]}")
     return match.group(1).strip()
