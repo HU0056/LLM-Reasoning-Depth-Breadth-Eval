@@ -2,6 +2,23 @@ __pycache__/
 .pytest_cache/
 .venv/
 *.pyc
-# data/raw/gsm8k/*.jsonl
-# data/processed/gsm8k/*.jsonl
-data/*
+*.egg-info/
+.eggs/
+*.egg
+
+# API keys / secrets
+.env
+
+# Claude Code
+.claude/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

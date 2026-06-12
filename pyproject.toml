@@ -3,7 +3,7 @@ name = "reasoning-graph-builder"
 version = "0.1.0"
 description = "GSM8K parsing and reasoning graph construction for LLM process evaluation."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
     "datasets>=2.20.0",
 ]
