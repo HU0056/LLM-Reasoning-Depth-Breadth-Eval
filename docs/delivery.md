@@ -1,163 +1,113 @@
 # 交付说明
 
-本文档描述当前仓库已经完成并验证通过的 `graph builder` 交付内容。
+本文档描述当前仓库已完成的交付内容与项目状态。
 
-## 交付范围
+## 项目概述
 
-本阶段已完成：
+4 个模块完整闭环的大模型推理过程评估原型：
 
-- `gsm8k` 数据集下载与本地保存
-- `sentence parser`
-- `map builder / graph builder`
-- 命令行入口与脚本入口
-- 基础单元测试
-- Windows 本地虚拟环境运行说明
+| 模块 | 目录 | 状态 |
+|---|---|---|
+| Dataset | `src/reasoning_eval/dataset/` | ✅ |
+| Model Test | `src/reasoning_eval/model_test/` | ✅ |
+| Scorer | `src/reasoning_eval/scorer/` | ✅ |
+| Analysis | `src/reasoning_eval/analysis/` | ✅ |
 
-本阶段未完成：
+另有独立的 `src/reasoning_graph/` 包提供 GSM8K 数据下载与句子级相似度建图能力。
 
-- proof-state 级 canonicalization
-- DAG 去重与路径合并
-- Breadth / Depth / Consistency 评分器
-- 面向多数据集的统一 benchmark pipeline
+## 已交付内容
 
-## 目录结构
+### 1. Dataset — benchmark 构建
 
-```text
-LLM-Reasoning-Depth-Breadth-Eval/
-├─ data/
-│  ├─ raw/gsm8k/
-│  └─ processed/gsm8k/
-├─ docs/
-│  ├─ delivery.md
-│  ├─ graph_builder_README.md
-│  └─ graph_builder_design.md
-├─ scripts/
-│  └─ run_gsm8k_pipeline.py
-├─ src/reasoning_graph/
-│  ├─ cli.py
-│  ├─ config.py
-│  ├─ dataset.py
-│  ├─ graph_builder.py
-│  ├─ pipeline.py
-│  ├─ schemas.py
-│  ├─ sentence_parser.py
-│  └─ similarity.py
-├─ tests/
-│  ├─ test_graph_builder.py
-│  └─ test_sentence_parser.py
-├─ pyproject.toml
-└─ requirements.txt
+- `dag_builder.py`: 从 facts/rules 构建 gold reasoning DAG
+- `rule_parser.py`: 规则解析，支持 distractor 标注
+- `graph_utils.py`: networkx DAG 构建、最短路径、可达性检测
+- `build_demo_dataset.py`: 从 raw JSONL 生成 benchmark
+
+数据：
+- `data/raw/demo_raw_rules.jsonl`: 5 道规则逻辑题
+- `data/raw/gsm8k/*.jsonl`: GSM8K 7,473 train + 1,319 test
+- `data/processed/demo_benchmark.jsonl`: demo benchmark（含 gold DAG）
+- `data/processed/gsm8k/*_graphs.jsonl`: GSM8K 句子级推理图
+
+### 2. Model Test — prompt 构造 + API 调用
+
+- `prompt_builder.py`: math / deduction 双模式 prompt，支持多路径 (SC)
+- `llm_client.py`: OpenAI-compatible 客户端，retry/backoff，env 驱动
+- `generate_with_api.py`: 批量生成，输出与 scorer pipeline 对齐
+- `demo_output_loader.py`: 加载手写 demo 输出
+
+### 3. Scorer — 核心评分引擎
+
+- `step_splitter.py`: 模型输出 → 步骤列表，支持多路径 (Path N) 拆分
+- `mapper.py`: step → DAG node 映射（规则匹配 + Jaccard 相似度）
+- `verifier.py`: RuleBasedVerifier，检测直接后继/跳步/不可达/矛盾
+- `depth_scorer.py`: 基于图距离缩短量的深度评分
+- `breadth_scorer.py`: 关键分叉节点覆盖率
+- `consistency_scorer.py`: 错误步定位 + 矛盾/冗余/答案一致性检测
+- `dag_lighter.py`: DAG 节点点亮可视化 (lit/jump/wrong/redundant)
+- `evaluator.py`: 总编排，evaluate_one / evaluate_files
+
+### 4. Analysis — 报告与可视化
+
+- `result_analyzer.py`: 按 output_type 聚合统计
+- `plots.py`: 总体柱状图 (matplotlib)
+- `visualize_dag.py`: 单条样本 DAG 点亮图
+- `make_report.py`: 一键出报告 + 图表
+
+### 5. GSM8K 图构建（独立体系）
+
+`src/reasoning_graph/` 包：
+
+- `sentence_parser.py`: 句子拆分 + final answer 提取
+- `graph_builder.py`: Jaccard 相似度建图（可替换 similarity_fn）
+- `similarity.py`: Jaccard token 重叠
+- `pipeline.py` / `cli.py`: 下载 + 建图流水线
+
+## 评分指标
+
+| 指标 | 含义 | 关键文件 |
+|---|---|---|
+| Depth (0-100) | 推理对目标距离的有效缩短量 | `depth_scorer.py` |
+| Breadth (0-100) | 关键分叉节点的有效分支覆盖率 | `breadth_scorer.py` |
+| Consistency (0-100) | 错误步/矛盾/冗余/答案综合扣分 | `consistency_scorer.py` |
+| First_Error_Step | 最早出错步骤位置 | `consistency_scorer.py` |
+| DAG Lighting | 每步节点状态可视化 | `dag_lighter.py` |
+
+## 测试
+
+13 个单元测试全部通过：
+
+```bash
+conda run -n LLMReason python -m pytest tests/ -v
 ```
 
-## 核心实现
+## 环境
 
-### 1. 数据下载
+- Python 3.10+
+- Conda 环境 `LLMReason`，依赖见 `requirements.txt`
+- 安装：`pip install -r requirements.txt -e .`
 
-- 使用 `datasets.load_dataset(...)` 下载 `gsm8k`
-- 优先尝试 `openai/gsm8k`
-- 失败时自动设置 `HF_ENDPOINT=https://hf-mirror.com/` 并重试
-- 原始数据输出到 `data/raw/gsm8k/*.jsonl`
+## 运行
 
-### 2. 句子切分
+```bash
+# 完整 demo 流程（5 道规则题 + 手写输出）
+conda run -n LLMReason python scripts/run_all_demo.py
 
-- 对 `question` 与 `answer` 按 `.`、`...`、`!`、`?`、换行分割
-- 自动忽略空节点，例如 `.\n`
-- 要求 `answer` 的最后一个节点匹配 `#### [ans]`
+# 分步运行
+conda run -n LLMReason python scripts/01_build_dataset.py --raw data/raw/demo_raw_rules.jsonl --save data/processed/demo_benchmark.jsonl
+conda run -n LLMReason python scripts/02_run_model_demo.py --benchmark data/processed/demo_benchmark.jsonl --outputs data/model_outputs/demo_model_outputs.jsonl
+conda run -n LLMReason python scripts/03_score_outputs.py --benchmark data/processed/demo_benchmark.jsonl --outputs data/model_outputs/demo_model_outputs.jsonl --save outputs/results/demo_results.jsonl
+conda run -n LLMReason python scripts/04_analyze_results.py --results outputs/results/demo_results.jsonl --benchmark data/processed/demo_benchmark.jsonl --report outputs/reports/summary.csv --figures outputs/figures
 
-### 3. 图构建
-
-对每个 `answer` 节点：
-
-- 计算其与所有 `question` 句子、以及所有前置 `answer` 句子的相似度
-- 默认相似度函数为 `calculate_similarity`，实现为 Jaccard similarity
-- 找到最大相似度 `max_sim`
-- 必连最大相似度对应的前驱节点
-- 额外连接所有满足 `similarity > bound * max_sim` 的候选节点
-
-默认阈值：
-
-- `bound = 1 - 1/e`
-
-### 4. 输出格式
-
-输出文件位于 `data/processed/gsm8k/*_graphs.jsonl`，每条样本结构如下：
-
-```json
-{
-  "id": "gsm8k_train_00000",
-  "gsm8k_id": "gsm8k_train_00000",
-  "task_type": "math",
-  "question": "...",
-  "gold_answer": "72",
-  "gold_reasoning_graph": {
-    "nodes": [
-      "question sentence 1",
-      "question sentence 2",
-      "answer sentence 1",
-      "answer sentence 2",
-      "#### 72"
-    ],
-    "edges": [[0, 2], [2, 3], [3, 4]]
-  }
-}
+# 调真实 API 生成模型输出
+conda run -n LLMReason python scripts/run_model_test.py --benchmark data/processed/demo_benchmark.jsonl --output data/model_outputs/api_outputs.jsonl
 ```
 
-## 环境与运行
+## 待完成
 
-### 依赖
-
-当前项目运行时第三方库仅包含：
-
-- `datasets>=2.20.0`
-
-依赖清单见 [requirements.txt](D:/myprograms/schoolcoursecode/Python/LLM-Reasoning-Depth-Breadth-Eval/requirements.txt:1)。
-
-### 虚拟环境
-
-建议使用仓库内虚拟环境 `.venv`：
-
-```powershell
-python -m venv .venv
-.venv\Scripts\python -m pip install -r requirements.txt -e .
-```
-
-### 运行命令
-
-完整流程：
-
-```powershell
-.venv\Scripts\python -m reasoning_graph.cli run-all --root .
-```
-
-仅下载原始数据：
-
-```powershell
-.venv\Scripts\python -m reasoning_graph.cli download-gsm8k --root .
-```
-
-仅构建图：
-
-```powershell
-.venv\Scripts\python -m reasoning_graph.cli build-gsm8k-graphs --root .
-```
-
-脚本入口：
-
-```powershell
-.venv\Scripts\python scripts\run_gsm8k_pipeline.py
-```
-
-## 验证结果
-
-已验证以下命令可运行：
-
-```powershell
-.venv\Scripts\python -m unittest discover -s tests -v
-.venv\Scripts\python -m reasoning_graph.cli run-all --root .
-```
-
-## 备注
-
-- `data*` 当前被 `.gitignore` 忽略，数据文件不会进入版本控制
-- `src/reasoning_graph_builder.egg-info/` 为本地安装生成的构建产物，不属于核心源码
-- 当前图结构是句子级近似图，更适合做第一阶段工程打底，而不是最终研究版本
+- scorer pipeline 适配 GSM8K processed graph 格式（当前 scorer 仅支持规则逻辑题的 id/proposition 格式）
+- step-node mapper 升级为 semantic embedding
+- verifier 升级为训练模型或 LLM-as-judge
+- 反事实分支纳入主分数
+- 真实 LLM 大规模评测
