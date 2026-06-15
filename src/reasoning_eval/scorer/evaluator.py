@@ -4,6 +4,7 @@ from dataclasses import asdict
 
 from reasoning_eval.common.io_utils import read_jsonl, write_jsonl
 from reasoning_eval.common.schema import EvaluationResult
+from reasoning_eval.dataset.graph_utils import normalize_graph
 from reasoning_eval.scorer.breadth_scorer import score_breadth
 from reasoning_eval.scorer.consistency_scorer import score_consistency
 from reasoning_eval.scorer.dag_lighter import light_dag
@@ -13,17 +14,24 @@ from reasoning_eval.scorer.step_splitter import split_steps
 from reasoning_eval.scorer.verifier import RuleBasedVerifier
 
 
-def answer_is_correct(final_answer: str | None, goal: str, gold_answer: str) -> bool:
+def answer_is_correct(final_answer: str | None, goal: str | None, gold_answer: str) -> bool:
     if not final_answer:
         return False
     compact = final_answer.replace(" ", "")
-    goal_yes = f"{goal}成立" in compact or gold_answer.replace(" ", "") in compact
-    goal_no = f"{goal}不成立" in compact
-    return goal_yes and not goal_no
+    gold_compact = gold_answer.replace(" ", "")
+    # Math tasks: check gold answer is present
+    if gold_compact in compact:
+        return True
+    # Deduction tasks: check "X成立" / "X不成立"
+    if goal:
+        goal_yes = f"{goal}成立" in compact
+        goal_no = f"{goal}不成立" in compact
+        return goal_yes and not goal_no
+    return False
 
 
 def evaluate_one(sample: dict, output: dict) -> EvaluationResult:
-    graph = sample["gold_reasoning_graph"]
+    graph = normalize_graph(sample["gold_reasoning_graph"])
     split = split_steps(output["response"])
     verifier = RuleBasedVerifier(graph)
     mappings = []
@@ -42,7 +50,7 @@ def evaluate_one(sample: dict, output: dict) -> EvaluationResult:
                 if not verification.redundant:
                     previous_node = mapping.matched_node_id
 
-    correct = answer_is_correct(split.final_answer, sample["goal"], sample["gold_answer"])
+    correct = answer_is_correct(split.final_answer, sample.get("goal"), sample["gold_answer"])
     depth, depth_detail = score_depth(graph, mappings, verifications)
     breadth, breadth_detail = score_breadth(graph, split.sampled_paths, sample.get("key_branch_nodes", []))
     consistency, consistency_detail = score_consistency(verifications, correct)

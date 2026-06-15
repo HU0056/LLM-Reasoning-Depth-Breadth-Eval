@@ -19,8 +19,8 @@ def map_step_to_node(step_text: str, graph: dict) -> MappingResult:
     for edge in edges:
         source = edge["source"]
         target = edge["target"]
-        rule_text = normalize_text(edge["rule_text"])
-        if _mentions_rule(step_norm, source, target) or rule_text in step_norm:
+        rule_text = normalize_text(edge.get("rule_text", ""))
+        if rule_text and (_mentions_rule(step_norm, source, target) or rule_text in step_norm):
             return MappingResult(step_text, target, 0.95, f"matched rule text {edge['rule_text']} and maps to target {target}")
 
     for node in nodes:

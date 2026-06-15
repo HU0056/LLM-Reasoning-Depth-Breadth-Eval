@@ -1,0 +1,2 @@
+﻿output_type,answer_accuracy,avg_depth,avg_breadth,avg_consistency,avg_branch_coverage,missing_premise_rate,first_error_rate
+cot,1.0,53.50599999999999,,66.3333,,0.25,0.9

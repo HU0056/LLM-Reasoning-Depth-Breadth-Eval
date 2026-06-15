@@ -34,6 +34,9 @@ class RuleBasedVerifier:
         if previous_node is None:
             if node in self.start_nodes:
                 return VerificationResult(True, False, False, False, f"first step maps to fact node {node}")
+            # Allow first step from any node reachable from a start node (common in math tasks)
+            if any(is_reachable(self.nx_graph, s, node) or is_direct_successor(self.nx_graph, s, node) for s in self.start_nodes):
+                return VerificationResult(True, False, False, False, f"first step maps to node {node} (reachable from facts)")
             return VerificationResult(False, False, False, False, f"first step must start from facts {sorted(self.start_nodes)}")
 
         if is_direct_successor(self.nx_graph, previous_node, node):

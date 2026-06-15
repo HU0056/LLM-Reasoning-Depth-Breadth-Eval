@@ -5,6 +5,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import networkx as nx
 
+from reasoning_eval.dataset.graph_utils import normalize_graph
+
 
 NODE_COLORS = {
     "unvisited": "#bdbdbd",
@@ -19,7 +21,7 @@ EDGE_COLORS = {"unused": "#bdbdbd", "used_valid": "#2ca25f", "skipped": "#fdae61
 
 
 def draw_lighted_dag(sample: dict, result: dict, figures_dir: str) -> Path:
-    graph = sample["gold_reasoning_graph"]
+    graph = normalize_graph(sample["gold_reasoning_graph"])
     g = nx.DiGraph()
     for node in graph["nodes"]:
         g.add_node(node["id"])
