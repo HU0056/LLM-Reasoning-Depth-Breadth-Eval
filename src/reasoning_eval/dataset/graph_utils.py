@@ -73,7 +73,9 @@ def build_nx_graph(graph: dict | object) -> nx.DiGraph:
         g.add_node(data["id"], **data)
     for edge in edges:
         data = edge if isinstance(edge, dict) else edge.__dict__
-        g.add_edge(data["source"], data["target"], **data)
+        src = data.get("source") or (data.get("premises", [""])[0] if data.get("premises") else "")
+        tgt = data.get("target", "")
+        g.add_edge(src, tgt, **data)
     if not nx.is_directed_acyclic_graph(g):
         raise ValueError("Reasoning graph must be a DAG")
     return g

@@ -1,3 +1,8 @@
+"""Common dataclass schemas shared across modules.
+
+EvaluationResult updated to carry multi-dimensional consistency detail.
+"""
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -25,6 +30,7 @@ class ReasoningEdge:
     target: str
     rule_text: str
     status: str = "normal"
+    difficulty: float = 1.0
 
 
 @dataclass
@@ -48,6 +54,9 @@ class MappingResult:
     matched_node_id: Optional[str]
     confidence: float
     reason: str
+    # Anti-fabrication fields
+    is_fabricated: bool = False
+    fabrication_reason: str = ""
 
 
 @dataclass
@@ -73,5 +82,7 @@ class EvaluationResult:
     branch_coverage: Optional[float]
     contradiction_count: int
     lighted_graph: dict[str, Any]
-    detail: dict[str, Any]
-
+    # Extended consistency detail (multi-dimensional)
+    consistency_dimensions: dict[str, Any] = field(default_factory=dict)
+    depth_detail_summary: dict[str, Any] = field(default_factory=dict)
+    detail: dict[str, Any] = field(default_factory=dict)
