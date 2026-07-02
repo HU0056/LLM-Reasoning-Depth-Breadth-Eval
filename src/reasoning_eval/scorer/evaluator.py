@@ -44,7 +44,20 @@ def answer_is_correct(
     return False
 
 
-def evaluate_one(sample: dict, output: dict) -> EvaluationResult:
+def evaluate_one(
+    sample: dict,
+    output: dict,
+    *,
+    mapper_client=None,
+) -> EvaluationResult:
+    """Evaluate one model output against its gold DAG.
+
+    Parameters
+    ----------
+    mapper_client :
+        Optional LLMClient for LLM-assisted step-to-node matching (Tier 6 fallback).
+        When None, only logical signature matching is used.
+    """
     graph = normalize_graph(sample["gold_reasoning_graph"])
     split = split_steps(output["response"])
     verifier = RuleBasedVerifier(graph)
@@ -58,7 +71,7 @@ def evaluate_one(sample: dict, output: dict) -> EvaluationResult:
         history: set[str] = set()
         previous_node: str | None = None
         for step in path:
-            mapping = map_step_to_node(step, graph)
+            mapping = map_step_to_node(step, graph, client=mapper_client)
             verification = verifier.verify(mapping, previous_node, history)
             mappings.append(mapping)
             verifications.append(verification)

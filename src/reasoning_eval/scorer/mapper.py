@@ -548,18 +548,41 @@ def _precompute_gold_signatures(graph: dict) -> tuple[
 
 # ── Public API ───────────────────────────────
 
-def map_step_to_node(step_text: str, graph: dict) -> MappingResult:
-    """Map a model reasoning step to the best-matching gold DAG node
-    using LOGICAL SIGNATURE matching.
+# Module-level cache for gold signatures (per graph id)
+_graph_cache: dict[int, tuple] = {}
+_graph_cache_id = 0
 
-    Numeric steps: matched by equations → defined numbers → number overlap.
-    Non-numeric steps: matched by rule text → proposition symbols.
+
+def map_step_to_node(
+    step_text: str,
+    graph: dict,
+    *,
+    client=None,
+) -> MappingResult:
+    """Map a model reasoning step to the best-matching gold DAG node.
+
+    Tiered matching:
+    Tier 1 (0.95): Rule-text match → edge target
+    Tier 2 (0.95): Exact equation match — same inputs + op + output
+    Tier 3 (0.85): Same equation output + overlapping inputs
+    Tier 4 (0.70): Same defined numbers (unique to this gold node)
+    Tier 5 (0.55): Number/proposition overlap
+    Tier 6 (0.75): LLM-assisted match (only if client provided + signatures fail)
+
+    Parameters
+    ----------
+    step_text : str
+        Model reasoning step.
+    graph : dict
+        Gold DAG.
+    client :
+        Optional LLMClient for Tier 6 fallback.  If None, LLM tier is skipped.
     """
     model_sig = extract_logical_signature(step_text)
     nodes = graph.get("nodes", [])
     edges = graph.get("edges", [])
 
-    # ── Rule-text fast path (deduction tasks) ──
+    # ── Tier 1: Rule-text fast path (deduction tasks) ──
     for edge in edges:
         rule_text = (edge.get("rule_text") or "").strip()
         if rule_text:
@@ -574,7 +597,7 @@ def map_step_to_node(step_text: str, graph: dict) -> MappingResult:
     # ── Precompute gold signatures ──
     gold_sigs, num_to_nodes, prop_to_nodes = _precompute_gold_signatures(graph)
 
-    # ── Score every gold node ──
+    # ── Tiers 2-5: Score every gold node by logical signature ──
     best_node: Optional[str] = None
     best_conf: float = 0.0
     best_reason: str = "no logical match"
@@ -584,7 +607,6 @@ def map_step_to_node(step_text: str, graph: dict) -> MappingResult:
         matched, conf, reason = False, 0.0, ""
 
         if model_sig.is_numeric and gsig.is_numeric:
-            # Numeric vs numeric: equation → defined-number → overlap
             matched, conf, reason = _equation_match(model_sig, gsig)
             if not matched or conf < 0.5:
                 matched, conf, reason = _number_defined_match(
@@ -594,25 +616,32 @@ def map_step_to_node(step_text: str, graph: dict) -> MappingResult:
                 matched, conf, reason = _number_overlap_match(model_sig, gsig)
 
         elif model_sig.is_propositional and gsig.is_propositional:
-            # Non-numeric vs non-numeric: proposition match
             matched, conf, reason = _proposition_match(
                 model_sig, gsig, all_gold_props=prop_to_nodes,
             )
 
         elif model_sig.is_propositional and gsig.is_numeric:
-            # Model step is propositional, gold is numeric — weak overlap
             matched, conf, reason = _number_overlap_match(model_sig, gsig)
 
         elif model_sig.is_numeric and gsig.is_propositional:
-            # Model step is numeric, gold is propositional — weak overlap
             matched, conf, reason = _number_overlap_match(model_sig, gsig)
-
-        # else: both empty — no match possible
 
         if conf > best_conf:
             best_node = node_id
             best_conf = conf
             best_reason = reason
+
+    # ── Tier 6: LLM-assisted fallback ──
+    if best_conf < MIN_CONFIDENCE and client is not None:
+        try:
+            from reasoning_eval.scorer.mapper_llm import llm_assisted_match
+            llm_result = llm_assisted_match(
+                step_text, graph, model_sig, gold_sigs, nodes, client,
+            )
+            if llm_result is not None and llm_result.matched_node_id:
+                return llm_result
+        except ImportError:
+            pass  # mapper_llm not available
 
     # ── Fabrication gate ──
     if best_conf < MIN_CONFIDENCE:
