@@ -75,32 +75,38 @@ def _is_negation(text: str) -> bool:
 
 # ── Equation extraction ──────────────────────
 
-# Operator detection (after normalization)
+# Operator detection
 _OP_PATTERNS: list[tuple[re.Pattern, str]] = [
     (re.compile(r"\+"), "add"),
     (re.compile(r"\-"), "sub"),
     (re.compile(r"\*|×|times|x\b"), "mul"),
-    (re.compile(r"/|÷|divided by|over"), "div"),
+    (re.compile(r"/|÷|divided\s+by|over"), "div"),
     (re.compile(r"\%|mod"), "mod"),
     (re.compile(r"\^|\*\*"), "pow"),
 ]
 
+# Natural-language equation: keyword templates that signal computation
+_RESULT_KW = re.compile(
+    r"\b(?:gives?\s+(?:us\s+)?|yields?|produces?|results?\s+in|equals?|is\s+equal\s+to|"
+    r"comes?\s+out\s+to|we\s+get|we\s+have|that\s+gives?|makes?|would\s+be|"
+    r"is\s+the\s+(?:result|outcome|product|sum|quotient|difference))\b",
+    re.IGNORECASE,
+)
+_OP_KW_FRACTION = re.compile(r"\b(?:half|a\s+third|a\s+quarter|twice|double|triple)\b", re.IGNORECASE)
+_OP_KW_SUM = re.compile(r"\b(?:sum|total|altogether)\b", re.IGNORECASE)
+_OP_KW_DIFF = re.compile(r"\b(?:difference\s+between|less\b(?!\s+than)|minus|take\s+away)\b", re.IGNORECASE)
+_OP_KW_MORE = re.compile(r"\bmore\s+than\b", re.IGNORECASE)
+_OP_KW_PROD = re.compile(r"\b(?:product\s+of|times|multiplied\s+by)\b", re.IGNORECASE)
+
 # Matches "<<48/2=24>>" (GSM8K calc markers)
 _GSM8K_RE = re.compile(r"<<(.+?)=(.+?)>>")
-
-# Numbers with optional decimal
 _NUM_RE = re.compile(r"\d+\.?\d*")
 _NUM_ONLY = re.compile(r"^[\d+\-*/().%\s]+$")
 
 
 def _normalize_for_math(text: str) -> str:
-    """Normalize text to make math operations parseable.
-
-    - Replace Unicode operators: ÷→/, ×→*
-    - Strip parenthetical annotations: \"48 (April)\" → \"48\"
-    """
     t = text.replace("÷", "/").replace("×", "*")
-    t = re.sub(r"\(\s*[A-Za-z][^)]*\)", "", t)  # strip (April), (May), etc.
+    t = re.sub(r"\(\s*[A-Za-z][^)]*\)", "", t)
     return t
 
 
@@ -125,10 +131,89 @@ def _safe_eval(expr: str) -> Optional[float]:
         return None
 
 
+def _keyword_to_op(label: str) -> str:
+    """Map natural-language template label to operation type."""
+    mapping = {
+        "eq_kw": "unknown", "fraction": "div", "result_is": "unknown",
+        "sum_of": "add", "diff_between": "sub", "subtract": "sub",
+        "more_than": "add", "product_of": "mul",
+    }
+    return mapping.get(label, "unknown")
+
+
+def _extract_nl_equations(text: str) -> list[tuple[set[float], str, float]]:
+    """Extract equations from natural-language phrasing without '=' signs.
+
+    Strategy:
+    1. Find ALL numbers in the text with their positions
+    2. Find result keywords ("gives", "yields", "equals", ...)
+    3. Find operation keywords ("half", "sum", "difference", ...)
+    4. Numbers BEFORE the result keyword are inputs; the number AFTER is output
+    5. If no result keyword, use operation keyword to infer structure
+    """
+    results: list[tuple[set[float], str, float]] = []
+
+    # Find all numbers with positions
+    num_positions: list[tuple[float, int, int]] = []
+    for m in _NUM_RE.finditer(text):
+        num_positions.append((float(m.group()), m.start(), m.end()))
+
+    if len(num_positions) < 2:
+        return results
+
+    # Find result keyword positions
+    result_spans: list[tuple[int, int]] = [
+        (m.start(), m.end()) for m in _RESULT_KW.finditer(text)
+    ]
+
+    # Find operation keyword positions
+    op_signals: list[tuple[int, int, str]] = []
+    for pat, op_name in [
+        (_OP_KW_FRACTION, "div"), (_OP_KW_SUM, "add"),
+        (_OP_KW_DIFF, "sub"), (_OP_KW_MORE, "add"),
+        (_OP_KW_PROD, "mul"),
+    ]:
+        for m in pat.finditer(text):
+            op_signals.append((m.start(), m.end(), op_name))
+
+    # Strategy A: result keyword splits numbers into inputs (before) and output (after)
+    for r_start, r_end in result_spans:
+        inputs: list[float] = []
+        outputs: list[float] = []
+        for num, ns, ne in num_positions:
+            if ne <= r_start:
+                inputs.append(num)
+            elif ns >= r_end:
+                outputs.append(num)
+        if inputs and outputs:
+            op = _detect_operation(text[max(0, r_start - 40):r_end + 20])
+            # Use operation keyword if available near the result keyword
+            for os_start, os_end, os_op in op_signals:
+                if abs(os_start - r_start) < 30:
+                    op = os_op
+                    break
+            results.append((set(inputs), op, outputs[0]))
+            # Only use one result-keyword-based equation per text segment
+            break
+
+    # Strategy B: no result keyword — use operation keyword to find
+    # the relation among numbers
+    if not results:
+        for os_start, os_end, op in op_signals:
+            nearby_nums = [
+                num for num, ns, ne in num_positions
+                if abs(ns - os_start) < 60
+            ]
+            if len(nearby_nums) >= 2:
+                # Heuristic: last nearby number is the output
+                results.append((set(nearby_nums[:-1]), op, nearby_nums[-1]))
+                break
+
+    return results
+
+
 # ── Proposition extraction (non-numeric logic) ─
 
-# Matches single-letter propositions like A, B, C in deduction tasks.
-# Captures: "A 成立", "B不成立", "rule A -> B", "命题 A"
 _PROP_RE = re.compile(r"\b([A-Z])\b")
 
 
@@ -195,12 +280,20 @@ def extract_logical_signature(text: str) -> LogicalSignature:
     sig.propositions = _extract_propositions(clean)
     sig.is_negation = _is_negation(clean)
 
+    # ── Try natural-language equation templates FIRST ──
+    # These catch "48 divided by 2 gives us 24", "half of 48 is 24", etc.
+    nl_eqs = _extract_nl_equations(normalized)
+    if nl_eqs:
+        for inputs, op, output in nl_eqs:
+            sig.equations.append((inputs, op, output))
+            sig.numbers_used.update(inputs)
+            sig.numbers_defined.add(output)
+        # Don't return — also try '=' anchors if present
+
     # ── Find '=' anchors (numeric equations) ──
     eq_positions = [i for i, ch in enumerate(normalized) if ch == "="]
-    if not eq_positions:
-        # No equation: numbers in this step are either "given" facts
-        # or computed implicitly.  For non-numeric steps, propositions
-        # carry the logical content.
+    if not eq_positions and not nl_eqs:
+        # No equation at all: numbers in this step are "given" facts
         sig.numbers_defined = sig.all_numbers.copy()
         return sig
 
