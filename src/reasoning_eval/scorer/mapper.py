@@ -5,44 +5,37 @@ Zero Jaccard.  Zero substring matching.  Zero embedding.
 Principle
 ---------
 A math reasoning step is defined by WHAT NUMBERS it produces, not what
-words it uses.  Two steps that produce the same number(s) from the same
-input number(s) via the same operation are the SAME logical step —
-regardless of whether one says "48/2=24" and the other says
-"she sold half, so 48 divided by 2 equals 24 clips".
+words it uses.  For non-numeric logic (deduction problems), a step is
+defined by WHAT PROPOSITIONS it establishes.
 
 Logical Signature
 -----------------
 For every piece of text (model step or gold node), we extract:
 
-    numbers_defined : set[float]    —  numbers this step COMPUTES (RHS of =)
-    numbers_used    : set[float]    —  numbers this step CONSUMES (LHS of =)
-    operations      : list[str]     —  operation types (div, mul, add, sub, …)
-    equation_triples: list[(inputs, op, output)]  — structured equation info
+    numbers_defined   —  numbers this step COMPUTES (RHS of =)
+    numbers_used      —  numbers this step CONSUMES (LHS of =)
+    equations         —  [(inputs_set, operation, output)]
+    propositions      —  {symbol} for non-numeric logic (A, B, C, ...)
 
 Matching Algorithm
 ------------------
-A model step matches a gold node IFF:
+Numeric steps (has equations or numbers):
+    Tier 1 (0.95):  same equation triple — inputs + op + output
+    Tier 2 (0.85):  same output + overlapping inputs
+    Tier 3 (0.70):  same defined numbers (unique to this gold node)
+    Tier 4 (0.55):  number footprint overlaps (unique to this gold node)
+    Tier 5 (0.45):  partial number overlap
 
-    Primary   (confidence ~0.95):
-        They compute the SAME equation triple — same inputs, same op, same output.
-
-    Secondary (confidence ~0.80):
-        They define the same output number(s) AND use overlapping inputs.
-
-    Tertiary  (confidence ~0.65):
-        They define the same output number(s) — the defining operation matches
-        even if inputs aren't aligned.
-
-    Weak      (confidence ~0.50):
-        Overlapping number footprint — the numbers mentioned in the step
-        overlap with the numbers defined or used by the gold node.
+Non-numeric steps (no numbers, no equations):
+    Tier P1 (0.90): rule-text match → edge target
+    Tier P2 (0.80): proposition symbol match (unique to this gold node)
+    Tier P3 (0.60): proposition symbol overlap (shared by multiple nodes)
 
 Anti-fabrication
 ----------------
-Steps that define NO numbers (pure text with no computation) are matched
-only if they contain numbers that are uniquely attributed to a single gold
-node.  If a number appears in multiple gold nodes, the match is ambiguous
-and confidence drops sharply.
+- Step numbers ("Step 1:", "Step 2:") are stripped before extraction
+- A number mentioned in many gold nodes is AMBIGUOUS — match is weak
+- Pure-text steps with no logical content are rejected
 """
 
 from __future__ import annotations
@@ -53,6 +46,31 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 from reasoning_eval.common.schema import MappingResult
+
+
+# ── Pre-processing ────────────────────────────
+
+_STEP_PREFIX_RE = re.compile(
+    r"^(?:Step\s*\d+|第[一二三四五六七八九十0-9]+步|步骤\s*\d+)\s*[:：]?\s*",
+    re.IGNORECASE,
+)
+_FINAL_ANSWER_RE = re.compile(
+    r"^(?:Final Answer|最终答案)\s*[:：]\s*",
+    re.IGNORECASE,
+)
+_NEGATION_RE = re.compile(r"(不成立|不正确|not\s+true|false)", re.IGNORECASE)
+_AFFIRM_RE  = re.compile(r"(成立|正确|true)", re.IGNORECASE)
+
+
+def _strip_step_prefix(text: str) -> str:
+    """Remove 'Step N:' and 'Final Answer:' prefixes that leak step numbers."""
+    t = _STEP_PREFIX_RE.sub("", text).strip()
+    t = _FINAL_ANSWER_RE.sub("", t).strip()
+    return t
+
+
+def _is_negation(text: str) -> bool:
+    return bool(_NEGATION_RE.search(text))
 
 
 # ── Equation extraction ──────────────────────
@@ -107,6 +125,32 @@ def _safe_eval(expr: str) -> Optional[float]:
         return None
 
 
+# ── Proposition extraction (non-numeric logic) ─
+
+# Matches single-letter propositions like A, B, C in deduction tasks.
+# Captures: "A 成立", "B不成立", "rule A -> B", "命题 A"
+_PROP_RE = re.compile(r"\b([A-Z])\b")
+
+
+def _extract_propositions(text: str) -> set[str]:
+    """Extract single-char proposition symbols from deduction text.
+
+    Only captures uppercase letters.  Stopwords are filtered case-sensitively:
+    UPPERCASE 'A' is a proposition; lowercase 'a' is an article.
+    """
+    stopwords = {
+        'Step','Final','Answer','Path','The','In','Find','Let','If',
+        'So','We','For','To','Is','On','At','Be','It','Or','By',
+        'Not','Are','Can','Do','Go','He','Hi','Me','My','No','Of',
+        'Oh','Ok','Us','Am','As','An',
+    }
+    cleaned = re.sub(
+        r'\b(' + '|'.join(stopwords) + r')\b',
+        ' ', text,
+    )
+    return set(_PROP_RE.findall(cleaned))
+
+
 @dataclass
 class LogicalSignature:
     """The logical content of a reasoning step, stripped of all wording."""
@@ -116,33 +160,51 @@ class LogicalSignature:
         default_factory=list
     )  # [(inputs_set, operation, output)]
     all_numbers: set[float] = field(default_factory=set)
+    propositions: set[str] = field(default_factory=set)
+    is_negation: bool = False
 
     @property
     def has_computation(self) -> bool:
         return len(self.equations) > 0
 
+    @property
+    def is_numeric(self) -> bool:
+        return len(self.all_numbers) > 0
+
+    @property
+    def is_propositional(self) -> bool:
+        return not self.is_numeric and len(self.propositions) > 0
+
+    @property
+    def is_empty(self) -> bool:
+        return not self.is_numeric and not self.is_propositional
+
 
 def extract_logical_signature(text: str) -> LogicalSignature:
     """Extract logical content from a reasoning step.
 
-    Strategy: find '=' signs, normalize the text around them,
-    extract inputs/output/operation from each equation found.
+    1. Strip step prefixes to avoid leaking step numbers.
+    2. For numeric content: find '=' anchors, extract equations.
+    3. For non-numeric content: extract proposition symbols.
     """
-    sig = LogicalSignature()
-    normalized = _normalize_for_math(text)
-    sig.all_numbers = set(_extract_numbers(normalized))
+    clean = _strip_step_prefix(text)
+    normalized = _normalize_for_math(clean)
 
-    # ── Find '=' anchors ──
+    sig = LogicalSignature()
+    sig.all_numbers = set(_extract_numbers(normalized))
+    sig.propositions = _extract_propositions(clean)
+    sig.is_negation = _is_negation(clean)
+
+    # ── Find '=' anchors (numeric equations) ──
     eq_positions = [i for i, ch in enumerate(normalized) if ch == "="]
     if not eq_positions:
-        # No equation: the step defines numbers it introduces contextually.
-        # A number is "defined" by a non-equation step only if it's a given
-        # fact (no prior computation produces it).
+        # No equation: numbers in this step are either "given" facts
+        # or computed implicitly.  For non-numeric steps, propositions
+        # carry the logical content.
         sig.numbers_defined = sig.all_numbers.copy()
         return sig
 
     for eq_idx in eq_positions:
-        # Extract LHS (before =) and RHS (after =)
         # Walk backward from = to find where the numeric expression starts
         lhs_start = eq_idx
         for i in range(eq_idx - 1, -1, -1):
@@ -169,12 +231,11 @@ def extract_logical_signature(text: str) -> LogicalSignature:
         lhs_val = _safe_eval(lhs_text)
         rhs_val = _safe_eval(rhs_text)
         if lhs_val is None or rhs_val is None:
-            # Try extracting just the numbers
             lhs_nums = _extract_numbers(lhs_text)
             rhs_nums = _extract_numbers(rhs_text)
             if lhs_nums and rhs_nums:
                 inputs = set(lhs_nums)
-                output = rhs_nums[-1]  # last number on RHS is the result
+                output = rhs_nums[-1]
                 op = _detect_operation(lhs_text)
                 sig.equations.append((inputs, op, output))
                 sig.numbers_used.update(inputs)
@@ -187,10 +248,9 @@ def extract_logical_signature(text: str) -> LogicalSignature:
         sig.numbers_used.update(inputs)
         sig.numbers_defined.add(rhs_val)
 
-    # ── GSM8K "= <<expr=result>>" markers ──
+    # ── GSM8K "<<expr=result>>" markers ──
     for m in _GSM8K_RE.finditer(text):
-        expr_text = m.group(1)
-        result_text = m.group(2)
+        expr_text, result_text = m.group(1), m.group(2)
         expr_val = _safe_eval(expr_text)
         result_val = _safe_eval(result_text)
         if expr_val is None or result_val is None:
@@ -201,8 +261,7 @@ def extract_logical_signature(text: str) -> LogicalSignature:
         sig.numbers_used.update(inputs)
         sig.numbers_defined.add(result_val)
 
-    # ── Non-equation numbers: only count as "defined" if they
-    #     aren't consumed by any equation (i.e., they are given facts)
+    # Non-equation numbers: given facts
     for num in sig.all_numbers:
         if num not in sig.numbers_used and num not in sig.numbers_defined:
             sig.numbers_defined.add(num)
@@ -212,25 +271,21 @@ def extract_logical_signature(text: str) -> LogicalSignature:
 
 # ── Logical matching ─────────────────────────
 
-# Confidence tiers for logical matches
-CONF_EXACT_EQ_MATCH      = 0.95   # same inputs, same op, same output
-CONF_SAME_EQ_OUTPUT      = 0.85   # same output, overlapping inputs
-CONF_SAME_DEFINED_NUMS   = 0.70   # define the same output numbers
-CONF_OVERLAPPING_NUMS    = 0.55   # numbers overlap with a unique gold node
-CONF_AMBIGUOUS_OVERLAP   = 0.35   # numbers overlap but shared across nodes
+CONF_EXACT_EQ_MATCH    = 0.95
+CONF_SAME_EQ_OUTPUT    = 0.85
+CONF_SAME_DEFINED_NUMS = 0.70
+CONF_OVERLAPPING_NUMS  = 0.55
+CONF_AMBIGUOUS_OVERLAP = 0.45
+CONF_PROP_EXACT        = 0.80
+CONF_PROP_SHARED       = 0.60
 
-# Fabrication thresholds
-MIN_CONFIDENCE = 0.50  # below this, reject outright
+MIN_CONFIDENCE = 0.50
 
 
 def _equation_match(
     model_sig: LogicalSignature,
     gold_sig: LogicalSignature,
 ) -> tuple[bool, float, str]:
-    """Check if model and gold share the same equation(s).
-
-    Returns (matched, confidence, reason).
-    """
     if not model_sig.equations or not gold_sig.equations:
         return False, 0.0, "no equations to compare"
 
@@ -239,7 +294,6 @@ def _equation_match(
 
     for (m_inputs, m_op, m_out) in model_sig.equations:
         for (g_inputs, g_op, g_out) in gold_sig.equations:
-            # Exact match: same output AND same inputs
             if math.isclose(m_out, g_out, rel_tol=1e-9):
                 input_overlap = len(m_inputs & g_inputs)
                 input_union = len(m_inputs | g_inputs)
@@ -277,15 +331,10 @@ def _number_defined_match(
     *,
     all_gold_defined: dict[float, list[str]],
 ) -> tuple[bool, float, str]:
-    """Match based on which numbers are DEFINED in each step.
-
-    A number defined in BOTH model and gold is strong logical evidence.
-    """
     defined_overlap = model_sig.numbers_defined & gold_sig.numbers_defined
     if not defined_overlap:
         return False, 0.0, "no numbers defined in common"
 
-    # Check if the overlapping numbers are UNIQUE to this gold node
     unique_to_this_node = True
     for num in defined_overlap:
         if len(all_gold_defined.get(num, [])) > 1:
@@ -315,7 +364,6 @@ def _number_overlap_match(
     model_sig: LogicalSignature,
     gold_sig: LogicalSignature,
 ) -> tuple[bool, float, str]:
-    """Fallback: do the step's numbers overlap with the gold node's numbers?"""
     model_nums = model_sig.all_numbers
     gold_nums = gold_sig.all_numbers
 
@@ -326,7 +374,6 @@ def _number_overlap_match(
     if not overlap:
         return False, 0.0, "no number overlap"
 
-    # The more of the gold's numbers appear in the model step, the stronger
     gold_coverage = len(overlap) / len(gold_nums)
 
     if gold_coverage >= 0.5:
@@ -341,22 +388,69 @@ def _number_overlap_match(
     return True, conf, reason
 
 
+# ── Proposition matching (non-numeric logic) ──
+
+def _proposition_match(
+    model_sig: LogicalSignature,
+    gold_sig: LogicalSignature,
+    *,
+    all_gold_props: dict[str, list[str]],
+) -> tuple[bool, float, str]:
+    """Match based on proposition symbols (A, B, C, ...).
+
+    Used for deduction problems with no numbers.
+    """
+    if not model_sig.propositions or not gold_sig.propositions:
+        return False, 0.0, "no propositions to compare"
+
+    overlap = model_sig.propositions & gold_sig.propositions
+    if not overlap:
+        return False, 0.0, "no proposition overlap"
+
+    # Check uniqueness: is this the only gold node containing this symbol?
+    unique = True
+    for prop in overlap:
+        if len(all_gold_props.get(prop, [])) > 1:
+            unique = False
+            break
+
+    if unique and model_sig.propositions == gold_sig.propositions:
+        return True, CONF_PROP_EXACT, (
+            f"exact proposition match: {overlap} "
+            f"(unique to this gold node)"
+        )
+    elif unique:
+        return True, 0.70, (
+            f"proposition overlap: {overlap} "
+            f"(unique to this gold node)"
+        )
+    else:
+        return True, CONF_PROP_SHARED, (
+            f"proposition overlap: {overlap} (shared across nodes)"
+        )
+
+
 def _precompute_gold_signatures(graph: dict) -> tuple[
     list[LogicalSignature],
-    dict[float, list[str]],   # number → which node IDs define it
+    dict[float, list[str]],
+    dict[str, list[str]],
 ]:
     """Precompute logical signatures for all gold DAG nodes."""
     sigs: list[LogicalSignature] = []
     num_to_nodes: dict[float, list[str]] = {}
+    prop_to_nodes: dict[str, list[str]] = {}
 
     for node in graph.get("nodes", []):
         text = node.get("proposition", "")
         sig = extract_logical_signature(text)
         sigs.append(sig)
+        nid = node.get("id", "")
         for num in sig.numbers_defined:
-            num_to_nodes.setdefault(num, []).append(node.get("id", ""))
+            num_to_nodes.setdefault(num, []).append(nid)
+        for prop in sig.propositions:
+            prop_to_nodes.setdefault(prop, []).append(nid)
 
-    return sigs, num_to_nodes
+    return sigs, num_to_nodes, prop_to_nodes
 
 
 # ── Public API ───────────────────────────────
@@ -365,18 +459,17 @@ def map_step_to_node(step_text: str, graph: dict) -> MappingResult:
     """Map a model reasoning step to the best-matching gold DAG node
     using LOGICAL SIGNATURE matching.
 
-    Zero Jaccard.  Zero substring matching.  Zero embedding.
-    Only numbers, equations, and operations matter.
+    Numeric steps: matched by equations → defined numbers → number overlap.
+    Non-numeric steps: matched by rule text → proposition symbols.
     """
     model_sig = extract_logical_signature(step_text)
     nodes = graph.get("nodes", [])
     edges = graph.get("edges", [])
 
-    # ── Rule-text fast path (for deduction/rule tasks only) ──
+    # ── Rule-text fast path (deduction tasks) ──
     for edge in edges:
         rule_text = (edge.get("rule_text") or "").strip()
         if rule_text:
-            # Compact the step and rule_text for matching
             compact_step = step_text.replace(" ", "").lower()
             compact_rule = rule_text.replace(" ", "").lower()
             if compact_rule in compact_step:
@@ -385,8 +478,8 @@ def map_step_to_node(step_text: str, graph: dict) -> MappingResult:
                     f"logical: rule text '{rule_text}' → target {edge['target']}",
                 )
 
-    # ── Precompute gold signatures (cached per graph in practice) ──
-    gold_sigs, num_to_nodes = _precompute_gold_signatures(graph)
+    # ── Precompute gold signatures ──
+    gold_sigs, num_to_nodes, prop_to_nodes = _precompute_gold_signatures(graph)
 
     # ── Score every gold node ──
     best_node: Optional[str] = None
@@ -395,20 +488,33 @@ def map_step_to_node(step_text: str, graph: dict) -> MappingResult:
 
     for i, (node, gsig) in enumerate(zip(nodes, gold_sigs)):
         node_id = node.get("id", "")
-        conf = 0.0
-        reason = ""
+        matched, conf, reason = False, 0.0, ""
 
-        # Tier 1: Equation-level match (strongest)
-        matched, conf, reason = _equation_match(model_sig, gsig)
-        if not matched or conf < 0.5:
-            # Tier 2: Defined-number match
-            matched, conf, reason = _number_defined_match(
-                model_sig, gsig, all_gold_defined=num_to_nodes,
+        if model_sig.is_numeric and gsig.is_numeric:
+            # Numeric vs numeric: equation → defined-number → overlap
+            matched, conf, reason = _equation_match(model_sig, gsig)
+            if not matched or conf < 0.5:
+                matched, conf, reason = _number_defined_match(
+                    model_sig, gsig, all_gold_defined=num_to_nodes,
+                )
+            if not matched or conf < 0.5:
+                matched, conf, reason = _number_overlap_match(model_sig, gsig)
+
+        elif model_sig.is_propositional and gsig.is_propositional:
+            # Non-numeric vs non-numeric: proposition match
+            matched, conf, reason = _proposition_match(
+                model_sig, gsig, all_gold_props=prop_to_nodes,
             )
 
-        if not matched or conf < 0.5:
-            # Tier 3: Number overlap (weakest)
+        elif model_sig.is_propositional and gsig.is_numeric:
+            # Model step is propositional, gold is numeric — weak overlap
             matched, conf, reason = _number_overlap_match(model_sig, gsig)
+
+        elif model_sig.is_numeric and gsig.is_propositional:
+            # Model step is numeric, gold is propositional — weak overlap
+            matched, conf, reason = _number_overlap_match(model_sig, gsig)
+
+        # else: both empty — no match possible
 
         if conf > best_conf:
             best_node = node_id
