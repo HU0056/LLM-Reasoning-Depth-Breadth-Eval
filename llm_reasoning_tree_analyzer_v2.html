@@ -1,0 +1,176 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:inherit}
+.root{padding:1.25rem;display:flex;flex-direction:column;gap:1rem}
+.top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.title{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ctrl-btn{font-size:11px;padding:4px 12px;border:0.5px solid var(--color-border-secondary);border-radius:16px;cursor:pointer;background:transparent;color:var(--color-text-secondary);transition:all .15s}
+.ctrl-btn.act{background:var(--color-background-secondary);color:var(--color-text-primary);border-color:var(--color-border-primary)}
+.split{display:grid;grid-template-columns:1fr 260px;gap:12px}
+@media(max-width:560px){.split{grid-template-columns:1fr}}
+.panel{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px;min-height:300px}
+.panel-title{font-size:11px;font-weight:500;color:var(--color-text-secondary);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em}
+.info-item{font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);display:flex;justify-content:space-between;align-items:center}
+.info-item:last-child{border-bottom:none}
+.info-label{color:var(--color-text-secondary)}
+.chip{font-size:10px;padding:2px 8px;border-radius:8px}
+.chip-ok{background:#dcfce7;color:#15803d}.chip-err{background:#fee2e2;color:#b91c1c}.chip-warn{background:#fef9c3;color:#854d0e}.chip-gray{background:var(--color-background-primary);color:var(--color-text-secondary)}
+.scores{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.score-row{display:flex;flex-direction:column;gap:3px}
+.score-label{font-size:11px;color:var(--color-text-secondary);display:flex;justify-content:space-between}
+.score-bar{height:6px;background:var(--color-border-tertiary);border-radius:3px;overflow:hidden}
+.score-fill{height:100%;border-radius:3px;transition:width .5s}
+.hint{font-size:11px;color:var(--color-text-tertiary);margin-top:6px;line-height:1.6}
+select{font-size:12px;padding:4px 8px;border:0.5px solid var(--color-border-secondary);border-radius:8px;background:var(--color-background-primary);color:var(--color-text-primary);cursor:pointer}
+</style>
+
+<div class="root">
+  <div class="top">
+    <div class="title">推理链断裂检测与深度分析器</div>
+    <div class="controls">
+      <select id="model-pick" onchange="pickModel()">
+        <option>GPT-4o</option><option>Claude 3.5</option><option>Gemini 1.5 Pro</option><option>Qwen-2.5-72B</option><option>DeepSeek-R1</option>
+      </select>
+      <button class="ctrl-btn" onclick="toggleMode('depth')">深度模式</button>
+      <button class="ctrl-btn act" onclick="toggleMode('full')">完整树</button>
+    </div>
+  </div>
+
+  <div class="split">
+    <div>
+      <svg id="main-svg" width="100%" viewBox="0 0 440 310" style="display:block" role="img">
+        <title>推理树交互图</title>
+        <defs><marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      </svg>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="panel">
+        <div class="panel-title">节点详情</div>
+        <div id="node-detail">
+          <div class="info-item"><span class="info-label">类型</span><span class="chip chip-gray" id="nd-type">—</span></div>
+          <div class="info-item"><span class="info-label">逻辑增益</span><span id="nd-gain">—</span></div>
+          <div class="info-item"><span class="info-label">前提完整性</span><span id="nd-premise">—</span></div>
+          <div class="info-item"><span class="info-label">断裂风险</span><span id="nd-risk">—</span></div>
+          <div class="info-item"><span class="info-label">步骤 ID</span><span id="nd-id" style="font-size:11px;color:var(--color-text-secondary)">—</span></div>
+        </div>
+        <p class="hint" id="nd-hint">点击树中任意节点查看分析详情</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">本次推理评分</div>
+        <div class="scores" id="scores-panel">
+          <div class="score-row"><div class="score-label"><span>深度 Score_Depth</span><span id="sv-d">—</span></div><div class="score-bar"><div class="score-fill" id="sb-d" style="width:0;background:#3266ad"></div></div></div>
+          <div class="score-row"><div class="score-label"><span>广度 Score_Breadth</span><span id="sv-b">—</span></div><div class="score-bar"><div class="score-fill" id="sb-b" style="width:0;background:#7c3aed"></div></div></div>
+          <div class="score-row"><div class="score-label"><span>一致性 Score_Cons</span><span id="sv-c">—</span></div><div class="score-bar"><div class="score-fill" id="sb-c" style="width:0;background:#059669"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const MODEL_SCORES={
+  'GPT-4o':           {d:78,b:65,c:74},
+  'Claude 3.5':       {d:82,b:58,c:80},
+  'Gemini 1.5 Pro':   {d:71,b:70,c:66},
+  'Qwen-2.5-72B':     {d:65,b:67,c:60},
+  'DeepSeek-R1':      {d:76,b:72,c:68},
+};
+
+const NODES=[
+  {id:'S0', x:210, y:24, label:'起始前提', sub:'P1∧P2', type:'root', gain:'基准', premise:'完整', risk:'无'},
+  {id:'S1', x:100, y:95, label:'传递闭包', sub:'A→C', type:'valid', gain:'+0.31 bit', premise:'完整', risk:'低'},
+  {id:'S2', x:210, y:95, label:'全称例化', sub:'∀x∈A', type:'valid', gain:'+0.22 bit', premise:'完整', risk:'低'},
+  {id:'S3', x:330, y:95, label:'反事实分支', sub:'若¬B', type:'valid', gain:'+0.18 bit', premise:'部分', risk:'中'},
+  {id:'S4', x:55,  y:178, label:'量词处理', sub:'存在→全称', type:'valid', gain:'+0.14 bit', premise:'完整', risk:'低'},
+  {id:'S5', x:165, y:178, label:'断裂节点', sub:'缺失隐含前提', type:'break', gain:'-0.08 bit', premise:'缺失', risk:'高'},
+  {id:'S6', x:270, y:178, label:'边界情况', sub:'A=∅特例', type:'valid', gain:'+0.09 bit', premise:'完整', risk:'低'},
+  {id:'S7', x:385, y:178, label:'冗余重述', sub:'重复S0', type:'redundant', gain:'+0.00', premise:'完整', risk:'无'},
+  {id:'S8', x:100, y:265, label:'核心结论', sub:'A⊆C 成立', type:'conclusion', gain:'+0.41 bit', premise:'完整', risk:'无'},
+  {id:'S9', x:270, y:265, label:'次级结论', sub:'¬B→¬A∨¬C', type:'valid', gain:'+0.12 bit', premise:'部分', risk:'中'},
+];
+
+const EDGES=[
+  [0,1],[0,2],[0,3],
+  [1,4],[2,5],[3,6],[3,7],
+  [4,8],[6,9]
+];
+
+const TYPE_COLOR={
+  root:'#475569', valid:'#3266ad', break:'#dc2626', redundant:'#9ca3af', conclusion:'#059669'
+};
+const TYPE_CHIP={
+  root:'chip-gray', valid:'chip-ok', break:'chip-err', redundant:'chip-gray', conclusion:'chip-ok'
+};
+const TYPE_LABEL={
+  root:'起始节点', valid:'有效推理', break:'断裂节点', redundant:'冗余步骤', conclusion:'结论节点'
+};
+const RISK_CHIP={'无':'chip-ok','低':'chip-ok','中':'chip-warn','高':'chip-err'};
+
+function buildSVG(){
+  const svg=document.getElementById('main-svg');
+  let h='';
+  EDGES.forEach(([a,b])=>{
+    const na=NODES[a],nb=NODES[b];
+    const isBroken=na.type==='break'||nb.type==='break';
+    const isRedundant=nb.type==='redundant';
+    const sc=isBroken?'#dc2626':'rgba(130,130,130,0.4)';
+    const dash=isRedundant?'stroke-dasharray="5 3"':'';
+    h+=`<line x1="${na.x}" y1="${na.y+20}" x2="${nb.x}" y2="${nb.y-20}" stroke="${sc}" stroke-width="${isBroken?1.5:0.8}" ${dash} marker-end="url(#arr2)" fill="none"/>`;
+  });
+
+  NODES.forEach(n=>{
+    const c=TYPE_COLOR[n.type];
+    const isBroken=n.type==='break';
+    const textC=n.type==='root'?'#334155':n.type==='break'?'#7f1d1d':n.type==='conclusion'?'#064e3b':n.type==='redundant'?'#4b5563':'#1e3a5f';
+    h+=`<g class="node" style="cursor:pointer" onclick="selectNode('${n.id}')">
+      <rect x="${n.x-52}" y="${n.y-20}" width="104" height="40" rx="8"
+        fill="${c}12" stroke="${c}" stroke-width="${isBroken?2:0.8}"
+        id="rect-${n.id}"/>
+      <text x="${n.x}" y="${n.y-4}" text-anchor="middle" font-size="12" font-weight="500" fill="${textC}">${n.label}</text>
+      <text x="${n.x}" y="${n.y+12}" text-anchor="middle" font-size="10" fill="${textC}" opacity="0.75">${n.sub}</text>
+    </g>`;
+    if(isBroken){
+      h+=`<text x="${n.x}" y="${n.y-26}" text-anchor="middle" font-size="13" fill="#dc2626">⚠</text>`;
+    }
+  });
+  svg.innerHTML=svg.innerHTML+h;
+}
+
+function selectNode(id){
+  const n=NODES.find(x=>x.id===id);
+  if(!n)return;
+  document.querySelectorAll('#main-svg rect').forEach(r=>{
+    r.setAttribute('stroke-width', r.id==='rect-'+id ? 2.5 : (NODES.find(x=>'rect-'+x.id===r.id)?.type==='break'?2:0.8));
+  });
+  document.getElementById('nd-type').textContent=TYPE_LABEL[n.type];
+  document.getElementById('nd-type').className='chip '+TYPE_CHIP[n.type];
+  document.getElementById('nd-gain').textContent=n.gain;
+  document.getElementById('nd-premise').textContent=n.premise;
+  document.getElementById('nd-risk').textContent=n.risk;
+  document.getElementById('nd-risk').className='chip '+RISK_CHIP[n.risk];
+  document.getElementById('nd-id').textContent=n.id;
+  const hints={break:'该节点存在逻辑断裂：从前序步骤无法必然推导出此结论，缺少隐含前提。此类节点会降低 Score_Depth。',valid:'有效推理步骤，产生正向逻辑增益，状态向目标状态推进。',conclusion:'结论节点，代表推理链的终止。Score_Depth 在此处累加。',redundant:'冗余步骤，逻辑增益为零，不计入深度，但会轻微影响 Score_Breadth 效率评分。',root:'起始前提节点，所有推理分支的根。'};
+  document.getElementById('nd-hint').textContent=hints[n.type];
+}
+
+function pickModel(){
+  const m=document.getElementById('model-pick').value;
+  const s=MODEL_SCORES[m];
+  document.getElementById('sv-d').textContent=s.d;
+  document.getElementById('sb-d').style.width=s.d+'%';
+  document.getElementById('sv-b').textContent=s.b;
+  document.getElementById('sb-b').style.width=s.b+'%';
+  document.getElementById('sv-c').textContent=s.c;
+  document.getElementById('sb-c').style.width=s.c+'%';
+}
+
+function toggleMode(m){
+  document.querySelectorAll('.ctrl-btn').forEach(b=>b.classList.remove('act'));
+  event.target.classList.add('act');
+}
+
+buildSVG();pickModel();
+</script>

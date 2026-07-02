@@ -1,0 +1,492 @@
+针对这个项目的两套可视化方案，我给出完整的、可直接复制给 TRAE 的 prompt。
+
+---
+
+## 方案一：多标签仪表盘 — TRAE Prompt
+
+```
+# 任务：构建 LLM 逻辑推理评估仪表盘（多标签交互式 Web 应用）
+
+## 项目背景
+本项目是一个针对大语言模型（LLM）逻辑推理能力的自动化评估框架。
+评估框架将推理链（Chain of Thought）抽象为树形结构，输出三个核心指标：
+- Score_Depth（0-100）：推理链有效深度，衡量每一步的逻辑增益
+- Score_Breadth（0-100）：假设空间覆盖率，衡量反事实/边缘情况的考量
+- Score_Consistency（0-100）：推理链路的自洽性
+
+评估的输入格式为：Model_Prompt + Model_Response
+评估的输出格式为：JSON，包含三项分数及推理树结构
+
+## 技术栈要求
+- 纯前端单页应用，不依赖后端
+- 使用 React + TypeScript
+- 图表库：Recharts（雷达图、柱状图）
+- 样式：Tailwind CSS
+- 所有数据用 Mock 数据硬编码（模拟真实评估输出）
+
+## 数据结构定义
+
+### 模型评估数据（Mock）
+```typescript
+interface ModelScore {
+  model: string;           // 模型名称
+  scoreDepth: number;      // 0-100
+  scoreBreadth: number;    // 0-100
+  scoreConsistency: number;// 0-100
+  composite: number;       // 三项均值，保留1位小数
+  grade: 'Excellent' | 'Good' | 'Fair'; // >=75: Excellent, >=65: Good, else: Fair
+  deltaDepth: number;      // 与 GSM8K baseline 的差值（±）
+  deltaBreadth: number;
+  deltaConsistency: number;
+}
+```
+
+### 使用以下 Mock 数据（严格按此数值）
+```typescript
+const mockData: ModelScore[] = [
+  { model: 'GPT-4o',        scoreDepth: 78, scoreBreadth: 65, scoreConsistency: 74, composite: 72.3, grade: 'Good',      deltaDepth: +3.1, deltaBreadth: -1.4, deltaConsistency: 0.0 },
+  { model: 'Claude 3.5',    scoreDepth: 82, scoreBreadth: 58, scoreConsistency: 80, composite: 73.3, grade: 'Good',      deltaDepth: +7.2, deltaBreadth: -6.3, deltaConsistency: +5.1 },
+  { model: 'Gemini 1.5 Pro',scoreDepth: 71, scoreBreadth: 70, scoreConsistency: 66, composite: 69.0, grade: 'Good',      deltaDepth: -3.8, deltaBreadth: +3.2, deltaConsistency: -2.4 },
+  { model: 'Qwen-2.5-72B',  scoreDepth: 65, scoreBreadth: 67, scoreConsistency: 60, composite: 64.0, grade: 'Fair',      deltaDepth: -5.2, deltaBreadth: +2.1, deltaConsistency: -5.3 },
+  { model: 'DeepSeek-R1',   scoreDepth: 76, scoreBreadth: 72, scoreConsistency: 68, composite: 72.0, grade: 'Good',      deltaDepth: +1.8, deltaBreadth: +7.4, deltaConsistency: -0.9 },
+];
+```
+
+### 推理树节点数据结构
+```typescript
+type NodeType = 'root' | 'valid' | 'break' | 'redundant' | 'conclusion';
+
+interface TreeNode {
+  id: string;
+  label: string;
+  subLabel: string;
+  type: NodeType;
+  logicGain: string;    // e.g. "+0.31 bit"
+  premiseIntact: '完整' | '部分' | '缺失';
+  breakRisk: '无' | '低' | '中' | '高';
+  description: string;  // 节点详细说明
+  children: string[];   // 子节点 id 列表
+  x: number;            // SVG 坐标
+  y: number;
+}
+```
+
+### 推理树 Mock 数据（单题示例，题目：「所有A是B，所有B是C，因此？」）
+```typescript
+const treeNodes: TreeNode[] = [
+  { id:'S0', x:310, y:28,  label:'起始前提',   subLabel:'P1∧P2',        type:'root',       logicGain:'基准',       premiseIntact:'完整', breakRisk:'无', description:'原始命题输入：所有A是B（P1），所有B是C（P2）。作为推理的根节点。',                       children:['S1','S2','S3'] },
+  { id:'S1', x:100, y:110, label:'传递闭包',   subLabel:'A→C',          type:'valid',      logicGain:'+0.31 bit',  premiseIntact:'完整', breakRisk:'低', description:'利用传递律：若A→B且B→C，则A→C。这是核心推理步骤，逻辑增益最高。',                       children:['S4','S5'] },
+  { id:'S2', x:310, y:110, label:'全称例化',   subLabel:'∀x∈A',         type:'valid',      logicGain:'+0.22 bit',  premiseIntact:'完整', breakRisk:'低', description:'将全称命题展开为任意个体：对任意x，若x∈A则x∈C。标准一阶逻辑操作。',                     children:['S5','S6'] },
+  { id:'S3', x:520, y:110, label:'反事实分支', subLabel:'若¬B',         type:'valid',      logicGain:'+0.18 bit',  premiseIntact:'部分', breakRisk:'中', description:'考察反事实情况：若B不成立会怎样？有效的广度扩展，但前提只部分覆盖。',                     children:['S7','S8'] },
+  { id:'S4', x:55,  y:200, label:'量词处理',   subLabel:'∃→∀',         type:'valid',      logicGain:'+0.14 bit',  premiseIntact:'完整', breakRisk:'低', description:'处理量词转换。从存在性陈述推导全称性结论需要额外条件，此处正确处理。',                     children:['S9'] },
+  { id:'S5', x:245, y:200, label:'断裂节点',   subLabel:'缺失隐含前提', type:'break',      logicGain:'-0.08 bit',  premiseIntact:'缺失', breakRisk:'高', description:'⚠ 逻辑断裂：从S1到此步骤跳过了必要的隐含前提「B的唯一性」，导致推理链条断裂。此类节点直接降低 Score_Depth。', children:[] },
+  { id:'S6', x:400, y:200, label:'边界情况',   subLabel:'A=∅特例',     type:'valid',      logicGain:'+0.09 bit',  premiseIntact:'完整', breakRisk:'低', description:'考察A为空集时命题是否仍然成立（vacuous truth）。有效的边缘情况检验，提升 Score_Breadth。', children:['S10'] },
+  { id:'S7', x:490, y:200, label:'竞争假设',   subLabel:'B的替代定义',  type:'valid',      logicGain:'+0.11 bit',  premiseIntact:'部分', breakRisk:'中', description:'考虑B可能有多种解释。对假设空间的有效覆盖，属于广度贡献节点。',                         children:[] },
+  { id:'S8', x:590, y:200, label:'冗余重述',   subLabel:'重复S0',       type:'redundant',  logicGain:'+0.00',      premiseIntact:'完整', breakRisk:'无', description:'对原始前提的冗余重复，不产生任何逻辑增益。不计入 Score_Depth，轻微影响 Score_Breadth 效率评分。', children:[] },
+  { id:'S9', x:130, y:295, label:'核心结论',   subLabel:'A⊆C 成立',    type:'conclusion', logicGain:'+0.41 bit',  premiseIntact:'完整', breakRisk:'无', description:'主结论：所有A都是C（A⊆C）。逻辑增益最高的节点，为深度评分贡献最大权重。',                 children:[] },
+  { id:'S10',x:400, y:295, label:'次级结论',   subLabel:'¬B→¬A∨¬C',    type:'valid',      logicGain:'+0.12 bit',  premiseIntact:'部分', breakRisk:'中', description:'反事实推论：若B不成立，则A∨C中至少一个不成立。次级结论，贡献 Score_Breadth。',             children:[] },
+];
+```
+
+## 界面结构要求
+
+### 整体布局
+- 顶部：项目标题 + 数据集选择器（下拉，选项：LogicBench-2K / MathLogic-500 / CustomSet，纯 UI，不需实际切换数据）+ 4个标签按钮
+- 标签内容区：根据当前标签渲染不同内容
+- 配色：白色背景，主色调蓝色（#2563EB），强调色紫色（#7C3AED），成功绿（#059669），警告橙（#D97706），危险红（#DC2626），图灰（#6B7280）
+
+### Tab 1：概览（默认显示）
+布局：
+1. 顶部三个指标卡（并排，各占1/3宽度）：
+   - 平均深度指数：72.4（计算5个模型均值），显示 delta 标注（绿色上箭头 +3.1 vs GSM8K baseline）
+   - 平均广度指数：66.8，显示 delta（红色下箭头 -1.4 vs baseline）
+   - 平均一致性指数：69.6，显示 delta（灰色 — same as baseline）
+2. 正中大雷达图：5个模型同时展示，三个维度（深度/广度/一致性），使用 Recharts RadarChart
+   - 5条线分别用不同颜色：蓝/紫/绿/橙/红
+   - 坐标轴范围 0-100
+   - 图例在雷达图下方，横向排列
+3. 底部小字说明：「数据集：LogicBench-2K　题目数：2,048　评估时间：2025-06-08」
+
+### Tab 2：模型对比
+布局：
+1. 顶部：多选模型按钮（每个模型一个 toggle chip，默认全选，点击取消/恢复），chip 颜色与该模型颜色对应
+2. 分组柱状图（Recharts BarChart）：X 轴为模型名，每个模型3根柱子（深度/广度/一致性），每根柱子不同颜色（深度蓝/广度紫/一致性绿），Y 轴 0-100
+3. 柱子顶部显示数值
+4. 图表下方：与 GSM8K baseline 对比差值表格（列：模型 | ΔDepth | ΔBreadth | ΔConsistency），正值绿色，负值红色，零值灰色
+
+### Tab 3：推理树
+布局：
+1. 顶部：题目展示卡片（灰色背景），文字：「示例题目：所有A是B，所有B是C，因此可以得出什么结论？」
+2. 中间：SVG 推理树（使用 React 渲染，不用第三方树库）
+   - 按照节点的 x/y 坐标绝对定位渲染
+   - SVG 宽度 680px，高度 360px，overflow: auto
+   - 节点样式按 type 区分：
+     * root：灰色边框，浅灰背景（#F3F4F6），文字深灰
+     * valid：蓝色边框（#2563EB），浅蓝背景（#EFF6FF），文字深蓝
+     * break：红色粗边框（2px，#DC2626），浅红背景（#FEF2F2），文字深红，左上角红色 ⚠ 图标
+     * redundant：灰色虚线边框，极浅灰背景，文字灰色
+     * conclusion：绿色边框（#059669），浅绿背景（#F0FDF4），文字深绿
+   - 连接线：valid 节点之间用实线，redundant 用虚线，经过 break 节点的线用红色
+   - 节点尺寸：宽 116px，高 46px，圆角 8px
+   - 节点内：上方加粗标题（13px），下方副标题（11px，灰色）
+   - 节点点击后高亮（加粗边框），同时右侧面板更新
+3. 右侧固定面板（宽 220px，卡片样式）：
+   - 标题「节点详情」
+   - 显示：类型标签（chip）、逻辑增益、前提完整性、断裂风险（chip，颜色对应风险等级）、节点ID
+   - 底部：节点 description 文字（13px，灰色，多行）
+   - 底部按钮：「在文档中查看详细分析 ↗」（点击无实际跳转，仅 UI）
+4. 树图下方图例：• 有效推理步骤 • 断裂节点 • 冗余步骤 • 结论节点（点状色块 + 文字）
+
+### Tab 4：排行榜
+布局：
+1. 排序控制：右上角下拉选择「按综合分排序 / 按深度排序 / 按广度排序 / 按一致性排序」，选择后表格实时重排（带 300ms 动画过渡）
+2. 表格（全宽）：
+   - 列：排名 | 模型名 | Score_Depth（带内联进度条）| Score_Breadth（带内联进度条）| Score_Consistency（带内联进度条）| 综合分 | 等级
+   - 进度条高度 6px，圆角 3px，颜色：深度蓝/广度紫/一致性绿
+   - 等级 chip：Excellent（绿底绿字）/ Good（橙底橙字）/ Fair（红底红字）
+   - 排名第1行整行浅金色背景（#FFFBEB）
+   - 鼠标悬停行浅灰背景
+3. 表格下方：雷达图小图（高度 200px），仅显示综合分最高的前3名模型
+
+## 交互细节要求
+- Tab 切换：平滑淡入淡出（opacity transition 200ms）
+- 雷达图：hover tooltip 显示「模型名：深度 xx / 广度 xx / 一致性 xx」
+- 柱状图：hover tooltip 显示具体分值
+- 推理树节点：
+  * hover：边框加深，cursor pointer，轻微 scale(1.02) 变换
+  * click：选中状态（边框变粗为 2.5px），右侧面板数据更新
+  * 初始默认选中 S0 根节点
+- 排行榜排序切换：使用 React state 驱动，数据重排时有 300ms 过渡
+- 所有数值展示保留1位小数（综合分），整数分数不加小数点
+
+## 代码组织要求
+- 组件结构：
+  * App.tsx：顶层，包含 Tab 状态管理
+  * components/OverviewTab.tsx：概览
+  * components/CompareTab.tsx：对比
+  * components/TreeTab.tsx：推理树（含 TreeCanvas 子组件）
+  * components/RankTab.tsx：排行榜
+  * data/mockData.ts：所有 Mock 数据
+  * types/index.ts：所有 TypeScript 类型定义
+- 不使用任何 CSS 框架以外的 UI 组件库（纯 Tailwind）
+- Recharts 版本使用最新稳定版
+
+## 输出要求
+请输出完整可运行的代码，包含所有文件，确保：
+1. npm install 后 npm run dev 可直接运行
+2. 无 TypeScript 类型错误
+3. 无控制台报错
+4. 在 1280px 宽度下布局不错位
+5. 在 768px 宽度下各 Tab 内容可正常查看（不强求完美响应式，不报错即可）
+```
+
+---
+
+## 方案二：推理树断裂检测器 — TRAE Prompt
+
+```
+# 任务：构建 LLM 推理链断裂检测与深度分析器（专项交互式 Web 工具）
+
+## 项目背景
+本工具是「大模型逻辑推理广度与深度评估算法」项目的核心可视化组件。
+项目将 LLM 的 Chain of Thought（CoT）推理过程抽象为树形结构，并检测其中的「逻辑断裂」节点。
+
+### 核心概念定义
+- **逻辑断裂（Break）**：前一推理步骤 St 无法在逻辑上必然推导出下一步骤 St+1，
+  或中间缺失了必要的隐含前提。表现为「看似连贯实则瞬移」的推理步骤。
+- **Score_Depth**：非冗余逻辑增益的累计值。每一步必须让当前状态更接近目标状态，
+  使用信息熵/互信息衡量每步的「逻辑推进力」。断裂节点会降低此分数。
+- **Score_Breadth**：有效假设空间的覆盖率。对反事实、边缘情况和竞争性分支的考量。
+- **Score_Consistency**：推理链路的自洽性，检测前后矛盾。
+
+## 技术栈要求
+- React + TypeScript
+- 样式：Tailwind CSS
+- 图表：Recharts（仅用于右侧评分条形图）
+- SVG 推理树：纯 React 手写渲染，不使用任何树布局库
+- 动画：使用 Framer Motion（节点出现动画、选中动画）
+
+## 数据定义
+
+### 类型定义
+```typescript
+type NodeType = 'root' | 'valid' | 'break' | 'redundant' | 'conclusion';
+type RiskLevel = '无' | '低' | '中' | '高';
+type PremiseStatus = '完整' | '部分' | '缺失';
+
+interface TreeNode {
+  id: string;
+  x: number;
+  y: number;
+  label: string;
+  subLabel: string;
+  type: NodeType;
+  logicGain: string;
+  gainValue: number;       // 纯数值，用于进度条，范围 -0.1 到 0.5
+  premiseStatus: PremiseStatus;
+  riskLevel: RiskLevel;
+  description: string;
+  parentIds: string[];
+  childIds: string[];
+  stepIndex: number;       // 在推理链中的顺序编号（用于动画播放）
+}
+
+interface ModelProfile {
+  name: string;
+  scoreDepth: number;
+  scoreBreadth: number;
+  scoreConsistency: number;
+  breakNodeCount: number;   // 该模型推理此题时的断裂节点数
+  redundantNodeCount: number;
+  validNodeCount: number;
+  totalSteps: number;
+}
+```
+
+### 题目数据（提供3道题，可切换）
+```typescript
+const QUESTIONS = [
+  {
+    id: 'Q1',
+    text: '所有A是B，所有B是C，因此可以得出什么结论？',
+    difficulty: '基础',
+    category: '传递推理',
+  },
+  {
+    id: 'Q2', 
+    text: '如果下雨，地面会湿。现在地面是湿的，是否一定下过雨？',
+    difficulty: '中等',
+    category: '条件推理',
+  },
+  {
+    id: 'Q3',
+    text: '所有鸟会飞，企鹅是鸟，企鹅会飞。这个推理是否有问题？',
+    difficulty: '进阶',
+    category: '异常处理',
+  },
+];
+```
+
+### 推理树节点数据（每道题对应一棵树，提供以下三棵）
+
+#### Q1 节点数据（题目：传递推理）
+```typescript
+const Q1_NODES: TreeNode[] = [
+  { id:'S0', x:310, y:30,  label:'起始前提',   subLabel:'P1∧P2',        type:'root',       logicGain:'基准',        gainValue:0,     premiseStatus:'完整', riskLevel:'无', stepIndex:0, parentIds:[],            childIds:['S1','S2','S3'], description:'原始命题输入：P1（所有A是B）和 P2（所有B是C）。作为推理根节点，不计入深度评分。' },
+  { id:'S1', x:100, y:115, label:'传递闭包',   subLabel:'A→C',          type:'valid',      logicGain:'+0.31 bit',  gainValue:0.31,  premiseStatus:'完整', riskLevel:'低', stepIndex:1, parentIds:['S0'],        childIds:['S4','S5'], description:'核心推理步骤：利用传递律，从A→B且B→C直接导出A→C。逻辑增益最高，状态大幅逼近目标。' },
+  { id:'S2', x:310, y:115, label:'全称例化',   subLabel:'∀x∈A',         type:'valid',      logicGain:'+0.22 bit',  gainValue:0.22,  premiseStatus:'完整', riskLevel:'低', stepIndex:2, parentIds:['S0'],        childIds:['S5'], description:'将全称命题展开：对任意个体x，若x属于A，则x属于C。标准一阶逻辑全称例化操作。' },
+  { id:'S3', x:520, y:115, label:'反事实分支', subLabel:'若¬B',         type:'valid',      logicGain:'+0.18 bit',  gainValue:0.18,  premiseStatus:'部分', riskLevel:'中', stepIndex:3, parentIds:['S0'],        childIds:['S7','S8'], description:'广度扩展：考察若B不成立时的情况。有效的假设空间探索，贡献 Score_Breadth，但前提仅部分满足。' },
+  { id:'S4', x:50,  y:210, label:'量词处理',   subLabel:'∃→∀ 转换',    type:'valid',      logicGain:'+0.14 bit',  gainValue:0.14,  premiseStatus:'完整', riskLevel:'低', stepIndex:4, parentIds:['S1'],        childIds:['S9'], description:'处理量词转换：从存在性陈述 ∃x(Ax∧Cx) 转换为全称性结论，操作合法。' },
+  { id:'S5', x:240, y:210, label:'断裂节点',   subLabel:'缺失隐含前提', type:'break',      logicGain:'-0.08 bit',  gainValue:-0.08, premiseStatus:'缺失', riskLevel:'高', stepIndex:5, parentIds:['S1','S2'],   childIds:[], description:'⚠ 逻辑断裂检测：此步骤跳过了必要的隐含前提「B的外延唯一性」，从 S1/S2 无法必然推导此结论。Score_Depth 因此降低。' },
+  { id:'S6', x:390, y:210, label:'边界情况',   subLabel:'A=∅ 特例',    type:'valid',      logicGain:'+0.09 bit',  gainValue:0.09,  premiseStatus:'完整', riskLevel:'低', stepIndex:6, parentIds:['S2'],        childIds:['S10'], description:'边缘情况检验：当A为空集时，「所有A是C」在空真（vacuous truth）意义下成立。有效的广度贡献节点。' },
+  { id:'S7', x:480, y:210, label:'竞争假设',   subLabel:'B的替代解释',  type:'valid',      logicGain:'+0.11 bit',  gainValue:0.11,  premiseStatus:'部分', riskLevel:'中', stepIndex:7, parentIds:['S3'],        childIds:[], description:'假设空间扩展：考虑B可能存在多种语义解释，是否影响传递性成立。贡献 Score_Breadth 的假设覆盖率。' },
+  { id:'S8', x:580, y:210, label:'冗余重述',   subLabel:'重复 S0 内容', type:'redundant',  logicGain:'+0.00',      gainValue:0,     premiseStatus:'完整', riskLevel:'无', stepIndex:8, parentIds:['S3'],        childIds:[], description:'冗余步骤：对原始前提P1∧P2的文字重复，不产生任何新的逻辑增益。不计入 Score_Depth，轻微拉低 Score_Breadth 效率评分。' },
+  { id:'S9', x:120, y:305, label:'核心结论',   subLabel:'∴ A⊆C 成立',  type:'conclusion', logicGain:'+0.41 bit',  gainValue:0.41,  premiseStatus:'完整', riskLevel:'无', stepIndex:9, parentIds:['S4'],        childIds:[], description:'主结论节点：所有A都是C（A⊆C）。逻辑增益最高，为 Score_Depth 贡献最大权重。推理链路在此有效终止。' },
+  { id:'S10',x:390, y:305, label:'次级结论',   subLabel:'¬B→¬A∨¬C',    type:'valid',      logicGain:'+0.12 bit',  gainValue:0.12,  premiseStatus:'部分', riskLevel:'中', stepIndex:10,parentIds:['S6'],        childIds:[], description:'反事实推论：若B不成立，则逻辑三段论的传递性不能保持，A∨C中至少一个不成立。次级结论，贡献 Score_Breadth。' },
+];
+```
+
+#### Q2 节点数据（题目：条件推理——地面湿的溯因推理）
+```typescript
+const Q2_NODES: TreeNode[] = [
+  { id:'S0', x:310, y:30,  label:'命题解析',   subLabel:'P→Q, Q成立',  type:'root',       logicGain:'基准',        gainValue:0,     premiseStatus:'完整', riskLevel:'无', stepIndex:0, parentIds:[],        childIds:['S1','S2'], description:'输入命题：若下雨(P)则地湿(Q)，现观察到地面湿(Q)。需判断是否能逆推P成立。' },
+  { id:'S1', x:140, y:115, label:'肯定后件',   subLabel:'Q→P? 待验证', type:'break',      logicGain:'-0.15 bit',  gainValue:-0.15, premiseStatus:'缺失', riskLevel:'高', stepIndex:1, parentIds:['S0'],    childIds:['S4'], description:'⚠ 断裂：直接从Q推导P犯了「肯定后件」谬误（Affirming the Consequent）。地湿可能由喷水车、洗地等原因导致，逻辑不成立。' },
+  { id:'S2', x:480, y:115, label:'溯因推理',   subLabel:'最优解释原则', type:'valid',      logicGain:'+0.28 bit',  gainValue:0.28,  premiseStatus:'完整', riskLevel:'低', stepIndex:2, parentIds:['S0'],    childIds:['S5','S6'], description:'正确方向：采用溯因推理（Abductive Reasoning），寻找最能解释观测结果的假设，而非直接逆向推导。' },
+  { id:'S3', x:310, y:115, label:'可能原因列举',subLabel:'枚举替代解释',type:'valid',      logicGain:'+0.19 bit',  gainValue:0.19,  premiseStatus:'完整', riskLevel:'低', stepIndex:3, parentIds:['S0'],    childIds:['S6'], description:'广度分析：列举所有可能导致地湿的原因（下雨、洒水车、管道破裂、露水等），构建完整假设空间。' },
+  { id:'S4', x:100, y:205, label:'错误结论',   subLabel:'∴ 一定下了雨', type:'break',      logicGain:'-0.20 bit',  gainValue:-0.20, premiseStatus:'缺失', riskLevel:'高', stepIndex:4, parentIds:['S1'],    childIds:[], description:'⚠ 严重断裂：基于谬误推理得出确定性结论「一定下过雨」，违反逻辑有效性。此节点大幅降低 Score_Depth 和 Score_Consistency。' },
+  { id:'S5', x:390, y:205, label:'概率评估',   subLabel:'P(P|Q) 估算',  type:'valid',      logicGain:'+0.16 bit',  gainValue:0.16,  premiseStatus:'部分', riskLevel:'中', stepIndex:5, parentIds:['S2'],    childIds:['S7'], description:'引入贝叶斯框架：估算在观测到地湿的条件下，下雨的条件概率。需要先验知识，故前提部分满足。' },
+  { id:'S6', x:560, y:205, label:'假设排除',   subLabel:'逐一验证替代',  type:'valid',      logicGain:'+0.14 bit',  gainValue:0.14,  premiseStatus:'部分', riskLevel:'中', stepIndex:6, parentIds:['S2','S3'], childIds:['S7'], description:'系统排除法：结合上下文信息（如当前天气、地点）逐一排除替代解释，缩小假设空间。' },
+  { id:'S7', x:480, y:305, label:'正确结论',   subLabel:'不能确定下过雨', type:'conclusion', logicGain:'+0.35 bit',  gainValue:0.35,  premiseStatus:'完整', riskLevel:'无', stepIndex:7, parentIds:['S5','S6'], childIds:[], description:'正确结论：无法仅凭「地面湿」确定「下过雨」，只能说「可能下了雨，但还有其他可能性」。体现了演绎与溯因推理的区别。' },
+];
+```
+
+#### Q3 节点数据（题目：异常处理——企鹅悖论）
+```typescript
+const Q3_NODES: TreeNode[] = [
+  { id:'S0', x:310, y:30,  label:'命题输入',   subLabel:'三段论结构',   type:'root',       logicGain:'基准',        gainValue:0,     premiseStatus:'完整', riskLevel:'无', stepIndex:0, parentIds:[],        childIds:['S1','S2'], description:'三段论：大前提（所有鸟会飞）、小前提（企鹅是鸟）、结论（企鹅会飞）。需判断此推理是否有效。' },
+  { id:'S1', x:140, y:115, label:'形式有效性', subLabel:'结构合法',     type:'valid',      logicGain:'+0.20 bit',  gainValue:0.20,  premiseStatus:'完整', riskLevel:'低', stepIndex:1, parentIds:['S0'],    childIds:['S3','S4'], description:'从纯形式逻辑角度，此三段论结构有效（Valid）：若大前提和小前提均为真，结论必然为真。问题在于大前提的真实性。' },
+  { id:'S2', x:480, y:115, label:'前提检验',   subLabel:'大前提为假',   type:'valid',      logicGain:'+0.31 bit',  gainValue:0.31,  premiseStatus:'完整', riskLevel:'低', stepIndex:2, parentIds:['S0'],    childIds:['S5','S6'], description:'前提真实性检验：「所有鸟会飞」是一个有例外的全称命题（non-monotonic rule），企鹅、鸵鸟等是反例，故大前提为假。' },
+  { id:'S3', x:70,  y:205, label:'断裂检测',   subLabel:'忽略例外类',   type:'break',      logicGain:'-0.12 bit',  gainValue:-0.12, premiseStatus:'缺失', riskLevel:'高', stepIndex:3, parentIds:['S1'],    childIds:[], description:'⚠ 断裂：接受大前提而不验证其普遍性，忽略了「企鹅」这一已知例外类的存在。属于「默认推理」陷阱。' },
+  { id:'S4', x:230, y:205, label:'声音性检验', subLabel:'Soundness',    type:'valid',      logicGain:'+0.18 bit',  gainValue:0.18,  premiseStatus:'完整', riskLevel:'低', stepIndex:4, parentIds:['S1'],    childIds:['S7'], description:'区分有效性（Validity）与声音性（Soundness）：此推理形式有效但不声音，因为大前提为假。这是逻辑学中的重要区别。' },
+  { id:'S5', x:390, y:205, label:'修正大前提', subLabel:'默认规则+例外', type:'valid',      logicGain:'+0.24 bit',  gainValue:0.24,  premiseStatus:'完整', riskLevel:'低', stepIndex:5, parentIds:['S2'],    childIds:['S7'], description:'修正方向：将大前提改为带例外的默认规则「大多数鸟会飞，除非是例外（如企鹅、鸵鸟）」，引入非单调推理。' },
+  { id:'S6', x:570, y:205, label:'例外识别',   subLabel:'企鹅∈例外类',  type:'valid',      logicGain:'+0.17 bit',  gainValue:0.17,  premiseStatus:'完整', riskLevel:'低', stepIndex:6, parentIds:['S2'],    childIds:['S7'], description:'具体识别：企鹅属于已知例外类，可根据世界知识（企鹅不会飞）触发例外规则，阻断默认推理链。' },
+  { id:'S7', x:390, y:305, label:'正确结论',   subLabel:'推理有误，结论假', type:'conclusion', logicGain:'+0.38 bit', gainValue:0.38,  premiseStatus:'完整', riskLevel:'无', stepIndex:7, parentIds:['S4','S5','S6'], childIds:[], description:'最终结论：此推理有问题——形式上有效但不声音，大前提为假导致结论（企鹅会飞）为假。正确处理方式是修正大前提为带例外的默认规则。' },
+];
+```
+
+### 各题各模型的模拟评分
+```typescript
+const MODEL_QUESTION_SCORES = {
+  Q1: [
+    { model:'GPT-4o',         scoreDepth:78, scoreBreadth:65, scoreConsistency:74, breakNodeCount:1, redundantNodeCount:1, validNodeCount:7, totalSteps:10 },
+    { model:'Claude 3.5',     scoreDepth:82, scoreBreadth:58, scoreConsistency:80, breakNodeCount:1, redundantNodeCount:0, validNodeCount:8, totalSteps:10 },
+    { model:'Gemini 1.5 Pro', scoreDepth:71, scoreBreadth:70, scoreConsistency:66, breakNodeCount:2, redundantNodeCount:1, validNodeCount:6, totalSteps:10 },
+    { model:'Qwen-2.5-72B',   scoreDepth:65, scoreBreadth:67, scoreConsistency:60, breakNodeCount:3, redundantNodeCount:2, validNodeCount:5, totalSteps:10 },
+    { model:'DeepSeek-R1',    scoreDepth:76, scoreBreadth:72, scoreConsistency:68, breakNodeCount:1, redundantNodeCount:1, validNodeCount:7, totalSteps:10 },
+  ],
+  Q2: [
+    { model:'GPT-4o',         scoreDepth:74, scoreBreadth:68, scoreConsistency:71, breakNodeCount:1, redundantNodeCount:0, validNodeCount:5, totalSteps:7 },
+    { model:'Claude 3.5',     scoreDepth:79, scoreBreadth:62, scoreConsistency:77, breakNodeCount:0, redundantNodeCount:0, validNodeCount:6, totalSteps:7 },
+    { model:'Gemini 1.5 Pro', scoreDepth:68, scoreBreadth:73, scoreConsistency:63, breakNodeCount:2, redundantNodeCount:0, validNodeCount:4, totalSteps:7 },
+    { model:'Qwen-2.5-72B',   scoreDepth:60, scoreBreadth:64, scoreConsistency:55, breakNodeCount:3, redundantNodeCount:1, validNodeCount:3, totalSteps:7 },
+    { model:'DeepSeek-R1',    scoreDepth:72, scoreBreadth:75, scoreConsistency:65, breakNodeCount:1, redundantNodeCount:0, validNodeCount:5, totalSteps:7 },
+  ],
+  Q3: [
+    { model:'GPT-4o',         scoreDepth:81, scoreBreadth:70, scoreConsistency:78, breakNodeCount:1, redundantNodeCount:0, validNodeCount:6, totalSteps:8 },
+    { model:'Claude 3.5',     scoreDepth:86, scoreBreadth:64, scoreConsistency:83, breakNodeCount:0, redundantNodeCount:0, validNodeCount:7, totalSteps:8 },
+    { model:'Gemini 1.5 Pro', scoreDepth:74, scoreBreadth:76, scoreConsistency:69, breakNodeCount:1, redundantNodeCount:1, validNodeCount:5, totalSteps:8 },
+    { model:'Qwen-2.5-72B',   scoreDepth:67, scoreBreadth:71, scoreConsistency:62, breakNodeCount:2, redundantNodeCount:1, validNodeCount:4, totalSteps:8 },
+    { model:'DeepSeek-R1',    scoreDepth:78, scoreBreadth:77, scoreConsistency:71, breakNodeCount:1, redundantNodeCount:0, validNodeCount:6, totalSteps:8 },
+  ],
+};
+```
+
+## 界面结构要求（单页，不分 Tab）
+
+### 整体布局（三栏式）
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│  顶部栏：标题 + 题目选择器 + 模型选择器                                  │
+├──────────────────────────────┬─────────────────────────────────────────┤
+│  左栏（240px）                │  中栏（主内容区，自适应）                  │
+│  - 统计摘要卡片               │  推理树 SVG 可视化                        │
+│  - 节点类型图例               │                                          │
+│  - 检测结果列表               │                                          │
+├──────────────────────────────┴─────────────────────────────────────────┤
+│  底栏：三维评分面板（水平排列，5个模型的得分对比）                          │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### 顶部栏
+- 左侧：标题「推理链断裂检测器」（加粗，18px）+ 副标题「Logical Break Detection & Depth Analysis」（12px，灰色）
+- 中间：题目选择器（三个题目的 Radio Button 样式，横向排列，当前题目高亮蓝色，包含难度标签 chip）
+- 右侧：模型选择下拉框（5个模型，切换后底栏高亮对应模型数据）
+- 右侧还有一个「逐步播放」按钮（▶ 播放 / ■ 停止），点击后节点按 stepIndex 顺序逐个出现，间隔 600ms
+
+### 左栏（固定 240px 宽）
+
+**统计摘要卡片**（当前题目 + 当前模型）：
+- 4个小指标格子（2×2）：
+  * 总步骤数（动态）
+  * 有效节点数（绿色数字）
+  * 断裂节点数（红色数字，有断裂时显示警告图标 ⚠）
+  * 冗余节点数（灰色数字）
+
+**深度评分分解**：
+- 显示「Score_Depth: XX」（大字）
+- 下方用小进度条分解：有效步骤贡献 / 断裂扣分 / 冗余无贡献
+
+**节点类型图例**（色块 + 标签）：
+- ● 有效推理节点（蓝色）
+- ● 逻辑断裂节点（红色，⚠）
+- ● 冗余步骤（灰色，虚线边框）
+- ● 结论节点（绿色）
+- ● 根节点（深灰色）
+
+**检测结果列表**（仅显示 break 类型节点）：
+- 每条：节点ID + 简短说明 + 风险等级 chip
+- 点击后在树中高亮对应节点
+
+### 中栏（推理树 SVG 主视图）
+
+**工具栏**（树图上方）：
+- 「全部展开 / 全部折叠」按钮
+- 「缩放重置」按钮（图标：⊙）
+- 「仅显示断裂路径」toggle（开启后，非断裂相关节点半透明）
+- 「显示增益标注」toggle（开启后，每条连线上显示 logicGain 数值）
+
+**SVG 推理树**：
+- 容器：白色背景，1px 灰色边框，rounded-xl，可横向滚动
+- SVG 尺寸：根据题目动态调整（Q1: 640×360px, Q2: 640×340px, Q3: 640×340px）
+- 节点样式（矩形，宽116px，高46px，圆角8px）：
+  * root：#F8FAFC 填充，#64748B 边框（1px）
+  * valid：#EFF6FF 填充，#2563EB 边框（1px）
+  * break：#FEF2F2 填充，#DC2626 边框（2px），节点左上角红色三角警告标记（SVG polygon）
+  * redundant：#F9FAFB 填充，#9CA3AF 虚线边框（1px, stroke-dasharray 4 2）
+  * conclusion：#F0FDF4 填充，#059669 边框（2px）
+- 节点内文字：
+  * 主标签（label）：13px，font-weight 600，颜色根据类型（root深灰/valid深蓝/break深红/redundant灰/conclusion深绿）
+  * 副标签（subLabel）：10px，颜色同主标签但 opacity 0.65
+- 连接线样式：
+  * 普通连线：1px，颜色 #CBD5E1
+  * 连向/来自 break 节点的连线：1.5px，颜色 #DC2626，stroke-dasharray 6 3
+  * 连向 redundant 节点的连线：0.8px，颜色 #D1D5DB，stroke-dasharray 4 2
+  * 所有连线带箭头（marker-end），箭头样式：小三角，6×6px
+- 「显示增益标注」开启时，每条连线中点显示一个小 badge（白色背景，灰色边框，10px字体，显示增益值）
+- **选中节点**：
+  * 边框变粗（3px），出现 4px 的彩色 box-shadow（颜色与节点类型一致）
+  * 节点右侧出现一个浮动详情气泡（popover，宽 220px），白色背景，阴影，包含：
+    - 节点标题（type badge + label）
+    - logicGain（带颜色，正值绿色，负值红色）
+    - premiseStatus（chip）
+    - riskLevel（chip）
+    - description 文字（12px，灰色，多行，line-height 1.6）
+    - 底部「×」关闭按钮
+- **hover 状态**：节点轻微放大 scale(1.04)，cursor pointer
+- **逐步播放模式**：
+  * 节点按 stepIndex 顺序，每隔 600ms 出现一个
+  * 出现动画：从 opacity:0, scale:0.85 到 opacity:1, scale:1（Framer Motion）
+  * 连线跟随子节点一起出现
+  * 播放完毕后按钮恢复「▶ 重播」
+- **「仅显示断裂路径」模式**：
+  * 非断裂路径上的节点和连线 opacity 降至 0.2
+  * 断裂节点及其直接父节点、子节点保持完整显示
+  * 切换时有 300ms 过渡动画
+
+### 底栏（三维评分对比面板）
+
+**5个模型的评分卡并排**（flex 布局，等宽）：
+- 当前选中模型的卡片：白色背景，2px 蓝色边框，轻微上移阴影
+- 未选中模型的卡片：浅灰背景（#F8FAFC），1px 灰色边框
+- 每张卡片内容：
+  * 顶部：模型名（14px 加粗）+ 断裂数 badge（红色 chip，如「2 断裂」）
+  * 三条进度条（带标签和数值）：
+    - Score_Depth：蓝色 (#2563EB)
+    - Score_Breadth：紫色 (#7C3AED)
+    - Score_Consistency：绿色 (#059669)
+  * 底部：综合分（大字，计算三项均值）
+- 卡片点击后切换为「当前选中模型」，树图左侧统计数据随之更新
+
+## 交互联动要求
+1. **题目切换**：树图平滑过渡（左右滑动动画，300ms），左栏统计数据更新，底栏分数更新
+2. **模型切换**：底栏对应卡片高亮，左栏分数更新；树的结构保持不变（结构由题目决定），但断裂节点的警告角标会根据模型稍有不同（仅 UI 效果，实际数据不变）
+3. **节点选中与左栏联动**：点击树节点时，若该节点是 break 类型，左侧「检测结果列表」中对应条目高亮
+4. **「仅显示断裂路径」与左侧联动**：开启时，左侧检测结果列表也同步聚焦（非断裂条目灰显）
+
+## 代码组织要求
+```
+src/
+  App.tsx                    # 顶层布局，题目/模型状态管理
+  data/
+    nodes.ts                 # Q1/Q2/Q3 节点数据
+    questions.ts             # 题目数据
+    scores.ts                # 模型×题目评分矩阵
+  types/
+    index.ts                 # 所有类型定义
+  components/
+    TopBar.tsx               # 顶部题目/模型选择栏
+    LeftPanel.tsx            # 左侧统计+图例+检测结果
+    TreeCanvas.tsx           # 中间 SVG 推理树（核心组件）
+    TreeNode.tsx             # 单个节点渲染（Framer Motion 动画）
+    TreeEdge.tsx             # 单条连线渲染
+    NodePopover.tsx          # 节点选中后的详情气泡
+    ScorePanel.tsx           # 底部5模型评分卡
+  hooks/
+    useTreePlayback.ts       # 逐步播放逻辑（useEffect + setTimeout）
+    useNodeSelection.ts      # 节点选中状态管理
+```
+
+## 输出要求
+1. 输出所有文件的完整代码，可直接 `npm install && npm run dev` 运行
+2. 无 TypeScript 类型错误
+3. Framer Motion 版本：^10.0.0
+4. 在 1440px 宽度下三栏布局正常，底栏5卡片完整显示
+5. 在 1024px 宽度下底栏可横向滚动（overflow-x: auto）
+6. 推理树 SVG 在中栏宽度变化时居中显示
+7. 所有动画在 prefers-reduced-motion: reduce 时禁用
+```
+
+---
+
+两个 prompt 的关键差异在于：**方案一** 是宽泛的评估结果汇总展示（4 Tab，适合汇报），**方案二** 是聚焦于单次推理过程的深度解剖工具（逐步播放、断裂路径高亮、节点气泡），二者互补。数据全部硬编码在 prompt 里，TRAE 无需额外数据源即可完整复现。

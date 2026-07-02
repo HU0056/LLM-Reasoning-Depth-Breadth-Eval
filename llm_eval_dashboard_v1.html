@@ -1,0 +1,229 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:1.5rem 1rem;display:flex;flex-direction:column;gap:1.5rem}
+.header-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.title{font-size:15px;font-weight:500;color:var(--color-text-primary)}
+.sub{font-size:12px;color:var(--color-text-secondary)}
+.tab-row{display:flex;gap:6px;flex-wrap:wrap}
+.tab{font-size:12px;padding:5px 14px;border:0.5px solid var(--color-border-secondary);border-radius:20px;cursor:pointer;color:var(--color-text-secondary);background:transparent;transition:all .15s}
+.tab.active{border-color:var(--color-border-primary);color:var(--color-text-primary);font-weight:500;background:var(--color-background-secondary)}
+.section{display:none}
+.section.show{display:block}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.metric-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px}
+.metric-label{font-size:11px;color:var(--color-text-tertiary);margin-bottom:4px}
+.metric-val{font-size:22px;font-weight:500;color:var(--color-text-primary)}
+.metric-delta{font-size:11px;margin-top:2px}
+.pos{color:var(--color-text-success)}.neg{color:var(--color-text-danger)}.neu{color:var(--color-text-secondary)}
+.chart-wrap{position:relative;width:100%;height:260px}
+.model-sel{display:flex;gap:8px;flex-wrap:wrap}
+.model-btn{font-size:12px;padding:4px 12px;border:0.5px solid var(--color-border-secondary);border-radius:20px;cursor:pointer;background:transparent;color:var(--color-text-secondary);transition:all .15s}
+.model-btn.on{font-weight:500;color:var(--color-text-primary);border-color:var(--color-border-primary);background:var(--color-background-secondary)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-weight:500;font-size:12px;color:var(--color-text-secondary);text-align:left;padding:6px 10px;border-bottom:0.5px solid var(--color-border-tertiary)}
+td{padding:7px 10px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary)}
+tr:last-child td{border-bottom:none}
+.bar-cell{display:flex;align-items:center;gap:8px}
+.bar-bg{flex:1;height:6px;background:var(--color-border-tertiary);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;transition:width .4s}
+.badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:10px}
+.badge-hi{background:var(--color-background-success);color:var(--color-text-success)}
+.badge-md{background:var(--color-background-warning);color:var(--color-text-warning)}
+.badge-lo{background:var(--color-background-danger);color:var(--color-text-danger)}
+.tree-svg-wrap{overflow-x:auto}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--color-text-secondary)}
+.legend span{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+</style>
+<div class="wrap">
+<div class="header-row">
+  <div>
+    <p class="title">LLM 推理能力评估仪表盘</p>
+    <p class="sub">Score_Depth · Score_Breadth · Score_Consistency　|　当前数据集：LogicBench-2K</p>
+  </div>
+  <div class="tab-row">
+    <button class="tab active" onclick="showTab('overview')">概览</button>
+    <button class="tab" onclick="showTab('compare')">模型对比</button>
+    <button class="tab" onclick="showTab('tree')">推理树</button>
+    <button class="tab" onclick="showTab('rank')">排行榜</button>
+  </div>
+</div>
+
+<!-- 概览 -->
+<div id="s-overview" class="section show">
+  <div class="grid3" style="margin-bottom:14px">
+    <div class="metric-card"><div class="metric-label">平均深度指数</div><div class="metric-val" id="mv-depth">72.4</div><div class="metric-delta pos">↑ 3.1 vs GSM8K baseline</div></div>
+    <div class="metric-card"><div class="metric-label">平均广度指数</div><div class="metric-val" id="mv-breadth">61.8</div><div class="metric-delta neg">↓ 1.4 vs GSM8K baseline</div></div>
+    <div class="metric-card"><div class="metric-label">平均一致性指数</div><div class="metric-val" id="mv-cons">68.3</div><div class="metric-delta neu">— same as baseline</div></div>
+  </div>
+  <div class="chart-wrap"><canvas id="radar-overview" role="img" aria-label="五模型三维雷达图"></canvas></div>
+  <div class="legend" style="margin-top:10px">
+    <span><span class="dot" style="background:#3b82f6"></span>GPT-4o</span>
+    <span><span class="dot" style="background:#8b5cf6"></span>Claude 3.5</span>
+    <span><span class="dot" style="background:#10b981"></span>Gemini 1.5 Pro</span>
+    <span><span class="dot" style="background:#f59e0b"></span>Qwen-2.5-72B</span>
+    <span><span class="dot" style="background:#ef4444"></span>DeepSeek-R1</span>
+  </div>
+</div>
+
+<!-- 模型对比 -->
+<div id="s-compare" class="section">
+  <div class="model-sel" id="model-sel" style="margin-bottom:12px"></div>
+  <div class="chart-wrap"><canvas id="bar-compare" role="img" aria-label="多模型三维评分柱状图"></canvas></div>
+</div>
+
+<!-- 推理树 -->
+<div id="s-tree" class="section">
+  <p class="sub" style="margin-bottom:10px">样例题目：「所有A是B，所有B是C，因此？」　点击节点查看详情</p>
+  <div class="tree-svg-wrap">
+    <svg id="tree-svg" width="100%" viewBox="0 0 640 340" role="img">
+      <title>推理树可视化示例</title>
+      <defs><marker id="ta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+    </svg>
+  </div>
+  <div class="legend" style="margin-top:10px">
+    <span><span class="dot" style="background:#3266ad"></span>有效推理步骤</span>
+    <span><span class="dot" style="background:#ef4444"></span>断裂节点（逻辑跳跃）</span>
+    <span><span class="dot" style="background:#9ca3af"></span>冗余步骤</span>
+    <span><span class="dot" style="background:#10b981"></span>结论节点</span>
+  </div>
+</div>
+
+<!-- 排行榜 -->
+<div id="s-rank" class="section">
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>排名</th><th>模型</th><th>深度</th><th>广度</th><th>一致性</th><th>综合分</th><th>等级</th></tr></thead>
+      <tbody id="rank-body"></tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const MODELS=[
+  {name:'GPT-4o',       d:78, b:65, c:74, color:'#3b82f6'},
+  {name:'Claude 3.5',   d:82, b:58, c:80, color:'#8b5cf6'},
+  {name:'Gemini 1.5 Pro',d:71,b:70, c:66, color:'#10b981'},
+  {name:'Qwen-2.5-72B', d:65, b:67, c:60, color:'#f59e0b'},
+  {name:'DeepSeek-R1',  d:76, b:72, c:68, color:'#ef4444'},
+];
+const DIMS=['深度\nScore_Depth','广度\nScore_Breadth','一致性\nScore_Consistency'];
+
+function hexA(hex,a){const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return `rgba(${r},${g},${b},${a})`}
+
+let radarChart,barChart;
+function buildRadar(){
+  const ctx=document.getElementById('radar-overview').getContext('2d');
+  radarChart=new Chart(ctx,{
+    type:'radar',
+    data:{labels:['深度','广度','一致性'],datasets:MODELS.map(m=>({
+      label:m.name,data:[m.d,m.b,m.c],
+      backgroundColor:hexA(m.color,0.08),borderColor:m.color,pointBackgroundColor:m.color,
+      borderWidth:1.5,pointRadius:3
+    }))},
+    options:{responsive:true,maintainAspectRatio:false,
+      scales:{r:{min:0,max:100,ticks:{font:{size:10},stepSize:25},grid:{color:'rgba(128,128,128,0.15)'},pointLabels:{font:{size:12}}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${c.raw}`}}}
+    }
+  });
+}
+
+const selActive=new Set(MODELS.map(m=>m.name));
+function buildBarSel(){
+  const d=document.getElementById('model-sel');
+  MODELS.forEach(m=>{
+    const b=document.createElement('button');
+    b.className='model-btn on';b.textContent=m.name;
+    b.style.borderColor=m.color;
+    b.onclick=()=>{
+      if(selActive.has(m.name)){if(selActive.size>1){selActive.delete(m.name);b.classList.remove('on');b.style.borderColor='';}}
+      else{selActive.add(m.name);b.classList.add('on');b.style.borderColor=m.color;}
+      rebuildBar();
+    };
+    d.appendChild(b);
+  });
+}
+function rebuildBar(){
+  const active=MODELS.filter(m=>selActive.has(m.name));
+  const labels=active.map(m=>m.name);
+  if(barChart)barChart.destroy();
+  const ctx=document.getElementById('bar-compare').getContext('2d');
+  barChart=new Chart(ctx,{
+    type:'bar',
+    data:{labels,datasets:[
+      {label:'深度',data:active.map(m=>m.d),backgroundColor:active.map(m=>hexA(m.color,0.85)),borderWidth:0},
+      {label:'广度',data:active.map(m=>m.b),backgroundColor:active.map(m=>hexA(m.color,0.5)),borderWidth:0},
+      {label:'一致性',data:active.map(m=>m.c),backgroundColor:active.map(m=>hexA(m.color,0.25)),borderWidth:0},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      scales:{y:{min:0,max:100,grid:{color:'rgba(128,128,128,0.1)'}},x:{grid:{display:false}}},
+      plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:10}}}
+    }
+  });
+}
+
+function buildTree(){
+  const svg=document.getElementById('tree-svg');
+  const nodes=[
+    {id:0,x:310,y:30,label:'前提解析',sub:'所有A→B，B→C',type:'valid'},
+    {id:1,x:160,y:110,label:'传递推理',sub:'A→C 有效',type:'valid'},
+    {id:2,x:460,y:110,label:'反事实检验',sub:'若非B则?',type:'valid'},
+    {id:3,x:80,y:200,label:'全称例化',sub:'任意x∈A',type:'valid'},
+    {id:4,x:250,y:200,label:'断裂节点',sub:'逻辑跳跃',type:'break'},
+    {id:5,x:390,y:200,label:'边界情况',sub:'A∩C=∅?',type:'valid'},
+    {id:6,x:540,y:200,label:'冗余重述',sub:'重复前提',type:'redundant'},
+    {id:7,x:165,y:290,label:'结论: A⊆C',sub:'Score_Depth+1',type:'conclusion'},
+  ];
+  const edges=[[0,1],[0,2],[1,3],[1,4],[2,5],[2,6],[3,7],[5,7]];
+  const colorMap={valid:'#3266ad',break:'#ef4444',redundant:'#9ca3af',conclusion:'#10b981'};
+  let html='';
+  edges.forEach(([a,b])=>{
+    const na=nodes[a],nb=nodes[b];
+    const stroke=na.type==='break'||nb.type==='break'?'#ef4444':'rgba(128,128,128,0.4)';
+    const dash=nb.type==='redundant'?'stroke-dasharray="5 3"':'';
+    html+=`<line x1="${na.x}" y1="${na.y+18}" x2="${nb.x}" y2="${nb.y-18}" stroke="${stroke}" stroke-width="1" ${dash} marker-end="url(#ta)" fill="none"/>`;
+  });
+  nodes.forEach(n=>{
+    const c=colorMap[n.type];
+    const textColor=n.type==='break'?'#b91c1c':n.type==='conclusion'?'#065f46':n.type==='redundant'?'#4b5563':'#1e3a5f';
+    html+=`<g class="node" style="cursor:pointer" onclick="sendPrompt('详细解释推理树中「${n.label}」节点的作用')">
+      <rect x="${n.x-54}" y="${n.y-18}" width="108" height="36" rx="7" fill="${c}18" stroke="${c}" stroke-width="${n.type==='break'?1.5:0.8}"/>
+      <text x="${n.x}" y="${n.y-4}" text-anchor="middle" font-size="12" font-weight="500" fill="${textColor}">${n.label}</text>
+      <text x="${n.x}" y="${n.y+11}" text-anchor="middle" font-size="10" fill="${textColor}" opacity="0.75">${n.sub}</text>
+    </g>`;
+  });
+  svg.innerHTML=svg.innerHTML+html;
+}
+
+function buildRank(){
+  const sorted=[...MODELS].map(m=>({...m,total:Math.round((m.d+m.b+m.c)/3)})).sort((a,b)=>b.total-a.total);
+  const tb=document.getElementById('rank-body');
+  sorted.forEach((m,i)=>{
+    const grade=m.total>=75?'<span class="badge badge-hi">优秀</span>':m.total>=65?'<span class="badge badge-md">良好</span>':'<span class="badge badge-lo">待提升</span>';
+    tb.innerHTML+=`<tr>
+      <td style="font-weight:500;color:${i<3?m.color:'var(--color-text-secondary)'}">${i+1}</td>
+      <td style="font-weight:500">${m.name}</td>
+      <td><div class="bar-cell"><div class="bar-bg"><div class="bar-fill" style="width:${m.d}%;background:#3266ad"></div></div><span style="font-size:12px;min-width:28px">${m.d}</span></div></td>
+      <td><div class="bar-cell"><div class="bar-bg"><div class="bar-fill" style="width:${m.b}%;background:#8b5cf6"></div></div><span style="font-size:12px;min-width:28px">${m.b}</span></div></td>
+      <td><div class="bar-cell"><div class="bar-bg"><div class="bar-fill" style="width:${m.c}%;background:#10b981"></div></div><span style="font-size:12px;min-width:28px">${m.c}</span></div></td>
+      <td style="font-weight:500">${m.total}</td>
+      <td>${grade}</td>
+    </tr>`;
+  });
+}
+
+function showTab(t){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('show'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('s-'+t).classList.add('show');
+  event.target.classList.add('active');
+  if(t==='compare'&&!barChart)rebuildBar();
+  if(t==='tree'&&!document.getElementById('tree-svg').querySelector('g'))buildTree();
+}
+
+buildRadar();buildBarSel();buildRank();
+</script>

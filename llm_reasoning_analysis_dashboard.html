@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM 推理评估分析仪表盘</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.9/vis-network.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f1f5f9;color:#1e293b}
+:root{--color-primary:#3b82f6;--color-primary-light:#eff6ff;--color-secondary:#8b5cf6;--color-success:#10b981;--color-warning:#f59e0b;--color-danger:#ef4444;--color-text-primary:#1e293b;--color-text-secondary:#64748b;--color-text-tertiary:#94a3b8;--color-border:#e2e8f0;--color-bg-card:#ffffff;--color-bg-page:#f8fafc;--radius:8px;--transition:.2s}
+.loader{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,0.9);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999}
+.loader .spinner{width:40px;height:40px;border:3px solid var(--color-border);border-top-color:var(--color-primary);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader .text{margin-top:16px;color:var(--color-text-secondary);font-size:14px}
+.loader .progress{width:200px;height:4px;background:var(--color-border);border-radius:2px;margin-top:12px;overflow:hidden}
+.loader .progress-bar{height:100%;background:var(--color-primary);border-radius:2px;transition:width .3s}
+.wrap{padding:20px;max-width:1500px;margin:0 auto;display:none}
+.header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--color-border)}
+.header-left h1{font-size:20px;font-weight:700;color:var(--color-text-primary)}
+.header-left p{font-size:13px;color:var(--color-text-secondary);margin-top:4px}
+.header-right{display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:8px 16px;border-radius:var(--radius);font-size:13px;font-weight:500;cursor:pointer;border:1px solid transparent;transition:all var(--transition)}
+.btn-primary{background:var(--color-primary);color:#fff}
+.btn-primary:hover{background:#2563eb;transform:translateY(-1px)}
+.btn-secondary{background:var(--color-bg-card);color:var(--color-text-secondary);border-color:var(--color-border)}
+.btn-secondary:hover{border-color:var(--color-primary);color:var(--color-primary)}
+.btn-outline{background:transparent;color:var(--color-primary);border-color:var(--color-primary)}
+.btn-outline:hover{background:var(--color-primary-light)}
+.tabs{display:flex;gap:4px;margin-bottom:20px;background:var(--color-bg-card);padding:4px;border-radius:var(--radius);border:1px solid var(--color-border)}
+.tab{padding:8px 20px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--color-text-secondary);transition:all var(--transition)}
+.tab:hover{background:var(--color-bg-page)}
+.tab.active{background:var(--color-primary);color:#fff}
+.section{display:none;animation:fadeIn .3s ease-out}
+.section.show{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:1024px){.grid4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.grid2{grid-template-columns:1fr}.grid3{grid-template-columns:repeat(2,1fr)}.grid4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.grid3{grid-template-columns:1fr}.grid4{grid-template-columns:1fr}}
+.card{background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:20px;transition:all var(--transition)}
+.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.04)}
+.card-title{font-size:12px;font-weight:600;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px}
+.metric-card{text-align:center;padding:24px}
+.metric-card .value{font-size:36px;font-weight:700;margin:8px 0;color:var(--color-text-primary)}
+.metric-card .label{font-size:12px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em}
+.metric-card .trend{font-size:11px;margin-top:4px}
+.metric-card.depth .value{color:#3b82f6}
+.metric-card.breadth .value{color:#8b5cf6}
+.metric-card.consistency .value{color:#10b981}
+.metric-card.count .value{color:#f59e0b}
+.chart-container{height:300px;position:relative}
+.table-container{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-weight:600;font-size:11px;color:var(--color-text-secondary);text-align:left;padding:12px;border-bottom:2px solid var(--color-border);text-transform:uppercase;letter-spacing:.03em;cursor:pointer;position:relative}
+th:hover{color:var(--color-primary)}
+th.sort-asc::after{content:'↑';font-size:10px;margin-left:4px}
+th.sort-desc::after{content:'↓';font-size:10px;margin-left:4px}
+td{padding:12px;border-bottom:1px solid #f1f5f9;color:var(--color-text-primary)}
+tr:hover{background:var(--color-bg-page)}
+.badge{display:inline-block;font-size:10px;padding:4px 10px;border-radius:12px;font-weight:600}
+.badge-success{background:#ecfdf5;color:#10b981}
+.badge-danger{background:#fef2f2;color:#ef4444}
+.badge-warning{background:#fffbeb;color:#f59e0b}
+.badge-info{background:#eff6ff;color:#3b82f6}
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;padding:14px;background:var(--color-bg-page);border-radius:var(--radius)}
+.filter-item{display:flex;align-items:center;gap:6px}
+.filter-item label{font-size:12px;color:var(--color-text-secondary)}
+.filter-item select{padding:6px 12px;border:1px solid var(--color-border);border-radius:6px;font-size:12px;background:#fff;color:var(--color-text-primary)}
+.filter-item input[type="text"]{padding:6px 12px;border:1px solid var(--color-border);border-radius:6px;font-size:12px;width:150px}
+.search-box{padding:8px 14px;border:1px solid var(--color-border);border-radius:6px;font-size:13px;width:250px;background:#fff}
+.search-box:focus{outline:none;border-color:var(--color-primary)}
+.tree-container{height:350px;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-bg-page)}
+.step-item{padding:10px 12px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:flex-start;cursor:pointer;transition:background var(--transition)}
+.step-item:hover{background:var(--color-bg-page)}
+.step-item.active{background:var(--color-primary-light)}
+.step-item .step-content{flex:1}
+.step-item .step-number{font-weight:600;color:var(--color-text-secondary);margin-right:12px}
+.step-item .step-text{font-size:13px;color:var(--color-text-primary)}
+.step-item .step-reason{font-size:11px;color:var(--color-text-tertiary);margin-top:4px}
+.image-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.image-card{background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius);overflow:hidden;transition:all var(--transition);cursor:pointer}
+.image-card:hover{border-color:var(--color-primary);box-shadow:0 8px 20px rgba(59,130,246,0.1)}
+.image-card img{width:100%;height:160px;object-fit:cover;transition:transform .3s}
+.image-card:hover img{transform:scale(1.05)}
+.image-card .caption{padding:12px;font-size:12px;color:var(--color-text-secondary);text-align:center}
+.toast{position:fixed;bottom:20px;right:20px;padding:12px 20px;border-radius:var(--radius);font-size:13px;font-weight:500;animation:slideIn .3s ease-out;z-index:10000}
+.toast.success{background:#ecfdf5;color:#10b981;border:1px solid #d1fae5}
+.toast.error{background:#fef2f2;color:#ef4444;border:1px solid #fee2e2}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:10000;display:none}
+.modal.show{display:flex;animation:fadeIn .2s}
+.modal-content{background:#fff;border-radius:var(--radius);padding:24px;width:90%;max-width:600px;max-height:80vh;overflow-y:auto}
+.modal-content h3{font-size:18px;font-weight:600;margin-bottom:16px;color:var(--color-text-primary)}
+.modal-content p{font-size:14px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:8px}
+.modal-content .close{position:absolute;top:16px;right:16px;font-size:24px;cursor:pointer;color:var(--color-text-tertiary)}
+.detail-panel{background:var(--color-bg-page);border-radius:var(--radius);padding:16px;margin-top:16px}
+.detail-panel h4{font-size:13px;font-weight:600;color:var(--color-text-secondary);margin-bottom:12px}
+.detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.detail-item{background:#fff;padding:12px;border-radius:6px}
+.detail-item .label{font-size:11px;color:var(--color-text-tertiary)}
+.detail-item .value{font-size:16px;font-weight:600;color:var(--color-text-primary);margin-top:4px}
+</style>
+</head>
+<body>
+<div class="loader" id="loader">
+  <div class="spinner"></div>
+  <div class="text" id="loader-text">正在加载数据...</div>
+  <div class="progress">
+    <div class="progress-bar" id="loader-progress" style="width:0%"></div>
+  </div>
+</div>
+
+<div class="wrap" id="app">
+<div class="header">
+  <div class="header-left">
+    <h1>LLM 推理评估分析仪表盘</h1>
+    <p>基于项目输出数据的深度/广度/一致性综合分析 · <span id="data-count">0</span> 条记录</p>
+  </div>
+  <div class="header-right">
+    <input type="text" class="search-box" placeholder="搜索样本ID或输出类型..." id="search-input" onkeyup="handleSearch()">
+    <button class="btn btn-secondary" onclick="exportData()">导出数据</button>
+    <button class="btn btn-outline" onclick="refreshData()">刷新</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('overview')">概览</button>
+  <button class="tab" onclick="switchTab('explore')">数据探索</button>
+  <button class="tab" onclick="switchTab('detail')">详细分析</button>
+  <button class="tab" onclick="switchTab('visualize')">可视化</button>
+</div>
+
+<div id="tab-overview" class="section show">
+  <div class="grid4" style="margin-bottom:20px">
+    <div class="card metric-card count"><div class="label">样本总数</div><div class="value" id="metric-count">0</div><div class="trend">覆盖6种推理类型</div></div>
+    <div class="card metric-card depth"><div class="label">平均深度指数</div><div class="value" id="metric-depth">0</div><div class="trend" id="trend-depth"></div></div>
+    <div class="card metric-card breadth"><div class="label">平均广度指数</div><div class="value" id="metric-breadth">0</div><div class="trend" id="trend-breadth"></div></div>
+    <div class="card metric-card consistency"><div class="label">平均一致性指数</div><div class="value" id="metric-consistency">0</div><div class="trend" id="trend-consistency"></div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">各类型评分对比</div>
+      <div class="chart-container"><canvas id="chart-bar"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">三维评分雷达图</div>
+      <div class="chart-container"><canvas id="chart-radar"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">各类型统计摘要</div>
+    <div class="table-container">
+      <table id="summary-table">
+        <thead><tr><th onclick="sortTable('type')">推理类型</th><th onclick="sortTable('accuracy')">答案正确率</th><th onclick="sortTable('depth')">平均深度</th><th onclick="sortTable('breadth')">平均广度</th><th onclick="sortTable('consistency')">平均一致性</th><th onclick="sortTable('missing')">隐含前提缺失率</th><th onclick="sortTable('error')">首次错误率</th></tr></thead>
+        <tbody id="summary-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="tab-explore" class="section">
+  <div class="filter-bar">
+    <div class="filter-item"><label>输出类型:</label><select id="filter-type" onchange="applyFilters()"><option value="all">全部</option><option value="correct_full">完整推理</option><option value="correct_jump">跳跃推理</option><option value="verbose_redundant">冗余推理</option><option value="wrong">错误推理</option><option value="broad">广度覆盖</option><option value="narrow_repeated">狭窄重复</option></select></div>
+    <div class="filter-item"><label>答案正确性:</label><select id="filter-correct" onchange="applyFilters()"><option value="all">全部</option><option value="true">正确</option><option value="false">错误</option></select></div>
+    <div class="filter-item"><label>深度范围:</label><input type="range" id="range-depth" min="0" max="100" value="100" onchange="applyFilters()" style="width:120px"></div>
+    <div class="filter-item"><label>一致性范围:</label><input type="range" id="range-consistency" min="0" max="100" value="100" onchange="applyFilters()" style="width:120px"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">数据列表 · 共 <span id="table-count">0</span> 条</div>
+    <div class="table-container">
+      <table id="data-table">
+        <thead><tr><th onclick="sortData('sample_id')">样本ID</th><th onclick="sortData('output_type')">输出类型</th><th onclick="sortData('answer_correct')">答案</th><th onclick="sortData('score_depth')">深度</th><th onclick="sortData('score_breadth')">广度</th><th onclick="sortData('score_consistency')">一致性</th><th>操作</th></tr></thead>
+        <tbody id="data-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="tab-detail" class="section">
+  <div class="filter-bar">
+    <div class="filter-item"><label>选择样本:</label><select id="detail-select" onchange="loadDetail()"><option value="">请选择样本</option></select></div>
+  </div>
+
+  <div id="detail-content" style="display:none">
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">评分详情</div>
+        <div class="detail-grid">
+          <div class="detail-item"><div class="label">Score_Depth</div><div class="value" id="detail-depth" style="color:#3b82f6">0</div></div>
+          <div class="detail-item"><div class="label">Score_Breadth</div><div class="value" id="detail-breadth" style="color:#8b5cf6">0</div></div>
+          <div class="detail-item"><div class="label">Score_Consistency</div><div class="value" id="detail-consistency" style="color:#10b981">0</div></div>
+          <div class="detail-item"><div class="label">答案正确性</div><div class="value" id="detail-correct">--</div></div>
+        </div>
+        <div class="detail-panel">
+          <h4>推理步骤</h4>
+          <div id="steps-list"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">推理图可视化</div>
+        <div class="tree-container" id="network-container"></div>
+        <div style="margin-top:12px;font-size:11px;color:var(--color-text-tertiary)">点击节点查看详情，拖动节点调整布局</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">详细验证信息</div>
+      <div id="verification-detail"></div>
+    </div>
+  </div>
+
+  <div id="detail-empty" style="text-align:center;padding:60px;color:var(--color-text-tertiary)">
+    <div style="font-size:48px;margin-bottom:16px">📊</div>
+    <p>请从上方下拉框选择一个样本查看详细分析</p>
+  </div>
+</div>
+
+<div id="tab-visualize" class="section">
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">深度 vs 一致性散点图</div>
+      <div class="chart-container"><canvas id="chart-scatter-dc"></canvas></div>
+      <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:8px">点击数据点查看样本详情</div>
+    </div>
+    <div class="card">
+      <div class="card-title">广度 vs 一致性散点图</div>
+      <div class="chart-container"><canvas id="chart-scatter-bc"></canvas></div>
+    </div>
+  </div>
+
+  <div class="grid3">
+    <div class="card">
+      <div class="card-title">深度评分分布</div>
+      <div class="chart-container" style="height:220px"><canvas id="chart-hist-depth"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">广度评分分布</div>
+      <div class="chart-container" style="height:220px"><canvas id="chart-hist-breadth"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">一致性评分分布</div>
+      <div class="chart-container" style="height:220px"><canvas id="chart-hist-consistency"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">DAG Lighting 可视化图</div>
+    <div class="image-grid" id="image-grid"></div>
+  </div>
+</div>
+</div>
+
+<div class="modal" id="node-modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h3 id="modal-title">节点详情</h3>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+let rawData=[];
+let summaryData=[];
+let filteredData=[];
+let charts={};
+let network=null;
+let currentDetail=null;
+
+async function loadData(){
+  updateLoader('加载汇总数据...',20);
+  try{
+    const csvRes=await fetch('outputs/reports/summary.csv');
+    const csvText=await csvRes.text();
+    summaryData=parseCSV(csvText);
+    updateLoader('加载详细结果...',60);
+    const jsonlRes=await fetch('outputs/results/demo_results.jsonl');
+    const jsonlText=await jsonlRes.text();
+    rawData=jsonlText.split('\n').filter(line=>line.trim()).map(line=>JSON.parse(line));
+    filteredData=[...rawData];
+    updateLoader('初始化仪表盘...',90);
+    renderDashboard();
+    updateLoader('完成',100);
+    setTimeout(()=>{
+      document.getElementById('loader').style.display='none';
+      document.getElementById('app').style.display='block';
+    },500);
+  }catch(e){
+    console.error('加载数据失败:',e);
+    showToast('数据加载失败，请检查文件路径', 'error');
+    document.getElementById('loader').style.display='none';
+    document.getElementById('app').style.display='block';
+  }
+}
+
+function parseCSV(text){
+  const lines=text.split('\n').filter(l=>l.trim());
+  const headers=lines[0].split(',');
+  return lines.slice(1).map(line=>{
+    const values=line.split(',');
+    const obj={};
+    headers.forEach((h,i)=>{
+      const v=values[i];
+      obj[h]=v===''?null:(!isNaN(v)?parseFloat(v):v);
+    });
+    return obj;
+  });
+}
+
+function updateLoader(text,progress){
+  document.getElementById('loader-text').textContent=text;
+  document.getElementById('loader-progress').style.width=progress+'%';
+}
+
+function renderDashboard(){
+  document.getElementById('data-count').textContent=rawData.length;
+  renderMetrics();
+  renderSummaryTable();
+  renderDataTable();
+  renderCharts();
+  renderImageGrid();
+  populateDetailSelect();
+}
+
+function renderMetrics(){
+  const depths=rawData.map(d=>d.score_depth).filter(v=>v!==null);
+  const breadths=rawData.map(d=>d.score_breadth).filter(v=>v!==null);
+  const consistencies=rawData.map(d=>d.score_consistency).filter(v=>v!==null);
+  
+  document.getElementById('metric-count').textContent=rawData.length;
+  document.getElementById('metric-depth').textContent=depths.length?depths.reduce((a,b)=>a+b,0)/depths.length:0;
+  document.getElementById('metric-breadth').textContent=breadths.length?breadths.reduce((a,b)=>a+b,0)/breadths.length:0;
+  document.getElementById('metric-consistency').textContent=consistencies.length?consistencies.reduce((a,b)=>a+b,0)/consistencies.length:0;
+  
+  document.getElementById('trend-depth').textContent=`最高: ${Math.max(...depths)} | 最低: ${Math.min(...depths)}`;
+  document.getElementById('trend-breadth').textContent=`最高: ${Math.max(...breadths)} | 最低: ${Math.min(...breadths)}`;
+  document.getElementById('trend-consistency').textContent=`最高: ${Math.max(...consistencies)} | 最低: ${Math.min(...consistencies)}`;
+}
+
+function renderSummaryTable(){
+  const tbody=document.getElementById('summary-body');
+  tbody.innerHTML='';
+  summaryData.forEach(d=>{
+    tbody.innerHTML+=`<tr>
+      <td><strong>${d.output_type}</strong></td>
+      <td>${d.answer_accuracy===1?'<span class="badge badge-success">正确</span>':'<span class="badge badge-danger">错误</span>'}</td>
+      <td>${d.avg_depth}</td>
+      <td>${d.avg_breadth||'-'}</td>
+      <td>${d.avg_consistency}</td>
+      <td>${d.missing_premise_rate===1?'<span class="badge badge-danger">100%</span>':'<span class="badge badge-success">0%</span>'}</td>
+      <td>${d.first_error_rate===1?'<span class="badge badge-danger">100%</span>':'<span class="badge badge-success">0%</span>'}</td>
+    </tr>`;
+  });
+}
+
+function renderDataTable(){
+  const tbody=document.getElementById('data-body');
+  tbody.innerHTML='';
+  document.getElementById('table-count').textContent=filteredData.length;
+  filteredData.forEach((d,i)=>{
+    tbody.innerHTML+=`<tr>
+      <td>${d.sample_id}</td>
+      <td><span class="badge badge-info">${d.output_type}</span></td>
+      <td>${d.answer_correct?'<span class="badge badge-success">✓</span>':'<span class="badge badge-danger">✗</span>'}</td>
+      <td>${d.score_depth}</td>
+      <td>${d.score_breadth||'-'}</td>
+      <td>${d.score_consistency}</td>
+      <td><button class="btn btn-outline" style="padding:4px 10px;font-size:11px" onclick="selectDetail(${i})">详情</button></td>
+    </tr>`;
+  });
+}
+
+function renderCharts(){
+  const barCtx=document.getElementById('chart-bar').getContext('2d');
+  charts.bar=new Chart(barCtx,{
+    type:'bar',
+    data:{
+      labels:summaryData.map(d=>d.output_type),
+      datasets:[
+        {label:'深度',data:summaryData.map(d=>d.avg_depth),backgroundColor:'rgba(59,130,246,0.8)',borderRadius:4},
+        {label:'广度',data:summaryData.map(d=>d.avg_breadth||0),backgroundColor:'rgba(139,92,246,0.8)',borderRadius:4},
+        {label:'一致性',data:summaryData.map(d=>d.avg_consistency),backgroundColor:'rgba(16,185,129,0.8)',borderRadius:4},
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      animation:{duration:800},
+      scales:{y:{min:0,max:100,grid:{color:'rgba(128,128,128,0.1)'}},x:{grid:{display:false}}},
+      plugins:{
+        legend:{position:'bottom',labels:{boxWidth:12,padding:12}},
+        tooltip:{backgroundColor:'rgba(30,41,59,0.95)',padding:12}
+      }
+    }
+  });
+
+  const radarCtx=document.getElementById('chart-radar').getContext('2d');
+  charts.radar=new Chart(radarCtx,{
+    type:'radar',
+    data:{
+      labels:['深度','广度','一致性'],
+      datasets:summaryData.map((d,i)=>{
+        const colors=['#3b82f6','#8b5cf6','#10b981','#f59e0b','#ef4444','#06b6d4'];
+        return {label:d.output_type,data:[d.avg_depth,d.avg_breadth||50,d.avg_consistency],
+          backgroundColor:colors[i]+'10',borderColor:colors[i],pointBackgroundColor:colors[i],
+          borderWidth:1.5,pointRadius:3,pointHoverRadius:6};
+      })
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      animation:{duration:1000},
+      scales:{r:{min:0,max:100,ticks:{stepSize:25},grid:{color:'rgba(128,128,128,0.15)'},pointLabels:{font:{size:12}}}},
+      plugins:{legend:{position:'bottom',labels:{padding:10}}}
+    }
+  });
+
+  const scatterDCtx=document.getElementById('chart-scatter-dc').getContext('2d');
+  charts.scatterDC=new Chart(scatterDCtx,{
+    type:'scatter',
+    data:{datasets:[{
+      label:'深度 vs 一致性',
+      data:rawData.map(d=>({x:d.score_depth,y:d.score_consistency,idx:rawData.indexOf(d)})),
+      backgroundColor:'rgba(59,130,246,0.7)',pointRadius:8,pointHoverRadius:12
+    }]},
+    options:{
+      responsive:true,maintainAspectRatio:false,animation:{duration:600},
+      scales:{x:{min:0,max:100,title:{display:true,text:'Score_Depth'}},y:{min:0,max:100,title:{display:true,text:'Score_Consistency'}}},
+      onClick:(e,elements)=>{if(elements.length>0)selectDetail(elements[0].raw.idx)}
+    }
+  });
+
+  const scatterBCtx=document.getElementById('chart-scatter-bc').getContext('2d');
+  charts.scatterBC=new Chart(scatterBCtx,{
+    type:'scatter',
+    data:{datasets:[{
+      label:'广度 vs 一致性',
+      data:rawData.filter(d=>d.score_breadth).map(d=>({x:d.score_breadth,y:d.score_consistency})),
+      backgroundColor:'rgba(139,92,246,0.7)',pointRadius:8,pointHoverRadius:12
+    }]},
+    options:{
+      responsive:true,maintainAspectRatio:false,animation:{duration:600},
+      scales:{x:{min:0,max:100,title:{display:true,text:'Score_Breadth'}},y:{min:0,max:100,title:{display:true,text:'Score_Consistency'}}}
+    }
+  });
+
+  charts.histDepth=new Chart(document.getElementById('chart-hist-depth'),{
+    type:'bar',data:{labels:summaryData.map(d=>d.output_type),datasets:[{label:'深度',data:summaryData.map(d=>d.avg_depth),backgroundColor:'rgba(59,130,246,0.8)',borderRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:600},scales:{y:{min:0,max:100}},plugins:{legend:{display:false}}}
+  });
+
+  charts.histBreadth=new Chart(document.getElementById('chart-hist-breadth'),{
+    type:'bar',data:{labels:summaryData.map(d=>d.output_type),datasets:[{label:'广度',data:summaryData.map(d=>d.avg_breadth||0),backgroundColor:'rgba(139,92,246,0.8)',borderRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:600},scales:{y:{min:0,max:100}},plugins:{legend:{display:false}}}
+  });
+
+  charts.histConsistency=new Chart(document.getElementById('chart-hist-consistency'),{
+    type:'bar',data:{labels:summaryData.map(d=>d.output_type),datasets:[{label:'一致性',data:summaryData.map(d=>d.avg_consistency),backgroundColor:'rgba(16,185,129,0.8)',borderRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:600},scales:{y:{min:0,max:100}},plugins:{legend:{display:false}}}
+  });
+}
+
+function renderImageGrid(){
+  const images=[
+    {name:'broad_vs_narrow_breadth.png',label:'广度对比：Broad vs Narrow'},
+    {name:'correct_answer_process_contrast.png',label:'正确答案过程对比'},
+    {name:'dag_sample_001_correct_full.png',label:'样本001：完整推理'},
+    {name:'dag_sample_001_correct_jump.png',label:'样本001：跳跃推理'},
+    {name:'dag_sample_001_verbose_redundant.png',label:'样本001：冗余推理'},
+    {name:'dag_sample_002_broad.png',label:'样本002：广度覆盖'},
+    {name:'dag_sample_002_narrow_repeated.png',label:'样本002：狭窄重复'},
+    {name:'dag_sample_003_broad.png',label:'样本003：广度覆盖'},
+    {name:'dag_sample_003_narrow_repeated.png',label:'样本003：狭窄重复'},
+    {name:'dag_sample_004_correct_full.png',label:'样本004：完整推理'},
+    {name:'dag_sample_005_wrong.png',label:'样本005：错误推理'},
+    {name:'scores_by_output_type.png',label:'各类型评分汇总'},
+  ];
+  const grid=document.getElementById('image-grid');
+  grid.innerHTML='';
+  images.forEach(img=>{
+    grid.innerHTML+=`<div class="image-card" onclick="showImage('${img.name}')">
+      <img src="outputs/figures/${img.name}" alt="${img.label}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'160\'%3E%3Crect fill=\'%23f1f5f9\' width=\'200\' height=\'160\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' fill=\'%2394a3b8\' font-size=\'12\'%3E图片加载失败%3C/text%3E%3C/svg%3E'">
+      <div class="caption">${img.label}</div>
+    </div>`;
+  });
+}
+
+function populateDetailSelect(){
+  const select=document.getElementById('detail-select');
+  select.innerHTML='<option value="">请选择样本</option>';
+  rawData.forEach((d,i)=>{
+    select.innerHTML+=`<option value="${i}">${d.sample_id} - ${d.output_type}</option>`;
+  });
+}
+
+function applyFilters(){
+  const type=document.getElementById('filter-type').value;
+  const correct=document.getElementById('filter-correct').value;
+  const maxDepth=parseInt(document.getElementById('range-depth').value);
+  const maxConsistency=parseInt(document.getElementById('range-consistency').value);
+  
+  filteredData=rawData.filter(d=>{
+    if(type!=='all'&&d.output_type!==type)return false;
+    if(correct!=='all'&&String(d.answer_correct)!==correct)return false;
+    if(d.score_depth>maxDepth)return false;
+    if(d.score_consistency>maxConsistency)return false;
+    return true;
+  });
+  renderDataTable();
+}
+
+function handleSearch(){
+  const query=document.getElementById('search-input').value.toLowerCase();
+  if(!query){
+    filteredData=[...rawData];
+    renderDataTable();
+    return;
+  }
+  filteredData=rawData.filter(d=>d.sample_id.toLowerCase().includes(query)||d.output_type.toLowerCase().includes(query));
+  renderDataTable();
+}
+
+function selectDetail(idx){
+  currentDetail=rawData[idx];
+  document.getElementById('detail-select').value=idx;
+  loadDetail();
+  switchTab('detail');
+}
+
+function loadDetail(){
+  const idx=document.getElementById('detail-select').value;
+  if(idx===''){
+    document.getElementById('detail-content').style.display='none';
+    document.getElementById('detail-empty').style.display='block';
+    return;
+  }
+  currentDetail=rawData[idx];
+  document.getElementById('detail-content').style.display='block';
+  document.getElementById('detail-empty').style.display='none';
+  
+  const d=currentDetail;
+  document.getElementById('detail-depth').textContent=d.score_depth;
+  document.getElementById('detail-breadth').textContent=d.score_breadth||'-';
+  document.getElementById('detail-consistency').textContent=d.score_consistency;
+  document.getElementById('detail-correct').innerHTML=d.answer_correct?'<span class="badge badge-success">正确</span>':'<span class="badge badge-danger">错误</span>';
+  
+  renderSteps(d);
+  renderNetwork(d);
+  renderVerification(d);
+}
+
+function renderSteps(d){
+  const list=document.getElementById('steps-list');
+  list.innerHTML='';
+  (d.detail.steps||[]).forEach((step,i)=>{
+    const v=d.detail.verifications[i];
+    let badge='';
+    if(!v||!v.valid)badge='<span class="badge badge-danger">无效</span>';
+    else if(v.redundant)badge='<span class="badge badge-warning">冗余</span>';
+    else if(v.missing_premise)badge='<span class="badge badge-danger">缺失前提</span>';
+    else badge='<span class="badge badge-success">有效</span>';
+    list.innerHTML+=`<div class="step-item" onclick="highlightStep(${i})">
+      <div class="step-content"><span class="step-number">${i+1}.</span><span class="step-text">${step}</span><div class="step-reason">${v?.reason||''}</div></div>
+      ${badge}
+    </div>`;
+  });
+}
+
+function renderNetwork(d){
+  const container=document.getElementById('network-container');
+  const nodes=[];
+  const edges=[];
+  const statusColor={lit:'#3b82f6',jump:'#ef4444',wrong:'#ef4444',redundant:'#f59e0b',unvisited:'#9ca3af'};
+  
+  Object.entries(d.lighted_graph.nodes).forEach(([id,status])=>{
+    nodes.push({
+      id,label:id,color:{background:statusColor[status]+'15',border:statusColor[status],highlight:{background:statusColor[status],border:'#000'}},
+      font:{color:statusColor[status],size:14},shape:'box',style:'rounded'
+    });
+  });
+  
+  Object.entries(d.lighted_graph.edges).forEach(([key,status])=>{
+    const [from,to]=key.split('->');
+    edges.push({
+      from,to,color:{color:status==='used_valid'?'rgba(59,130,246,0.6)':'rgba(128,128,128,0.3)'},
+      arrows:'to',smooth:true
+    });
+  });
+  
+  if(network)network.destroy();
+  network=new vis.Network(container,{nodes:new vis.DataSet(nodes),edges:new vis.DataSet(edges)},{
+    layout:{hierarchical:{enabled:true,direction:'UD',sortMethod:'directed'}},
+    physics:{hierarchicalRepulsion:{centralGravity:0.5},minVelocity:0.75},
+    interaction:{hover:true,tooltipDelay:100}
+  });
+  
+  network.on('click',(params)=>{
+    if(params.nodes.length>0){
+      const nodeId=params.nodes[0];
+      const node=d.lighted_graph.nodes[nodeId];
+      document.getElementById('modal-title').textContent=`节点 ${nodeId}`;
+      document.getElementById('modal-body').innerHTML=`
+        <p><strong>状态:</strong> ${node}</p>
+        <p><strong>推理步骤:</strong> ${d.lighted_graph.steps?.filter(s=>s.node===nodeId).map(s=>`步骤${s.step_index}: ${s.reason}`).join('<br>')||'无'}</p>
+      `;
+      document.getElementById('node-modal').classList.add('show');
+    }
+  });
+}
+
+function renderVerification(d){
+  const container=document.getElementById('verification-detail');
+  container.innerHTML='';
+  
+  const info=[
+    {label:'首次错误步骤',value:d.first_error_step||'无'},
+    {label:'隐含前提缺失',value:d.missing_premise_flag?'是':'否'},
+    {label:'矛盾数量',value:d.contradiction_count},
+    {label:'分支覆盖率',value:d.branch_coverage||'-'},
+  ];
+  
+  container.innerHTML='<div class="detail-grid">';
+  info.forEach(item=>{
+    container.innerHTML+=`<div class="detail-item"><div class="label">${item.label}</div><div class="value">${item.value}</div></div>`;
+  });
+  container.innerHTML+='</div>';
+  
+  if(d.detail.consistency?.deductions?.length){
+    container.innerHTML+=`<div style="margin-top:16px"><h4 style="font-size:13px;margin-bottom:10px">一致性扣分详情</h4>`;
+    d.detail.consistency.deductions.forEach(ded=>{
+      container.innerHTML+=`<div style="padding:8px 12px;background:#fef2f2;border-radius:6px;margin-bottom:6px;font-size:12px;color:#ef4444">${ded}</div>`;
+    });
+    container.innerHTML+='</div>';
+  }
+}
+
+function highlightStep(idx){
+  document.querySelectorAll('.step-item').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.step-item')[idx]?.classList.add('active');
+}
+
+function showImage(name){
+  const modal=document.getElementById('node-modal');
+  document.getElementById('modal-title').textContent='图片预览';
+  document.getElementById('modal-body').innerHTML=`<img src="outputs/figures/${name}" style="max-width:100%;height:auto;border-radius:8px">`;
+  modal.classList.add('show');
+}
+
+function closeModal(){
+  document.getElementById('node-modal').classList.remove('show');
+}
+
+function switchTab(tab){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('show'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('show');
+  event.target.classList.add('active');
+  if(tab==='detail'&&network)network.fit();
+}
+
+function exportData(){
+  const dataStr=JSON.stringify(rawData,null,2);
+  const blob=new Blob([dataStr],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='llm_reasoning_data.json';a.click();
+  URL.revokeObjectURL(url);
+  showToast('数据导出成功');
+}
+
+function refreshData(){
+  document.getElementById('loader').style.display='flex';
+  document.getElementById('loader-progress').style.width='0%';
+  loadData();
+}
+
+function showToast(msg,type='success'){
+  const toast=document.createElement('div');
+  toast.className='toast '+type;
+  toast.textContent=msg;
+  document.body.appendChild(toast);
+  setTimeout(()=>toast.remove(),3000);
+}
+
+function sortTable(col){
+  const tbody=document.getElementById('summary-body');
+  const rows=Array.from(tbody.querySelectorAll('tr'));
+  rows.sort((a,b)=>{
+    const valA=a.children[['type','accuracy','depth','breadth','consistency','missing','error'].indexOf(col)].textContent;
+    const valB=b.children[['type','accuracy','depth','breadth','consistency','missing','error'].indexOf(col)].textContent;
+    return !isNaN(valA)&&!isNaN(valB)?parseFloat(valA)-parseFloat(valB):valA.localeCompare(valB);
+  });
+  tbody.innerHTML='';
+  rows.forEach(r=>tbody.appendChild(r));
+}
+
+function sortData(col){
+  filteredData.sort((a,b)=>{
+    const valA=a[col];const valB=b[col];
+    return !isNaN(valA)&&!isNaN(valB)?valA-valB:String(valA).localeCompare(String(valB));
+  });
+  renderDataTable();
+}
+
+loadData();
+</script>
+</body>
+</html>
