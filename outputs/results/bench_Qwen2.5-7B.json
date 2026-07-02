@@ -1,0 +1,52 @@
+[
+  {
+    "ds": "GSM8K",
+    "id": "gsm8k_train_05238",
+    "error": "'MC' object has no attribute 'demo_mode'"
+  },
+  {
+    "ds": "GSM8K",
+    "id": "gsm8k_train_00912",
+    "error": "'MC' object has no attribute 'demo_mode'"
+  },
+  {
+    "ds": "GSM8K",
+    "id": "gsm8k_train_00204",
+    "error": "'MC' object has no attribute 'demo_mode'"
+  },
+  {
+    "ds": "GSM8K",
+    "id": "gsm8k_train_06074",
+    "error": "'MC' object has no attribute 'demo_mode'"
+  },
+  {
+    "ds": "GSM8K",
+    "id": "gsm8k_train_02253",
+    "error": "'MC' object has no attribute 'demo_mode'"
+  },
+  {
+    "ds": "Omni-MATH",
+    "id": "omni_math_test_01004",
+    "error": "'MC' object has no attribute 'demo_mode'"
+  },
+  {
+    "ds": "Omni-MATH",
+    "id": "omni_math_test_00915",
+    "error": "'MC' object has no attribute 'demo_mode'"
+  },
+  {
+    "ds": "Omni-MATH",
+    "id": "omni_math_test_00572",
+    "error": "'MC' object has no attribute 'demo_mode'"
+  },
+  {
+    "ds": "Omni-MATH",
+    "id": "omni_math_test_00420",
+    "error": "'MC' object has no attribute 'demo_mode'"
+  },
+  {
+    "ds": "Omni-MATH",
+    "id": "omni_math_test_00357",
+    "error": "'MC' object has no attribute 'demo_mode'"
+  }
+]

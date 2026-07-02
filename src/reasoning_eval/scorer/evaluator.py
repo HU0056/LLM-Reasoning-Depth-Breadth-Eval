@@ -15,13 +15,13 @@ from __future__ import annotations
 from dataclasses import asdict
 
 from reasoning_eval.common.io_utils import read_jsonl, write_jsonl
-from reasoning_eval.common.schema import EvaluationResult
+from reasoning_eval.common.schema import EvaluationResult, MappingResult
 from reasoning_eval.dataset.graph_utils import normalize_graph
 from reasoning_eval.scorer.breadth_scorer import score_breadth
 from reasoning_eval.scorer.consistency_scorer import score_consistency
 from reasoning_eval.scorer.dag_lighter import light_dag
 from reasoning_eval.scorer.depth_scorer import score_depth
-from reasoning_eval.scorer.mapper import map_step_to_node
+from reasoning_eval.scorer.mapper import map_all_steps
 from reasoning_eval.scorer.step_splitter import split_steps
 from reasoning_eval.scorer.verifier import RuleBasedVerifier
 
@@ -66,17 +66,27 @@ def evaluate_one(
     verifications = []
     fabrication_count = 0
 
+    # Collect all steps from all paths
+    all_steps: list[str] = []
+    for path in (split.sampled_paths if split.sampled_paths else [split.steps]):
+        all_steps.extend(path)
+
+    # Batch map ALL steps at once (1 LLM call total)
+    step_mappings = map_all_steps(all_steps, graph, client=mapper_client)
+
     paths = split.sampled_paths if split.sampled_paths else [split.steps]
+    step_idx = 0
     for path in paths:
         history: set[str] = set()
         previous_node: str | None = None
         for step in path:
-            mapping = map_step_to_node(step, graph, client=mapper_client)
+            mapping = step_mappings[step_idx] if step_idx < len(step_mappings) else (
+                MappingResult(step, None, 0.0, "no mapping"))
+            step_idx += 1
             verification = verifier.verify(mapping, previous_node, history)
             mappings.append(mapping)
             verifications.append(verification)
 
-            # Track fabrications
             if mapping.is_fabricated:
                 fabrication_count += 1
 
