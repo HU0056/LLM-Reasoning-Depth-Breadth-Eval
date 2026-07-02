@@ -5,13 +5,19 @@ def build_prompt(sample: dict, num_paths: int = 1) -> str:
     """Build a concise prompt that elicits step-by-step reasoning.
 
     Detects task_type and dispatches to the appropriate builder.
-    For multi-path (breadth) evaluation, set num_paths > 1 to instruct the
-    model to explore alternative reasoning branches.
+    Falls back to auto-detection: samples with 'facts' + 'rules' keys
+    are deduction tasks; everything else is math.
     """
-    task_type = sample.get("task_type", "deduction")
-    if task_type == "math":
-        return _build_math_prompt(sample, num_paths)
-    return _build_deduction_prompt(sample, num_paths)
+    task_type = sample.get("task_type")
+    if task_type is None:
+        # Auto-detect: deduction samples have explicit facts/rules
+        if "facts" in sample and "rules" in sample:
+            task_type = "deduction"
+        else:
+            task_type = "math"
+    if task_type == "deduction":
+        return _build_deduction_prompt(sample, num_paths)
+    return _build_math_prompt(sample, num_paths)
 
 
 # ---------------------------------------------------------------------------
