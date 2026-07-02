@@ -1,0 +1,583 @@
+[
+  {
+    "id": "omni_math_test_00788",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 92.9,
+    "states": {
+      "unvisited": 12
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "1->4": "unused",
+        "2->4": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "4->9": "unused",
+        "4->10": "unused",
+        "9->10": "unused",
+        "10->11": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_00741",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 88.8,
+    "states": {
+      "unvisited": 9
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "2->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "1->6": "unused",
+        "5->7": "unused",
+        "6->7": "unused",
+        "7->8": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_00017",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 102.1,
+    "states": {
+      "unvisited": 15
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "1->5": "unused",
+        "2->6": "unused",
+        "4->7": "unused",
+        "7->8": "unused",
+        "9->8": "unused",
+        "11->8": "unused",
+        "4->9": "unused",
+        "6->9": "unused",
+        "9->10": "unused",
+        "6->11": "unused",
+        "10->11": "unused",
+        "8->12": "unused",
+        "12->13": "unused",
+        "13->14": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_00444",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 22.5,
+    "lit": 0,
+    "time": 29.0,
+    "states": {
+      "unvisited": 7
+    },
+    "lit_nodes": [],
+    "response": "The diversity ratio for a student in a major with \\(n\\) students is \\(\\frac{1000 - n}{n} = \\frac{1000}{n} - 1\\). Summing over all students, \\(D = \\sum \\left( \\frac{1000}{n_s} - 1 \\right) = 1000 \\sum \\frac{1}{n_s} - 1000\\). For each major with \\(n\\) students, the sum of \\(\\frac{1}{n_s}\\) over those students is 1, so \\(\\sum \\frac{1}{n_s}\\) equals the number of majors with at least one student, \\(k\\). Thus \\(D = 1000k - 1000 = 1000(k-1)\\). Since \\(k\\) can be 1, 2, 3, or 4, the possible values of \\(D\\) are 0, 1000, 2000, and 3000.\n\nFinal Answer: 0, 1000, 2000, 3000",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "1->4": "unused",
+        "2->4": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        }
+      ]
+    }
+  },
+  {
+    "id": "omni_math_test_00575",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 81.8,
+    "states": {
+      "unvisited": 18
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited"
+      },
+      "edges": {
+        "0->7": "unused",
+        "1->7": "unused",
+        "2->7": "unused",
+        "3->7": "unused",
+        "4->7": "unused",
+        "5->7": "unused",
+        "7->8": "unused",
+        "5->9": "unused",
+        "8->10": "unused",
+        "8->11": "unused",
+        "9->11": "unused",
+        "1->12": "unused",
+        "9->13": "unused",
+        "10->13": "unused",
+        "11->13": "unused",
+        "12->13": "unused",
+        "13->14": "unused",
+        "14->15": "unused",
+        "1->16": "unused",
+        "15->16": "unused",
+        "16->17": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_02103",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 91.4,
+    "states": {
+      "unvisited": 11
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited"
+      },
+      "edges": {
+        "2->3": "unused",
+        "1->4": "unused",
+        "2->4": "unused",
+        "3->4": "unused",
+        "3->5": "unused",
+        "3->6": "unused",
+        "5->6": "unused",
+        "3->7": "unused",
+        "6->7": "unused",
+        "3->8": "unused",
+        "7->8": "unused",
+        "4->9": "unused",
+        "8->9": "unused",
+        "8->10": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_01858",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 85.7,
+    "states": {
+      "unvisited": 5
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "0->2": "unused",
+        "2->3": "unused",
+        "1->4": "unused",
+        "3->4": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_01807",
+    "correct": true,
+    "depth": 66.667,
+    "cons": 55.208,
+    "lit": 0,
+    "time": 48.8,
+    "states": {
+      "jump": 1,
+      "redundant": 2,
+      "unvisited": 3,
+      "wrong": 2
+    },
+    "lit_nodes": [],
+    "response": "Step 1: Place the square in the coordinate plane. Let \\(A = (0,0)\\), \\(B = (10,0)\\), \\(C = (10,10)\\), \\(D = (0,10)\\). Since \\(AE = 17\\) on ray \\(\\overrightarrow{AB}\\), \\(E = (17,0)\\). Since \\(AF = 14\\) on ray \\(\\overrightarrow{AD}\\), \\(F = (0,14)\\).\n\nStep 2: Find the slope of \\(CE\\): from \\(C(10,10)\\) to \\(E(17,0)\\), the vector is \\((7,-10)\\), slope \\(= -\\frac{10}{7}\\). The line through \\(B\\) parallel to \\(CE\\) has equation \\(y - 0 = -\\frac{10}{7}(x - 10)\\), or \\(y = -\\frac{10}{7}(x - 10)\\).\n\nStep 3: Find the slope of \\(CF\\): from \\(C(10,10)\\) to \\(F(0,14)\\), the vector is \\((-10,4)\\), slope \\(= -\\frac{2}{5}\\). The line through \\(D\\) parallel to \\(CF\\) has equation \\(y - 10 = -\\frac{2}{5}(x - 0)\\), or \\(y = -\\frac{2}{5}x + 10\\).\n\nStep 4: Solve for the intersection \\(P\\) of the two lines:\n\\[\n-\\frac{10}{7}(x - 10) = -\\frac{2}{5}x + 10.\n\\]\nMultiply by 35: \\(-50(x - 10) = -14x + 350\\) → \\(-50x + 500 = -14x + 350\\) → \\(-36x = -150\\) → \\(x = \\frac{150}{36} = \\frac{25}{6}\\). Then \\(y = -\\frac{2}{5}\\cdot\\frac{25}{6} + 10 = -\\frac{10}{6} + 10 = -\\frac{5}{3} + 10 = \\frac{25}{3}\\). So \\(P = \\left(\\frac{25}{6}, \\frac{25}{3}\\right)\\).\n\nStep 5: Compute the area of quadrilateral \\(AEPF\\) using the shoelace formula with vertices in order \\(A(0,0)\\), \\(E(17,0)\\), \\(P\\left(\\frac{25}{6},\\frac{25}{3}\\right)\\), \\(F(0,14)\\):\n\\[\n\\begin{aligned}\n\\sum x_i y_{i+1} &= 0\\cdot0 + 17\\cdot\\frac{25}{3} + \\frac{25}{6}\\cdot14 + 0\\cdot0 = \\frac{425}{3} + \\frac{350}{6} = \\frac{425}{3} + \\frac{175}{3} = \\frac{600}{3} = 200, \\\\\n\\sum y_i x_{i+1} &= 0\\cdot17 + 0\\cdot\\frac{25}{6} + \\frac{25}{3}\\cdot0 + 14\\cdot0 = 0.\n\\end{aligned}\n\\]\nArea \\(= \\frac{1}{2}|200 - 0| = 100\\).\n\nAlternatively, compute area of \\(\\triangle AEF = \\frac{1}{2}\\cdot17\\cdot14 = 119\\) and area of \\(\\triangle EFP\\) via shoelace: vertices \\(E(17,0)\\), \\(F(0,14)\\), \\(P\\left(\\frac{25}{6},\\frac{25}{3}\\right)\\) gives area \\(19\\). Then quadrilateral area \\(= 119 - 19 = 100\\).\n\nFinal Answer: 100",
+    "lighted_graph": {
+      "nodes": {
+        "0": "wrong",
+        "1": "unvisited",
+        "2": "redundant",
+        "3": "wrong",
+        "4": "redundant",
+        "5": "unvisited",
+        "6": "jump",
+        "7": "unvisited"
+      },
+      "edges": {
+        "2->4": "unused",
+        "2->5": "unused",
+        "4->6": "unused",
+        "5->6": "unused",
+        "6->7": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "wrong",
+          "reason": "first step must start from facts ['2']"
+        },
+        {
+          "step_index": 2,
+          "node": "2",
+          "status": "lit",
+          "reason": "first step maps to fact node 2"
+        },
+        {
+          "step_index": 3,
+          "node": "2",
+          "status": "redundant",
+          "reason": "node 2 was already visited"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": "3",
+          "status": "wrong",
+          "reason": "3 is not reachable from current node 2"
+        },
+        {
+          "step_index": 8,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 9,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 10,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 11,
+          "node": "6",
+          "status": "jump",
+          "reason": "6 is reachable from 2 (may span intermediate nodes)"
+        },
+        {
+          "step_index": 12,
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 6 was already visited"
+        }
+      ]
+    }
+  },
+  {
+    "id": "omni_math_test_00863",
+    "correct": false,
+    "depth": 50.0,
+    "cons": 24.917,
+    "lit": 1,
+    "time": 72.3,
+    "states": {
+      "jump": 1,
+      "lit": 1,
+      "unvisited": 8
+    },
+    "lit_nodes": [
+      "1"
+    ],
+    "response": "Step 1: Place triangle \\(ABC\\) in coordinates. Let \\(B=(-b,0)\\), \\(C=(b,0)\\), and \\(A=(0,h)\\) with \\(b>0,\\ h>0\\). Since \\(AB=AC=2\\), we have \\(b^2+h^2=4\\). The triangle is acute, so \\(b^2<2\\).\n\nStep 2: Compute midpoints \\(M\\) and \\(N\\):  \n\\(M\\) midpoint of \\(AB\\): \\(\\left(-\\frac{b}{2},\\frac{h}{2}\\right)\\),  \n\\(N\\) midpoint of \\(AC\\): \\(\\left(\\frac{b}{2},\\frac{h}{2}\\right)\\).  \nOrthocenter \\(H\\): altitudes from \\(A\\) (x=0) and from \\(B\\) give \\(H=\\left(0,\\frac{b^2}{h}\\right)\\).\n\nStep 3: The circumcircle of \\(\\triangle MHN\\) is symmetric about the y‑axis, so its center is \\(O=(0,k)\\). Equate distances \\(OM=OH\\):  \n\\(\\left(\\frac{b}{2}\\right)^2+\\left(\\frac{h}{2}-k\\right)^2 = \\left(\\frac{b^2}{h}-k\\right)^2\\).  \nExpand and solve for \\(k\\):  \n\\(\\frac{b^2}{4}+k^2-hk+\\frac{h^2}{4}=k^2-2\\frac{b^2}{h}k+\\frac{b^4}{h^2}\\)  \n\\(\\frac{b^2}{4}-hk+\\frac{h^2}{4}=-2\\frac{b^2}{h}k+\\frac{b^4}{h^2}\\)  \n\\(\\left(-h+2\\frac{b^2}{h}\\right)k = \\frac{b^4}{h^2}-\\frac{b^2+h^2}{4}\\).  \nUsing \\(b^2+h^2=4\\), the right side becomes \\(\\frac{b^4}{h^2}-1\\). Multiply by \\(h\\):  \n\\(k(2b^2-h^2)=\\frac{b^4}{h}-h\\).  \nSince \\(h^2=4-b^2\\), \\(2b^2-h^2=2b^2-(4-b^2)=3b^2-4\\).  \nThus  \n\\(k = \\frac{b^4/h - h}{3b^2-4} = \\frac{b^4-h^2}{h(3b^2-4)} = \\frac{b^4+b^2-4}{h(3b^2-4)}\\)  \nbecause \\(h^2=4-b^2\\) so \\(b^4-h^2=b^4+b^2-4\\).\n\nStep 4: Circle equation: \\(x^2+(y-k)^2=R^2\\) with \\(R^2=OH^2=\\left(\\frac{b^2}{h}-k\\right)^2\\). Intersection with line \\(BC\\) (\\(y=0\\)) gives \\(x^2=R^2-k^2\\). The half‑chord length \\(d=\\sqrt{R^2-k^2}\\). Given \\(XY=2\\), we have \\(d=1\\). Compute  \n\\(R^2-k^2 = \\left(\\frac{b^2}{h}-k\\right)^2 - k^2 = \\frac{b^4}{h^2}-2\\frac{b^2}{h}k\\).  \nSet equal to \\(1\\):  \n\\(\\frac{b^4}{h^2}-2\\frac{b^2}{h}k = 1\\).  (1)\n\nStep 5: Substitute the expression for \\(k\\) into (1). Multiply (1) by \\(h^2\\):  \n\\(b^4-2b^2hk = h^2\\).  \nPlug \\(k = \\frac{b^4+b^2-4}{h(3b^2-4)}\\):  \n\\(b^4-2b^2h\\cdot\\frac{b^4+b^2-4}{h(3b^2-4)} = h^2\\)  \n\\(b^4 - \\frac{2b^2(b^4+b^2-4)}{3b^2-4} = 4-b^2\\) (since \\(h^2=4-b^2\\)).  \nMultiply both sides by \\(3b^2-4\\):  \n\\(b^4(3b^2-4) - 2b^2(b^4+b^2-4) = (4-b^2)(3b^2-4)\\).  \nExpand:  \n\\(3b^6-4b^4 -2b^6-2b^4+8b^2 = -3b^4+16b^2-16\\)  \n\\(b^6-6b^4+8b^2 = -3b^4+16b^2-16\\)  \n\\(b^6-3b^4-8b^2+16=0\\).  \nFactor: \\((b^2-4)(b^4+b^2-4)=0\\).\n\nStep 6: Since \\(b^2=4\\) makes \\(h^2=0\\) (degenerate), discard. So \\(b^4+b^2-4=0\\). Let \\(u=b^2>0\\): \\(u^2+u-4=0\\) ⇒ \\(u=\\frac{-1+\\sqrt{17}}{2}\\) (positive root). Then \\(BC=2b\\), so  \n",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "lit",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "jump",
+        "9": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "1->5": "unused",
+        "2->5": "unused",
+        "3->5": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "2->7": "unused",
+        "6->7": "unused",
+        "3->8": "unused",
+        "4->8": "unused",
+        "7->8": "unused",
+        "8->9": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": "1",
+          "status": "lit",
+          "reason": "first step maps to fact node 1"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 8,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 9,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 10,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 11,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 12,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 13,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 14,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 15,
+          "node": "8",
+          "status": "jump",
+          "reason": "8 is reachable from 1 (may span intermediate nodes)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "omni_math_test_02133",
+    "correct": true,
+    "depth": 50.0,
+    "cons": 58.75,
+    "lit": 1,
+    "time": 7.3,
+    "states": {
+      "lit": 1,
+      "unvisited": 2
+    },
+    "lit_nodes": [
+      "1"
+    ],
+    "response": "Step 1: Identify the digits and their positions. The number 1201201 in base -4 has 7 digits: digits from left to right are 1,2,0,1,2,0,1. The rightmost digit is position 0, so positions are 6 (most significant) to 0 (least significant).\n\nStep 2: Compute powers of -4: (-4)^0 = 1, (-4)^1 = -4, (-4)^2 = 16, (-4)^3 = -64, (-4)^4 = 256, (-4)^5 = -1024, (-4)^6 = 4096.\n\nStep 3: Multiply each digit by the corresponding power: digit 6 (1) × 4096 = 4096; digit 5 (2) × (-1024) = -2048; digit 4 (0) × 256 = 0; digit 3 (1) × (-64) = -64; digit 2 (2) × 16 = 32; digit 1 (0) × (-4) = 0; digit 0 (1) × 1 = 1.\n\nStep 4: Sum all terms: 4096 + (-2048) = 2048; 2048 + (-64) = 1984; 1984 + 32 = 2016; 2016 + 0 = 2016; 2016 + 1 = 2017.\n\nFinal Answer: 2017",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "lit",
+        "2": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "1->2": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": "1",
+          "status": "lit",
+          "reason": "first step maps to node 1 (reachable from facts)"
+        }
+      ]
+    }
+  }
+]

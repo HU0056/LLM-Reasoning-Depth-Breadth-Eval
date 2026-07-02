@@ -1,0 +1,547 @@
+[
+  {
+    "id": "gsm8k_train_00078",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 22.5,
+    "lit": 0,
+    "time": 135.7,
+    "states": {
+      "unvisited": 8
+    },
+    "lit_nodes": [],
+    "response": "Let's break this problem step solve this problem step step step by step step.\n\nStep 1: First,'s calculate how total total total total number of slices in total each of the cookie pies.\n- Each cookie pie is cut into 1 slices.\n- There there's 3 cookie pies.\n - Total slices = 3 * 1 = 1\n\nStep 2::::: Now,'s calculate how let the total total total number of people's.\n - Manny,,'s 2 classmates and Mr. Keith.\n - There's 2 2 classmates and Mr. Keith (1's 2  students 1's)\n)\n - Total number of people's = = =:::: = 1 + 1's 3\n - Total people's = = number = 3 +'s' 3 = 3\n\n - Totalny\n\n\n\nStep 3: Now calculate how many's the total total number of slices consumed.\n - total of let's = number = ='s 3 cookie pies = 2's 1\n slices.\n - Total slices taken's by let's's's = 3 * 5 = = ='s 3 = 5 * 3 = 1\n\n\n\n -Total slices = 1's 5 * 3 = = 1 = = 5\n\n -ian's\n\n\n\nStep 4: Now calculate how the total number of slices taken's consumed.\n - total number of let's's' 3 +'s 3 people's 5's 3 slices.\n -Total slices taken 3 * 3 = 9 * 3 = 9\n\n -ianNow's\n\n\n\nFinal Answer: 5 - 9 * 3 = 5 - 5 = 2\n\n -Final number of slices left's' 5 - 1's' 5 = 2\n\n -Final answer's number of slices left's 5 - 5 = 5 = 0\n\n -Final number of slices left's 5 - 5 = 5 = 0\n\n -Final Answer: 0\n\n -Final number of slices let's' 5 - 5 * 3 = 5 5 = 0\n\n -Final Number: 0\n\n -Final Number: 0\n\n -Final Number: 0\n\n -Final Number: 0\n\n -Final Number: 0\n\nFinal Answer: 5\n\n -Final Number: 5\n\n -Final Number: 5\n\nFinal Number: 5",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "2->4": "unused",
+        "0->5": "unused",
+        "1->5": "unused",
+        "3->5": "unused",
+        "4->6": "unused",
+        "5->6": "unused",
+        "6->7": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 8,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 9,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 10,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 11,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 12,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 13,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 14,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 15,
+          "node": null,
+          "status": "wrong"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gsm8k_train_00064",
+    "correct": false,
+    "depth": 66.667,
+    "cons": 32.167,
+    "lit": 2,
+    "time": 17.3,
+    "states": {
+      "unvisited": 8,
+      "redundant": 1,
+      "lit": 2
+    },
+    "lit_nodes": [
+      "2",
+      "6"
+    ],
+    "response": "Let's break this problem by step to find out how much James earns in a week.\n\nStep's denote the hourly wage for his main job as \\(W_1 = \\$ \\) and the hourly wage for his second job as \\(W_that = = \\$ \\).\n\nGiven's also denote the hours worked for his main job as \\(H_that = 3\\) hours and the hours worked for his each be as \\(H_thatthat = \\frac{3}{22 = 1 \\) (since he works half the hours of his main job).\n\nStep's calculate the earnings step each job:\n\n:\n\n**: Step 1: Calculate the earnings from his main job.\n\\[ \\text{Earnings from main job}} = W_that \\times H \\times HH_that \\times let \\]\n\\[ \\text{Earnings from main be let} =  \\ \\times 3 \\]\n\\[ \\text{Earnings from main be let}} =  \\ \\times 3 \\]\n\\[ \\text{Earnings from main be let \\} = 3 \\ \\]\n\nStep  2: Calculate the earnings from his each be.\n\\[ \\text{Earnings from each be let } = W_thatthat \\times \\H_thatthat \\]\n\\[ \\text{Earnings from each be let \\} =  \\ \\times \\frac{3}{2 \\]\n\\[ \\text{Earnings from each be let \\ \\ =  \\ \\times 1 \\]\n\\[ \\text{Earnings from each be let \\ \\ =  1 \\]\n\nStep  3: Add's sum the earnings from both jobs to find the totalal weekly earnings.\n\\[ \\text{Total weekly earnings} = \\text{Earnings from main be let } + +text + + \\text{Earnings from each be let \\ \\]\n\\[ \\text{Total weekly earnings \\ \\ = 3 \\ \\ +  5 \\]\n\\[ \\text{Total weekly earnings \\ \\ = 3 \\ \\ +  5 \\]\n\\[ \\text{Total weekly earnings \\ \\ = 3 \\ \\ +  5 \\]\n\\[ \\text{Total weekly earnings \\ \\ = 1 \\]\n\nFinal Answer: 1",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "lit",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "lit",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "redundant",
+        "10": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "1->4": "unused",
+        "0->5": "unused",
+        "4->5": "unused",
+        "0->6": "unused",
+        "2->6": "used_valid",
+        "2->7": "unused",
+        "5->8": "unused",
+        "7->8": "unused",
+        "6->9": "used_valid",
+        "8->9": "unused",
+        "9->10": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": "2",
+          "status": "lit",
+          "reason": "first step maps to fact node 2"
+        },
+        {
+          "step_index": 4,
+          "node": "6",
+          "status": "lit",
+          "reason": "6 is a direct successor of 2"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 8,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 9,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 10,
+          "node": "9",
+          "status": "lit",
+          "reason": "9 is a direct successor of 6"
+        },
+        {
+          "step_index": 11,
+          "node": "9",
+          "status": "redundant",
+          "reason": "node 9 was already visited"
+        },
+        {
+          "step_index": 12,
+          "node": "9",
+          "status": "redundant",
+          "reason": "node 9 was already visited"
+        },
+        {
+          "step_index": 13,
+          "node": "9",
+          "status": "redundant",
+          "reason": "node 9 was already visited"
+        },
+        {
+          "step_index": 14,
+          "node": "9",
+          "status": "redundant",
+          "reason": "node 9 was already visited"
+        },
+        {
+          "step_index": 15,
+          "node": "9",
+          "status": "redundant",
+          "reason": "node 9 was already visited"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gsm8k_train_00023",
+    "correct": false,
+    "depth": 50.0,
+    "cons": 28.365,
+    "lit": 1,
+    "time": 39.4,
+    "states": {
+      "lit": 1,
+      "wrong": 3,
+      "unvisited": 4,
+      "jump": 1,
+      "redundant": 1
+    },
+    "lit_nodes": [
+      "4"
+    ],
+    "response": "Let's break this step by step and verify every calculation carefully.\n\n### Step 1: Identify the number of items and their prices\n- Ann bought  For pairs of shorts at each each.\n - The price pairs of shoes For each each.\n - She also 4 tops For the For each.\n\n### Step  : Calculate the total for the shorts\n - Shorts:  For pairs × For each = For ×\n\n### Step  : Calculate the For for the shoes\n - Shoes:  For pairs × For each = For For\n\n### Step  : Calculate the For for the tops\n - Tops: 4 tops For For each = For For\n\n### Step  : Add the total for all items\n - Total cost = Shorts For + + For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For For",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "redundant",
+        "2": "wrong",
+        "3": "unvisited",
+        "4": "lit",
+        "5": "wrong",
+        "6": "wrong",
+        "7": "unvisited",
+        "8": "jump",
+        "9": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "1->4": "used_valid",
+        "0->5": "unused",
+        "1->5": "unused",
+        "4->6": "unused",
+        "5->6": "unused",
+        "0->7": "unused",
+        "1->7": "unused",
+        "6->7": "unused",
+        "2->8": "unused",
+        "7->8": "unused",
+        "8->9": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": "1",
+          "status": "lit",
+          "reason": "first step maps to fact node 1"
+        },
+        {
+          "step_index": 4,
+          "node": "1",
+          "status": "redundant",
+          "reason": "node 1 was already visited"
+        },
+        {
+          "step_index": 5,
+          "node": "2",
+          "status": "wrong",
+          "reason": "2 is not reachable from current node 1"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": "4",
+          "status": "lit",
+          "reason": "4 is a direct successor of 1"
+        },
+        {
+          "step_index": 8,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 9,
+          "node": "5",
+          "status": "wrong",
+          "reason": "5 is not reachable from current node 4"
+        },
+        {
+          "step_index": 10,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 11,
+          "node": "8",
+          "status": "jump",
+          "reason": "8 is reachable from 4 (may span intermediate nodes)"
+        },
+        {
+          "step_index": 12,
+          "node": "6",
+          "status": "wrong",
+          "reason": "no mapped DAG node"
+        },
+        {
+          "step_index": 13,
+          "node": null,
+          "status": "wrong"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gsm8k_train_00125",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 25.25,
+    "lit": 1,
+    "time": 43.5,
+    "states": {
+      "unvisited": 4,
+      "lit": 1
+    },
+    "lit_nodes": [
+      "0"
+    ],
+    "response": "Let's solve the problem step by step,.\n\n### 1 1: [ reasoning with calculation]\n- We's,,'s:,,,,,,,: The problem states is about by Haley grows at the let of of 3 inches every year....\nyear year year,.\n- let's let's let her current for year years let she year year year.\n- let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let.\n\nStep  let: [ next step]\n- let's let let let let let let year let let let let let let year let let let let let year let let let let year.\n\nFinal step:::: 5 let let let let let let let let let let let let let let let let let let let let let let let year year let let let let let let let let let let let let let let let let let let let let let let let.\n\nLet's re the let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let.\n\nFinal answer: 5 let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "1->3": "unused",
+        "2->3": "unused",
+        "3->4": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 8,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 9,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 10,
+          "node": null,
+          "status": "wrong"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gsm8k_train_00117",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 25.25,
+    "lit": 1,
+    "time": 35.2,
+    "states": {
+      "unvisited": 6,
+      "lit": 1,
+      "wrong": 2
+    },
+    "lit_nodes": [
+      "0"
+    ],
+    "response": "Let's break this problem down step by step.\n\nStep 1: Define the total number of clownfish and blowfish be \\( x \\). Since's denote the number of blowfish in the display tank as \\( y \\).\n\n and the number of clownfish in the display tank as \\( z \\).\n\n.\n\n Step 1wo: According to the problem,,,:\n,,,,:\n- 2 3:::,,: 26 blowfish stay in their own tank,,. Therefore,'s have the number of blowfish in the display tank be \\( y = x - 26 \\).\n -  t 4: An equal number number number of clownfish join the blowfish in the display tank.. Therefore, the number y number of clownfish in the display tank is also \\( z = x \\ ).\n -  t 5: A third of these these clownfish swim back back back into their their own tank. Therefore, the number y number number of clownfish that swim back back is \\( \\frac{1x}{}{3 \\) and the number y number number of clownfish that remain in the display tank is \\( z - \\frac{x}{}{3} = \\frac{22 x \\ 2  t 6: Since the total number number number number of fish in the aquarium is 1 1, y, we can write write write write the equation:\n\\[ x + + + blowfish + in the aquarium + + +  t 7 7: \\[ x +  t 8: \\ 26 + + + blowfish that stay  in their own tank +\n\\[ x +  t 9: \\  x \\  t 000: \\  x \\  t 10: \\  x \\  t 1 10: \\  x \\  t 1 12: \\  x \\  t  that 115: \\  x \\  t  that 1 1 1 13: \\  x \\  t  that  that 12 1 11: \\  x \\  t  that  that  1 1 1 1 1 1  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that  that ",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "wrong",
+        "2": "wrong",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "3->4": "unused",
+        "1->5": "unused",
+        "4->5": "unused",
+        "2->6": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": "1",
+          "status": "wrong",
+          "reason": "1 is not reachable from current node 0"
+        },
+        {
+          "step_index": 7,
+          "node": "2",
+          "status": "wrong",
+          "reason": "2 is not reachable from current node 0"
+        },
+        {
+          "step_index": 8,
+          "node": "2",
+          "status": "wrong",
+          "reason": "2 is not reachable from current node 0"
+        },
+        {
+          "step_index": 9,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 10,
+          "node": null,
+          "status": "wrong"
+        }
+      ]
+    }
+  }
+]

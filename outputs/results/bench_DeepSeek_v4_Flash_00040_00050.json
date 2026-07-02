@@ -1,0 +1,544 @@
+[
+  {
+    "id": "omni_math_test_00756",
+    "correct": true,
+    "depth": 50.0,
+    "cons": 72.5,
+    "lit": 2,
+    "time": 12.3,
+    "states": {
+      "wrong": 2,
+      "lit": 2,
+      "unvisited": 4
+    },
+    "lit_nodes": [
+      "0",
+      "6"
+    ],
+    "response": "Step 1: The first square has side length 1, so its area is \\(1^2 = 1\\).\n\nStep 2: Connecting the midpoints of the sides of the first square forms a second square. The side length of the second square is \\(1/\\sqrt{2}\\), so its area is \\((1/\\sqrt{2})^2 = 1/2\\).\n\nStep 3: Connecting the midpoints of the sides of the second square gives a third square with side length \\((1/\\sqrt{2})/\\sqrt{2} = 1/2\\), area \\(1/4\\). Continuing this process, each subsequent square has area half the previous one.\n\nStep 4: The areas form a geometric series: \\(1, 1/2, 1/4, 1/8, \\ldots\\) with first term \\(a = 1\\) and common ratio \\(r = 1/2\\). The sum of an infinite geometric series is \\(a/(1-r) = 1/(1-1/2) = 2\\).\n\nFinal Answer: 2",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "wrong",
+        "2": "wrong",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "lit",
+        "7": "unvisited"
+      },
+      "edges": {
+        "0->6": "used_valid",
+        "1->6": "unused",
+        "2->6": "unused",
+        "3->6": "unused",
+        "4->6": "unused",
+        "6->7": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 2,
+          "node": "1",
+          "status": "wrong",
+          "reason": "1 is not reachable from current node 0"
+        },
+        {
+          "step_index": 3,
+          "node": "2",
+          "status": "wrong",
+          "reason": "2 is not reachable from current node 0"
+        },
+        {
+          "step_index": 4,
+          "node": "6",
+          "status": "lit",
+          "reason": "6 is a direct successor of 0"
+        }
+      ]
+    }
+  },
+  {
+    "id": "omni_math_test_01421",
+    "correct": true,
+    "depth": 40.0,
+    "cons": 100.0,
+    "lit": 1,
+    "time": 38.8,
+    "states": {
+      "lit": 1,
+      "unvisited": 9
+    },
+    "lit_nodes": [
+      "4"
+    ],
+    "response": "The polynomial \\(x^4 + 3x^3 + 3x^2 + 3x + 1 = 0\\) is reciprocal, so if \\(x\\) is a root, then \\(1/x\\) is also a root. Dividing by \\(x^2\\) and substituting \\(t = x + 1/x\\) gives \\(t^2 + 3t + 1 = 0\\), so \\(t = \\frac{-3 \\pm \\sqrt{5}}{2}\\). For \\(t_1 = \\frac{-3 + \\sqrt{5}}{2}\\), the roots are complex conjugates with modulus 1. For \\(t_2 = \\frac{-3 - \\sqrt{5}}{2}\\), the roots are negative real numbers \\(r_1\\) and \\(r_2\\) with product 1, so \\(|r_1| + |r_2| = |r_1| + 1/|r_1| = a + 1/a\\). From the sum of all roots, we find \\(a + 1/a = \\frac{3 + \\sqrt{5}}{2}\\). Therefore, the sum of absolute values is \\(2 + \\frac{3 + \\sqrt{5}}{2} = \\frac{7 + \\sqrt{5}}{2}\\). Thus \\(a = 7\\), \\(b = 1\\), \\(c = 5\\), \\(d = 2\\), and \\(1000a + 100b + 10c + d = 7000 + 100 + 50 + 2 = 7152\\).\n\nFinal Answer: 7152",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "lit",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited"
+      },
+      "edges": {
+        "0->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "4->6": "unused",
+        "6->7": "unused",
+        "5->8": "unused",
+        "7->8": "unused",
+        "8->9": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "4",
+          "status": "lit",
+          "reason": "first step maps to node 4 (reachable from facts)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "omni_math_test_00043",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 85.2,
+    "states": {
+      "unvisited": 26
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited",
+        "24": "unvisited",
+        "25": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "1->2": "unused",
+        "2->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "4->10": "unused",
+        "9->11": "unused",
+        "10->11": "unused",
+        "4->12": "unused",
+        "11->12": "unused",
+        "11->13": "unused",
+        "12->13": "unused",
+        "13->14": "unused",
+        "2->15": "unused",
+        "15->16": "unused",
+        "16->17": "unused",
+        "17->18": "unused",
+        "18->19": "unused",
+        "19->20": "unused",
+        "20->21": "unused",
+        "21->22": "unused",
+        "22->23": "unused",
+        "14->24": "unused",
+        "23->24": "unused",
+        "24->25": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_02084",
+    "correct": false,
+    "depth": 20.0,
+    "cons": 50.0,
+    "lit": 2,
+    "time": 93.2,
+    "states": {
+      "lit": 2,
+      "unvisited": 10
+    },
+    "lit_nodes": [
+      "2",
+      "3"
+    ],
+    "response": "Step 1: For composite \\(n\\), the largest proper divisor is \\(L(n) = n / p\\), where \\(p\\) is the smallest prime factor of \\(n\\). So if \\(L(m) = a\\) and \\(L(n) = b\\), then \\(m = a p_m\\) and \\(n = b p_n\\) with \\(p_m, p_n\\) primes that are the smallest prime factors of \\(m\\) and \\(n\\) respectively. The equation \\(L(m)L(n) = 80\\) becomes \\(a b = 80\\).\n\nStep 2: For a given \\(a\\), we count composite \\(m\\) with \\(L(m) = a\\). Write \\(m = a p\\) where \\(p\\) is the smallest prime factor of \\(m\\). Then \\(p\\) must be a prime such that \\(p \\le\\) every prime factor of \\(a\\), i.e., \\(p \\le \\text{minprime}(a)\\). Thus \\(N(a) = \\",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "lit",
+        "3": "lit",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "0->3": "unused",
+        "2->3": "used_valid",
+        "2->4": "unused",
+        "3->4": "unused",
+        "2->5": "unused",
+        "3->5": "unused",
+        "3->6": "unused",
+        "6->7": "unused",
+        "6->8": "unused",
+        "7->9": "unused",
+        "8->9": "unused",
+        "7->10": "unused",
+        "8->10": "unused",
+        "9->10": "unused",
+        "10->11": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "2",
+          "status": "lit",
+          "reason": "first step maps to node 2 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "3",
+          "status": "lit",
+          "reason": "3 is a direct successor of 2"
+        }
+      ]
+    }
+  },
+  {
+    "id": "omni_math_test_02149",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 99.8,
+    "states": {
+      "unvisited": 12
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited"
+      },
+      "edges": {
+        "3->4": "unused",
+        "2->5": "unused",
+        "4->5": "unused",
+        "2->6": "unused",
+        "3->6": "unused",
+        "4->6": "unused",
+        "6->7": "unused",
+        "6->8": "unused",
+        "7->8": "unused",
+        "5->9": "unused",
+        "6->9": "unused",
+        "9->10": "unused",
+        "9->11": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_01446",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 78.6,
+    "states": {
+      "unvisited": 10
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "2->3": "unused",
+        "2->4": "unused",
+        "3->4": "unused",
+        "2->5": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "5->8": "unused",
+        "7->8": "unused",
+        "8->9": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_00265",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 98.1,
+    "states": {
+      "unvisited": 16
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited"
+      },
+      "edges": {
+        "15->3": "unused",
+        "0->4": "unused",
+        "1->4": "unused",
+        "2->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "0->10": "unused",
+        "1->10": "unused",
+        "2->10": "unused",
+        "10->11": "unused",
+        "11->12": "unused",
+        "10->13": "unused",
+        "11->14": "unused",
+        "12->14": "unused",
+        "13->14": "unused",
+        "14->15": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_02180",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 68.7,
+    "states": {
+      "unvisited": 18
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited"
+      },
+      "edges": {
+        "0->3": "unused",
+        "1->3": "unused",
+        "2->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "2->6": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "4->9": "unused",
+        "2->10": "unused",
+        "9->10": "unused",
+        "10->11": "unused",
+        "8->12": "unused",
+        "11->12": "unused",
+        "12->13": "unused",
+        "8->14": "unused",
+        "11->14": "unused",
+        "13->14": "unused",
+        "0->15": "unused",
+        "14->15": "unused",
+        "8->16": "unused",
+        "14->16": "unused",
+        "15->16": "unused",
+        "16->17": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_00492",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 76.4,
+    "states": {
+      "unvisited": 10
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited"
+      },
+      "edges": {
+        "0->3": "unused",
+        "3->4": "unused",
+        "3->5": "unused",
+        "3->6": "unused",
+        "4->7": "unused",
+        "5->7": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_00764",
+    "correct": false,
+    "depth": 50.0,
+    "cons": 31.667,
+    "lit": 1,
+    "time": 20.2,
+    "states": {
+      "lit": 1,
+      "unvisited": 3
+    },
+    "lit_nodes": [
+      "2"
+    ],
+    "response": "Step 1: For any three non-collinear points, the three interior angles of the triangle sum to π radians. Since the points are selected from a continuous distribution, they are almost surely non-collinear, so the sum holds almost surely.\n\nStep 2: The points A, B, C are independent and identically distributed. Thus the joint distribution is symmetric under any permutation of the labels. Therefore, the expected values of the angles at A, B, and C are equal.\n\nStep 3: Let E denote the expected value of ∠ABC. Then by symmetry, E[∠BCA] = E[∠CAB] = E. Since the sum of the three angles is always π, taking expectations gives 3E = π, so E = π/3.\n\nFinal Answer: \\frac{\\pi}{3}",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "lit",
+        "3": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "1->2": "unused",
+        "2->3": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": "2",
+          "status": "lit",
+          "reason": "first step maps to node 2 (reachable from facts)"
+        }
+      ]
+    }
+  }
+]

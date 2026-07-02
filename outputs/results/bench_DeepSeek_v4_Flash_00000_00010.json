@@ -1,0 +1,650 @@
+[
+  {
+    "id": "omni_math_test_00032",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 91.3,
+    "states": {
+      "unvisited": 30
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited",
+        "24": "unvisited",
+        "25": "unvisited",
+        "26": "unvisited",
+        "27": "unvisited",
+        "28": "unvisited",
+        "29": "unvisited"
+      },
+      "edges": {
+        "0->5": "unused",
+        "1->6": "unused",
+        "2->7": "unused",
+        "3->8": "unused",
+        "4->9": "unused",
+        "9->10": "unused",
+        "10->11": "unused",
+        "11->12": "unused",
+        "12->13": "unused",
+        "7->14": "unused",
+        "8->14": "unused",
+        "14->15": "unused",
+        "14->16": "unused",
+        "12->17": "unused",
+        "13->17": "unused",
+        "15->18": "unused",
+        "16->18": "unused",
+        "17->18": "unused",
+        "12->19": "unused",
+        "18->19": "unused",
+        "19->20": "unused",
+        "20->21": "unused",
+        "21->22": "unused",
+        "21->23": "unused",
+        "21->24": "unused",
+        "21->25": "unused",
+        "21->26": "unused",
+        "22->27": "unused",
+        "23->27": "unused",
+        "24->27": "unused",
+        "25->27": "unused",
+        "26->27": "unused",
+        "27->28": "unused",
+        "28->29": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_01370",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 94.4,
+    "states": {
+      "unvisited": 4
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "1->2": "unused",
+        "2->3": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_00393",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 82.8,
+    "states": {
+      "unvisited": 33
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited",
+        "24": "unvisited",
+        "25": "unvisited",
+        "26": "unvisited",
+        "27": "unvisited",
+        "28": "unvisited",
+        "29": "unvisited",
+        "30": "unvisited",
+        "31": "unvisited",
+        "32": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "0->2": "unused",
+        "0->3": "unused",
+        "2->4": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "4->7": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "0->10": "unused",
+        "10->11": "unused",
+        "0->12": "unused",
+        "12->13": "unused",
+        "13->14": "unused",
+        "14->15": "unused",
+        "15->16": "unused",
+        "16->17": "unused",
+        "17->18": "unused",
+        "0->19": "unused",
+        "19->20": "unused",
+        "20->21": "unused",
+        "21->22": "unused",
+        "22->23": "unused",
+        "23->24": "unused",
+        "24->25": "unused",
+        "18->26": "unused",
+        "25->26": "unused",
+        "26->27": "unused",
+        "27->28": "unused",
+        "20->29": "unused",
+        "28->29": "unused",
+        "29->30": "unused",
+        "30->31": "unused",
+        "9->32": "unused",
+        "31->32": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_00117",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 98.5,
+    "states": {
+      "unvisited": 15
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "1->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "9->10": "unused",
+        "10->11": "unused",
+        "11->12": "unused",
+        "12->13": "unused",
+        "13->14": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_00981",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 95.2,
+    "states": {
+      "unvisited": 12
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited"
+      },
+      "edges": {
+        "0->3": "unused",
+        "1->3": "unused",
+        "2->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "9->10": "unused",
+        "10->11": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_00333",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 74.6,
+    "states": {
+      "unvisited": 11
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "0->5": "unused",
+        "4->5": "unused",
+        "2->6": "unused",
+        "5->6": "unused",
+        "4->7": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "9->10": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_00246",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 39.643,
+    "lit": 2,
+    "time": 39.1,
+    "states": {
+      "unvisited": 4,
+      "redundant": 1,
+      "lit": 2
+    },
+    "lit_nodes": [
+      "1",
+      "6"
+    ],
+    "response": "Step 1: Base case \\(n=1\\): LHS = \\(\\frac{(m+1)!}{(m-1)!} = (m+1)m = m(m+1)\\); RHS = \\(\\prod_{i=1}^{1}(m^2+m-i^2+i) = m^2+m-1+1 = m^2+m = m(m+1)\\). So base case holds.\n\nStep 2: Inductive hypothesis: Assume for some integer \\(k \\ge 1\\), \\(\\frac{(m+k)!}{(m-k)!} = \\prod_{i=1}^{k}(m^2+m-i^2+i)\\) for all \\(m \\ge k\\).\n\nStep 3: For \\(n = k+1\\), LHS = \\(\\frac{(m+k+1)!}{(m-k-1)!}\\). Rewrite using factorial properties: \\(\\frac{(m+k+1)!}{(m-k-1)!} = (m-k)(m+k+1) \\cdot \\frac{(m+k)!}{(m-k)!}\\) because \\((m-k-1)! = \\frac{(m-k)!}{m-k}\\) and \\((m+k+1)! = (m+k+1)(m+k)!\\).\n\nStep 4: Apply inductive hypothesis: LHS = \\((m-k)(m+k+1) \\cdot \\prod_{i=1}^{k}(m^2+m-i^2+i)\\).\n\nStep 5: Compute \\((m-k)(m+k+1) = m^2 + m - k^2 - k = m^2+m-k(k+1)\\). For the RHS of \\(n=k+1\\): \\(\\prod_{i=1}^{k+1}(m^2+m-i^2+i) = \\left(\\prod_{i=1}^{k}(m^2+m-i^2+i)\\right) \\cdot (m^2+m-(k+1)^2+(k+1))\\). Simplify the new factor: \\(m^2+m-(k+1)^2+(k+1) = m^2+m-(k^2+2k+1)+k+1 = m^2+m-k^2-k = m^2+m-k(k+1)\\).\n\nStep 6: Thus LHS = \\(\\left(\\prod_{i=1}^{k}(m^2+m-i^2+i)\\right) \\cdot (m^2+m-k(k+1)) =\\) RHS for \\(n=k+1\\). Hence the statement holds for \\(n=k+1\\).\n\nStep 7: By mathematical induction, the identity is true for all positive integers \\(n\\) (with \\(m \\ge n\\)).\n\nFinal Answer: \\(\\frac{(m+n)!}{(m-n)!} = \\prod_{i=1}^{n}(m^2+m-i^2+i)\\)",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "lit",
+        "2": "unvisited",
+        "3": "redundant",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "lit"
+      },
+      "edges": {
+        "0->1": "unused",
+        "0->2": "unused",
+        "0->3": "unused",
+        "1->3": "used_valid",
+        "2->3": "unused",
+        "0->4": "unused",
+        "4->5": "unused",
+        "3->6": "used_valid"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "1",
+          "status": "lit",
+          "reason": "first step maps to node 1 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": "3",
+          "status": "lit",
+          "reason": "3 is a direct successor of 1"
+        },
+        {
+          "step_index": 4,
+          "node": "3",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        },
+        {
+          "step_index": 5,
+          "node": "3",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        },
+        {
+          "step_index": 6,
+          "node": "3",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        },
+        {
+          "step_index": 7,
+          "node": "6",
+          "status": "lit",
+          "reason": "6 is a direct successor of 3"
+        }
+      ]
+    }
+  },
+  {
+    "id": "omni_math_test_00441",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 74.9,
+    "states": {
+      "unvisited": 25
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited",
+        "24": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "0->2": "unused",
+        "1->3": "unused",
+        "2->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "9->10": "unused",
+        "10->11": "unused",
+        "11->12": "unused",
+        "1->13": "unused",
+        "13->14": "unused",
+        "14->15": "unused",
+        "11->16": "unused",
+        "15->16": "unused",
+        "16->17": "unused",
+        "17->18": "unused",
+        "18->19": "unused",
+        "19->20": "unused",
+        "20->21": "unused",
+        "21->22": "unused",
+        "22->23": "unused",
+        "23->24": "unused"
+      },
+      "steps": []
+    }
+  },
+  {
+    "id": "omni_math_test_01547",
+    "correct": true,
+    "depth": 83.333,
+    "cons": 70.5,
+    "lit": 2,
+    "time": 44.3,
+    "states": {
+      "unvisited": 8,
+      "lit": 2,
+      "wrong": 2,
+      "jump": 1
+    },
+    "lit_nodes": [
+      "4",
+      "5"
+    ],
+    "response": "Step 1: Set \\(x = y\\) in the functional equation \\(f(x)f(y) = f(x-y)\\). Then \\(f(x)^2 = f(0)\\) for all \\(x\\). This shows \\(f(0)\\) is a constant equal to the square of any \\(f(x)\\). In particular, substituting \\(x = y = 0\\) gives \\(f(0)^2 = f(0)\\), so \\(f(0) = 0\\) or \\(f(0) = 1\\).\n\nStep 2: If \\(f(0) = 0\\), then \\(f(x)^2 = 0\\) for all \\(x\\), so \\(f(x) = 0\\) for all \\(x\\). This satisfies the original equation: \\(0 \\cdot 0 = 0 = f(x-y)\\). Hence \\(f(2017) = 0\\) is possible.\n\nStep 3: If \\(f(0) = 1\\), then \\(f(x)^2 = 1\\) for all \\(x\\), so \\(f(x) = \\pm 1\\) for each \\(x\\). Now set \\(x = 0\\) in the equation: \\(f(0)f(y) = f(-y) \\Rightarrow f(-y) = f(y)\\) for all \\(y\\). Then for any \\(x,y\\), \\(f(x+y) = f(x - (-y)) = f(x)f(-y) = f(x)f(y)\\). Thus \\(f\\) is a group homomorphism from \\((\\mathbb{R}, +)\\) to \\((\\{\\pm 1\\}, \\times)\\).\n\nStep 4: For any homomorphism \\(f: \\mathbb{R} \\to \\{\\pm 1\\}\\), we have \\(f(2r) = f(r)^2 = 1\\) for all \\(r \\in \\mathbb{R}\\). Since multiplication by 2 is surjective on \\(\\mathbb{R}\\), every real number is of the form \\(2r\\), so \\(f(x) = 1\\) for all \\(x\\). Thus the only solution with \\(f(0) = 1\\) is the constant function \\(f(x) = 1\\). This also satisfies the original equation: \\(1 \\cdot 1 = 1 = f(x-y)\\). Hence \\(f(2017) = 1\\) is possible.\n\nStep 5: Therefore the only possible values of \\(f(2017)\\) are \\(0\\) and \\(1\\).\n\nFinal Answer: 0, 1",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "lit",
+        "5": "lit",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "wrong",
+        "9": "unvisited",
+        "10": "wrong",
+        "11": "jump",
+        "12": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "2->3": "unused",
+        "2->4": "unused",
+        "3->4": "unused",
+        "3->5": "unused",
+        "4->5": "used_valid",
+        "5->6": "unused",
+        "3->7": "unused",
+        "2->8": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "7->10": "unused",
+        "9->10": "unused",
+        "6->11": "unused",
+        "10->11": "unused",
+        "11->12": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "4",
+          "status": "lit",
+          "reason": "first step maps to node 4 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "5",
+          "status": "lit",
+          "reason": "5 is a direct successor of 4"
+        },
+        {
+          "step_index": 3,
+          "node": "8",
+          "status": "wrong",
+          "reason": "8 is not reachable from current node 5"
+        },
+        {
+          "step_index": 4,
+          "node": "10",
+          "status": "wrong",
+          "reason": "10 is not reachable from current node 5"
+        },
+        {
+          "step_index": 5,
+          "node": "11",
+          "status": "jump",
+          "reason": "11 is reachable from 5 (may span intermediate nodes)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "omni_math_test_01724",
+    "correct": true,
+    "depth": 66.667,
+    "cons": 71.667,
+    "lit": 1,
+    "time": 61.7,
+    "states": {
+      "unvisited": 8,
+      "redundant": 1,
+      "lit": 1
+    },
+    "lit_nodes": [
+      "7"
+    ],
+    "response": "Step 1: Determine the area of a horizontal strip of thickness \\(h\\) at the top of the triangular cup. The cup is an isosceles triangle with base (top) 6 cm and height 9 cm, so width at depth \\(y\\) from the top is \\(w(y)=6\\left(1-\\frac{y}{9}\\right)\\). The area of the top layer of thickness \\(h\\) is \\(\\int_0^h w(y)\\,dy = 6h - \\frac{h^2}{3}\\).\n\nStep 2: At minute \\(n\\), Albert sips a top layer of thickness \\(h = \\frac{1}{n^2}\\), so the area removed (and later added by Mike) is \\(A_n = 6\\cdot\\frac{1}{n^2} - \\frac{1}{3n^4}\\).\n\nStep 3: The total cranberry juice poured after infinite time is \n\\[\nA = \\sum_{n=1}^\\infty A_n = 6\\sum_{n=1}^\\infty\\frac{1}{n^2} - \\frac{1}{3}\\sum_{n=1}^\\infty\\frac{1}{n^4} = 6\\cdot\\frac{\\pi^2}{6} - \\frac{1}{3}\\cdot\\frac{\\pi^4}{90} = \\pi^2 - \\frac{\\pi^4}{270}.\n\\]\n\nStep 4: Compute \\(\\frac{27}{\\pi^2}A = \\frac{27}{\\pi^2}\\left(\\pi^2 - \\frac{\\pi^4}{270}\\right) = 27 - \\frac{\\pi^2}{10}\\).\n\nStep 5: Evaluate numerically: \\(\\pi^2 \\approx 9.869604401\\), so \\(\\frac{\\pi^2}{10} \\approx 0.98696044\\), thus \\(27 - 0.98696044 = 26.01303956\\). The nearest integer is 26.\n\nFinal Answer: 26",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "lit",
+        "8": "redundant",
+        "9": "unvisited"
+      },
+      "edges": {
+        "0->7": "unused",
+        "1->7": "unused",
+        "2->7": "unused",
+        "3->7": "unused",
+        "4->7": "unused",
+        "7->8": "used_valid",
+        "8->9": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": "7",
+          "status": "lit",
+          "reason": "first step maps to node 7 (reachable from facts)"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": "8",
+          "status": "lit",
+          "reason": "8 is a direct successor of 7"
+        },
+        {
+          "step_index": 5,
+          "node": "8",
+          "status": "redundant",
+          "reason": "node 8 was already visited"
+        },
+        {
+          "step_index": 6,
+          "node": "8",
+          "status": "redundant",
+          "reason": "node 8 was already visited"
+        }
+      ]
+    }
+  }
+]

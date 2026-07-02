@@ -59,6 +59,33 @@ def _extract_json(text):
     raise ValueError(f"No parseable JSON: {text[:200]}")
 
 
+def _build_proposition_map(nodes: list[dict]) -> dict[str, list[str]]:
+    """Build {proposition: [node_id, ...]} for single-letter props."""
+    import re
+    pm = {}
+    for n in nodes:
+        prop = (n.get("proposition") or "").strip()
+        if re.fullmatch(r'[A-Z]', prop):
+            pm.setdefault(prop, []).append(n.get("id", ""))
+    return pm
+
+
+def _proposition_fast_match(step: str, prop_map: dict[str, list[str]],
+                             nodes: list[dict]) -> str | None:
+    """If step mentions a unique single-letter proposition, return its node_id."""
+    import re
+    # Remove English stopwords (case-insensitive)
+    stopwords = '(Step|Final|Answer|Path|The|In|Find|Let|If|So|We|For|To|Is|On|At|Be|It|Or|By)'
+    cleaned = re.sub(rf'\b{stopwords}\b', ' ', step, flags=re.IGNORECASE)
+    # Match standalone uppercase letters — use non-word-boundary aware matching
+    # to handle Chinese text where \b doesn't apply
+    props = set(re.findall(r'(?:^|[^A-Za-z])([A-Z])(?:[^A-Za-z]|$)', cleaned))
+    for p in props:
+        if p in prop_map and len(prop_map[p]) == 1:
+            return prop_map[p][0]
+    return None
+
+
 def map_all_steps(steps: list[str], graph: dict, *, client=None) -> list[MappingResult]:
     """Match all model steps to gold nodes in ONE LLM call."""
     nodes = graph.get("nodes", [])
@@ -76,7 +103,15 @@ def map_all_steps(steps: list[str], graph: dict, *, client=None) -> list[Mapping
                     step, edge.get("target",""), 0.95, f"rule→{edge['target']}")
                 break
 
-    # No LLM client → return rule-text matches only
+    # Fast path 2: single-proposition match (deduction: "A 成立" → node A)
+    prop_map = _build_proposition_map(nodes)
+    for i, step in enumerate(steps):
+        if i in edge_matches: continue
+        nid = _proposition_fast_match(step, prop_map, nodes)
+        if nid:
+            edge_matches[i] = MappingResult(step, nid, 0.80, f"prop→{nid}")
+
+    # No LLM client → return fast-path matches only
     if client is None or client.demo_mode:
         return [edge_matches.get(i, MappingResult(s, None, 0.0, "no mapper"))
                 for i, s in enumerate(steps)]
