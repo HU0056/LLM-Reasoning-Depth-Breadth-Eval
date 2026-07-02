@@ -2,17 +2,21 @@
 
 LLM 推理过程深度/广度评估框架。不只评估 final answer 的正确性，而是将模型输出的 Chain-of-Thought 拆成原子步骤，映射到黄金推理 DAG 上，从多个维度评估推理过程的质量。
 
-## 两条生产线
+## 数据集支持
+
+| 数据集 | 规模 | DAG 构建方式 |
+|---|---|---|
+| **Demo 规则逻辑题** | 5 题 | 规则引擎前向闭包（确定性） |
+| **GSM8K** | 7,473 train + 1,319 test | LLM Harness Agent Framework |
+| **Omni-MATH** | 2,000 test | DeepSeek 依赖标注 (omni_math.py) 或 Harness |
 
 ### 生产线 A：规则逻辑题
 
-用于 toy 级规则逻辑推理的原型验证。5 道手工构造的逻辑题，包含显式 facts/rules/goal，支持 distractor 规则和反事实分支标注。
+用于 toy 级规则逻辑推理的原型验证。5 道手工构造的逻辑题，包含显式 facts/rules/goal，支持 distractor 规则和反事实分支标注。DAG 由规则引擎确定性构建。
 
-DAG 由规则引擎前向闭包确定性构建。
+### 生产线 B：数学题（LLM Harness Agent Framework）
 
-### 生产线 B：GSM8K 数学题（LLM Harness Agent Framework）
-
-从 ground truth (question + reference answer) 出发，使用多 Agent LLM pipeline 构造带数学依据的推理 DAG。**这是项目的核心贡献。**
+从 ground truth 出发，使用多 Agent LLM pipeline 构造带数学依据的推理 DAG。支持 GSM8K 和 Omni-MATH。**这是项目的核心贡献。**
 
 **Harness 六阶段流水线**：
 
@@ -27,6 +31,11 @@ DAG 由规则引擎前向闭包确定性构建。
 ```
 
 **Loop Engineering**：修复失败达到阈值时抛出 `HarnessError` 致命错误，不静默回退。
+
+### Omni-MATH 额外支持
+
+`src/reasoning_graph/omni_math.py` 提供独立的 DeepSeek 依赖标注管线（单次调用 + JSON mode），生成的图与 scorer 完全兼容。```bash
+python scripts/build_omni_math_graphs.py --mode std --limit 20
 
 ## 四个模块
 
@@ -119,13 +128,16 @@ pip install -r requirements.txt
 # 规则逻辑题 Demo（无需 API）
 python scripts/run_all_demo.py
 
-# 使用真实 LLM API 构建 GSM8K DAG
+# 使用真实 LLM API 为 GSM8K 构建 DAG
 python scripts/build_harness_dag.py \
     --input data/raw/gsm8k/train.jsonl \
     --output data/processed/gsm8k/train_harness_graphs.jsonl \
     --limit 20
 
-# 运行测试
+# 为 Omni-MATH 构建图（DeepSeek 依赖标注）
+python scripts/build_omni_math_graphs.py --mode std --limit 20
+
+# 运行测试 (37 tests)
 pytest
 ```
 
@@ -153,9 +165,9 @@ MODEL_NAME=deepseek-v4-flash
 - 规则逻辑题仅 5 道 demo，非大规模评测
 - Harness 的 DAG 质量依赖 LLM 输出质量（通过验证+审计+修复循环减轻）
 - Use-def 链仅追踪数值，不追踪变量名
-- GSM8K 无 distractor/反事实分支标注
+- GSM8K / Omni-MATH 无 distractor/反事实分支标注
 - 仅支持 OpenAI-compatible API（已适配 DeepSeek）
-- Auditor 和 Repairer 的 JSON 提取在极端格式下可能失败（Loop Engineering 将其转为致命错误）
+- Omni-MATH 的 DAG 边标注（omni_math.py）较简单，未使用多 Agent 验证
 
 ## 后续扩展
 
