@@ -153,17 +153,17 @@ outputs/
 
 | 模型 | API | Acc | Depth | Consistency |
 |------|-----|-----|-------|-------------|
-| **DeepSeek-v4-Pro** | 官方 | 98% | 54 | 85 |
-| **DeepSeek-v4-Flash** | 官方 | 96% | 56 | 84 |
-| Qwen2.5-7B | SiliconFlow | 评测中 | — | — |
-| Qwen3-8B | SiliconFlow | 评测中 | — | — |
+| **DeepSeek-v4-Pro** | 官方 | **98%** | **57** | **86** |
+| **DeepSeek-v4-Flash** | 官方 | **96%** | **55** | **84** |
+| **Qwen3-8B** | SiliconFlow | **96%** | **59** | **82** |
+| Qwen2.5-7B | SiliconFlow | 0% | 22 | 29 |
 
 ### Omni-MATH（50 随机样本/模型，seed=42，IMO 级别难度）
 
 | 模型 | API | Acc | Depth | Consistency |
 |------|-----|-----|-------|-------------|
-| DeepSeek-v4-Pro | 官方 | 评测中 | — | — |
-| DeepSeek-v4-Flash | 官方 | 评测中 | — | — |
+| **DeepSeek-v4-Flash** | 官方 | **34%** | **31** | **52** |
+| DeepSeek-v4-Pro | 官方 | 22% | 28 | 46 |
 
 ## 数据集
 
