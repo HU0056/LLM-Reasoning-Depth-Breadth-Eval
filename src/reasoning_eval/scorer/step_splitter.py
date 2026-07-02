@@ -16,7 +16,7 @@ def _extract_final_answer(text):
 def _compact(steps):
     out, buf = [], ""
     for s in steps:
-        if len(s) < 20: buf = (buf + " " + s).strip() if buf else s
+        if len(s) < 15 and not re.search(r'[.!?。！？]\s*$', s): buf = (buf + " " + s).strip() if buf else s
         else:
             if buf:
                 if out: out[-1] = out[-1] + " " + buf
