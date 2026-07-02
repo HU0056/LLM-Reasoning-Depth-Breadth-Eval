@@ -5,38 +5,502 @@
     "depth": 0.0,
     "cons": 40.0,
     "lit": 0,
-    "time": 77.0
+    "time": 127.5,
+    "states": {
+      "unvisited": 30
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited",
+        "24": "unvisited",
+        "25": "unvisited",
+        "26": "unvisited",
+        "27": "unvisited",
+        "28": "unvisited",
+        "29": "unvisited"
+      },
+      "edges": {
+        "0->9": "unused",
+        "9->10": "unused",
+        "9->11": "unused",
+        "10->11": "unused",
+        "11->12": "unused",
+        "12->13": "unused",
+        "9->14": "unused",
+        "10->14": "unused",
+        "14->15": "unused",
+        "15->16": "unused",
+        "15->17": "unused",
+        "16->18": "unused",
+        "17->18": "unused",
+        "9->19": "unused",
+        "18->19": "unused",
+        "9->20": "unused",
+        "19->20": "unused",
+        "18->21": "unused",
+        "19->21": "unused",
+        "20->21": "unused",
+        "21->22": "unused",
+        "10->23": "unused",
+        "23->24": "unused",
+        "24->25": "unused",
+        "11->26": "unused",
+        "14->26": "unused",
+        "23->26": "unused",
+        "26->27": "unused",
+        "27->28": "unused",
+        "27->29": "unused"
+      },
+      "steps": []
+    }
   },
   {
     "id": "omni_math_test_02040",
     "correct": true,
-    "depth": 25.0,
-    "cons": 46.333,
-    "lit": 2,
-    "time": 46.8
+    "depth": 50.0,
+    "cons": 48.929,
+    "lit": 1,
+    "time": 32.6,
+    "states": {
+      "unvisited": 11,
+      "lit": 1
+    },
+    "lit_nodes": [
+      "8"
+    ],
+    "response": "Step 1: Let \\(g = \\gcd(a, b)\\). Write \\(a = g x\\) and \\(b = g y\\) where \\(x, y\\) are positive integers and \\(\\gcd(x, y) = 1\\). Then \\(\\operatorname{lcm}(a, b) = g x y\\). The given equation is:\n\\[\na b = \\left( \\frac{\\operatorname{lcm}(a, b)}{\\gcd(a, b)} \\right)^2\n\\]\nSubstitute:\n\\[\n(g x)(g y) = \\left( \\frac{g x y}{g} \\right)^2 \\quad\\Longrightarrow\\quad g^2 x y = (x y)^2\n\\]\nDivide by \\(x y\\) (positive): \\(g^2 = x y\\).\n\nStep 2: Since \\(\\gcd(x, y) = 1\\) and their product is a perfect square \\(g^2\\), both \\(x\\) and \\(y\\) must be perfect squares. Let \\(x = u^2\\), \\(y = v^2\\) with coprime positive integers \\(u, v\\). Then \\(g^2 = u^2 v^2 \\Rightarrow g = u v\\).\n\nStep 3: Express \\(a\\) and \\(b\\) in terms of \\(u, v\\):\n\\[\na = g x = (u v) u^2 = u^3 v, \\qquad b = g y = (u v) v^2 = u v^3.\n\\]\nBoth must satisfy \\(a \\le 100\\) and \\(b \\le 100\\). The sum is \\(a + b = u v (u^2 + v^2)\\).\n\nStep 4: Find all coprime pairs \\((u, v)\\) with \\(u^3 v \\le 100\\) and \\(u v^3 \\le 100\\). Note \\(u^3 \\le 100 \\Rightarrow u \\le 4\\).\n- \\(u=1\\): \\(v^3 \\le 100 \\Rightarrow v \\le 4\\). Coprime pairs: \\((1,1), (1,2), (1,3), (1,4)\\). Sums: \\(2, 10, 30, 68\\).\n- \\(u=2\\): \\(2v^3 \\le 100 \\Rightarrow v^3 \\le 50 \\Rightarrow v \\le 3\\), and \\(v\\) odd (coprime to 2). Pairs: \\((2,1), (2,3)\\). Sums: \\(10, 24+54=78\\).\n- \\(u=3\\): \\(3v^3 \\le 100 \\Rightarrow v^3 \\le 33 \\Rightarrow v \\le 3\\), \\(v\\) not multiple of 3. Pairs: \\((3,1), (3,2)\\). Sums: \\(30, 24+54=78\\).\n- \\(u=4\\): \\(4v^3 \\le 100 \\Rightarrow v^3 \\le 25 \\Rightarrow v=1\\) (coprime). Pair: \\((4,1)\\). Sum: \\(68\\).\n\nStep 5: The largest sum among \\(2, 10, 30, 68, 78\\) is \\(78\\), achieved by \\((u,v) = (2,3)\\) or \\((3,2)\\), giving \\(a=54, b=24\\) (or vice versa), both \\(\\le 100\\). Check: \\(54 \\times 24 = 1296\\), \\(\\operatorname{lcm}(54,24)=216\\), \\(\\gcd(54,24)=6\\), \\((216/6)^2 = 36^2 = 1296\\). Satisfies condition.\n\nFinal Answer: 78",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "lit",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "0->2": "unused",
+        "1->2": "unused",
+        "0->3": "unused",
+        "2->3": "unused",
+        "0->4": "unused",
+        "2->4": "unused",
+        "0->5": "unused",
+        "2->5": "unused",
+        "3->6": "unused",
+        "0->7": "unused",
+        "4->7": "unused",
+        "3->8": "unused",
+        "5->8": "unused",
+        "7->8": "unused",
+        "3->9": "unused",
+        "4->9": "unused",
+        "5->9": "unused",
+        "6->10": "unused",
+        "8->10": "unused",
+        "9->10": "unused",
+        "10->11": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 8,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 9,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 10,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 11,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 12,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 13,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 14,
+          "node": "8",
+          "status": "lit",
+          "reason": "first step maps to node 8 (reachable from facts)"
+        }
+      ]
+    }
   },
   {
     "id": "omni_math_test_01197",
-    "correct": false,
+    "correct": true,
     "depth": 0.0,
-    "cons": 40.0,
+    "cons": 45.0,
     "lit": 0,
-    "time": 54.5
+    "time": 64.3,
+    "states": {
+      "unvisited": 7
+    },
+    "lit_nodes": [],
+    "response": "Step 1: Recognize the system of equations as linear constraints on the numbers \\(a_1, a_2, \\dots, a_{2005}\\). They give the sums \\(\\sum_{k=1}^{2005} a_k \\, k^m = 0\\) for \\(m = 1, \\dots, 2004\\) and \\(\\sum_{k=1}^{2005} a_k \\, k^{2005} = 1\\). By linearity, for any polynomial \\(P(x)\\) of degree at most 2005, \\(\\sum a_k P(k)\\) can be expressed using these sums.\n\nStep 2: Consider the monic polynomial \\(M(x) = \\prod_{j=1}^{2005} (x - j)\\). Since each \\(k \\in \\{1,\\dots,2005\\}\\) is a root, \\(\\sum_{k=1}^{2005} a_k M(k) = 0\\).\nExpand \\(M(x) = x^{2005} + c_{2004}x^{2004} + \\cdots + c_1 x + c_0\\).\nWe know the sums for \\(x^m\\), \\(m=1\\) to \\(2005\\). The constant term \\(c_0 = M(0) = \\prod_{j=1}^{2005}(-j) = -2005!\\).\nThus \\(0 = \\sum a_k M(k) = \\sum a_k k^{2005} + 0 + \\cdots + 0 + c_0\\sum a_k = 1 - 2005! \\sum a_k\\).\nSolving gives \\(\\sum_{k=1}^{2005} a_k = \\frac{1}{2005!}\\).\n\nStep 3: Now consider the polynomial \\(Q(x) = \\prod_{j=2}^{2005} (x - j) = \\frac{M(x)}{x-1}\\), which has degree 2004. Evaluate \\(\\sum a_k Q(k)\\):\nFor \\(k \\geq 2\\), \\(Q(k) = 0\\); for \\(k=1\\), \\(Q(1) = \\prod_{j=2}^{2005}(1-j) = (-1)^{2004}(2004)! = (2004)!\\).\nSo \\(\\sum a_k Q(k) = a_1 (2004)!\\).\n\nStep 4: On the other hand, expand \\(Q(x) = q_{2004}x^{2004} + \\cdots + q_1 x + q_0\\). The given sums for \\(m=1\\) to \\(2004\\) are 0, so only the constant term contributes: \\(\\sum a_k Q(k) = q_0 \\sum a_k\\).\nThe constant term of \\(Q\\) is \\(Q(0) = \\prod_{j=2}^{2005}(-j) = (-1)^{2004} \\frac{2005!}{1} = 2005!\\).\n\nStep 5: Equate the two expressions:\n\\(a_1 (2004)! = 2005! \\cdot \\frac{1}{2005!} = 1\\).\nThus \\(a_1 = \\frac{1}{(2004)!}\\).\n\nFinal Answer: 1/2004!",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "1->2": "unused",
+        "0->3": "unused",
+        "2->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "4->6": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 8,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 9,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 10,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 11,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 12,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 13,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 14,
+          "node": null,
+          "status": "wrong"
+        }
+      ]
+    }
   },
   {
     "id": "omni_math_test_00412",
     "correct": false,
     "depth": 0.0,
-    "cons": 40.0,
-    "lit": 0,
-    "time": 44.6
+    "cons": 24.333,
+    "lit": 1,
+    "time": 39.1,
+    "states": {
+      "unvisited": 2,
+      "lit": 1
+    },
+    "lit_nodes": [
+      "0"
+    ],
+    "response": "Step 1: Let \\(x = -\\frac{1}{2}\\). The given series can be written as\n\\[\nS = \\sum_{i=1}^{\\infty} (i+1)(i+2)(i+3) x^{i}.\n\\]\n\nStep 2: First consider the sum starting from \\(i=0\\):\n\\[\nS_0 = \\sum_{i=0}^{\\infty} (i+1)(i+2)(i+3) x^{i}.\n\\]\nNotice that \\((i+1)(i+2)(i+3)x^i = \\frac{d^3}{dx^3} x^{i+3}\\). Therefore,\n\\[\nS_0 = \\frac{d^3}{dx^3} \\sum_{i=0}^{\\infty} x^{i+3} = \\frac{d^3}{dx^3} \\left( \\frac{x^3}{1-x} \\right).\n\\]\n\nStep 3: Simplify \\(\\frac{x^3}{1-x}\\) by polynomial division:\n\\[\n\\frac{x^3}{1-x} = -x^2 - x - 1 + \\frac{1}{1-x}.\n\\]\nThe third derivative of the polynomial part \\(-x^2 - x - 1\\) is zero, so we only need the third derivative of \\(\\frac{1}{1-x}\\):\n\\[\n\\frac{d}{dx}\\left(\\frac{1}{1-x}\\right) = \\frac{1}{(1-x)^2},\\quad\n\\frac{d^2}{dx^2}\\left(\\frac{1}{1-x}\\right) = \\frac{2}{(1-x)^3},\\quad\n\\frac{d^3}{dx^3}\\left(\\frac{1}{1-x}\\right) = \\frac{6}{(1-x)^4}.\n\\]\nThus,\n\\[\nS_0 = \\frac{6}{(1-x)^4}.\n\\]\n\nStep 4: Substitute \\(x = -\\frac{1}{2}\\) into \\(S_0\\):\n\\[\n1 - x = 1 - \\left(-\\frac{1}{2}\\right) = \\frac{3}{2},\\qquad (1-x)^4 = \\left(\\frac{3}{2}\\right)^4 = \\frac{81}{16}.\n\\]\n\\[\nS_0 = \\frac{6}{81/16} = 6 \\cdot \\frac{16}{81} = \\frac{96}{81} = \\frac{32}{27}.\n\\]\n\nStep 5: The original sum starts at \\(i=1\\), so subtract the \\(i=0\\) term. At \\(i=0\\):\n\\[\n(0+1)(0+2)(0+3) x^0 = 6.\n\\]\nTherefore,\n\\[\nS = S_0 - 6 = \\frac{32}{27} - 6 = \\frac{32}{27} - \\frac{162}{27} = -\\frac{130}{27}.\n\\]\n\nFinal Answer: \\(-\\frac{130}{27}\\)",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "unvisited",
+        "2": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "1->2": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 8,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 9,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 10,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 11,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 12,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 13,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 14,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 15,
+          "node": null,
+          "status": "wrong"
+        }
+      ]
+    }
   },
   {
     "id": "omni_math_test_00886",
-    "correct": false,
-    "depth": 0.0,
-    "cons": 40.0,
-    "lit": 0,
-    "time": 56.6
+    "correct": true,
+    "depth": 66.667,
+    "cons": 63.333,
+    "lit": 2,
+    "time": 66.2,
+    "states": {
+      "wrong": 1,
+      "unvisited": 8,
+      "lit": 2
+    },
+    "lit_nodes": [
+      "7",
+      "9"
+    ],
+    "response": "Step 1: Use the property of intersecting diagonals in a cyclic quadrilateral. Triangles ABE and DCE are similar (angles subtending the same arcs), so AE/DE = BE/CE. Given AE=6, EC=4, BE=2, we get 6/DE = 2/4 => DE = 12. Thus BD = BE + ED = 14.\n\nStep 2: Apply power of a point from F to the circle. The tangent BF satisfies BF² = FC·FA. Let FC = x. Since AC = AE+EC = 10, FA = x+10. With BF=12, we have 144 = x(x+10). Solving x²+10x-144=0 yields x=8 (positive). So FC=8, FA=18, and EF = EC+CF = 12.\n\nStep 3: Set up coordinates. Place AC on the x-axis with E at the origin. Then A=(-6,0), C=(4,0), F=(12,0). Let B=(xB,yB). From BE=2 and BF=12: xB²+yB²=4 and (xB-12)²+yB²=144. Subtracting gives -24xB+144=140 => xB=1/6, then yB²=143/36 => yB=√143/6 (take positive). So B=(1/6, √143/6).\n\nStep 4: Find the circle ω passing through A(-6,0), C(4,0), B. The center O lies on the perpendicular bisector of AC, so O=(-1,k). Using distance squared from O to B equals distance squared from O to A: (7/6)²+(√143/6 - k)² = 25 + k². Simplify to 16/3 - (k√143)/3 = 25 => k = -59/√143.\n\nStep 5: Locate D. Diagonal BD passes through E(0,0) and B, so D lies on the line through E opposite to B. The direction unit vector from E to B is (1/12, √143/12). Since ED=12, D = (-1, -√143).\n\nStep 6: Compute DA. A=(-6,0), D=(-1,-√143). DA = √[(-1+6)² + (-√143-0)²] = √(25+143) = √168 = 2√42.\n\nFinal Answer: 2\\sqrt{42}",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "wrong",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "lit",
+        "8": "unvisited",
+        "9": "lit",
+        "10": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "1->4": "unused",
+        "2->4": "unused",
+        "3->4": "unused",
+        "2->5": "unused",
+        "4->6": "unused",
+        "5->6": "unused",
+        "1->7": "unused",
+        "6->7": "unused",
+        "3->8": "unused",
+        "4->8": "unused",
+        "6->8": "unused",
+        "7->9": "used_valid",
+        "8->9": "unused",
+        "9->10": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "7",
+          "status": "lit",
+          "reason": "first step maps to node 7 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "4",
+          "status": "wrong",
+          "reason": "4 is not reachable from current node 7"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": "9",
+          "status": "lit",
+          "reason": "9 is a direct successor of 7"
+        }
+      ]
+    }
   }
 ]

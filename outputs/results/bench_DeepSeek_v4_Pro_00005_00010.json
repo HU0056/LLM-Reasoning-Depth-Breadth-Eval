@@ -5,31 +5,320 @@
     "depth": 0.0,
     "cons": 40.0,
     "lit": 0,
-    "time": 67.1
+    "time": 109.0,
+    "states": {
+      "unvisited": 24
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "0->2": "unused",
+        "2->3": "unused",
+        "3->4": "unused",
+        "1->5": "unused",
+        "4->5": "unused",
+        "0->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "9->10": "unused",
+        "10->11": "unused",
+        "9->12": "unused",
+        "11->12": "unused",
+        "8->13": "unused",
+        "12->13": "unused",
+        "8->14": "unused",
+        "13->14": "unused",
+        "14->15": "unused",
+        "7->16": "unused",
+        "15->16": "unused",
+        "6->17": "unused",
+        "16->17": "unused",
+        "5->18": "unused",
+        "17->18": "unused",
+        "0->19": "unused",
+        "19->20": "unused",
+        "20->21": "unused",
+        "20->22": "unused",
+        "18->23": "unused",
+        "21->23": "unused",
+        "22->23": "unused"
+      },
+      "steps": []
+    }
   },
   {
     "id": "omni_math_test_00447",
     "correct": true,
-    "depth": 100.0,
-    "cons": 100.0,
-    "lit": 3,
-    "time": 8.5
+    "depth": 50.0,
+    "cons": 81.667,
+    "lit": 2,
+    "time": 7.0,
+    "states": {
+      "wrong": 1,
+      "unvisited": 1,
+      "lit": 2
+    },
+    "lit_nodes": [
+      "0",
+      "2"
+    ],
+    "response": "Step 1: Understand the problem. Karen randomly places 7 distinct letters into 7 distinct envelopes, one letter per envelope. This corresponds to a random permutation of 7 items, with 7! = 5040 equally likely outcomes. We need the probability that exactly 6 letters are in the correct envelopes.\n\nStep 2: Check the feasibility. If exactly 6 letters are in their correct envelopes, then 6 envelopes contain the right letters. The 7th envelope must contain the remaining letter. Since all other letters are correctly placed, the remaining letter is forced to be the one that belongs in that 7th envelope. So the 7th letter is also automatically in its correct envelope. This gives 7 correct placements, not 6.\n\nStep 3: Conclude. It is impossible to have exactly 6 correct and 1 incorrect placement when all letters and envelopes are matched one-to-one. Therefore, the number of favorable outcomes is 0. The probability is 0/5040 = 0.\n\nFinal Answer: 0",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "wrong",
+        "2": "lit",
+        "3": "unvisited"
+      },
+      "edges": {
+        "0->2": "used_valid",
+        "1->2": "unused",
+        "2->3": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 2,
+          "node": "1",
+          "status": "wrong",
+          "reason": "1 is not reachable from current node 0"
+        },
+        {
+          "step_index": 3,
+          "node": "2",
+          "status": "lit",
+          "reason": "2 is a direct successor of 0"
+        }
+      ]
+    }
   },
   {
     "id": "omni_math_test_01427",
-    "correct": false,
-    "depth": 0.0,
-    "cons": 40.0,
-    "lit": 0,
-    "time": 56.5
+    "correct": true,
+    "depth": 60.0,
+    "cons": 67.812,
+    "lit": 3,
+    "time": 63.8,
+    "states": {
+      "wrong": 2,
+      "unvisited": 5,
+      "lit": 3,
+      "jump": 1
+    },
+    "lit_nodes": [
+      "0",
+      "4",
+      "5"
+    ],
+    "response": "Step 1: Set up coordinate system with unit circle centered at origin O(0,0). Place the regular 12-gon vertices at angles \\( \\theta_k = \\frac{\\pi}{6}(k-1) \\). Let \\( P_1=(1,0) \\), \\( P_2=(\\frac{\\sqrt{3}}{2},\\frac{1}{2}) \\), \\( P_4=(0,1) \\), \\( P_5=(-\\frac{1}{2},\\frac{\\sqrt{3}}{2}) \\).\n\nStep 2: Equation of line \\( P_1P_5 \\): through \\( (1,0) \\) and \\( (-\\frac{1}{2},\\frac{\\sqrt{3}}{2}) \\). Slope \\( m = \\frac{\\sqrt{3}/2}{-3/2} = -\\frac{1}{\\sqrt{3}} \\). Line: \\( y = -\\frac{1}{\\sqrt{3}}(x-1) \\) or \\( x + \\sqrt{3}y = 1 \\).\n\nStep 3: Line \\( OP_2 \\): ray to \\( (\\frac{\\sqrt{3}}{2},\\frac{1}{2}) \\) has equation \\( y = \\frac{1}{\\sqrt{3}}x \\). Intersect with \\( P_1P_5 \\): \\( x + \\sqrt{3}(\\frac{x}{\\sqrt{3}}) = 2x = 1 \\Rightarrow x=\\frac{1}{2},\\; y=\\frac{1}{2\\sqrt{3}}=\\frac{\\sqrt{3}}{6} \\). So \\( X=(\\frac{1}{2},\\frac{\\sqrt{3}}{6}) \\).\n\nStep 4: Line \\( OP_4 \\): ray to \\( (0,1) \\) is the y-axis \\( x=0 \\). Intersect with \\( P_1P_5 \\): \\( 0+\\sqrt{3}y=1 \\Rightarrow y=\\frac{1}{\\sqrt{3}}=\\frac{\\sqrt{3}}{3} \\). So \\( Y=(0,\\frac{\\sqrt{3}}{3}) \\).\n\nStep 5: Region bounded by \\( XY \\), \\( XP_2 \\), \\( YP_4 \\), and minor arc \\( \\widehat{P_2P_4} \\) is the sector \\( OP_2P_4 \\) minus \\( \\triangle OXY \\). Sector angle from \\( P_2 \\) (30°) to \\( P_4 \\) (90°) is \\( 60^\\circ = \\frac{\\pi}{3} \\) radians. Area of sector: \\( \\frac{1}{2} r^2 \\theta = \\frac{1}{2}(1)^2\\frac{\\pi}{3} = \\frac{\\pi}{6} \\).\n\nStep 6: Area of \\( \\triangle OXY \\): vertices \\( (0,0), (\\frac{1}{2},\\frac{\\sqrt{3}}{6}), (0,\\frac{\\sqrt{3}}{3}) \\). Using base \\( OY = \\frac{\\sqrt{3}}{3} \\) and height \\( \\frac{1}{2} \\), area = \\( \\frac{1}{2} \\times \\frac{\\sqrt{3}}{3} \\times \\frac{1}{2} = \\frac{\\sqrt{3}}{12} \\).\n\nStep 7: Area \\( A = \\frac{\\pi}{6} - \\frac{\\sqrt{3}}{12} \\). Compute \\( 120A = 120\\left(\\frac{\\pi}{6} - \\frac{\\sqrt{3}}{12}\\right) = 20\\pi - 10\\sqrt{3} \\).\n\nStep 8: Numerical value: \\( 20\\pi \\approx 62.83185 \\), \\( 10\\sqrt{3} \\approx 17.32051 \\), difference \\( \\approx 45.51134 \\). Floor value is 45.\n\nFinal Answer: 45",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "wrong",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "lit",
+        "5": "lit",
+        "6": "unvisited",
+        "7": "wrong",
+        "8": "jump",
+        "9": "unvisited",
+        "10": "unvisited"
+      },
+      "edges": {
+        "0->4": "used_valid",
+        "4->5": "unused",
+        "1->6": "unused",
+        "2->6": "unused",
+        "6->7": "unused",
+        "5->8": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "9->10": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": "1",
+          "status": "wrong",
+          "reason": "1 is not reachable from current node 0"
+        },
+        {
+          "step_index": 4,
+          "node": "1",
+          "status": "wrong",
+          "reason": "1 is not reachable from current node 0"
+        },
+        {
+          "step_index": 5,
+          "node": "4",
+          "status": "lit",
+          "reason": "4 is a direct successor of 0"
+        },
+        {
+          "step_index": 6,
+          "node": "7",
+          "status": "wrong",
+          "reason": "7 is not reachable from current node 4"
+        },
+        {
+          "step_index": 7,
+          "node": "8",
+          "status": "jump",
+          "reason": "8 is reachable from 4 (may span intermediate nodes)"
+        },
+        {
+          "step_index": 8,
+          "node": "5",
+          "status": "lit",
+          "reason": "9 is a direct successor of 8"
+        }
+      ]
+    }
   },
   {
     "id": "omni_math_test_00553",
-    "correct": false,
-    "depth": 0.0,
-    "cons": 40.0,
-    "lit": 0,
-    "time": 52.9
+    "correct": true,
+    "depth": 12.5,
+    "cons": 58.75,
+    "lit": 2,
+    "time": 57.7,
+    "states": {
+      "wrong": 5,
+      "unvisited": 6,
+      "lit": 2
+    },
+    "lit_nodes": [
+      "1",
+      "2"
+    ],
+    "response": "Step 1: Represent a four-digit palindrome \\( n \\) as \\( n = 1001a + 110b \\), where \\( a \\) is the thousands digit (\\( a \\in \\{1,\\dots,9\\} \\)) and \\( b \\) is the hundreds digit (\\( b \\in \\{0,\\dots,9\\} \\)). This uses the fact that the number has form \\( abba \\).\n\nStep 2: Consider \\( 2n = 2002a + 220b \\). Since \\( n \\in [1000,9999] \\), \\( 2n \\in [2000,19998] \\), so \\( 2n \\) is either a four-digit or five-digit palindrome. Split into two cases based on the size of \\( n \\).\n\nStep 3: **Case 1:** \\( n < 5000 \\) (so \\( a \\in \\{1,2,3,4\\} \\)). Then \\( 2n \\) is a four-digit palindrome, which can be written as \\( 1001c + 110d \\) with \\( c \\in \\{1,\\dots,9\\}, d \\in \\{0,\\dots,9\\} \\). Set equal: \\( 2002a + 220b = 1001c + 110d \\). Divide by 11: \\( 182a + 20b = 91c + 10d \\).\n\nStep 4: Take modulo 10 of the equation: \\( 2a \\equiv c \\pmod{10} \\). Since \\( a \\le 4 \\), \\( 2a \\in \\{2,4,6,8\\} \\) and \\( c \\) is a single digit, we get \\( c = 2a \\).\n\nStep 5: Substitute \\( c = 2a \\) into the equation: \\( 182a + 20b = 91(2a) + 10d \\Rightarrow 182a + 20b = 182a + 10d \\Rightarrow 20b = 10d \\Rightarrow d = 2b \\).\n\nStep 6: The digit \\( d \\) must satisfy \\( 0 \\le d \\le 9 \\), so \\( 2b \\le 9 \\Rightarrow b \\in \\{0,1,2,3,4\\} \\). With \\( a \\in \\{1,2,3,4\\} \\), this gives \\( 4 \\times 5 = 20 \\) valid pairs \\((a,b)\\).\n\nStep 7: **Case 2:** \\( n \\ge 5000 \\) (so \\( a \\in \\{5,\\dots,9\\} \\)). Then \\( 2n \\ge 10010 \\) and is a five-digit number. Since \\( n \\le 9999 \\), \\( 2n \\le 19998 \\), so the first digit of \\( 2n \\) is \\( 1 \\). A five-digit palindrome has form \\( 10001A + 1010B + 100C \\), with the first digit \\( A \\) equal to the last digit. Here \\( A=1 \\), so the number ends in \\( 1 \\). A number ending in \\( 1 \\) is odd, but \\( 2n \\) is always even. Contradiction: no five-digit palindrome in this range can be even. So zero solutions in this case.\n\nStep 8: Total number of four-digit integers \\( n \\) such that both \\( n \\) and \\( 2n \\) are palindromes is \\( 20 + 0 = 20 \\).\n\nFinal Answer: 20",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "lit",
+        "2": "lit",
+        "3": "unvisited",
+        "4": "wrong",
+        "5": "wrong",
+        "6": "unvisited",
+        "7": "wrong",
+        "8": "wrong",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "wrong"
+      },
+      "edges": {
+        "0->1": "unused",
+        "1->2": "used_valid",
+        "0->3": "unused",
+        "11->4": "unused",
+        "1->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "6->8": "unused",
+        "8->9": "unused",
+        "7->10": "unused",
+        "9->10": "unused",
+        "10->11": "unused",
+        "4->12": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "1",
+          "status": "lit",
+          "reason": "first step maps to node 1 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": "2",
+          "status": "lit",
+          "reason": "2 is a direct successor of 1"
+        },
+        {
+          "step_index": 4,
+          "node": "8",
+          "status": "wrong",
+          "reason": "8 is not reachable from current node 2"
+        },
+        {
+          "step_index": 5,
+          "node": "7",
+          "status": "wrong",
+          "reason": "7 is not reachable from current node 2"
+        },
+        {
+          "step_index": 6,
+          "node": "4",
+          "status": "wrong",
+          "reason": "4 is not reachable from current node 2"
+        },
+        {
+          "step_index": 7,
+          "node": "5",
+          "status": "wrong",
+          "reason": "5 is not reachable from current node 2"
+        },
+        {
+          "step_index": 8,
+          "node": "12",
+          "status": "wrong",
+          "reason": "12 is not reachable from current node 2"
+        }
+      ]
+    }
   },
   {
     "id": "omni_math_test_00690",
@@ -37,6 +326,52 @@
     "depth": 0.0,
     "cons": 40.0,
     "lit": 0,
-    "time": 49.1
+    "time": 98.3,
+    "states": {
+      "unvisited": 16
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "2->4": "unused",
+        "4->5": "unused",
+        "8->5": "unused",
+        "0->6": "unused",
+        "2->6": "unused",
+        "6->7": "unused",
+        "1->8": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "14->10": "unused",
+        "3->11": "unused",
+        "0->12": "unused",
+        "11->12": "unused",
+        "4->13": "unused",
+        "12->13": "unused",
+        "13->14": "unused",
+        "14->15": "unused"
+      },
+      "steps": []
+    }
   }
 ]

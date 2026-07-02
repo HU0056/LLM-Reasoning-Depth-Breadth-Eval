@@ -1,0 +1,350 @@
+[
+  {
+    "id": "gsm8k_train_00037",
+    "correct": true,
+    "depth": 75.0,
+    "cons": 72.5,
+    "lit": 3,
+    "time": 9.1,
+    "states": {
+      "lit": 3,
+      "wrong": 2,
+      "unvisited": 3
+    },
+    "lit_nodes": [
+      "2",
+      "5",
+      "6"
+    ],
+    "response": "Step 1: Calculate cost of hamburgers: 5 pieces × $3 each = $15.00.\nStep 2: Calculate cost of French fries: 4 sets × $1.20 each = $4.80.\nStep 3: Calculate cost of sodas: 5 cups × $0.50 each = $2.50.\nStep 4: Cost of spaghetti: 1 platter × $2.70 = $2.70.\nStep 5: Find total bill: $15.00 + $4.80 = $19.80; $19.80 + $2.50 = $22.30; $22.30 + $2.70 = $25.00.\nStep 6: Split equally among 5 friends: $25.00 ÷ 5 = $5.00.\nFinal Answer: 5",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "lit",
+        "3": "wrong",
+        "4": "wrong",
+        "5": "lit",
+        "6": "lit",
+        "7": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "0->3": "unused",
+        "0->4": "unused",
+        "2->5": "used_valid",
+        "3->5": "unused",
+        "4->5": "unused",
+        "5->6": "used_valid",
+        "6->7": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "2",
+          "status": "lit",
+          "reason": "first step maps to node 2 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "3",
+          "status": "wrong",
+          "reason": "3 is not reachable from current node 2"
+        },
+        {
+          "step_index": 3,
+          "node": "4",
+          "status": "wrong",
+          "reason": "4 is not reachable from current node 2"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": "5",
+          "status": "lit",
+          "reason": "5 is a direct successor of 2"
+        },
+        {
+          "step_index": 6,
+          "node": "6",
+          "status": "lit",
+          "reason": "6 is a direct successor of 5"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gsm8k_train_00117",
+    "correct": true,
+    "depth": 66.667,
+    "cons": 94.0,
+    "lit": 3,
+    "time": 11.9,
+    "states": {
+      "redundant": 1,
+      "lit": 3,
+      "unvisited": 5
+    },
+    "lit_nodes": [
+      "4",
+      "5",
+      "7"
+    ],
+    "response": "Step 1: Since the aquarium holds a total of 100 fish and has an equal number of clownfish and blowfish, divide 100 by 2. Clownfish = 50, blowfish = 50.\n\nStep 2: 26 blowfish stay in their own tank, so the number of blowfish in the display tank is 50 - 26 = 24.\n\nStep 3: An equal number of clownfish join the blowfish in the display tank, meaning 24 clownfish initially swim into the display tank.\n\nStep 4: A third of these 24 clownfish swim back to their own tank: (1/3) × 24 = 8 clownfish return.\n\nStep 5: The number of clownfish remaining in the display tank is 24 - 8 = 16.\n\nFinal Answer: 16",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "lit",
+        "5": "lit",
+        "6": "redundant",
+        "7": "lit",
+        "8": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "3->4": "unused",
+        "1->5": "unused",
+        "4->5": "used_valid",
+        "2->6": "unused",
+        "5->6": "used_valid",
+        "6->7": "used_valid",
+        "7->8": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "4",
+          "status": "lit",
+          "reason": "first step maps to node 4 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "5",
+          "status": "lit",
+          "reason": "5 is a direct successor of 4"
+        },
+        {
+          "step_index": 3,
+          "node": "6",
+          "status": "lit",
+          "reason": "6 is a direct successor of 5"
+        },
+        {
+          "step_index": 4,
+          "node": "6",
+          "status": "redundant",
+          "reason": "node 6 was already visited"
+        },
+        {
+          "step_index": 5,
+          "node": "7",
+          "status": "lit",
+          "reason": "7 is a direct successor of 6"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gsm8k_train_00116",
+    "correct": true,
+    "depth": 50.0,
+    "cons": 59.5,
+    "lit": 1,
+    "time": 9.6,
+    "states": {
+      "jump": 1,
+      "lit": 1,
+      "wrong": 3,
+      "unvisited": 7
+    },
+    "lit_nodes": [
+      "5"
+    ],
+    "response": "Step 1: Count the number of thank you cards. She has one for her grandmother, one for her uncle, and one for her aunt. That is 3 thank you cards. Each requires 1 stamp, so that will need 3 × 1 = 3 stamps.\n\nStep 2: Count the number of bills. She has a water bill and an electric bill, so there are 2 bills. The water bill requires 1 stamp. The electric bill requires 2 stamps. So the bills will need 1 + 2 = 3 stamps.\n\nStep 3: Determine the number of mail-in rebates. She wants to send three more rebates than bills. Since there are 2 bills, the number of rebates is 2 + 3 = 5. Each rebate requires 1 stamp, so that will need 5 × 1 = 5 stamps.\n\nStep 4: Determine the number of job applications. She has twice as many job applications as rebates. Rebates = 5, so job applications = 2 × 5 = 10. Each requires 1 stamp, so that will need 10 × 1 = 10 stamps.\n\nStep 5: Calculate the total number of stamps. Add the stamps from all categories: 3 (thank you cards) + 3 (bills) + 5 (rebates) + 10 (job applications) = 21 stamps.\n\nFinal Answer: 21",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "lit",
+        "6": "wrong",
+        "7": "wrong",
+        "8": "wrong",
+        "9": "unvisited",
+        "10": "jump",
+        "11": "unvisited"
+      },
+      "edges": {
+        "0->5": "unused",
+        "1->5": "unused",
+        "0->6": "unused",
+        "2->6": "unused",
+        "3->7": "unused",
+        "6->7": "unused",
+        "3->8": "unused",
+        "7->8": "unused",
+        "5->9": "unused",
+        "6->9": "unused",
+        "7->9": "unused",
+        "8->9": "unused",
+        "4->10": "unused",
+        "9->10": "unused",
+        "10->11": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "5",
+          "status": "lit",
+          "reason": "first step maps to node 5 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "6",
+          "status": "wrong",
+          "reason": "6 is not reachable from current node 5"
+        },
+        {
+          "step_index": 3,
+          "node": "7",
+          "status": "wrong",
+          "reason": "7 is not reachable from current node 5"
+        },
+        {
+          "step_index": 4,
+          "node": "8",
+          "status": "wrong",
+          "reason": "8 is not reachable from current node 5"
+        },
+        {
+          "step_index": 5,
+          "node": "10",
+          "status": "jump",
+          "reason": "10 is reachable from 5 (may span intermediate nodes)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gsm8k_train_00044",
+    "correct": true,
+    "depth": 66.667,
+    "cons": 63.333,
+    "lit": 1,
+    "time": 6.2,
+    "states": {
+      "lit": 1,
+      "unvisited": 8
+    },
+    "lit_nodes": [
+      "7"
+    ],
+    "response": "Step 1: Calculate the total percentage spent on food, accommodation, and entertainment: 30% + 15% + 25% = 70%.\nStep 2: Determine the percentage spent on coursework materials: 100% - 70% = 30%.\nStep 3: Convert the percentage to a decimal and multiply by the total budget: 0.30 × $1000 = $300.\nFinal Answer: 300",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "lit",
+        "8": "unvisited"
+      },
+      "edges": {
+        "1->4": "unused",
+        "2->4": "unused",
+        "1->5": "unused",
+        "2->5": "unused",
+        "1->6": "unused",
+        "2->6": "unused",
+        "4->7": "unused",
+        "5->7": "unused",
+        "6->7": "unused",
+        "7->8": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": "7",
+          "status": "lit",
+          "reason": "first step maps to node 7 (reachable from facts)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gsm8k_train_00100",
+    "correct": true,
+    "depth": 66.667,
+    "cons": 63.333,
+    "lit": 1,
+    "time": 6.8,
+    "states": {
+      "lit": 1,
+      "unvisited": 6
+    },
+    "lit_nodes": [
+      "5"
+    ],
+    "response": "Step 1: Calculate the fraction of total sales for fabric and jewelry. Fabric = 1/3, Jewelry = 1/4. Sum = 1/3 + 1/4 = 4/12 + 3/12 = 7/12.\n\nStep 2: Determine the fraction for stationery. Stationery fraction = 1 - 7/12 = 5/12.\n\nStep 3: Multiply the stationery fraction by the total number of sales (36). Stationery sales = (5/12) × 36 = 5 × 3 = 15.\n\nFinal Answer: 15",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "lit",
+        "6": "unvisited"
+      },
+      "edges": {
+        "0->3": "unused",
+        "1->3": "unused",
+        "0->4": "unused",
+        "1->4": "unused",
+        "3->5": "unused",
+        "4->5": "unused",
+        "5->6": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": "5",
+          "status": "lit",
+          "reason": "first step maps to node 5 (reachable from facts)"
+        }
+      ]
+    }
+  }
+]

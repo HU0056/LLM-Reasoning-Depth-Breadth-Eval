@@ -2,10 +2,81 @@
   {
     "id": "omni_math_test_02173",
     "correct": false,
-    "depth": 0.0,
-    "cons": 31.875,
+    "depth": 100.0,
+    "cons": 30.357,
     "lit": 2,
-    "time": 39.1
+    "time": 32.5,
+    "states": {
+      "lit": 2,
+      "unvisited": 7
+    },
+    "lit_nodes": [
+      "7",
+      "8"
+    ],
+    "response": "Step 1: Interpret the operation \\(k \\oplus \\lfloor k/2\\rfloor\\). In binary, \\(k \\gg 1\\) is exactly the integer floor division by 2. The operation \\(\\oplus\\) is bitwise XOR, so \\(k \\oplus \\lfloor k/2\\rfloor\\) computes the bitwise XOR of \\(k\\) and \\(k\\) shifted right by one bit.\n\nStep 2: Recognize that the function \\(g(k) = k \\oplus (k \\gg 1)\\) is the standard binary reflected Gray code. For \\(m\\)-bit numbers (from 0 to \\(2^m-1\\)), this mapping is a bijection onto the same set \\(\\{0,1,\\dots,2^m-1\\}\\); every integer in that range appears exactly once as \\(g(k)\\).\n\nStep 3: The sum runs over \\(k = 0\\) to \\(2^{2014}-1\\). Therefore the set of values \\(k \\oplus \\lfloor k/2\\rfloor\\) is exactly the set of all integers from \\(0\\) to \\(2^{2014}-1\\).\n\nStep 4: The sum of all integers from \\(0\\) to \\(N-1\\) is \\(\\frac{N(N-1)}{2}\\). Here \\(N = 2^{2014}\\), so the sum is:\n\\[\n\\frac{2^{2014}(2^{2014}-1)}{2} = (2^{2014}-1) \\cdot 2^{2013}.\n\\]\n\nStep 5: Simplify the expression:\n\\[\n(2^{2014}-1) \\cdot 2^{2013} = 2^{2014+2013} - 2^{2013} = 2^{4027} - 2^{2013}.\n\\]\n\nFinal Answer: \\(2^{4027} - 2^{2013}\\)",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "lit",
+        "8": "lit"
+      },
+      "edges": {
+        "2->3": "unused",
+        "3->4": "unused",
+        "3->5": "unused",
+        "4->5": "unused",
+        "2->6": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "used_valid"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": "7",
+          "status": "lit",
+          "reason": "first step maps to node 7 (reachable from facts)"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": "8",
+          "status": "lit",
+          "reason": "8 is a direct successor of 7"
+        }
+      ]
+    }
   },
   {
     "id": "omni_math_test_00201",
@@ -13,23 +84,287 @@
     "depth": 0.0,
     "cons": 40.0,
     "lit": 0,
-    "time": 62.0
+    "time": 100.1,
+    "states": {
+      "unvisited": 25
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited",
+        "24": "unvisited"
+      },
+      "edges": {
+        "0->6": "unused",
+        "1->7": "unused",
+        "2->7": "unused",
+        "3->8": "unused",
+        "4->9": "unused",
+        "5->10": "unused",
+        "10->11": "unused",
+        "11->12": "unused",
+        "12->13": "unused",
+        "13->14": "unused",
+        "12->15": "unused",
+        "7->16": "unused",
+        "13->17": "unused",
+        "14->17": "unused",
+        "17->18": "unused",
+        "18->19": "unused",
+        "15->20": "unused",
+        "19->20": "unused",
+        "15->21": "unused",
+        "20->21": "unused",
+        "21->22": "unused",
+        "22->23": "unused",
+        "23->24": "unused"
+      },
+      "steps": []
+    }
   },
   {
     "id": "omni_math_test_01003",
     "correct": true,
-    "depth": 75.0,
-    "cons": 88.0,
-    "lit": 1,
-    "time": 12.5
+    "depth": 100.0,
+    "cons": 81.333,
+    "lit": 0,
+    "time": 14.5,
+    "states": {
+      "unvisited": 2,
+      "redundant": 4
+    },
+    "lit_nodes": [],
+    "response": "Step 1: Expand the right-hand side of the given equation:  \n\\((x+z)(y+z) = xy + xz + yz + z^2\\).  \nThe equation \\((x \\cdot y) + z = (x+z) \\cdot (y+z)\\) becomes:  \n\\(xy + z = xy + xz + yz + z^2\\).\n\nStep 2: Cancel \\(xy\\) from both sides:  \n\\(z = xz + yz + z^2\\).  \nSince \\(z > 0\\), divide both sides by \\(z\\):  \n\\(1 = x + y + z\\).  \nThus, the constraint is \\(x + y + z = 1\\) with \\(x, y, z > 0\\).\n\nStep 3: We need to maximize \\(P = xyz\\) subject to \\(x + y + z = 1\\). By the AM-GM inequality for positive numbers:  \n\\(\\frac{x + y + z}{3} \\ge \\sqrt[3]{xyz}\\).  \nSubstitute \\(x + y + z = 1\\):  \n\\(\\frac{1}{3} \\ge \\sqrt[3]{xyz}\\).  \nCube both sides:  \n\\(\\frac{1}{27} \\ge xyz\\).\n\nStep 4: Equality in AM-GM holds when \\(x = y = z\\). With \\(x + y + z = 1\\), this gives \\(x = y = z = \\frac{1}{3}\\). Check the original equation:  \nLHS = \\(\\frac{1}{3} \\cdot \\frac{1}{3} + \\frac{1}{3} = \\frac{1}{9} + \\frac{3}{9} = \\frac{4}{9}\\);  \nRHS = \\((\\frac{1}{3} + \\frac{1}{3})(\\frac{1}{3} + \\frac{1}{3}) = \\frac{2}{3} \\cdot \\frac{2}{3} = \\frac{4}{9}\\). It satisfies the condition.\n\nFinal Answer: 1/27",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "redundant",
+        "3": "redundant",
+        "4": "redundant",
+        "5": "redundant"
+      },
+      "edges": {
+        "0->2": "unused",
+        "2->3": "used_valid",
+        "3->4": "used_valid",
+        "4->5": "used_valid"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": "2",
+          "status": "lit",
+          "reason": "first step maps to node 2 (reachable from facts)"
+        },
+        {
+          "step_index": 3,
+          "node": "2",
+          "status": "redundant",
+          "reason": "node 2 was already visited"
+        },
+        {
+          "step_index": 4,
+          "node": "3",
+          "status": "lit",
+          "reason": "3 is a direct successor of 2"
+        },
+        {
+          "step_index": 5,
+          "node": "3",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        },
+        {
+          "step_index": 6,
+          "node": "3",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        },
+        {
+          "step_index": 7,
+          "node": "4",
+          "status": "lit",
+          "reason": "4 is a direct successor of 3"
+        },
+        {
+          "step_index": 8,
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
+        },
+        {
+          "step_index": 9,
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
+        },
+        {
+          "step_index": 10,
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
+        },
+        {
+          "step_index": 11,
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
+        },
+        {
+          "step_index": 12,
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
+        },
+        {
+          "step_index": 13,
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
+        },
+        {
+          "step_index": 14,
+          "node": "5",
+          "status": "lit",
+          "reason": "5 is a direct successor of 4"
+        },
+        {
+          "step_index": 15,
+          "node": "5",
+          "status": "redundant",
+          "reason": "node 5 was already visited"
+        }
+      ]
+    }
   },
   {
     "id": "omni_math_test_00359",
     "correct": true,
-    "depth": 50.0,
-    "cons": 49.583,
+    "depth": 100.0,
+    "cons": 57.308,
     "lit": 1,
-    "time": 13.6
+    "time": 13.9,
+    "states": {
+      "lit": 1,
+      "unvisited": 1,
+      "redundant": 1
+    },
+    "lit_nodes": [
+      "2"
+    ],
+    "response": "Step 1: Recognize that the numbers with repeating patterns can be factored. Note that:\n\n- \\(20122012 = 2012 \\times 10001\\)\n- \\(201320132013 = 2013 \\times 100010001\\)\n- \\(20112011 = 2011 \\times 10001\\)\n- \\(201220122012 = 2012 \\times 100010001\\)\n\nStep 2: Substitute these factorizations into the original expression.\nThe first term is \\(2011 \\times (2012 \\times 10001) \\times (2013 \\times 100010001)\\).\nThe second term is \\(2013 \\times (2011 \\times 10001) \\times (2012 \\times 100010001)\\).\n\nStep 3: Rearrange the factors in both terms.\nFirst term: \\(2011 \\times 2012 \\times 2013 \\times 10001 \\times 100010001\\).\nSecond term: \\(2013 \\times 2011 \\times 2012 \\times 10001 \\times 100010001\\).\n\nStep 4: Compare the two products. Both consist of the exact same factors multiplied together, so they are identical.\n\nStep 5: Subtract the second term from the first. Since they are equal, their difference is 0.\n\nFinal Answer: 0",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "redundant",
+        "2": "lit"
+      },
+      "edges": {
+        "0->1": "unused",
+        "1->2": "used_valid"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 8,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 9,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 10,
+          "node": "1",
+          "status": "lit",
+          "reason": "first step maps to node 1 (reachable from facts)"
+        },
+        {
+          "step_index": 11,
+          "node": "1",
+          "status": "redundant",
+          "reason": "node 1 was already visited"
+        },
+        {
+          "step_index": 12,
+          "node": "1",
+          "status": "redundant",
+          "reason": "node 1 was already visited"
+        },
+        {
+          "step_index": 13,
+          "node": "2",
+          "status": "lit",
+          "reason": "2 is a direct successor of 1"
+        }
+      ]
+    }
   },
   {
     "id": "omni_math_test_00292",
@@ -37,6 +372,53 @@
     "depth": 0.0,
     "cons": 40.0,
     "lit": 0,
-    "time": 62.8
+    "time": 123.0,
+    "states": {
+      "unvisited": 16
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited"
+      },
+      "edges": {
+        "0->3": "unused",
+        "2->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "2->9": "unused",
+        "8->9": "unused",
+        "9->10": "unused",
+        "10->11": "unused",
+        "10->12": "unused",
+        "10->13": "unused",
+        "11->13": "unused",
+        "12->13": "unused",
+        "11->14": "unused",
+        "12->14": "unused",
+        "13->14": "unused",
+        "14->15": "unused"
+      },
+      "steps": []
+    }
   }
 ]

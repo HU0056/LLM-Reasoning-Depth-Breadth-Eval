@@ -1,0 +1,36 @@
+{
+  "id": "Ex1_deduction_full",
+  "correct": true,
+  "depth": 100.0,
+  "consistency": 81.667,
+  "lighted_graph": {
+    "nodes": {
+      "A": "unvisited",
+      "B": "lit",
+      "C": "lit"
+    },
+    "edges": {
+      "A->B": "unused",
+      "B->C": "used_valid"
+    },
+    "steps": [
+      {
+        "step_index": 1,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 2,
+        "node": "B",
+        "status": "lit",
+        "reason": "first step maps to node B (reachable from facts)"
+      },
+      {
+        "step_index": 3,
+        "node": "C",
+        "status": "lit",
+        "reason": "C is a direct successor of B"
+      }
+    ]
+  }
+}

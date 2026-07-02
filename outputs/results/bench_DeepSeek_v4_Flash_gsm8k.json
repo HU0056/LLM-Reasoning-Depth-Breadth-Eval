@@ -1,0 +1,326 @@
+[
+  {
+    "id": "gsm8k_train_00011",
+    "correct": true,
+    "depth": 0.0,
+    "cons": 60.714,
+    "lit": 2,
+    "time": 9.3,
+    "states": {
+      "lit": 2,
+      "wrong": 2,
+      "unvisited": 9
+    },
+    "lit_nodes": [
+      "8",
+      "10"
+    ],
+    "response": "Step 1: Calculate total allowance over three months: $5 per month × 3 months = $15.\nStep 2: Calculate earnings from mowing 4 lawns: $15 per lawn × 4 lawns = $60.\nStep 3: Let d be the number of driveways shoveled. Earnings from shoveling: $7 × d.\nStep 4: Total money before buying shoes: $15 (allowance) + $60 (mowing) + $7d = $75 + $7d.\nStep 5: Shoes cost $95, and after buying he has $15 left, so total money = $95 + $15 = $110.\nStep 6: Set up equation: $75 + $7d = $110.\nStep 7: Solve for d: $7d = $110 - $75 = $35, so d = $35 ÷ $7 = 5.\nFinal Answer: 5",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "wrong",
+        "8": "lit",
+        "9": "wrong",
+        "10": "lit",
+        "11": "unvisited",
+        "12": "unvisited"
+      },
+      "edges": {
+        "0->7": "unused",
+        "5->7": "unused",
+        "1->8": "unused",
+        "2->8": "unused",
+        "4->9": "unused",
+        "6->9": "unused",
+        "7->10": "unused",
+        "8->10": "used_valid",
+        "9->10": "unused",
+        "4->11": "unused",
+        "10->11": "unused",
+        "11->12": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "8",
+          "status": "lit",
+          "reason": "first step maps to node 8 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "9",
+          "status": "wrong",
+          "reason": "9 is not reachable from current node 8"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": "7",
+          "status": "wrong",
+          "reason": "7 is not reachable from current node 8"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": "10",
+          "status": "lit",
+          "reason": "10 is a direct successor of 8"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gsm8k_train_00052",
+    "correct": true,
+    "depth": 50.0,
+    "cons": 72.5,
+    "lit": 1,
+    "time": 5.6,
+    "states": {
+      "lit": 1,
+      "unvisited": 6
+    },
+    "lit_nodes": [
+      "5"
+    ],
+    "response": "Step 1: Let \\( x \\) be the number of pencils in each box. Then total pencils = \\( 10x \\). He kept 10 pencils, so remaining = \\( 10x - 10 \\). He shared these equally among 5 friends, so each friend gets \\( \\frac{10x - 10}{5} \\). This equals 8: \\( \\frac{10x - 10}{5} = 8 \\).\n\nStep 2: Multiply both sides by 5: \\( 10x - 10 = 40 \\). Add 10 to both sides: \\( 10x = 50 \\). Divide by 10: \\( x = 5 \\).\n\nFinal Answer: 5",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "lit",
+        "6": "unvisited"
+      },
+      "edges": {
+        "1->3": "unused",
+        "2->3": "unused",
+        "0->4": "unused",
+        "3->4": "unused",
+        "0->5": "unused",
+        "4->5": "unused",
+        "5->6": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": "5",
+          "status": "lit",
+          "reason": "first step maps to node 5 (reachable from facts)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gsm8k_train_00007",
+    "correct": true,
+    "depth": 50.0,
+    "cons": 100.0,
+    "lit": 4,
+    "time": 14.1,
+    "states": {
+      "lit": 4,
+      "unvisited": 6
+    },
+    "lit_nodes": [
+      "1",
+      "6",
+      "7",
+      "8"
+    ],
+    "response": "Step 1: The initial weight after adding jelly beans is 2 pounds. This is the baseline.\n\nStep 2: Adding brownies triples the weight, so the new weight is \\(3 \\times 2 = 6\\) pounds.\n\nStep 3: Adding another 2 pounds of jelly beans increases the weight to \\(6 + 2 = 8\\) pounds.\n\nStep 4: Adding gummy worms doubles the weight, so the final weight is \\(2 \\times 8 = 16\\) pounds.\n\nFinal Answer: 16",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "lit",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "lit",
+        "7": "lit",
+        "8": "lit",
+        "9": "unvisited"
+      },
+      "edges": {
+        "1->6": "used_valid",
+        "2->6": "unused",
+        "3->7": "unused",
+        "6->7": "used_valid",
+        "4->8": "unused",
+        "7->8": "used_valid",
+        "8->9": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "1",
+          "status": "lit",
+          "reason": "first step maps to fact node 1"
+        },
+        {
+          "step_index": 2,
+          "node": "6",
+          "status": "lit",
+          "reason": "6 is a direct successor of 1"
+        },
+        {
+          "step_index": 3,
+          "node": "7",
+          "status": "lit",
+          "reason": "7 is a direct successor of 6"
+        },
+        {
+          "step_index": 4,
+          "node": "8",
+          "status": "lit",
+          "reason": "8 is a direct successor of 7"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gsm8k_train_00036",
+    "correct": true,
+    "depth": 66.667,
+    "cons": 100.0,
+    "lit": 3,
+    "time": 1.9,
+    "states": {
+      "lit": 3,
+      "unvisited": 5
+    },
+    "lit_nodes": [
+      "4",
+      "5",
+      "6"
+    ],
+    "response": "Step 1: Total earnings are $60. Half of this amount was earned by Lisa, so Lisa's earnings = $60 ÷ 2 = $30.\n\nStep 2: Tommy earned half of what Lisa earned, so Tommy's earnings = $30 ÷ 2 = $15.\n\nStep 3: The difference between Lisa's and Tommy's earnings is $30 - $15 = $15.\n\nFinal Answer: 15",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "lit",
+        "5": "lit",
+        "6": "lit",
+        "7": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "1->4": "unused",
+        "2->5": "unused",
+        "4->5": "used_valid",
+        "4->6": "unused",
+        "5->6": "used_valid",
+        "6->7": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "4",
+          "status": "lit",
+          "reason": "first step maps to node 4 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "5",
+          "status": "lit",
+          "reason": "5 is a direct successor of 4"
+        },
+        {
+          "step_index": 3,
+          "node": "6",
+          "status": "lit",
+          "reason": "6 is a direct successor of 5"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gsm8k_train_00068",
+    "correct": true,
+    "depth": 33.333,
+    "cons": 87.5,
+    "lit": 2,
+    "time": 6.6,
+    "states": {
+      "lit": 2,
+      "jump": 1,
+      "unvisited": 4
+    },
+    "lit_nodes": [
+      "0",
+      "2"
+    ],
+    "response": "Step 1: Simplify the ratio 10:45 to its lowest terms. Divide both numbers by 5 to get 2:9. This means Elsa's coins : Amalie's coins = 2 : 9.\n\nStep 2: Let the common factor be x. Then Elsa has 2x coins and Amalie has 9x coins. The total is 2x + 9x = 11x. Given total is 440, so 11x = 440. Solve for x: x = 440 / 11 = 40.\n\nStep 3: Amalie's coins = 9x = 9 * 40 = 360. She spends 3/4 of her coins: (3/4) * 360 = 270. So she remains with 360 - 270 = 90.\n\nFinal Answer: 90",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "unvisited",
+        "2": "lit",
+        "3": "unvisited",
+        "4": "jump",
+        "5": "unvisited",
+        "6": "unvisited"
+      },
+      "edges": {
+        "0->2": "used_valid",
+        "1->3": "unused",
+        "2->3": "unused",
+        "3->4": "unused",
+        "3->5": "unused",
+        "4->5": "unused",
+        "5->6": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 2,
+          "node": "2",
+          "status": "lit",
+          "reason": "2 is a direct successor of 0"
+        },
+        {
+          "step_index": 3,
+          "node": "4",
+          "status": "jump",
+          "reason": "4 is reachable from 2 (may span intermediate nodes)"
+        }
+      ]
+    }
+  }
+]
