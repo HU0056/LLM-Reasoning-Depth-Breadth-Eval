@@ -113,9 +113,12 @@ def extract_json(text: str) -> str:
     )
 
 
-# ═══════════════════════════════════════════════
-# Helpers
-# ═══════════════════════════════════════════════
+def _safe_node_type(raw: str) -> NodeType:
+    """Parse node_type with fallback to 'operation'."""
+    try:
+        return NodeType(raw)
+    except ValueError:
+        return NodeType.OPERATION
 
 def _parse_justification(j: dict) -> Justification:
     """Parse a justification dict from LLM output, with validation."""
@@ -173,7 +176,7 @@ def run_structurer(question: str, answer: str, client) -> StructuredSolution:
             index=s["index"],
             text=s["text"],
             depends_on=s.get("depends_on", []),
-            node_type=NodeType(s.get("node_type", "operation")),
+            node_type=_safe_node_type(s.get("node_type", "operation")),
             expression=s.get("expression"),
             justifications=justs,
         ))
@@ -191,7 +194,7 @@ def run_structurer(question: str, answer: str, client) -> StructuredSolution:
 
     return StructuredSolution(
         steps=steps,
-        final_answer=data.get("final_answer", ""),
+        final_answer=str(data.get("final_answer", "")),
     )
 
 
@@ -288,12 +291,12 @@ def run_repairer(
             index=s["index"],
             text=s["text"],
             depends_on=s.get("depends_on", []),
-            node_type=NodeType(s.get("node_type", "operation")),
+            node_type=_safe_node_type(s.get("node_type", "operation")),
             expression=s.get("expression"),
             justifications=justs,
         ))
 
     return StructuredSolution(
         steps=steps,
-        final_answer=data.get("final_answer", solution.final_answer),
+        final_answer=str(data.get("final_answer", solution.final_answer)),
     )
