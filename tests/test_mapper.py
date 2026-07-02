@@ -9,5 +9,5 @@ def test_mapper_maps_rule_step_to_target_node():
     graph = asdict(build_reasoning_graph(["A"], [Rule("A", "B", "A -> B")], "B"))
     mapping = map_step_to_node("由 A -> B 推出 B", graph)
     assert mapping.matched_node_id == "B"
-    assert "rule:" in mapping.reason
+    assert "rule→" in mapping.reason
 
