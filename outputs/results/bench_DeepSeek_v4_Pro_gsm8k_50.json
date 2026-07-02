@@ -7,8 +7,8 @@
     "lit": 3,
     "time": 5.0,
     "states": {
-      "lit": 3,
-      "unvisited": 2
+      "unvisited": 2,
+      "lit": 3
     },
     "lit_nodes": [
       "0",
@@ -50,7 +50,8 @@
           "reason": "3 is a direct successor of 2"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00003",
@@ -60,8 +61,8 @@
     "lit": 5,
     "time": 6.4,
     "states": {
-      "lit": 5,
-      "unvisited": 3
+      "unvisited": 3,
+      "lit": 5
     },
     "lit_nodes": [
       "1",
@@ -124,24 +125,25 @@
           "reason": "6 is a direct successor of 5"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00005",
     "correct": true,
-    "depth": 33.333,
-    "cons": 90.625,
-    "lit": 3,
+    "depth": 66.667,
+    "cons": 100.0,
+    "lit": 4,
     "time": 4.8,
     "states": {
-      "lit": 3,
-      "jump": 1,
-      "unvisited": 7
+      "unvisited": 7,
+      "lit": 4
     },
     "lit_nodes": [
-      "5",
       "6",
-      "8"
+      "7",
+      "8",
+      "9"
     ],
     "response": "Step 1: Determine the number of purple flowers. Purple is 80% more than yellow (10 yellow). 80% of 10 is 8, so purple = 10 + 8 = 18.\n\nStep 2: Calculate the total of yellow and purple flowers: 10 + 18 = 28.\n\nStep 3: Determine the number of green flowers: 25% of the yellow and purple total. 25% of 28 = 0.25 × 28 = 7.\n\nStep 4: Find the total number of flowers: 10 (yellow) + 18 (purple) + 7 (green) = 35.\n\nFinal Answer: 35",
     "lighted_graph": {
@@ -151,11 +153,11 @@
         "2": "unvisited",
         "3": "unvisited",
         "4": "unvisited",
-        "5": "lit",
+        "5": "unvisited",
         "6": "lit",
-        "7": "jump",
+        "7": "lit",
         "8": "lit",
-        "9": "unvisited",
+        "9": "lit",
         "10": "unvisited"
       },
       "edges": {
@@ -163,40 +165,41 @@
         "2->6": "unused",
         "5->6": "unused",
         "2->7": "unused",
-        "6->7": "unused",
+        "6->7": "used_valid",
         "3->8": "unused",
-        "7->8": "unused",
+        "7->8": "used_valid",
         "7->9": "unused",
-        "8->9": "unused",
+        "8->9": "used_valid",
         "9->10": "unused"
       },
       "steps": [
         {
           "step_index": 1,
-          "node": "5",
+          "node": "6",
           "status": "lit",
-          "reason": "first step maps to node 5 (reachable from facts)"
+          "reason": "first step maps to node 6 (reachable from facts)"
         },
         {
           "step_index": 2,
           "node": "7",
-          "status": "jump",
-          "reason": "7 is reachable from 5 (may span intermediate nodes)"
+          "status": "lit",
+          "reason": "7 is a direct successor of 6"
         },
         {
           "step_index": 3,
-          "node": "6",
+          "node": "8",
           "status": "lit",
           "reason": "8 is a direct successor of 7"
         },
         {
           "step_index": 4,
-          "node": "8",
+          "node": "9",
           "status": "lit",
           "reason": "9 is a direct successor of 8"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00006",
@@ -207,8 +210,8 @@
     "time": 5.0,
     "states": {
       "wrong": 1,
-      "lit": 2,
-      "unvisited": 5
+      "unvisited": 5,
+      "lit": 2
     },
     "lit_nodes": [
       "4",
@@ -257,7 +260,8 @@
           "reason": "6 is a direct successor of 4"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00007",
@@ -267,8 +271,8 @@
     "lit": 4,
     "time": 9.1,
     "states": {
-      "lit": 4,
-      "unvisited": 6
+      "unvisited": 6,
+      "lit": 4
     },
     "lit_nodes": [
       "1",
@@ -325,7 +329,8 @@
           "reason": "8 is a direct successor of 7"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00008",
@@ -336,8 +341,8 @@
     "time": 6.3,
     "states": {
       "wrong": 1,
-      "lit": 2,
-      "unvisited": 7
+      "unvisited": 7,
+      "lit": 2
     },
     "lit_nodes": [
       "7",
@@ -386,23 +391,24 @@
           "reason": "8 is a direct successor of 7"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00011",
     "correct": true,
-    "depth": 0.0,
-    "cons": 60.714,
-    "lit": 2,
+    "depth": 50.0,
+    "cons": 55.357,
+    "lit": 1,
     "time": 9.4,
     "states": {
       "wrong": 2,
-      "lit": 2,
-      "unvisited": 9
+      "jump": 1,
+      "unvisited": 9,
+      "lit": 1
     },
     "lit_nodes": [
-      "8",
-      "10"
+      "8"
     ],
     "response": "Step 1: Calculate Tobias's total allowance over 3 months: $5/month × 3 months = $15.\n\nStep 2: Calculate earnings from mowing 4 lawns: 4 lawns × $15/lawn = $60.\n\nStep 3: Let d = number of driveways shoveled. Earnings from shoveling: d × $7.\n\nStep 4: Total money before buying shoes = allowance + mowing + shoveling = $15 + $60 + $7d = $75 + $7d.\n\nStep 5: He bought $95 shoes and had $15 left, so total money = $95 + $15 = $110.\n\nStep 6: Set up equation: $75 + $7d = $110.\n\nStep 7: Solve for d: $7d = $110 - $75 = $35, so d = 35 ÷ 7 = 5.\n\nFinal Answer: 5",
     "lighted_graph": {
@@ -417,8 +423,8 @@
         "7": "wrong",
         "8": "lit",
         "9": "wrong",
-        "10": "lit",
-        "11": "unvisited",
+        "10": "unvisited",
+        "11": "jump",
         "12": "unvisited"
       },
       "edges": {
@@ -429,7 +435,7 @@
         "4->9": "unused",
         "6->9": "unused",
         "7->10": "unused",
-        "8->10": "used_valid",
+        "8->10": "unused",
         "9->10": "unused",
         "4->11": "unused",
         "10->11": "unused",
@@ -471,12 +477,13 @@
         },
         {
           "step_index": 7,
-          "node": "10",
-          "status": "lit",
-          "reason": "10 is a direct successor of 8"
+          "node": "11",
+          "status": "jump",
+          "reason": "11 is reachable from 8 (may span intermediate nodes)"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00012",
@@ -486,8 +493,8 @@
     "lit": 4,
     "time": 3.5,
     "states": {
-      "lit": 4,
-      "unvisited": 3
+      "unvisited": 3,
+      "lit": 4
     },
     "lit_nodes": [
       "0",
@@ -540,7 +547,8 @@
           "reason": "5 is a direct successor of 4"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00013",
@@ -551,8 +559,8 @@
     "time": 15.0,
     "states": {
       "wrong": 1,
-      "lit": 3,
-      "unvisited": 3
+      "unvisited": 3,
+      "lit": 3
     },
     "lit_nodes": [
       "1",
@@ -604,7 +612,8 @@
           "reason": "5 is a direct successor of 3"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00019",
@@ -614,8 +623,8 @@
     "lit": 4,
     "time": 5.9,
     "states": {
-      "lit": 4,
-      "unvisited": 5
+      "unvisited": 5,
+      "lit": 4
     },
     "lit_nodes": [
       "4",
@@ -671,7 +680,8 @@
           "reason": "7 is a direct successor of 6"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00020",
@@ -681,8 +691,8 @@
     "lit": 4,
     "time": 4.5,
     "states": {
-      "lit": 4,
-      "unvisited": 5
+      "unvisited": 5,
+      "lit": 4
     },
     "lit_nodes": [
       "2",
@@ -739,40 +749,41 @@
           "reason": "7 is a direct successor of 6"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00022",
     "correct": true,
     "depth": 50.0,
-    "cons": 69.167,
-    "lit": 1,
+    "cons": 100.0,
+    "lit": 3,
     "time": 6.4,
     "states": {
-      "wrong": 1,
-      "lit": 1,
-      "jump": 1,
-      "unvisited": 4
+      "unvisited": 4,
+      "lit": 3
     },
     "lit_nodes": [
-      "2"
+      "2",
+      "4",
+      "5"
     ],
     "response": "Step 1: Identify the number of letters in Jamie's last name. Jamie's full name is Jamie Grey, so her last name is \"Grey\", which has 4 letters. Let J = 4.\n\nStep 2: Express the information about Bobbie's last name. \"If Bobbie took two letters off her last name, she would have a last name twice the length of Jamie’s.\" This means Bobbie's last name length minus 2 equals twice Jamie's last name length. Let B = number of letters in Bobbie's last name. Then B - 2 = 2 × J = 2 × 4 = 8, so B = 10.\n\nStep 3: Find Samantha's last name length. Samantha's last name has three fewer letters than Bobbie's last name. Let S = number of letters in Samantha's last name. Then S = B - 3 = 10 - 3 = 7.\n\nFinal Answer: 7",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
-        "1": "wrong",
+        "1": "unvisited",
         "2": "lit",
         "3": "unvisited",
-        "4": "unvisited",
-        "5": "jump",
+        "4": "lit",
+        "5": "lit",
         "6": "unvisited"
       },
       "edges": {
         "1->4": "unused",
-        "2->4": "unused",
+        "2->4": "used_valid",
         "0->5": "unused",
-        "4->5": "unused",
+        "4->5": "used_valid",
         "5->6": "unused"
       },
       "steps": [
@@ -784,35 +795,35 @@
         },
         {
           "step_index": 2,
-          "node": "1",
-          "status": "wrong",
-          "reason": "1 is not reachable from current node 2"
+          "node": "4",
+          "status": "lit",
+          "reason": "4 is a direct successor of 2"
         },
         {
           "step_index": 3,
           "node": "5",
-          "status": "jump",
-          "reason": "5 is reachable from 2 (may span intermediate nodes)"
+          "status": "lit",
+          "reason": "5 is a direct successor of 4"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00023",
     "correct": true,
     "depth": 0.0,
     "cons": 76.875,
-    "lit": 2,
+    "lit": 1,
     "time": 6.0,
     "states": {
       "wrong": 1,
-      "lit": 2,
-      "jump": 1,
-      "unvisited": 6
+      "jump": 2,
+      "unvisited": 6,
+      "lit": 1
     },
     "lit_nodes": [
-      "4",
-      "6"
+      "4"
     ],
     "response": "Step 1: Calculate the total cost of shorts: 5 pairs × $7/pair = $35.\nStep 2: Calculate the total cost of shoes: 2 pairs × $10/pair = $20.\nStep 3: Subtract the cost of shorts and shoes from the total spent to find the amount spent on tops: $75 − $35 − $20 = $20.\nStep 4: Divide the amount spent on tops by the number of tops to find the cost per top: $20 ÷ 4 = $5.\nFinal Answer: 5",
     "lighted_graph": {
@@ -823,7 +834,7 @@
         "3": "unvisited",
         "4": "lit",
         "5": "wrong",
-        "6": "lit",
+        "6": "jump",
         "7": "jump",
         "8": "unvisited",
         "9": "unvisited"
@@ -860,15 +871,10 @@
           "node": "7",
           "status": "jump",
           "reason": "7 is reachable from 4 (may span intermediate nodes)"
-        },
-        {
-          "step_index": 4,
-          "node": "6",
-          "status": "lit",
-          "reason": "8 is a direct successor of 7"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00025",
@@ -879,8 +885,8 @@
     "time": 6.9,
     "states": {
       "wrong": 1,
-      "lit": 2,
-      "unvisited": 6
+      "unvisited": 6,
+      "lit": 2
     },
     "lit_nodes": [
       "5",
@@ -926,7 +932,8 @@
           "reason": "7 is a direct successor of 5"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00026",
@@ -936,10 +943,9 @@
     "lit": 1,
     "time": 14.5,
     "states": {
-      "redundant": 1,
-      "lit": 1,
-      "jump": 1,
-      "unvisited": 4
+      "jump": 2,
+      "unvisited": 4,
+      "lit": 1
     },
     "lit_nodes": [
       "2"
@@ -951,7 +957,7 @@
         "1": "unvisited",
         "2": "lit",
         "3": "unvisited",
-        "4": "redundant",
+        "4": "jump",
         "5": "jump",
         "6": "unvisited"
       },
@@ -973,15 +979,10 @@
           "node": "5",
           "status": "jump",
           "reason": "5 is reachable from 2 (may span intermediate nodes)"
-        },
-        {
-          "step_index": 3,
-          "node": "4",
-          "status": "redundant",
-          "reason": "node 4 was already visited"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00027",
@@ -992,8 +993,8 @@
     "time": 6.5,
     "states": {
       "wrong": 1,
-      "lit": 2,
-      "unvisited": 7
+      "unvisited": 7,
+      "lit": 2
     },
     "lit_nodes": [
       "5",
@@ -1045,7 +1046,8 @@
           "reason": "8 is a direct successor of 5"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00028",
@@ -1055,8 +1057,8 @@
     "lit": 2,
     "time": 4.3,
     "states": {
-      "lit": 2,
-      "unvisited": 3
+      "unvisited": 3,
+      "lit": 2
     },
     "lit_nodes": [
       "2",
@@ -1091,7 +1093,8 @@
           "reason": "3 is a direct successor of 2"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00029",
@@ -1101,9 +1104,9 @@
     "lit": 1,
     "time": 7.9,
     "states": {
-      "lit": 1,
       "jump": 2,
-      "unvisited": 10
+      "unvisited": 10,
+      "lit": 1
     },
     "lit_nodes": [
       "4"
@@ -1152,15 +1155,10 @@
           "node": "9",
           "status": "jump",
           "reason": "9 is reachable from 4 (may span intermediate nodes)"
-        },
-        {
-          "step_index": 3,
-          "node": "5",
-          "status": "jump",
-          "reason": "11 is reachable from 9 (may span intermediate nodes)"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00033",
@@ -1170,9 +1168,9 @@
     "lit": 2,
     "time": 8.7,
     "states": {
-      "lit": 2,
       "jump": 1,
-      "unvisited": 3
+      "unvisited": 3,
+      "lit": 2
     },
     "lit_nodes": [
       "0",
@@ -1214,7 +1212,8 @@
           "reason": "4 is reachable from 2 (may span intermediate nodes)"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00035",
@@ -1224,9 +1223,9 @@
     "lit": 1,
     "time": 3.0,
     "states": {
-      "lit": 1,
       "jump": 1,
-      "unvisited": 5
+      "unvisited": 5,
+      "lit": 1
     },
     "lit_nodes": [
       "3"
@@ -1264,47 +1263,48 @@
           "reason": "5 is reachable from 3 (may span intermediate nodes)"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00043",
     "correct": true,
-    "depth": 0.0,
-    "cons": 81.5,
-    "lit": 3,
+    "depth": 50.0,
+    "cons": 100.0,
+    "lit": 5,
     "time": 7.0,
     "states": {
-      "wrong": 1,
-      "lit": 3,
-      "jump": 1,
-      "unvisited": 3
+      "unvisited": 3,
+      "lit": 5
     },
     "lit_nodes": [
       "0",
       "3",
-      "4"
+      "4",
+      "5",
+      "6"
     ],
     "response": "Step 1: The first earthquake caused 4 buildings to collapse. So initial collapse = 4.\n\nStep 2: Each following earthquake causes double the number of collapsing buildings as the previous one. The next earthquake (second overall) causes 2 × 4 = 8 buildings to collapse.\n\nStep 3: The third earthquake causes 2 × 8 = 16 buildings to collapse.\n\nStep 4: The fourth earthquake causes 2 × 16 = 32 buildings to collapse.\n\nStep 5: Total buildings collapsed after all four earthquakes (the first plus three more) is 4 + 8 + 16 + 32 = 60.\n\nFinal Answer: 60",
     "lighted_graph": {
       "nodes": {
         "0": "lit",
-        "1": "wrong",
+        "1": "unvisited",
         "2": "unvisited",
         "3": "lit",
         "4": "lit",
-        "5": "jump",
-        "6": "unvisited",
+        "5": "lit",
+        "6": "lit",
         "7": "unvisited"
       },
       "edges": {
         "0->3": "used_valid",
         "1->3": "unused",
-        "3->4": "unused",
-        "4->5": "unused",
+        "3->4": "used_valid",
+        "4->5": "used_valid",
         "0->6": "unused",
         "3->6": "unused",
         "4->6": "unused",
-        "5->6": "unused",
+        "5->6": "used_valid",
         "6->7": "unused"
       },
       "steps": [
@@ -1316,30 +1316,31 @@
         },
         {
           "step_index": 2,
-          "node": "1",
-          "status": "wrong",
-          "reason": "1 is not reachable from current node 0"
-        },
-        {
-          "step_index": 3,
           "node": "3",
           "status": "lit",
           "reason": "3 is a direct successor of 0"
         },
         {
+          "step_index": 3,
+          "node": "4",
+          "status": "lit",
+          "reason": "4 is a direct successor of 3"
+        },
+        {
           "step_index": 4,
           "node": "5",
-          "status": "jump",
-          "reason": "5 is reachable from 3 (may span intermediate nodes)"
+          "status": "lit",
+          "reason": "5 is a direct successor of 4"
         },
         {
           "step_index": 5,
-          "node": "4",
+          "node": "6",
           "status": "lit",
           "reason": "6 is a direct successor of 5"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00044",
@@ -1349,8 +1350,9 @@
     "lit": 1,
     "time": 5.8,
     "states": {
-      "lit": 1,
-      "unvisited": 8
+      "wrong": 1,
+      "unvisited": 7,
+      "lit": 1
     },
     "lit_nodes": [
       "7"
@@ -1363,7 +1365,7 @@
         "2": "unvisited",
         "3": "unvisited",
         "4": "unvisited",
-        "5": "unvisited",
+        "5": "wrong",
         "6": "unvisited",
         "7": "lit",
         "8": "unvisited"
@@ -1388,17 +1390,19 @@
         },
         {
           "step_index": 2,
-          "node": null,
-          "status": "wrong"
-        },
-        {
-          "step_index": 3,
           "node": "7",
           "status": "lit",
           "reason": "first step maps to node 7 (reachable from facts)"
+        },
+        {
+          "step_index": 3,
+          "node": "5",
+          "status": "wrong",
+          "reason": "5 is not reachable from current node 7"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00045",
@@ -1408,10 +1412,10 @@
     "lit": 1,
     "time": 7.0,
     "states": {
-      "redundant": 1,
       "wrong": 2,
+      "unvisited": 5,
       "lit": 1,
-      "unvisited": 5
+      "redundant": 1
     },
     "lit_nodes": [
       "4"
@@ -1472,7 +1476,8 @@
           "reason": "node 7 was already visited"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00048",
@@ -1483,8 +1488,8 @@
     "time": 5.3,
     "states": {
       "wrong": 1,
-      "lit": 2,
-      "unvisited": 3
+      "unvisited": 3,
+      "lit": 2
     },
     "lit_nodes": [
       "3",
@@ -1526,7 +1531,8 @@
           "reason": "4 is a direct successor of 3"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00053",
@@ -1537,8 +1543,8 @@
     "time": 5.0,
     "states": {
       "wrong": 1,
-      "lit": 2,
-      "unvisited": 4
+      "unvisited": 4,
+      "lit": 2
     },
     "lit_nodes": [
       "3",
@@ -1584,7 +1590,8 @@
           "reason": "5 is a direct successor of 3"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00054",
@@ -1594,8 +1601,8 @@
     "lit": 4,
     "time": 6.8,
     "states": {
-      "lit": 4,
-      "unvisited": 6
+      "unvisited": 6,
+      "lit": 4
     },
     "lit_nodes": [
       "5",
@@ -1651,7 +1658,8 @@
           "reason": "8 is a direct successor of 7"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00055",
@@ -1661,12 +1669,11 @@
     "lit": 2,
     "time": 5.4,
     "states": {
-      "wrong": 1,
-      "lit": 2,
-      "unvisited": 5
+      "unvisited": 6,
+      "lit": 2
     },
     "lit_nodes": [
-      "4",
+      "5",
       "6"
     ],
     "response": "Step 1: Count the total number of flowers. Roses: 25, Tulips: 40, Daisies: 35. Total = 25 + 40 + 35 = 100.\n\nStep 2: Count the number of flowers that are not roses. These are Tulips + Daisies = 40 + 35 = 75.\n\nStep 3: Calculate the percentage of flowers that are not roses: (75 ÷ 100) × 100% = 75%.\n\nFinal Answer: 75",
@@ -1676,8 +1683,8 @@
         "1": "unvisited",
         "2": "unvisited",
         "3": "unvisited",
-        "4": "lit",
-        "5": "wrong",
+        "4": "unvisited",
+        "5": "lit",
         "6": "lit",
         "7": "unvisited"
       },
@@ -1687,72 +1694,71 @@
         "2->4": "unused",
         "1->5": "unused",
         "2->5": "unused",
-        "4->6": "used_valid",
-        "5->6": "unused",
+        "4->6": "unused",
+        "5->6": "used_valid",
         "6->7": "unused"
       },
       "steps": [
         {
           "step_index": 1,
-          "node": "4",
+          "node": "5",
           "status": "lit",
-          "reason": "first step maps to node 4 (reachable from facts)"
+          "reason": "first step maps to node 5 (reachable from facts)"
         },
         {
           "step_index": 2,
-          "node": "5",
-          "status": "wrong",
-          "reason": "5 is not reachable from current node 4"
+          "node": "6",
+          "status": "lit",
+          "reason": "6 is a direct successor of 5"
         },
         {
           "step_index": 3,
-          "node": "6",
-          "status": "lit",
-          "reason": "6 is a direct successor of 4"
+          "node": null,
+          "status": "wrong"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00057",
     "correct": true,
     "depth": 33.333,
-    "cons": 81.5,
+    "cons": 92.5,
     "lit": 3,
     "time": 11.2,
     "states": {
-      "wrong": 1,
-      "lit": 3,
-      "jump": 1,
-      "unvisited": 5
+      "jump": 2,
+      "unvisited": 5,
+      "lit": 3
     },
     "lit_nodes": [
-      "3",
-      "5",
-      "6"
+      "0",
+      "4",
+      "7"
     ],
     "response": "Step 1: Determine the amount used for chocolate chip cookies. She used one-half of the 10 kg: 10 × 1/2 = 5 kg.\n\nStep 2: Determine the amount used for peanut butter cookies. She used one-fifth of the original 10 kg: 10 × 1/5 = 2 kg.\n\nStep 3: Calculate the remaining butter after these two types. Total used so far: 5 + 2 = 7 kg. Remaining: 10 - 7 = 3 kg.\n\nStep 4: She uses one-third of the remaining butter for sugar cookies: 3 × 1/3 = 1 kg.\n\nStep 5: Calculate the butter left after all three kinds. Subtract the sugar cookie amount: 3 - 1 = 2 kg.\n\nFinal Answer: 2",
     "lighted_graph": {
       "nodes": {
-        "0": "unvisited",
+        "0": "lit",
         "1": "unvisited",
         "2": "unvisited",
-        "3": "lit",
-        "4": "wrong",
-        "5": "lit",
-        "6": "lit",
-        "7": "jump",
+        "3": "unvisited",
+        "4": "lit",
+        "5": "jump",
+        "6": "jump",
+        "7": "lit",
         "8": "unvisited",
         "9": "unvisited"
       },
       "edges": {
         "0->3": "unused",
-        "0->4": "unused",
-        "3->5": "used_valid",
+        "0->4": "used_valid",
+        "3->5": "unused",
         "4->5": "unused",
         "0->6": "unused",
         "5->6": "unused",
-        "6->7": "unused",
+        "6->7": "used_valid",
         "6->8": "unused",
         "7->8": "unused",
         "8->9": "unused"
@@ -1760,36 +1766,31 @@
       "steps": [
         {
           "step_index": 1,
-          "node": "3",
+          "node": "0",
           "status": "lit",
-          "reason": "first step maps to node 3 (reachable from facts)"
+          "reason": "first step maps to fact node 0"
         },
         {
           "step_index": 2,
           "node": "4",
-          "status": "wrong",
-          "reason": "4 is not reachable from current node 3"
+          "status": "lit",
+          "reason": "4 is a direct successor of 0"
         },
         {
           "step_index": 3,
-          "node": "5",
-          "status": "lit",
-          "reason": "5 is a direct successor of 3"
+          "node": "6",
+          "status": "jump",
+          "reason": "6 is reachable from 4 (may span intermediate nodes)"
         },
         {
           "step_index": 4,
           "node": "7",
-          "status": "jump",
-          "reason": "7 is reachable from 5 (may span intermediate nodes)"
-        },
-        {
-          "step_index": 5,
-          "node": "6",
           "status": "lit",
           "reason": "8 is a direct successor of 7"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00062",
@@ -1800,8 +1801,8 @@
     "time": 5.7,
     "states": {
       "wrong": 1,
-      "lit": 3,
-      "unvisited": 3
+      "unvisited": 3,
+      "lit": 3
     },
     "lit_nodes": [
       "2",
@@ -1856,24 +1857,24 @@
           "reason": "5 is a direct successor of 3"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00064",
     "correct": true,
-    "depth": 33.333,
-    "cons": 70.5,
-    "lit": 2,
+    "depth": 66.667,
+    "cons": 59.5,
+    "lit": 1,
     "time": 5.3,
     "states": {
-      "wrong": 2,
-      "lit": 2,
+      "wrong": 1,
       "jump": 1,
-      "unvisited": 6
+      "unvisited": 8,
+      "lit": 1
     },
     "lit_nodes": [
-      "4",
-      "5"
+      "4"
     ],
     "response": "Step 1: Calculate the hourly wage at the second job. It is 20% less than $20. 20% of $20 is 0.20 × 20 = 4, so the second job wage is $20 − $4 = $16 per hour.\n\nStep 2: Calculate the hours worked at the second job. It is half of 30 hours, so 30 ÷ 2 = 15 hours.\n\nStep 3: Calculate earnings from the main job: 30 hours × $20/hour = $600.\n\nStep 4: Calculate earnings from the second job: 15 hours × $16/hour = $240.\n\nStep 5: Add both earnings to find the total per week: $600 + $240 = $840.\n\nFinal Answer: $840",
     "lighted_graph": {
@@ -1883,11 +1884,11 @@
         "2": "unvisited",
         "3": "unvisited",
         "4": "lit",
-        "5": "lit",
-        "6": "wrong",
+        "5": "unvisited",
+        "6": "unvisited",
         "7": "wrong",
-        "8": "jump",
-        "9": "unvisited",
+        "8": "unvisited",
+        "9": "jump",
         "10": "unvisited"
       },
       "edges": {
@@ -1919,24 +1920,18 @@
         },
         {
           "step_index": 3,
-          "node": "6",
-          "status": "wrong",
-          "reason": "6 is not reachable from current node 4"
+          "node": "9",
+          "status": "jump",
+          "reason": "9 is reachable from 4 (may span intermediate nodes)"
         },
         {
           "step_index": 4,
-          "node": "8",
-          "status": "jump",
-          "reason": "8 is reachable from 4 (may span intermediate nodes)"
-        },
-        {
-          "step_index": 5,
-          "node": "5",
-          "status": "lit",
-          "reason": "9 is a direct successor of 8"
+          "node": null,
+          "status": "wrong"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00069",
@@ -1946,8 +1941,8 @@
     "lit": 2,
     "time": 4.3,
     "states": {
-      "lit": 2,
-      "unvisited": 3
+      "unvisited": 3,
+      "lit": 2
     },
     "lit_nodes": [
       "2",
@@ -1981,7 +1976,8 @@
           "reason": "3 is a direct successor of 2"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00070",
@@ -1991,8 +1987,8 @@
     "lit": 2,
     "time": 3.8,
     "states": {
-      "lit": 2,
-      "unvisited": 3
+      "unvisited": 3,
+      "lit": 2
     },
     "lit_nodes": [
       "2",
@@ -2027,22 +2023,22 @@
           "reason": "3 is a direct successor of 2"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00071",
     "correct": true,
     "depth": 50.0,
-    "cons": 100.0,
-    "lit": 3,
+    "cons": 63.333,
+    "lit": 1,
     "time": 8.0,
     "states": {
-      "lit": 3,
-      "unvisited": 5
+      "wrong": 1,
+      "unvisited": 6,
+      "lit": 1
     },
     "lit_nodes": [
-      "4",
-      "5",
       "6"
     ],
     "response": "Step 1: Calculate the money from selling 3 crafts at $12 each: 3 × 12 = 36 dollars.  \nStep 2: Add the extra 7 dollars from the customer: 36 + 7 = 43 dollars total received today.  \nStep 3: Subtract the 18 dollars deposited into the bank: 43 – 18 = 25 dollars left.  \nFinal Answer: 25",
@@ -2052,40 +2048,40 @@
         "1": "unvisited",
         "2": "unvisited",
         "3": "unvisited",
-        "4": "lit",
-        "5": "lit",
+        "4": "unvisited",
+        "5": "wrong",
         "6": "lit",
         "7": "unvisited"
       },
       "edges": {
         "0->4": "unused",
         "1->5": "unused",
-        "4->5": "used_valid",
+        "4->5": "unused",
         "2->6": "unused",
-        "5->6": "used_valid",
+        "5->6": "unused",
         "6->7": "unused"
       },
       "steps": [
         {
           "step_index": 1,
-          "node": "4",
+          "node": "6",
           "status": "lit",
-          "reason": "first step maps to node 4 (reachable from facts)"
+          "reason": "first step maps to node 6 (reachable from facts)"
         },
         {
           "step_index": 2,
           "node": "5",
-          "status": "lit",
-          "reason": "5 is a direct successor of 4"
+          "status": "wrong",
+          "reason": "5 is not reachable from current node 6"
         },
         {
           "step_index": 3,
-          "node": "6",
-          "status": "lit",
-          "reason": "6 is a direct successor of 5"
+          "node": null,
+          "status": "wrong"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00075",
@@ -2096,8 +2092,8 @@
     "time": 5.8,
     "states": {
       "wrong": 1,
-      "lit": 2,
-      "unvisited": 8
+      "unvisited": 8,
+      "lit": 2
     },
     "lit_nodes": [
       "5",
@@ -2157,7 +2153,8 @@
           "reason": "9 is a direct successor of 5"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00077",
@@ -2167,8 +2164,8 @@
     "lit": 2,
     "time": 4.6,
     "states": {
-      "lit": 2,
-      "unvisited": 4
+      "unvisited": 4,
+      "lit": 2
     },
     "lit_nodes": [
       "3",
@@ -2205,24 +2202,24 @@
           "reason": "4 is a direct successor of 3"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00083",
     "correct": true,
     "depth": 50.0,
     "cons": 76.875,
-    "lit": 2,
+    "lit": 1,
     "time": 7.2,
     "states": {
       "wrong": 1,
-      "lit": 2,
-      "jump": 1,
-      "unvisited": 6
+      "jump": 2,
+      "unvisited": 6,
+      "lit": 1
     },
     "lit_nodes": [
-      "4",
-      "6"
+      "4"
     ],
     "response": "Step 1: Determine the number of red hats Zola has. Zola has 4/5 times as many red hats as Paityn. Paityn has 20 red hats, so Zola's red hats = (4/5) × 20 = 16.\n\nStep 2: Determine the number of blue hats Zola has. Zola has twice the number of blue hats as Paityn. Paityn has 24 blue hats, so Zola's blue hats = 2 × 24 = 48.\n\nStep 3: Calculate the total number of hats. Paityn has 20 red + 24 blue = 44 hats. Zola has 16 red + 48 blue = 64 hats. Total hats = 44 + 64 = 108 hats.\n\nStep 4: Share the total hats equally between Paityn and Zola. There are 2 people, so each gets 108 ÷ 2 = 54 hats.\n\nFinal Answer: 54",
     "lighted_graph": {
@@ -2233,7 +2230,7 @@
         "3": "unvisited",
         "4": "lit",
         "5": "wrong",
-        "6": "lit",
+        "6": "jump",
         "7": "jump",
         "8": "unvisited",
         "9": "unvisited"
@@ -2267,15 +2264,10 @@
           "node": "7",
           "status": "jump",
           "reason": "7 is reachable from 4 (may span intermediate nodes)"
-        },
-        {
-          "step_index": 4,
-          "node": "6",
-          "status": "lit",
-          "reason": "8 is a direct successor of 7"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00089",
@@ -2286,8 +2278,8 @@
     "time": 28.2,
     "states": {
       "wrong": 1,
-      "lit": 3,
-      "unvisited": 4
+      "unvisited": 4,
+      "lit": 3
     },
     "lit_nodes": [
       "1",
@@ -2342,7 +2334,8 @@
           "reason": "6 is a direct successor of 4"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00091",
@@ -2353,8 +2346,8 @@
     "time": 9.5,
     "states": {
       "wrong": 1,
-      "lit": 2,
-      "unvisited": 7
+      "unvisited": 7,
+      "lit": 2
     },
     "lit_nodes": [
       "7",
@@ -2404,34 +2397,34 @@
           "reason": "8 is a direct successor of 7"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00097",
     "correct": true,
     "depth": 50.0,
-    "cons": 72.5,
-    "lit": 2,
+    "cons": 78.75,
+    "lit": 1,
     "time": 16.7,
     "states": {
-      "wrong": 2,
-      "lit": 2,
-      "unvisited": 5
+      "unvisited": 7,
+      "lit": 1,
+      "redundant": 1
     },
     "lit_nodes": [
-      "1",
       "7"
     ],
     "response": "Step 1: Determine the number of books on the top section of the cart. Nancy shelved 12 history, 8 romance, and 4 poetry books from the top, so top section total = 12 + 8 + 4 = 24 books.\n\nStep 2: Determine the number of remaining books on the bottom section. The remaining books (after removing mystery books) included 5 Western novels and 6 biographies. Assuming these are the only types in the remaining group, total remaining = 5 + 6 = 11 books.\n\nStep 3: Since half the books on the bottom section were mystery books, the remaining 11 books represent the other half. Thus, total bottom books = 2 × 11 = 22 books.\n\nStep 4: Add top and bottom totals to find the initial number of books on the cart. Total = 24 + 22 = 46 books.\n\nFinal Answer: 46",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
-        "1": "lit",
+        "1": "unvisited",
         "2": "unvisited",
-        "3": "wrong",
+        "3": "unvisited",
         "4": "unvisited",
-        "5": "wrong",
-        "6": "unvisited",
+        "5": "unvisited",
+        "6": "redundant",
         "7": "lit",
         "8": "unvisited"
       },
@@ -2439,51 +2432,51 @@
         "2->5": "unused",
         "3->5": "unused",
         "5->6": "unused",
-        "1->7": "used_valid",
+        "1->7": "unused",
         "3->7": "unused",
-        "6->7": "unused",
+        "6->7": "used_valid",
         "7->8": "unused"
       },
       "steps": [
         {
           "step_index": 1,
-          "node": "1",
-          "status": "lit",
-          "reason": "first step maps to fact node 1"
+          "node": null,
+          "status": "wrong"
         },
         {
           "step_index": 2,
-          "node": "3",
-          "status": "wrong",
-          "reason": "3 is not reachable from current node 1"
+          "node": "6",
+          "status": "lit",
+          "reason": "first step maps to node 6 (reachable from facts)"
         },
         {
           "step_index": 3,
-          "node": "5",
-          "status": "wrong",
-          "reason": "5 is not reachable from current node 1"
+          "node": "6",
+          "status": "redundant",
+          "reason": "node 6 was already visited"
         },
         {
           "step_index": 4,
           "node": "7",
           "status": "lit",
-          "reason": "7 is a direct successor of 1"
+          "reason": "7 is a direct successor of 6"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00103",
     "correct": true,
     "depth": 0.0,
-    "cons": 68.0,
+    "cons": 63.0,
     "lit": 1,
     "time": 8.4,
     "states": {
       "wrong": 1,
-      "lit": 1,
       "jump": 2,
-      "unvisited": 12
+      "unvisited": 12,
+      "lit": 1
     },
     "lit_nodes": [
       "8"
@@ -2548,24 +2541,18 @@
         },
         {
           "step_index": 3,
-          "node": "12",
-          "status": "jump",
-          "reason": "12 is reachable from 8 (may span intermediate nodes)"
+          "node": null,
+          "status": "wrong"
         },
         {
           "step_index": 4,
-          "node": "11",
-          "status": "redundant",
-          "reason": "node 11 was already visited"
-        },
-        {
-          "step_index": 5,
-          "node": "11",
+          "node": "12",
           "status": "jump",
-          "reason": "14 is reachable from 12 (may span intermediate nodes)"
+          "reason": "12 is reachable from 8 (may span intermediate nodes)"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00104",
@@ -2575,8 +2562,8 @@
     "lit": 2,
     "time": 4.9,
     "states": {
-      "lit": 2,
-      "unvisited": 4
+      "unvisited": 4,
+      "lit": 2
     },
     "lit_nodes": [
       "3",
@@ -2612,7 +2599,8 @@
           "reason": "4 is a direct successor of 3"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00108",
@@ -2623,8 +2611,8 @@
     "time": 12.4,
     "states": {
       "wrong": 2,
-      "lit": 4,
-      "unvisited": 3
+      "unvisited": 3,
+      "lit": 4
     },
     "lit_nodes": [
       "0",
@@ -2694,7 +2682,8 @@
           "reason": "7 is a direct successor of 5"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00109",
@@ -2704,9 +2693,9 @@
     "lit": 2,
     "time": 4.8,
     "states": {
-      "redundant": 1,
+      "unvisited": 5,
       "lit": 2,
-      "unvisited": 5
+      "redundant": 1
     },
     "lit_nodes": [
       "4",
@@ -2767,7 +2756,8 @@
           "reason": "6 is a direct successor of 5"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00111",
@@ -2777,8 +2767,8 @@
     "lit": 3,
     "time": 4.8,
     "states": {
-      "lit": 3,
-      "unvisited": 5
+      "unvisited": 5,
+      "lit": 3
     },
     "lit_nodes": [
       "4",
@@ -2826,7 +2816,8 @@
           "reason": "6 is a direct successor of 5"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00112",
@@ -2836,8 +2827,8 @@
     "lit": 3,
     "time": 6.5,
     "states": {
-      "lit": 3,
-      "unvisited": 5
+      "unvisited": 5,
+      "lit": 3
     },
     "lit_nodes": [
       "3",
@@ -2890,52 +2881,53 @@
           "reason": "6 is a direct successor of 5"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00118",
     "correct": true,
     "depth": 66.667,
-    "cons": 81.667,
-    "lit": 2,
+    "cons": 100.0,
+    "lit": 3,
     "time": 8.7,
     "states": {
-      "wrong": 1,
-      "lit": 2,
-      "unvisited": 3
+      "unvisited": 3,
+      "lit": 3
     },
     "lit_nodes": [
+      "2",
       "3",
       "4"
     ],
     "response": "Step 1: Identify the starting number of objects: 3. The increase per week is 2 objects. She practices for 5 weeks.\n\nStep 2: Since she improves by 2 objects each week, after 5 weeks the total increase is 5 × 2 = 10 objects.\n\nStep 3: Add the increase to the starting amount: 3 + 10 = 13 objects.\n\nFinal Answer: 13",
     "lighted_graph": {
       "nodes": {
-        "0": "wrong",
+        "0": "unvisited",
         "1": "unvisited",
-        "2": "unvisited",
+        "2": "lit",
         "3": "lit",
         "4": "lit",
         "5": "unvisited"
       },
       "edges": {
         "1->3": "unused",
-        "2->3": "unused",
+        "2->3": "used_valid",
         "3->4": "used_valid",
         "4->5": "unused"
       },
       "steps": [
         {
           "step_index": 1,
-          "node": "0",
-          "status": "wrong",
-          "reason": "first step must start from facts ['1', '2']"
+          "node": "2",
+          "status": "lit",
+          "reason": "first step maps to fact node 2"
         },
         {
           "step_index": 2,
           "node": "3",
           "status": "lit",
-          "reason": "first step maps to node 3 (reachable from facts)"
+          "reason": "3 is a direct successor of 2"
         },
         {
           "step_index": 3,
@@ -2944,70 +2936,70 @@
           "reason": "4 is a direct successor of 3"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00124",
     "correct": true,
     "depth": 50.0,
-    "cons": 72.5,
-    "lit": 2,
+    "cons": 78.75,
+    "lit": 1,
     "time": 6.8,
     "states": {
-      "wrong": 2,
-      "lit": 2,
-      "unvisited": 4
+      "unvisited": 6,
+      "lit": 1,
+      "redundant": 1
     },
     "lit_nodes": [
-      "1",
       "6"
     ],
     "response": "Step 1: Let the amount of yarn for the first ball be \\( F \\) feet. The first ball is half the size of the second ball, so \\( F = \\frac{1}{2} S \\), which means the second ball \\( S = 2F \\).\n\nStep 2: The third ball is three times as large as the first ball, so \\( T = 3F \\). We are told the third ball used 27 feet, so \\( 3F = 27 \\).\n\nStep 3: Solve for \\( F \\): \\( F = \\frac{27}{3} = 9 \\) feet.\n\nStep 4: Find the second ball's yarn: \\( S = 2F = 2 \\times 9 = 18 \\) feet.\n\nFinal Answer: 18",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
-        "1": "lit",
-        "2": "wrong",
+        "1": "unvisited",
+        "2": "unvisited",
         "3": "unvisited",
         "4": "unvisited",
-        "5": "wrong",
+        "5": "redundant",
         "6": "lit",
         "7": "unvisited"
       },
       "edges": {
         "2->5": "unused",
         "3->5": "unused",
-        "1->6": "used_valid",
-        "5->6": "unused",
+        "1->6": "unused",
+        "5->6": "used_valid",
         "6->7": "unused"
       },
       "steps": [
         {
           "step_index": 1,
-          "node": "1",
-          "status": "lit",
-          "reason": "first step maps to fact node 1"
+          "node": null,
+          "status": "wrong"
         },
         {
           "step_index": 2,
-          "node": "2",
-          "status": "wrong",
-          "reason": "2 is not reachable from current node 1"
+          "node": "5",
+          "status": "lit",
+          "reason": "first step maps to node 5 (reachable from facts)"
         },
         {
           "step_index": 3,
           "node": "5",
-          "status": "wrong",
-          "reason": "5 is not reachable from current node 1"
+          "status": "redundant",
+          "reason": "node 5 was already visited"
         },
         {
           "step_index": 4,
           "node": "6",
           "status": "lit",
-          "reason": "6 is a direct successor of 1"
+          "reason": "6 is a direct successor of 5"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00134",
@@ -3018,8 +3010,8 @@
     "time": 6.6,
     "states": {
       "wrong": 1,
-      "lit": 4,
-      "unvisited": 4
+      "unvisited": 4,
+      "lit": 4
     },
     "lit_nodes": [
       "3",
@@ -3082,7 +3074,8 @@
           "reason": "7 is a direct successor of 6"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00135",
@@ -3092,8 +3085,8 @@
     "lit": 3,
     "time": 6.1,
     "states": {
-      "lit": 3,
-      "unvisited": 4
+      "unvisited": 4,
+      "lit": 3
     },
     "lit_nodes": [
       "3",
@@ -3140,7 +3133,8 @@
           "reason": "5 is a direct successor of 4"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   },
   {
     "id": "gsm8k_train_00139",
@@ -3151,8 +3145,8 @@
     "time": 5.9,
     "states": {
       "wrong": 1,
-      "lit": 3,
-      "unvisited": 3
+      "unvisited": 3,
+      "lit": 3
     },
     "lit_nodes": [
       "0",
@@ -3205,6 +3199,7 @@
           "reason": "5 is a direct successor of 3"
         }
       ]
-    }
+    },
+    "_rebuilt": true
   }
 ]

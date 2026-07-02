@@ -5,7 +5,7 @@
     "depth": 50.0,
     "cons": 100.0,
     "lit": 3,
-    "time": 3.6,
+    "time": 19.8,
     "states": {
       "unvisited": 2,
       "lit": 3
@@ -15,7 +15,7 @@
       "2",
       "3"
     ],
-    "response": "Step 1: Natalia sold 48 clips in April.\n\nStep 2: In May, she sold half as many as in April, which is 48 ÷ 2 = 24 clips.\n\nStep 3: The total number of clips sold in April and May is 48 + 24 = 72 clips.\n\nFinal Answer: 72",
+    "response": "\n\nStep 1: Natalia sold 48 clips in April.  \nStep 2: In May, she sold half as many clips as in April, so 48 divided by 2 equals 24.  \nStep 3: To find the total clips sold in April and May, add 48 (April) and 24 (May): 48 + 24 = 72.  \nFinal Answer: 72",
     "lighted_graph": {
       "nodes": {
         "0": "lit",
@@ -58,24 +58,23 @@
     "correct": true,
     "depth": 50.0,
     "cons": 100.0,
-    "lit": 5,
-    "time": 5.4,
+    "lit": 4,
+    "time": 18.8,
     "states": {
-      "unvisited": 3,
-      "lit": 5
+      "unvisited": 4,
+      "lit": 4
     },
     "lit_nodes": [
-      "1",
       "3",
       "4",
       "5",
       "6"
     ],
-    "response": "Step 1: Yesterday she read 12 pages.  \nStep 2: Today she read twice as many as yesterday: 2 × 12 = 24 pages.  \nStep 3: Total pages read so far: 12 + 24 = 36 pages.  \nStep 4: Remaining pages in the book: 120 - 36 = 84 pages.  \nStep 5: She wants to read half of the remaining pages tomorrow: 84 ÷ 2 = 42 pages.  \n\nFinal Answer: 42",
+    "response": "\n\nStep 1: Calculate the number of pages read today. Since Julie read twice as many pages today as yesterday, we multiply the pages read yesterday by 2: 12 pages * 2 = 24 pages.  \nStep 2: Determine the total number of pages read so far. Add the pages read yesterday and today: 12 pages + 24 pages = 36 pages.  \nStep 3: Find the remaining pages in the book. Subtract the total pages read from the book's total pages: 120 pages - 36 pages = 84 pages.  \nStep 4: Calculate half of the remaining pages for tomorrow. Divide the remaining pages by 2: 84 pages / 2 = 42 pages.  \nFinal Answer: 42",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
-        "1": "lit",
+        "1": "unvisited",
         "2": "unvisited",
         "3": "lit",
         "4": "lit",
@@ -84,7 +83,7 @@
         "7": "unvisited"
       },
       "edges": {
-        "1->3": "used_valid",
+        "1->3": "unused",
         "1->4": "unused",
         "3->4": "used_valid",
         "0->5": "unused",
@@ -96,30 +95,24 @@
       "steps": [
         {
           "step_index": 1,
-          "node": "1",
+          "node": "3",
           "status": "lit",
-          "reason": "first step maps to fact node 1"
+          "reason": "first step maps to node 3 (reachable from facts)"
         },
         {
           "step_index": 2,
-          "node": "3",
-          "status": "lit",
-          "reason": "3 is a direct successor of 1"
-        },
-        {
-          "step_index": 3,
           "node": "4",
           "status": "lit",
           "reason": "4 is a direct successor of 3"
         },
         {
-          "step_index": 4,
+          "step_index": 3,
           "node": "5",
           "status": "lit",
           "reason": "5 is a direct successor of 4"
         },
         {
-          "step_index": 5,
+          "step_index": 4,
           "node": "6",
           "status": "lit",
           "reason": "6 is a direct successor of 5"
@@ -131,19 +124,21 @@
   {
     "id": "gsm8k_train_00005",
     "correct": true,
-    "depth": 33.333,
-    "cons": 87.5,
-    "lit": 1,
-    "time": 3.6,
+    "depth": 66.667,
+    "cons": 100.0,
+    "lit": 4,
+    "time": 41.5,
     "states": {
-      "jump": 2,
-      "unvisited": 8,
-      "lit": 1
+      "unvisited": 7,
+      "lit": 4
     },
     "lit_nodes": [
-      "6"
+      "6",
+      "7",
+      "8",
+      "9"
     ],
-    "response": "Step 1: Let yellow flowers = 10. Purple flowers are 80% more than yellow, so purple = 10 + 0.80 × 10 = 10 + 8 = 18.\n\nStep 2: Yellow and purple together = 10 + 18 = 28. Green flowers are 25% as many as this total, so green = 0.25 × 28 = 7.\n\nStep 3: Total flowers = yellow + purple + green = 10 + 18 + 7 = 35.\n\nFinal Answer: 35",
+    "response": "\n\nStep 1: Calculate the number of purple flowers. Since there are 80% more purple flowers than yellow, we compute 80% of 10 yellow flowers and add it to the original 10. 80% of 10 is 0.8 * 10 = 8. Therefore, purple flowers = 10 + 8 = 18.  \nStep 2: Find the total number of yellow and purple flowers. Adding them together gives 10 + 18 = 28.  \nStep 3: Calculate the number of green flowers. Green flowers are 25% as many as yellow and purple combined. 25% of 28 is 0.25 * 28 = 7.  \nStep 4: Sum all the flowers to find the total. Total flowers = yellow + purple + green = 10 + 18 + 7 = 35.  \nFinal Answer: 35",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -153,9 +148,9 @@
         "4": "unvisited",
         "5": "unvisited",
         "6": "lit",
-        "7": "jump",
-        "8": "jump",
-        "9": "unvisited",
+        "7": "lit",
+        "8": "lit",
+        "9": "lit",
         "10": "unvisited"
       },
       "edges": {
@@ -163,11 +158,11 @@
         "2->6": "unused",
         "5->6": "unused",
         "2->7": "unused",
-        "6->7": "unused",
+        "6->7": "used_valid",
         "3->8": "unused",
-        "7->8": "unused",
+        "7->8": "used_valid",
         "7->9": "unused",
-        "8->9": "unused",
+        "8->9": "used_valid",
         "9->10": "unused"
       },
       "steps": [
@@ -179,9 +174,21 @@
         },
         {
           "step_index": 2,
+          "node": "7",
+          "status": "lit",
+          "reason": "7 is a direct successor of 6"
+        },
+        {
+          "step_index": 3,
           "node": "8",
-          "status": "jump",
-          "reason": "8 is reachable from 6 (may span intermediate nodes)"
+          "status": "lit",
+          "reason": "8 is a direct successor of 7"
+        },
+        {
+          "step_index": 4,
+          "node": "9",
+          "status": "lit",
+          "reason": "9 is a direct successor of 8"
         }
       ]
     },
@@ -193,7 +200,7 @@
     "depth": 66.667,
     "cons": 81.667,
     "lit": 2,
-    "time": 3.7,
+    "time": 17.8,
     "states": {
       "wrong": 1,
       "unvisited": 5,
@@ -203,7 +210,7 @@
       "4",
       "6"
     ],
-    "response": "Step 1: Calculate slices from large pizzas: 2 large pizzas × 16 slices each = 32 slices.\nStep 2: Calculate slices from small pizzas: 2 small pizzas × 8 slices each = 16 slices.\nStep 3: Add them together: 32 + 16 = 48 slices.\nFinal Answer: 48",
+    "response": "\n\nStep 1: Calculate the total number of slices from the large pizzas. 2 large pizzas * 16 slices per large pizza = 32 slices.  \nStep 2: Calculate the total number of slices from the small pizzas. 2 small pizzas * 8 slices per small pizza = 16 slices.  \nStep 3: Add the slices from large and small pizzas together. 32 slices + 16 slices = 48 slices.  \nFinal Answer: 48",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -253,24 +260,23 @@
     "id": "gsm8k_train_00007",
     "correct": true,
     "depth": 50.0,
-    "cons": 100.0,
-    "lit": 4,
-    "time": 8.5,
+    "cons": 86.25,
+    "lit": 3,
+    "time": 78.4,
     "states": {
-      "unvisited": 6,
-      "lit": 4
+      "unvisited": 7,
+      "lit": 3
     },
     "lit_nodes": [
-      "1",
       "6",
       "7",
       "8"
     ],
-    "response": "Step 1: Initially, after adding jelly beans, the weight is 2 pounds. So let the weight after first step be 2 lb.\nStep 2: Adding brownies triples the weight, so new weight = 2 × 3 = 6 lb.\nStep 3: Adding another 2 pounds of jelly beans increases weight to 6 + 2 = 8 lb.\nStep 4: Adding gummy worms doubles the weight, so final weight = 8 × 2 = 16 lb.\n\nFinal Answer: 16",
+    "response": "\n\nStep 1: The box initially has some weight, but after adding jelly beans, the total weight becomes 2 pounds. So, the starting weight is 0 pounds, and adding jelly beans results in 2 pounds.  \nStep 2: Adding brownies triples the current weight. Tripling 2 pounds gives 2 * 3 = 6 pounds.  \nStep 3: Adding another 2 pounds of jelly beans increases the weight to 6 + 2 = 8 pounds.  \nStep 4: Adding gummy worms doubles the current weight. Doubling 8 pounds gives 8 * 2 = 16 pounds.  \nFinal Answer: 16",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
-        "1": "lit",
+        "1": "unvisited",
         "2": "unvisited",
         "3": "unvisited",
         "4": "unvisited",
@@ -281,7 +287,7 @@
         "9": "unvisited"
       },
       "edges": {
-        "1->6": "used_valid",
+        "1->6": "unused",
         "2->6": "unused",
         "3->7": "unused",
         "6->7": "used_valid",
@@ -292,15 +298,14 @@
       "steps": [
         {
           "step_index": 1,
-          "node": "1",
-          "status": "lit",
-          "reason": "first step maps to fact node 1"
+          "node": null,
+          "status": "wrong"
         },
         {
           "step_index": 2,
           "node": "6",
           "status": "lit",
-          "reason": "6 is a direct successor of 1"
+          "reason": "first step maps to node 6 (reachable from facts)"
         },
         {
           "step_index": 3,
@@ -322,9 +327,9 @@
     "id": "gsm8k_train_00008",
     "correct": true,
     "depth": 66.667,
-    "cons": 81.667,
+    "cons": 63.333,
     "lit": 2,
-    "time": 5.2,
+    "time": 35.0,
     "states": {
       "wrong": 1,
       "unvisited": 7,
@@ -334,7 +339,7 @@
       "7",
       "8"
     ],
-    "response": "Step 1: Calculate the total amount spent by subtracting the leftover money from the budget. Total spent = $200 - $16 = $184.\n\nStep 2: Sum the known expenses: shirt ($30) + suit pants ($46) + suit coat ($38) + socks ($11) + belt ($18) = $30 + $46 = $76; $76 + $38 = $114; $114 + $11 = $125; $125 + $18 = $143.\n\nStep 3: Subtract the sum of known expenses from the total spent to find the cost of the shoes. Shoes cost = $184 - $143 = $41.\n\nFinal Answer: 41",
+    "response": "\n\nStep 1: Calculate the total amount Alexis spent by subtracting the remaining budget from her initial budget.  \nTotal spent = $200 - $16 = $184  \n\nStep 2: Add up the costs of the items she purchased with receipts.  \nShirt + Pants + Coat + Socks + Belt = $30 + $46 + $38 + $11 + $18 = $143  \n\nStep 3: Subtract the sum of the receipts from the total spent to find the cost of the shoes.  \nCost of shoes = $184 - $143 = $41  \n\nFinal Answer: 41",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -360,18 +365,33 @@
       "steps": [
         {
           "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
           "node": "7",
           "status": "lit",
           "reason": "first step maps to node 7 (reachable from facts)"
         },
         {
-          "step_index": 2,
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
           "node": "6",
           "status": "wrong",
           "reason": "6 is not reachable from current node 7"
         },
         {
-          "step_index": 3,
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
           "node": "8",
           "status": "lit",
           "reason": "8 is a direct successor of 7"
@@ -384,20 +404,20 @@
     "id": "gsm8k_train_00011",
     "correct": true,
     "depth": 50.0,
-    "cons": 72.143,
-    "lit": 2,
-    "time": 7.2,
+    "cons": 78.0,
+    "lit": 3,
+    "time": 35.0,
     "states": {
       "wrong": 2,
       "unvisited": 8,
-      "lit": 2,
-      "redundant": 1
+      "lit": 3
     },
     "lit_nodes": [
-      "7",
-      "10"
+      "8",
+      "10",
+      "11"
     ],
-    "response": "Step 1: Determine the total amount of money Tobias had before buying the shoes. He bought shoes costing $95 and had $15 in change, so total money = $95 + $15 = $110.\n\nStep 2: Calculate the total allowance he received over three months. He gets $5 per month, so allowance = 3 × $5 = $15.\n\nStep 3: Calculate the money earned from mowing lawns. He mows 4 lawns at $15 each, so lawn money = 4 × $15 = $60.\n\nStep 4: Let d be the number of driveways shoveled. Money from shoveling = 7d dollars.\n\nStep 5: Write an equation for total money: allowance + lawn money + driveway money = $110. So, $15 + $60 + 7d = $110.\n\nStep 6: Simplify: $75 + 7d = $110. Subtract $75 from both sides: 7d = $35. Divide by 7: d = 5.\n\nStep 7: Thus, Tobias shoveled 5 driveways.\n\nFinal Answer: 5",
+    "response": "\n\nStep 1: Calculate total allowance saved over three months. 3 months * $5/month = $15.  \nStep 2: Determine total money Tobias had before buying shoes. $95 (cost of shoes) + $15 (change left) = $110.  \nStep 3: Calculate earnings from mowing 4 lawns. 4 lawns * $15/lawn = $60.  \nStep 4: Subtract allowance and lawn earnings from total money to find driveway earnings. $110 - $15 - $60 = $35.  \nStep 5: Divide driveway earnings by hourly rate to find number of driveways shoveled. $35 / $7 per driveway = 5 driveways.  \nFinal Answer: 5",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -407,11 +427,11 @@
         "4": "unvisited",
         "5": "unvisited",
         "6": "unvisited",
-        "7": "lit",
-        "8": "wrong",
+        "7": "wrong",
+        "8": "lit",
         "9": "wrong",
         "10": "lit",
-        "11": "redundant",
+        "11": "lit",
         "12": "unvisited"
       },
       "edges": {
@@ -421,8 +441,8 @@
         "2->8": "unused",
         "4->9": "unused",
         "6->9": "unused",
-        "7->10": "used_valid",
-        "8->10": "unused",
+        "7->10": "unused",
+        "8->10": "used_valid",
         "9->10": "unused",
         "4->11": "unused",
         "10->11": "used_valid",
@@ -431,44 +451,33 @@
       "steps": [
         {
           "step_index": 1,
-          "node": "7",
+          "node": "8",
           "status": "lit",
-          "reason": "first step maps to node 7 (reachable from facts)"
+          "reason": "first step maps to node 8 (reachable from facts)"
         },
         {
           "step_index": 2,
-          "node": "8",
+          "node": "7",
           "status": "wrong",
-          "reason": "8 is not reachable from current node 7"
+          "reason": "7 is not reachable from current node 8"
         },
         {
           "step_index": 3,
           "node": "9",
           "status": "wrong",
-          "reason": "9 is not reachable from current node 7"
+          "reason": "9 is not reachable from current node 8"
         },
         {
           "step_index": 4,
-          "node": null,
-          "status": "wrong"
+          "node": "10",
+          "status": "lit",
+          "reason": "10 is a direct successor of 8"
         },
         {
           "step_index": 5,
-          "node": "10",
-          "status": "lit",
-          "reason": "10 is a direct successor of 7"
-        },
-        {
-          "step_index": 6,
           "node": "11",
           "status": "lit",
           "reason": "11 is a direct successor of 10"
-        },
-        {
-          "step_index": 7,
-          "node": "11",
-          "status": "redundant",
-          "reason": "node 11 was already visited"
         }
       ]
     },
@@ -479,23 +488,24 @@
     "correct": true,
     "depth": 50.0,
     "cons": 100.0,
-    "lit": 2,
-    "time": 4.8,
+    "lit": 3,
+    "time": 16.1,
     "states": {
-      "unvisited": 5,
-      "lit": 2
+      "unvisited": 4,
+      "lit": 3
     },
     "lit_nodes": [
+      "3",
       "4",
       "5"
     ],
-    "response": "Step 1: Calculate half of the mango trees: 60 ÷ 2 = 30. Then subtract 5 to find the number of coconut trees: 30 - 5 = 25.\n\nStep 2: Add the mango trees and coconut trees to find the total: 60 + 25 = 85.\n\nFinal Answer: 85",
+    "response": "\n\nStep 1: Calculate half the number of mango trees. Half of 60 is 60 / 2 = 30.  \nStep 2: Subtract 5 from the result to find the number of coconut trees. 30 - 5 = 25.  \nStep 3: Add the number of mango trees and coconut trees together. 60 + 25 = 85.  \nFinal Answer: 85",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
         "1": "unvisited",
         "2": "unvisited",
-        "3": "unvisited",
+        "3": "lit",
         "4": "lit",
         "5": "lit",
         "6": "unvisited"
@@ -503,7 +513,7 @@
       "edges": {
         "0->3": "unused",
         "1->4": "unused",
-        "3->4": "unused",
+        "3->4": "used_valid",
         "0->5": "unused",
         "4->5": "used_valid",
         "5->6": "unused"
@@ -511,12 +521,18 @@
       "steps": [
         {
           "step_index": 1,
-          "node": "4",
+          "node": "3",
           "status": "lit",
-          "reason": "first step maps to node 4 (reachable from facts)"
+          "reason": "first step maps to node 3 (reachable from facts)"
         },
         {
           "step_index": 2,
+          "node": "4",
+          "status": "lit",
+          "reason": "4 is a direct successor of 3"
+        },
+        {
+          "step_index": 3,
           "node": "5",
           "status": "lit",
           "reason": "5 is a direct successor of 4"
@@ -527,68 +543,7 @@
   },
   {
     "id": "gsm8k_train_00013",
-    "correct": true,
-    "depth": 50.0,
-    "cons": 86.25,
-    "lit": 3,
-    "time": 8.7,
-    "states": {
-      "wrong": 1,
-      "unvisited": 3,
-      "lit": 3
-    },
-    "lit_nodes": [
-      "1",
-      "3",
-      "5"
-    ],
-    "response": "Step 1: Determine the cost of cheddar cheese. He buys 2 pounds for $10, so the cheddar cheese costs $10.\nStep 2: Calculate the cost of cream cheese. It costs half the price of the cheddar cheese, so $10 ÷ 2 = $5.\nStep 3: Calculate the cost of cold cuts. They cost twice the price of the cheddar cheese, so $10 × 2 = $20.\nStep 4: Add all costs: $10 (cheddar) + $5 (cream cheese) + $20 (cold cuts) = $35.\nFinal Answer: 35",
-    "lighted_graph": {
-      "nodes": {
-        "0": "unvisited",
-        "1": "lit",
-        "2": "unvisited",
-        "3": "lit",
-        "4": "wrong",
-        "5": "lit",
-        "6": "unvisited"
-      },
-      "edges": {
-        "1->3": "used_valid",
-        "1->4": "unused",
-        "0->5": "unused",
-        "3->5": "used_valid",
-        "4->5": "unused",
-        "5->6": "unused"
-      },
-      "steps": [
-        {
-          "step_index": 1,
-          "node": "1",
-          "status": "lit",
-          "reason": "first step maps to fact node 1"
-        },
-        {
-          "step_index": 2,
-          "node": "3",
-          "status": "lit",
-          "reason": "3 is a direct successor of 1"
-        },
-        {
-          "step_index": 3,
-          "node": "4",
-          "status": "wrong",
-          "reason": "4 is not reachable from current node 3"
-        },
-        {
-          "step_index": 4,
-          "node": "5",
-          "status": "lit",
-          "reason": "5 is a direct successor of 3"
-        }
-      ]
-    },
-    "_rebuilt": true
+    "error": "Request timed out."
   },
   {
     "id": "gsm8k_train_00019",
@@ -596,7 +551,7 @@
     "depth": 66.667,
     "cons": 100.0,
     "lit": 4,
-    "time": 5.5,
+    "time": 73.1,
     "states": {
       "unvisited": 5,
       "lit": 4
@@ -607,7 +562,7 @@
       "6",
       "7"
     ],
-    "response": "Step 1: Calculate the daily round trip distance to work. Work is 20 miles away, so round trip is 20 * 2 = 40 miles per workday.\nStep 2: Calculate total commuting distance for 5 workdays: 40 miles/day * 5 days = 200 miles.\nStep 3: Add the weekend bike ride distance: 200 miles + 200 miles = 400 miles total per week.\nStep 4: Compute time spent biking at 25 mph: time = distance / speed = 400 miles / 25 mph = 16 hours.\nFinal Answer: 16",
+    "response": "\n\nStep 1: Calculate the daily round trip distance to work. Since Tim rides back and forth each day, the total distance per day is 20 miles (to work) + 20 miles (back home) = 40 miles.  \nStep 2: Multiply the daily round trip distance by the number of workdays. 40 miles/day * 5 days = 200 miles.  \nStep 3: Add the weekend ride distance to the total workday distance. 200 miles (work) + 200 miles (weekend) = 400 miles.  \nStep 4: Calculate the total time spent biking by dividing the total distance by the speed. 400 miles / 25 mph = 16 hours.  \nFinal Answer: 16",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -663,24 +618,23 @@
     "correct": true,
     "depth": 50.0,
     "cons": 100.0,
-    "lit": 4,
-    "time": 4.1,
+    "lit": 3,
+    "time": 30.4,
     "states": {
-      "unvisited": 5,
-      "lit": 4
+      "unvisited": 6,
+      "lit": 3
     },
     "lit_nodes": [
-      "2",
       "5",
       "6",
       "7"
     ],
-    "response": "Step 1: Snowflake stamps = 11.\nStep 2: Truck stamps = 9 more than snowflake stamps = 11 + 9 = 20.\nStep 3: Rose stamps = 13 fewer than truck stamps = 20 - 13 = 7.\nStep 4: Total stamps = 11 + 20 + 7 = 38.\nFinal Answer: 38",
+    "response": "\n\nStep 1: Calculate the number of truck stamps. Bella bought 9 more truck stamps than snowflake stamps. Since she bought 11 snowflake stamps, the number of truck stamps is 11 + 9 = 20.  \nStep 2: Calculate the number of rose stamps. Bella bought 13 fewer rose stamps than truck stamps. With 20 truck stamps, the number of rose stamps is 20 - 13 = 7.  \nStep 3: Add the number of snowflake, truck, and rose stamps together. Total stamps = 11 (snowflake) + 20 (truck) + 7 (rose) = 38.  \nFinal Answer: 38",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
         "1": "unvisited",
-        "2": "lit",
+        "2": "unvisited",
         "3": "unvisited",
         "4": "unvisited",
         "5": "lit",
@@ -689,7 +643,7 @@
         "8": "unvisited"
       },
       "edges": {
-        "2->5": "used_valid",
+        "2->5": "unused",
         "3->5": "unused",
         "3->6": "unused",
         "5->6": "used_valid",
@@ -701,24 +655,18 @@
       "steps": [
         {
           "step_index": 1,
-          "node": "2",
+          "node": "5",
           "status": "lit",
-          "reason": "first step maps to fact node 2"
+          "reason": "first step maps to node 5 (reachable from facts)"
         },
         {
           "step_index": 2,
-          "node": "5",
-          "status": "lit",
-          "reason": "5 is a direct successor of 2"
-        },
-        {
-          "step_index": 3,
           "node": "6",
           "status": "lit",
           "reason": "6 is a direct successor of 5"
         },
         {
-          "step_index": 4,
+          "step_index": 3,
           "node": "7",
           "status": "lit",
           "reason": "7 is a direct successor of 6"
@@ -731,66 +679,53 @@
     "id": "gsm8k_train_00022",
     "correct": true,
     "depth": 50.0,
-    "cons": 67.0,
-    "lit": 2,
-    "time": 6.0,
+    "cons": 90.0,
+    "lit": 1,
+    "time": 39.5,
     "states": {
-      "wrong": 3,
-      "unvisited": 2,
-      "lit": 2
+      "unvisited": 5,
+      "lit": 1,
+      "redundant": 1
     },
     "lit_nodes": [
-      "0",
       "5"
     ],
-    "response": "Step 1: Let S be the number of letters in Samantha's last name, B be the number in Bobbie's, and J be the number in Jamie's. From \"Samantha’s last name has three fewer letters than Bobbie’s\", we have S = B - 3.\n\nStep 2: \"If Bobbie took two letters off her last name, she would have a last name twice the length of Jamie’s\" gives B - 2 = 2J.\n\nStep 3: Jamie’s last name is \"Grey\", which has 4 letters. So J = 4.\n\nStep 4: Substitute J into the equation: B - 2 = 2 × 4 = 8. Thus B = 8 + 2 = 10.\n\nStep 5: Then S = B - 3 = 10 - 3 = 7.\n\nFinal Answer: 7",
+    "response": "\n\nStep 1: Determine the number of letters in Jamie's last name. Jamie's last name is \"Grey,\" which has 4 letters.  \nStep 2: Let $ B $ represent the length of Bobbie's last name. According to the problem, $ B - 2 = 2 \\times 4 $. Solving this gives $ B = 8 + 2 = 10 $.  \nStep 3: Let $ S $ represent the length of Samantha's last name. Since $ S = B - 3 $, substituting $ B = 10 $ gives $ S = 10 - 3 = 7 $.  \nFinal Answer: 7",
     "lighted_graph": {
       "nodes": {
-        "0": "lit",
-        "1": "wrong",
-        "2": "wrong",
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
         "3": "unvisited",
-        "4": "wrong",
+        "4": "redundant",
         "5": "lit",
         "6": "unvisited"
       },
       "edges": {
         "1->4": "unused",
         "2->4": "unused",
-        "0->5": "used_valid",
-        "4->5": "unused",
+        "0->5": "unused",
+        "4->5": "used_valid",
         "5->6": "unused"
       },
       "steps": [
         {
           "step_index": 1,
-          "node": "0",
+          "node": "4",
           "status": "lit",
-          "reason": "first step maps to fact node 0"
+          "reason": "first step maps to node 4 (reachable from facts)"
         },
         {
           "step_index": 2,
-          "node": "1",
-          "status": "wrong",
-          "reason": "1 is not reachable from current node 0"
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
         },
         {
           "step_index": 3,
-          "node": "2",
-          "status": "wrong",
-          "reason": "2 is not reachable from current node 0"
-        },
-        {
-          "step_index": 4,
-          "node": "4",
-          "status": "wrong",
-          "reason": "4 is not reachable from current node 0"
-        },
-        {
-          "step_index": 5,
           "node": "5",
           "status": "lit",
-          "reason": "5 is a direct successor of 0"
+          "reason": "5 is a direct successor of 4"
         }
       ]
     },
@@ -800,21 +735,19 @@
     "id": "gsm8k_train_00023",
     "correct": true,
     "depth": 50.0,
-    "cons": 89.0,
-    "lit": 4,
-    "time": 4.4,
+    "cons": 59.5,
+    "lit": 1,
+    "time": 38.1,
     "states": {
       "wrong": 1,
-      "unvisited": 5,
-      "lit": 4
+      "jump": 1,
+      "unvisited": 7,
+      "lit": 1
     },
     "lit_nodes": [
-      "4",
-      "6",
-      "7",
-      "8"
+      "4"
     ],
-    "response": "Step 1: Calculate the total cost of the shorts: 5 pairs × $7 each = $35.\nStep 2: Calculate the total cost of the shoes: 2 pairs × $10 each = $20.\nStep 3: Add the cost of shorts and shoes: $35 + $20 = $55.\nStep 4: Subtract this from the total amount spent to find the cost of the tops: $75 - $55 = $20.\nStep 5: Divide the total cost of tops by the number of tops to find the price per top: $20 ÷ 4 = $5.\n\nFinal Answer: 5",
+    "response": "\n\nStep 1: Calculate the total cost of the shorts. 5 pairs of shorts at $7 each is 5 * 7 = 35 dollars.  \nStep 2: Calculate the total cost of the shoes. 2 pairs of shoes at $10 each is 2 * 10 = 20 dollars.  \nStep 3: Add the cost of the shorts and shoes together. 35 + 20 = 55 dollars.  \nStep 4: Subtract the combined cost of shorts and shoes from the total amount spent to find the cost of the tops. 75 - 55 = 20 dollars.  \nStep 5: Divide the total cost of the tops by the number of tops to find the price per top. 20 / 4 = 5 dollars.  \nFinal Answer: 5",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -823,9 +756,9 @@
         "3": "unvisited",
         "4": "lit",
         "5": "wrong",
-        "6": "lit",
-        "7": "lit",
-        "8": "lit",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "jump",
         "9": "unvisited"
       },
       "edges": {
@@ -833,13 +766,13 @@
         "1->4": "unused",
         "0->5": "unused",
         "1->5": "unused",
-        "4->6": "used_valid",
+        "4->6": "unused",
         "5->6": "unused",
         "0->7": "unused",
         "1->7": "unused",
-        "6->7": "used_valid",
+        "6->7": "unused",
         "2->8": "unused",
-        "7->8": "used_valid",
+        "7->8": "unused",
         "8->9": "unused"
       },
       "steps": [
@@ -857,21 +790,14 @@
         },
         {
           "step_index": 3,
-          "node": "6",
-          "status": "lit",
-          "reason": "6 is a direct successor of 4"
+          "node": "8",
+          "status": "jump",
+          "reason": "8 is reachable from 4 (may span intermediate nodes)"
         },
         {
           "step_index": 4,
-          "node": "7",
-          "status": "lit",
-          "reason": "7 is a direct successor of 6"
-        },
-        {
-          "step_index": 5,
-          "node": "8",
-          "status": "lit",
-          "reason": "8 is a direct successor of 7"
+          "node": null,
+          "status": "wrong"
         }
       ]
     },
@@ -881,56 +807,61 @@
     "id": "gsm8k_train_00025",
     "correct": true,
     "depth": 66.667,
-    "cons": 81.667,
-    "lit": 2,
-    "time": 3.6,
+    "cons": 63.125,
+    "lit": 1,
+    "time": 36.1,
     "states": {
       "wrong": 1,
+      "jump": 1,
       "unvisited": 6,
-      "lit": 2
+      "lit": 1
     },
     "lit_nodes": [
-      "5",
-      "7"
+      "2"
     ],
-    "response": "Step 1: Out of the first 100 balls, he hits 2/5 of them, so hit = (2/5) × 100 = 40. Therefore, not hit = 100 - 40 = 60.\nStep 2: Out of the next 75 balls, he hits 1/3 of them, so hit = (1/3) × 75 = 25. Therefore, not hit = 75 - 25 = 50.\nStep 3: Total not hit from all 175 balls = 60 + 50 = 110.\nFinal Answer: 110",
+    "response": "\n\nStep 1: Calculate the number of tennis balls Ralph hit in the first 100 balls. He hit 2/5 of them, so 100 * 2/5 = 40 balls.  \nStep 2: Calculate the number of tennis balls Ralph hit in the next 75 balls. He hit 1/3 of them, so 75 * 1/3 = 25 balls.  \nStep 3: Add the number of balls hit in both parts to find the total number of balls he hit. 40 + 25 = 65 balls.  \nStep 4: Subtract the total number of balls hit from the initial total to find how many he did not hit. 175 - 65 = 110 balls.  \nFinal Answer: 110",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
         "1": "unvisited",
-        "2": "unvisited",
-        "3": "unvisited",
+        "2": "lit",
+        "3": "wrong",
         "4": "unvisited",
-        "5": "lit",
-        "6": "wrong",
-        "7": "lit",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "jump",
         "8": "unvisited"
       },
       "edges": {
         "2->5": "unused",
         "3->6": "unused",
-        "5->7": "used_valid",
+        "5->7": "unused",
         "6->7": "unused",
         "7->8": "unused"
       },
       "steps": [
         {
           "step_index": 1,
-          "node": "5",
+          "node": "2",
           "status": "lit",
-          "reason": "first step maps to node 5 (reachable from facts)"
+          "reason": "first step maps to fact node 2"
         },
         {
           "step_index": 2,
-          "node": "6",
+          "node": "3",
           "status": "wrong",
-          "reason": "6 is not reachable from current node 5"
+          "reason": "3 is not reachable from current node 2"
         },
         {
           "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
           "node": "7",
-          "status": "lit",
-          "reason": "7 is a direct successor of 5"
+          "status": "jump",
+          "reason": "7 is reachable from 2 (may span intermediate nodes)"
         }
       ]
     },
@@ -940,44 +871,46 @@
     "id": "gsm8k_train_00026",
     "correct": true,
     "depth": 66.667,
-    "cons": 72.5,
-    "lit": 1,
-    "time": 8.2,
+    "cons": 100.0,
+    "lit": 2,
+    "time": 43.5,
     "states": {
-      "unvisited": 6,
-      "lit": 1
+      "unvisited": 5,
+      "lit": 2
     },
     "lit_nodes": [
+      "4",
       "5"
     ],
-    "response": "Step 1: Convert 2 liters to milliliters: 2 L = 2000 mL.\nStep 2: Calculate 20% of 2000 mL: (20/100) × 2000 = 400 mL.\nFinal Answer: 400",
+    "response": "\n\nStep 1: Convert the volume of seawater from liters to milliliters. Since 1 liter equals 1000 milliliters, 2 liters is 2 * 1000 = 2000 ml.  \nStep 2: Calculate 20% of the total volume of seawater to find the volume of salt. 20% of 2000 ml is 0.20 * 2000 = 400 ml.  \nFinal Answer: 400",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
         "1": "unvisited",
         "2": "unvisited",
         "3": "unvisited",
-        "4": "unvisited",
+        "4": "lit",
         "5": "lit",
         "6": "unvisited"
       },
       "edges": {
         "2->4": "unused",
         "3->4": "unused",
-        "4->5": "unused",
+        "4->5": "used_valid",
         "5->6": "unused"
       },
       "steps": [
         {
           "step_index": 1,
-          "node": null,
-          "status": "wrong"
+          "node": "4",
+          "status": "lit",
+          "reason": "first step maps to node 4 (reachable from facts)"
         },
         {
           "step_index": 2,
           "node": "5",
           "status": "lit",
-          "reason": "first step maps to node 5 (reachable from facts)"
+          "reason": "5 is a direct successor of 4"
         }
       ]
     },
@@ -987,19 +920,19 @@
     "id": "gsm8k_train_00027",
     "correct": true,
     "depth": 66.667,
-    "cons": 81.667,
+    "cons": 67.0,
     "lit": 2,
-    "time": 6.5,
+    "time": 28.4,
     "states": {
-      "wrong": 1,
-      "unvisited": 7,
+      "wrong": 2,
+      "unvisited": 6,
       "lit": 2
     },
     "lit_nodes": [
       "5",
       "8"
     ],
-    "response": "Step 1: Calculate the number of files kept after the first deletion. He downloaded 800 files and deleted 70%, so he kept 30%. 30% of 800 = 0.3 × 800 = 240 files.\n\nStep 2: Calculate the number of valuable files from the second download. He downloaded 400 more files, and 3/5 were irrelevant, so 2/5 were valuable. 2/5 of 400 = (2 × 400) / 5 = 800 / 5 = 160 files.\n\nStep 3: Add the valuable files from both rounds. 240 + 160 = 400 files.\n\nFinal Answer: 400",
+    "response": "\n\nStep 1: Calculate the number of files Brennan deleted in the first round. 70% of 800 files is 0.7 * 800 = 560 files.  \nStep 2: Subtract the deleted files from the first download to find the remaining valuable files: 800 - 560 = 240 files.  \nStep 3: Determine the number of irrelevant files in the second round. 3/5 of 400 files is (3/5) * 400 = 240 files.  \nStep 4: Subtract the irrelevant files from the second download to find the remaining valuable files: 400 - 240 = 160 files.  \nStep 5: Add the valuable files from both rounds: 240 + 160 = 400 files.  \nFinal Answer: 400",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -1008,7 +941,7 @@
         "3": "unvisited",
         "4": "unvisited",
         "5": "lit",
-        "6": "unvisited",
+        "6": "wrong",
         "7": "wrong",
         "8": "lit",
         "9": "unvisited"
@@ -1034,12 +967,23 @@
         },
         {
           "step_index": 2,
+          "node": "6",
+          "status": "wrong",
+          "reason": "6 is not reachable from current node 5"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
           "node": "7",
           "status": "wrong",
           "reason": "7 is not reachable from current node 5"
         },
         {
-          "step_index": 3,
+          "step_index": 5,
           "node": "8",
           "status": "lit",
           "reason": "8 is a direct successor of 5"
@@ -1054,7 +998,7 @@
     "depth": 50.0,
     "cons": 100.0,
     "lit": 2,
-    "time": 3.7,
+    "time": 17.0,
     "states": {
       "unvisited": 3,
       "lit": 2
@@ -1063,7 +1007,7 @@
       "2",
       "3"
     ],
-    "response": "Step 1: The first four houses each have 3 gnomes, so total gnomes in these houses is 4 × 3 = 12.\nStep 2: The total gnomes on the street is 20, so the fifth house has 20 - 12 = 8 gnomes.\n\nFinal Answer: 8",
+    "response": "\n\nStep 1: Calculate the total number of gnomes in the first four houses. Each of the first four houses has 3 gnomes, so 4 houses × 3 gnomes = 12 gnomes.  \nStep 2: Subtract the number of gnomes in the first four houses from the total number of gnomes on the street. 20 total gnomes - 12 gnomes = 8 gnomes.  \nFinal Answer: 8",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -1098,32 +1042,35 @@
   {
     "id": "gsm8k_train_00029",
     "correct": true,
-    "depth": 33.333,
-    "cons": 100.0,
-    "lit": 1,
-    "time": 5.7,
+    "depth": 83.333,
+    "cons": 92.5,
+    "lit": 3,
+    "time": 41.8,
     "states": {
-      "unvisited": 12,
-      "lit": 1
+      "jump": 2,
+      "unvisited": 8,
+      "lit": 3
     },
     "lit_nodes": [
-      "8"
+      "4",
+      "10",
+      "11"
     ],
-    "response": "Let the previous monthly income be \\(x\\) dollars. The rent and utilities cost \\(0.4x\\) dollars (40% of previous income). After a $600 increase, the new income is \\(x + 600\\) dollars, and the same rent and utilities now constitute 25% of this new income: \\(0.25(x + 600)\\). Equating the two expressions gives the equation \\(0.4x = 0.25(x + 600)\\). Solving: \\(0.4x = 0.25x + 150\\), then \\(0.15x = 150\\), so \\(x = 150 / 0.15 = 1000\\).\n\nFinal Answer: 1000",
+    "response": "\n\nStep 1: Let Mrs. Snyder's previous monthly income be $ x $. Originally, she spent 40% of her income on rent and utilities, which is $ 0.4x $. After a $600 increase, her new income is $ x + 600 $, and rent and utilities now account for 25% of this, which is $ 0.25(x + 600) $. Since the rent and utilities amount remains the same, we equate the two expressions: $ 0.4x = 0.25(x + 600) $.\n\nStep 2: Expand the right-hand side of the equation: $ 0.4x = 0.25x + 150 $.\n\nStep 3: Subtract $ 0.25x $ from both sides to isolate the variable: $ 0.4x - 0.25x = 150 $, which simplifies to $ 0.15x = 150 $.\n\nStep 4: Solve for $ x $ by dividing both sides by $ 0.15 $: $ x = \\frac{150}{0.15} $.\n\nStep 5: Calculate the division: $ x = 1000 $.\n\nFinal Answer: 1000",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
         "1": "unvisited",
         "2": "unvisited",
         "3": "unvisited",
-        "4": "unvisited",
-        "5": "unvisited",
+        "4": "lit",
+        "5": "jump",
         "6": "unvisited",
         "7": "unvisited",
-        "8": "lit",
-        "9": "unvisited",
-        "10": "unvisited",
-        "11": "unvisited",
+        "8": "unvisited",
+        "9": "jump",
+        "10": "lit",
+        "11": "lit",
         "12": "unvisited"
       },
       "edges": {
@@ -1137,16 +1084,34 @@
         "5->8": "unused",
         "7->8": "unused",
         "8->9": "unused",
-        "9->10": "unused",
-        "10->11": "unused",
+        "9->10": "used_valid",
+        "10->11": "used_valid",
         "11->12": "unused"
       },
       "steps": [
         {
           "step_index": 1,
-          "node": "8",
+          "node": "4",
           "status": "lit",
-          "reason": "first step maps to node 8 (reachable from facts)"
+          "reason": "first step maps to node 4 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "9",
+          "status": "jump",
+          "reason": "9 is reachable from 4 (may span intermediate nodes)"
+        },
+        {
+          "step_index": 3,
+          "node": "10",
+          "status": "lit",
+          "reason": "11 is a direct successor of 10"
+        },
+        {
+          "step_index": 4,
+          "node": "11",
+          "status": "lit",
+          "reason": "12 is a direct successor of 11"
         }
       ]
     },
@@ -1156,9 +1121,9 @@
     "id": "gsm8k_train_00033",
     "correct": true,
     "depth": 75.0,
-    "cons": 81.25,
+    "cons": 69.167,
     "lit": 1,
-    "time": 4.7,
+    "time": 131.7,
     "states": {
       "jump": 1,
       "unvisited": 4,
@@ -1167,7 +1132,7 @@
     "lit_nodes": [
       "2"
     ],
-    "response": "Step 1: The amount of salt needed is 1/2 times the number of cups of flour. Since flour is 16 cups, salt = (1/2) × 16 = 8 teaspoons.\n\nStep 2: Add the quantities: water (10 cups), flour (16 cups), and salt (8 teaspoons). The combined total is 10 + 16 + 8 = 34.\n\nFinal Answer: 34",
+    "response": "\n\nStep 1: Calculate the amount of salt needed. Salt is 1/2 times the number of cups of flour. Since Kimber needs 16 cups of flour, the amount of salt is $16 \\times \\frac{1}{2} = 8$ teaspoons.  \nStep 2: Add the quantities of water, flour, and salt. The total is $10$ cups of water + $16$ cups of flour + $8$ teaspoons of salt.  \nStep 3: Perform the addition: $10 + 16 + 8 = 34$.  \n\nFinal Answer: 34",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -1192,6 +1157,11 @@
         },
         {
           "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
           "node": "4",
           "status": "jump",
           "reason": "4 is reachable from 2 (may span intermediate nodes)"
@@ -1206,7 +1176,7 @@
     "depth": 50.0,
     "cons": 81.25,
     "lit": 1,
-    "time": 4.1,
+    "time": 25.9,
     "states": {
       "jump": 1,
       "unvisited": 5,
@@ -1215,7 +1185,7 @@
     "lit_nodes": [
       "3"
     ],
-    "response": "Step 1: Since 40% of students got below B, the percentage that got B and above is 100% - 40% = 60%.\n\nStep 2: Calculate 60% of 60 students: 60% × 60 = (60/100) × 60 = 0.6 × 60 = 36.\n\nFinal Answer: 36",
+    "response": "\n\nStep 1: Determine the percentage of students who got a final grade of B and above by subtracting the percentage below B from 100%. 100% - 40% = 60%.  \nStep 2: Calculate 60% of 60 students by converting the percentage to a decimal (60% = 0.60) and multiplying by the total number of students. 0.60 × 60 = 36.  \nFinal Answer: 36",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -1254,39 +1224,40 @@
   {
     "id": "gsm8k_train_00043",
     "correct": true,
-    "depth": 0.0,
-    "cons": 70.5,
-    "lit": 1,
-    "time": 6.0,
+    "depth": 50.0,
+    "cons": 100.0,
+    "lit": 4,
+    "time": 37.5,
     "states": {
-      "wrong": 2,
-      "jump": 2,
-      "unvisited": 3,
-      "lit": 1
+      "unvisited": 4,
+      "lit": 4
     },
     "lit_nodes": [
-      "0"
+      "0",
+      "3",
+      "4",
+      "6"
     ],
-    "response": "Step 1: The first earthquake caused 4 buildings to collapse.\nStep 2: Each following earthquake doubles the number of collapsing buildings from the previous one.\nStep 3: Three more earthquakes occur, so total of 4 earthquakes.\nStep 4: Second earthquake: 4 × 2 = 8 buildings. Third earthquake: 8 × 2 = 16 buildings. Fourth earthquake: 16 × 2 = 32 buildings.\nStep 5: Total collapsed buildings: 4 + 8 + 16 + 32 = 60.\n\nFinal Answer: 60",
+    "response": "\n\nStep 1: The first earthquake causes 4 buildings to collapse. Total collapsed buildings = 4.  \nStep 2: The second earthquake collapses double the first, so 4 × 2 = 8. Total collapsed buildings = 4 + 8 = 12.  \nStep 3: The third earthquake collapses double the second, so 8 × 2 = 16. Total collapsed buildings = 12 + 16 = 28.  \nStep 4: The fourth earthquake collapses double the third, so 16 × 2 = 32. Total collapsed buildings = 28 + 32 = 60.  \nFinal Answer: 60",
     "lighted_graph": {
       "nodes": {
         "0": "lit",
-        "1": "wrong",
-        "2": "wrong",
-        "3": "jump",
-        "4": "unvisited",
-        "5": "jump",
-        "6": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "lit",
+        "4": "lit",
+        "5": "unvisited",
+        "6": "lit",
         "7": "unvisited"
       },
       "edges": {
-        "0->3": "unused",
+        "0->3": "used_valid",
         "1->3": "unused",
-        "3->4": "unused",
+        "3->4": "used_valid",
         "4->5": "unused",
         "0->6": "unused",
         "3->6": "unused",
-        "4->6": "unused",
+        "4->6": "used_valid",
         "5->6": "unused",
         "6->7": "unused"
       },
@@ -1299,21 +1270,21 @@
         },
         {
           "step_index": 2,
-          "node": "1",
-          "status": "wrong",
-          "reason": "1 is not reachable from current node 0"
+          "node": "3",
+          "status": "lit",
+          "reason": "3 is a direct successor of 0"
         },
         {
           "step_index": 3,
-          "node": "2",
-          "status": "wrong",
-          "reason": "2 is not reachable from current node 0"
+          "node": "4",
+          "status": "lit",
+          "reason": "4 is a direct successor of 3"
         },
         {
           "step_index": 4,
-          "node": "5",
-          "status": "jump",
-          "reason": "5 is reachable from 0 (may span intermediate nodes)"
+          "node": "6",
+          "status": "lit",
+          "reason": "6 is a direct successor of 4"
         }
       ]
     },
@@ -1323,9 +1294,9 @@
     "id": "gsm8k_train_00044",
     "correct": true,
     "depth": 66.667,
-    "cons": 63.333,
+    "cons": 54.167,
     "lit": 1,
-    "time": 4.8,
+    "time": 34.5,
     "states": {
       "unvisited": 8,
       "lit": 1
@@ -1333,7 +1304,7 @@
     "lit_nodes": [
       "7"
     ],
-    "response": "Step 1: Calculate the total percentage spent on food, accommodation, and entertainment: 30% + 15% + 25% = 70%.  \nStep 2: Subtract that from 100% to find the percentage spent on coursework materials: 100% - 70% = 30%.  \nStep 3: Calculate 30% of $1000: 0.30 × $1000 = $300.  \n\nFinal Answer: 300",
+    "response": "\n\nStep 1: Calculate the total percentage spent on food, accommodation, and entertainment.  \n30% (food) + 15% (accommodation) + 25% (entertainment) = 70%  \n\nStep 2: Determine the percentage remaining for coursework materials.  \n100% (total budget) - 70% (spent on other categories) = 30%  \n\nStep 3: Calculate 30% of $1000 to find the amount spent on coursework materials.  \n30% of $1000 = 0.30 × 1000 = $300  \n\nFinal Answer: 300",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -1371,6 +1342,21 @@
         },
         {
           "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
           "node": "7",
           "status": "lit",
           "reason": "first step maps to node 7 (reachable from facts)"
@@ -1383,19 +1369,19 @@
     "id": "gsm8k_train_00045",
     "correct": true,
     "depth": 50.0,
-    "cons": 72.5,
-    "lit": 2,
-    "time": 4.4,
+    "cons": 72.0,
+    "lit": 1,
+    "time": 30.7,
     "states": {
       "wrong": 2,
       "unvisited": 5,
-      "lit": 2
+      "lit": 1,
+      "redundant": 1
     },
     "lit_nodes": [
-      "4",
-      "7"
+      "4"
     ],
-    "response": "Step 1: Calculate cost of Reese's: 4 bags × $9 = $36.\nStep 2: Calculate cost of Snickers: 3 bags × $5 = $15.\nStep 3: Calculate cost of Skittles: 5 bags × $7 = $35.\nStep 4: Sum all costs: piñata ($13) + Reese's ($36) + Snickers ($15) + Skittles ($35) = $13 + $36 = $49, $49 + $15 = $64, $64 + $35 = $99.\nFinal Answer: 99",
+    "response": "\n\nStep 1: Calculate the cost of Reese's bags. 4 bags * $9 per bag = $36  \nStep 2: Calculate the cost of Snickers bags. 3 bags * $5 per bag = $15  \nStep 3: Calculate the cost of Skittles bags. 5 bags * $7 per bag = $35  \nStep 4: Add the costs of all treats. $36 (Reese's) + $15 (Snickers) + $35 (Skittles) = $86  \nStep 5: Add the cost of the unicorn piñata. $86 (treats) + $13 (piñata) = $99  \nFinal Answer: 99",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -1405,7 +1391,7 @@
         "4": "lit",
         "5": "wrong",
         "6": "wrong",
-        "7": "lit",
+        "7": "redundant",
         "8": "unvisited"
       },
       "edges": {
@@ -1443,6 +1429,12 @@
           "node": "7",
           "status": "lit",
           "reason": "7 is a direct successor of 4"
+        },
+        {
+          "step_index": 5,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
         }
       ]
     },
@@ -1454,7 +1446,7 @@
     "depth": 50.0,
     "cons": 100.0,
     "lit": 2,
-    "time": 3.7,
+    "time": 22.7,
     "states": {
       "unvisited": 4,
       "lit": 2
@@ -1463,7 +1455,7 @@
       "3",
       "4"
     ],
-    "response": "Step 1: Let \\( C \\) represent the number of digits Carlos memorized. According to the problem, Mina memorized six times as many digits as Carlos, and Mina memorized 24 digits. Therefore, \\( 6C = 24 \\). Solving: \\( C = 24 \\div 6 = 4 \\).\n\nStep 2: Sam memorized six more digits than Carlos, so Sam's digits = \\( C + 6 = 4 + 6 = 10 \\).\n\nFinal Answer: 10",
+    "response": "\n\nStep 1: Let C represent the number of digits Carlos memorized. Since Mina memorized six times as many digits as Carlos and she memorized 24 digits, we can write the equation 6 * C = 24. Solving for C gives C = 24 / 6 = 4.  \nStep 2: Sam memorized six more digits than Carlos. Carlos memorized 4 digits, so Sam memorized 4 + 6 = 10 digits.  \nFinal Answer: 10",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -1502,7 +1494,7 @@
     "depth": 66.667,
     "cons": 81.667,
     "lit": 2,
-    "time": 3.6,
+    "time": 18.6,
     "states": {
       "wrong": 1,
       "unvisited": 4,
@@ -1512,7 +1504,7 @@
       "3",
       "5"
     ],
-    "response": "Step 1: Calculate the total cost of ice cream: 10 cartons × $4 per carton = $40.\nStep 2: Calculate the total cost of frozen yoghurt: 4 cartons × $1 per carton = $4.\nStep 3: Find the difference: $40 - $4 = $36.\nFinal Answer: 36",
+    "response": "\n\nStep 1: Calculate the total cost of ice cream. 10 cartons * $4 per carton = $40.  \nStep 2: Calculate the total cost of frozen yogurt. 4 cartons * $1 per carton = $4.  \nStep 3: Subtract the total cost of frozen yogurt from the total cost of ice cream. $40 - $4 = $36.  \nFinal Answer: 36",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -1558,19 +1550,16 @@
   {
     "id": "gsm8k_train_00054",
     "correct": true,
-    "depth": 50.0,
-    "cons": 87.5,
-    "lit": 1,
-    "time": 5.6,
+    "depth": 75.0,
+    "cons": 75.833,
+    "lit": 0,
+    "time": 35.9,
     "states": {
-      "jump": 2,
-      "unvisited": 7,
-      "lit": 1
+      "unvisited": 6,
+      "redundant": 4
     },
-    "lit_nodes": [
-      "5"
-    ],
-    "response": "Step 1: Leah earned $28. She spent one-seventh on a milkshake: $28 ÷ 7 = $4 spent. Remaining after milkshake: $28 - $4 = $24.\nStep 2: She put half of the remaining into savings: $24 ÷ 2 = $12 saved. Remaining in wallet: $24 - $12 = $12.\nStep 3: Her dog shredded all but $1 from her wallet. So the amount lost is the money shredded: $12 - $1 = $11.\n\nFinal Answer: 11",
+    "lit_nodes": [],
+    "response": "\n\nStep 1: Calculate the amount Leah spent on the milkshake.  \n$28 \\div 7 = 4$  \nLeah spent $4 on a milkshake.  \n\nStep 2: Determine the remaining money after buying the milkshake.  \n$28 - 4 = 24$  \nShe had $24 left after the milkshake.  \n\nStep 3: Find out how much Leah put into her savings account.  \n$24 \\div 2 = 12$  \nShe saved $12.  \n\nStep 4: Calculate the amount left in her wallet after savings.  \n$24 - 12 = 12$  \nShe had $12 in her wallet before the dog shredded it.  \n\nStep 5: Determine the amount lost when the dog shredded the money.  \n$12 - 1 = 11$  \nLeah lost $11.  \n\nFinal Answer: 11",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -1578,32 +1567,90 @@
         "2": "unvisited",
         "3": "unvisited",
         "4": "unvisited",
-        "5": "lit",
-        "6": "jump",
-        "7": "jump",
-        "8": "unvisited",
+        "5": "redundant",
+        "6": "redundant",
+        "7": "redundant",
+        "8": "redundant",
         "9": "unvisited"
       },
       "edges": {
         "0->5": "unused",
         "0->6": "unused",
-        "5->6": "unused",
-        "6->7": "unused",
-        "7->8": "unused",
+        "5->6": "used_valid",
+        "6->7": "used_valid",
+        "7->8": "used_valid",
         "8->9": "unused"
       },
       "steps": [
         {
           "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
           "node": "5",
           "status": "lit",
           "reason": "first step maps to node 5 (reachable from facts)"
         },
         {
-          "step_index": 2,
+          "step_index": 3,
+          "node": "5",
+          "status": "redundant",
+          "reason": "node 5 was already visited"
+        },
+        {
+          "step_index": 4,
+          "node": "6",
+          "status": "lit",
+          "reason": "6 is a direct successor of 5"
+        },
+        {
+          "step_index": 5,
+          "node": "6",
+          "status": "redundant",
+          "reason": "node 6 was already visited"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
           "node": "7",
-          "status": "jump",
-          "reason": "7 is reachable from 5 (may span intermediate nodes)"
+          "status": "lit",
+          "reason": "7 is a direct successor of 6"
+        },
+        {
+          "step_index": 8,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
+        },
+        {
+          "step_index": 9,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
+        },
+        {
+          "step_index": 10,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
+        },
+        {
+          "step_index": 11,
+          "node": "8",
+          "status": "lit",
+          "reason": "8 is a direct successor of 7"
+        },
+        {
+          "step_index": 12,
+          "node": "8",
+          "status": "redundant",
+          "reason": "node 8 was already visited"
         }
       ]
     },
@@ -1613,27 +1660,25 @@
     "id": "gsm8k_train_00055",
     "correct": true,
     "depth": 66.667,
-    "cons": 81.667,
-    "lit": 2,
-    "time": 1.2,
+    "cons": 71.667,
+    "lit": 0,
+    "time": 29.3,
     "states": {
-      "unvisited": 6,
-      "lit": 2
+      "wrong": 1,
+      "unvisited": 5,
+      "redundant": 2
     },
-    "lit_nodes": [
-      "5",
-      "6"
-    ],
-    "response": "Step 1: Calculate total number of flowers: 25 roses + 40 tulips + 35 daisies = 100 flowers.\nStep 2: Calculate number of flowers that are not roses: 40 tulips + 35 daisies = 75 flowers.\nStep 3: Calculate percentage: (75 / 100) * 100% = 75%.\n\nFinal Answer: 75",
+    "lit_nodes": [],
+    "response": "\n\nStep 1: Calculate the total number of flowers in the garden by adding the number of roses, tulips, and daisies.  \nTotal flowers = 25 roses + 40 tulips + 35 daisies = 100 flowers.  \n\nStep 2: Determine the number of flowers that are not roses by subtracting the number of roses from the total.  \nNon-roses = Total flowers - Roses = 100 - 25 = 75 flowers.  \n\nStep 3: Compute the percentage of flowers that are not roses using the formula:  \nPercentage = (Non-roses / Total flowers) × 100 = (75 / 100) × 100 = 75%.  \n\nFinal Answer: 75",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
         "1": "unvisited",
         "2": "unvisited",
         "3": "unvisited",
-        "4": "unvisited",
-        "5": "lit",
-        "6": "lit",
+        "4": "redundant",
+        "5": "wrong",
+        "6": "redundant",
         "7": "unvisited"
       },
       "edges": {
@@ -1642,27 +1687,46 @@
         "2->4": "unused",
         "1->5": "unused",
         "2->5": "unused",
-        "4->6": "unused",
-        "5->6": "used_valid",
+        "4->6": "used_valid",
+        "5->6": "unused",
         "6->7": "unused"
       },
       "steps": [
         {
           "step_index": 1,
-          "node": "5",
+          "node": "4",
           "status": "lit",
-          "reason": "first step maps to node 5 (reachable from facts)"
+          "reason": "first step maps to node 4 (reachable from facts)"
         },
         {
           "step_index": 2,
-          "node": "6",
-          "status": "lit",
-          "reason": "6 is a direct successor of 5"
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
         },
         {
           "step_index": 3,
-          "node": null,
-          "status": "wrong"
+          "node": "5",
+          "status": "wrong",
+          "reason": "5 is not reachable from current node 4"
+        },
+        {
+          "step_index": 4,
+          "node": "5",
+          "status": "wrong",
+          "reason": "5 is not reachable from current node 4"
+        },
+        {
+          "step_index": 5,
+          "node": "6",
+          "status": "lit",
+          "reason": "6 is a direct successor of 4"
+        },
+        {
+          "step_index": 6,
+          "node": "6",
+          "status": "redundant",
+          "reason": "node 6 was already visited"
         }
       ]
     },
@@ -1672,20 +1736,22 @@
     "id": "gsm8k_train_00057",
     "correct": true,
     "depth": 33.333,
-    "cons": 81.5,
-    "lit": 2,
-    "time": 5.8,
+    "cons": 70.75,
+    "lit": 3,
+    "time": 41.0,
     "states": {
+      "unvisited": 4,
+      "redundant": 1,
       "wrong": 1,
-      "jump": 2,
-      "unvisited": 5,
-      "lit": 2
+      "jump": 1,
+      "lit": 3
     },
     "lit_nodes": [
       "3",
+      "6",
       "7"
     ],
-    "response": "Step 1: Calculate butter used for chocolate chip cookies: one-half of 10 kg = 10 × 1/2 = 5 kg.\nStep 2: Calculate butter used for peanut butter cookies: one-fifth of 10 kg = 10 × 1/5 = 2 kg.\nStep 3: Total used so far = 5 + 2 = 7 kg. Remaining after these = 10 - 7 = 3 kg.\nStep 4: For sugar cookies, use one-third of remaining butter: one-third of 3 kg = 3 × 1/3 = 1 kg.\nStep 5: Total used = 5 + 2 + 1 = 8 kg. Butter left = 10 - 8 = 2 kg.\nFinal Answer: 2",
+    "response": "\n\nStep 1: Calculate the amount of butter used for chocolate chip cookies.  \n10 kg * (1/2) = 5 kg  \n\nStep 2: Calculate the amount of butter used for peanut butter cookies.  \n10 kg * (1/5) = 2 kg  \n\nStep 3: Subtract the butter used for chocolate chip and peanut butter cookies from the original amount to find the remaining butter before making sugar cookies.  \n10 kg - 5 kg - 2 kg = 3 kg  \n\nStep 4: Calculate the amount of butter used for sugar cookies, which is one-third of the remaining 3 kg.  \n3 kg * (1/3) = 1 kg  \n\nStep 5: Subtract the butter used for sugar cookies from the remaining butter to find the final amount left.  \n3 kg - 1 kg = 2 kg  \n\nFinal Answer: 2",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -1694,9 +1760,9 @@
         "3": "lit",
         "4": "wrong",
         "5": "jump",
-        "6": "jump",
+        "6": "lit",
         "7": "lit",
-        "8": "unvisited",
+        "8": "redundant",
         "9": "unvisited"
       },
       "edges": {
@@ -1714,27 +1780,55 @@
       "steps": [
         {
           "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
           "node": "3",
           "status": "lit",
           "reason": "first step maps to node 3 (reachable from facts)"
         },
         {
-          "step_index": 2,
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
           "node": "4",
           "status": "wrong",
           "reason": "4 is not reachable from current node 3"
         },
         {
-          "step_index": 3,
+          "step_index": 5,
           "node": "6",
           "status": "jump",
           "reason": "6 is reachable from 3 (may span intermediate nodes)"
         },
         {
-          "step_index": 4,
+          "step_index": 6,
+          "node": "6",
+          "status": "lit",
+          "reason": "7 is a direct successor of 6"
+        },
+        {
+          "step_index": 7,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
+        },
+        {
+          "step_index": 8,
           "node": "7",
           "status": "lit",
           "reason": "8 is a direct successor of 7"
+        },
+        {
+          "step_index": 9,
+          "node": "8",
+          "status": "redundant",
+          "reason": "node 8 was already visited"
         }
       ]
     },
@@ -1746,7 +1840,7 @@
     "depth": 66.667,
     "cons": 86.25,
     "lit": 3,
-    "time": 5.1,
+    "time": 30.8,
     "states": {
       "wrong": 1,
       "unvisited": 3,
@@ -1757,7 +1851,7 @@
       "3",
       "5"
     ],
-    "response": "Step 1: Calculate the total oil in the 10 cans: 10 × 8 = 80 liters.\nStep 2: Subtract that from the total to find the remaining oil: 290 - 80 = 210 liters.\nStep 3: Determine the number of remaining cans: 24 - 10 = 14 cans.\nStep 4: Divide the remaining oil by the number of remaining cans: 210 ÷ 14 = 15 liters.\n\nFinal Answer: 15",
+    "response": "\n\nStep 1: Calculate the total amount of oil in the 10 cans. 10 cans * 8 liters/can = 80 liters.  \nStep 2: Subtract the oil in the 10 cans from the total oil to find the remaining oil. 290 liters - 80 liters = 210 liters.  \nStep 3: Determine the number of remaining cans. 24 cans - 10 cans = 14 cans.  \nStep 4: Divide the remaining oil by the number of remaining cans to find the amount per can. 210 liters / 14 cans = 15 liters/can.  \nFinal Answer: 15",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -1811,20 +1905,20 @@
   {
     "id": "gsm8k_train_00064",
     "correct": true,
-    "depth": 33.333,
-    "cons": 70.5,
+    "depth": 66.667,
+    "cons": 59.5,
     "lit": 1,
-    "time": 5.1,
+    "time": 37.1,
     "states": {
       "wrong": 2,
-      "jump": 2,
-      "unvisited": 6,
+      "jump": 1,
+      "unvisited": 7,
       "lit": 1
     },
     "lit_nodes": [
       "4"
     ],
-    "response": "Step 1: Calculate the hourly wage for the second job. Since it is 20% less than $20, subtract 20% of $20: $20 * 0.20 = $4, so the wage is $20 - $4 = $16 per hour. Alternatively, $20 * (1 - 0.20) = $20 * 0.80 = $16.\n\nStep 2: Determine hours worked at the second job. He works half of 30 hours, so 30 / 2 = 15 hours.\n\nStep 3: Calculate earnings from the main job: 30 hours * $20/hour = $600.\n\nStep 4: Calculate earnings from the second job: 15 hours * $16/hour = $240.\n\nStep 5: Add the earnings: $600 + $240 = $840.\n\nFinal Answer: 840",
+    "response": "\n\nStep 1: Calculate James's hourly rate at his second job. Since he earns 20% less than $20 per hour, subtract 20% of $20 from $20. 20% of $20 is 0.20 * 20 = $4. Therefore, his second job hourly rate is 20 - 4 = $16.\n\nStep 2: Compute earnings from the main job. James works 30 hours at $20 per hour. 30 * 20 = $600.\n\nStep 3: Determine hours worked at the second job. Half of 30 hours is 15 hours.\n\nStep 4: Calculate earnings from the second job. 15 hours * $16 per hour = 15 * 16 = $240.\n\nStep 5: Add earnings from both jobs to find total weekly earnings. $600 (main job) + $240 (second job) = $840.\n\nFinal Answer: 840",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -1832,11 +1926,11 @@
         "2": "unvisited",
         "3": "unvisited",
         "4": "lit",
-        "5": "jump",
+        "5": "unvisited",
         "6": "wrong",
         "7": "wrong",
-        "8": "jump",
-        "9": "unvisited",
+        "8": "unvisited",
+        "9": "jump",
         "10": "unvisited"
       },
       "edges": {
@@ -1862,21 +1956,27 @@
         },
         {
           "step_index": 2,
-          "node": "7",
-          "status": "wrong",
-          "reason": "7 is not reachable from current node 4"
-        },
-        {
-          "step_index": 3,
           "node": "6",
           "status": "wrong",
           "reason": "6 is not reachable from current node 4"
         },
         {
+          "step_index": 3,
+          "node": "7",
+          "status": "wrong",
+          "reason": "7 is not reachable from current node 4"
+        },
+        {
           "step_index": 4,
-          "node": "8",
+          "node": "7",
+          "status": "wrong",
+          "reason": "7 is not reachable from current node 4"
+        },
+        {
+          "step_index": 5,
+          "node": "9",
           "status": "jump",
-          "reason": "8 is reachable from 4 (may span intermediate nodes)"
+          "reason": "9 is reachable from 4 (may span intermediate nodes)"
         }
       ]
     },
@@ -1886,9 +1986,9 @@
     "id": "gsm8k_train_00069",
     "correct": true,
     "depth": 66.667,
-    "cons": 81.667,
+    "cons": 100.0,
     "lit": 2,
-    "time": 3.3,
+    "time": 22.5,
     "states": {
       "unvisited": 3,
       "lit": 2
@@ -1897,7 +1997,7 @@
       "2",
       "3"
     ],
-    "response": "Step 1: Calculate the number of arms from the starfish: 7 starfish × 5 arms each = 35 arms.\nStep 2: Calculate the number of arms from the seastar: 1 seastar × 14 arms = 14 arms.\nStep 3: Add the arms together: 35 + 14 = 49.\n\nFinal Answer: 49",
+    "response": "\n\nStep 1: Calculate the total number of arms from the 7 starfish. Each starfish has 5 arms, so 7 * 5 = 35 arms.  \nStep 2: Add the arms from the seastar. The seastar has 14 arms, so 35 + 14 = 49 arms.  \nFinal Answer: 49",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -1920,11 +2020,6 @@
         },
         {
           "step_index": 2,
-          "node": null,
-          "status": "wrong"
-        },
-        {
-          "step_index": 3,
           "node": "3",
           "status": "lit",
           "reason": "3 is a direct successor of 2"
@@ -1939,7 +2034,7 @@
     "depth": 66.667,
     "cons": 100.0,
     "lit": 2,
-    "time": 2.9,
+    "time": 12.7,
     "states": {
       "unvisited": 3,
       "lit": 2
@@ -1948,7 +2043,7 @@
       "2",
       "3"
     ],
-    "response": "Step 1: Martha has 68 apples. Tim has 30 less, so Tim's apples = 68 - 30 = 38.\nStep 2: Harry has half as many as Tim, so Harry's apples = 38 / 2 = 19.\n\nFinal Answer: 19",
+    "response": "\n\nStep 1: Determine the number of apples Tim has by subtracting 30 from Martha's 68 apples.  \n68 - 30 = 38  \n\nStep 2: Calculate the number of apples Harry has by taking half of Tim's apples.  \n38 / 2 = 19  \n\nFinal Answer: 19",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -1986,7 +2081,7 @@
     "depth": 50.0,
     "cons": 100.0,
     "lit": 3,
-    "time": 4.0,
+    "time": 20.8,
     "states": {
       "unvisited": 5,
       "lit": 3
@@ -1996,7 +2091,7 @@
       "5",
       "6"
     ],
-    "response": "Step 1: Calculate revenue from selling 3 crafts at $12 each: 3 × 12 = 36 dollars.\nStep 2: Add the extra $7 tip: 36 + 7 = 43 dollars total.\nStep 3: Subtract the $18 deposit: 43 - 18 = 25 dollars left.\n\nFinal Answer: 25",
+    "response": "\n\nStep 1: Calculate the total money from selling crafts. Hillary sells 3 crafts at $12 each, so 3 * 12 = 36 dollars.  \nStep 2: Add the extra $7 given by the customer. Total profit is 36 + 7 = 43 dollars.  \nStep 3: Subtract the $18 deposited into the bank account. Remaining money is 43 - 18 = 25 dollars.  \nFinal Answer: 25",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -2043,18 +2138,19 @@
     "id": "gsm8k_train_00075",
     "correct": true,
     "depth": 66.667,
-    "cons": 81.667,
+    "cons": 60.714,
     "lit": 2,
-    "time": 2.9,
+    "time": 28.7,
     "states": {
-      "unvisited": 9,
+      "wrong": 3,
+      "unvisited": 6,
       "lit": 2
     },
     "lit_nodes": [
       "5",
       "9"
     ],
-    "response": "Step 1: Calculate Dale's cost: 2 slices of toast at £1 each = 2 × £1 = £2; 2 eggs at £3 each = 2 × £3 = £6; total for Dale = £2 + £6 = £8.\nStep 2: Calculate Andrew's cost: 1 slice of toast at £1 = £1; 2 eggs at £3 each = £6; total for Andrew = £1 + £6 = £7.\nStep 3: Add both costs: £8 + £7 = £15.\nFinal Answer: 15",
+    "response": "\n\nStep 1: Calculate Dale's cost for toast. 2 slices * £1/slice = £2.  \nStep 2: Calculate Dale's cost for eggs. 2 eggs * £3/egg = £6.  \nStep 3: Add Dale's toast and egg costs. £2 + £6 = £8.  \nStep 4: Calculate Andrew's cost for toast. 1 slice * £1/slice = £1.  \nStep 5: Calculate Andrew's cost for eggs. 2 eggs * £3/egg = £6.  \nStep 6: Add Andrew's toast and egg costs. £1 + £6 = £7.  \nStep 7: Add Dale's and Andrew's totals. £8 + £7 = £15.  \nFinal Answer: 15",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -2063,9 +2159,9 @@
         "3": "unvisited",
         "4": "unvisited",
         "5": "lit",
-        "6": "unvisited",
-        "7": "unvisited",
-        "8": "unvisited",
+        "6": "wrong",
+        "7": "wrong",
+        "8": "wrong",
         "9": "lit",
         "10": "unvisited"
       },
@@ -2097,14 +2193,37 @@
         },
         {
           "step_index": 2,
-          "node": "9",
-          "status": "lit",
-          "reason": "9 is a direct successor of 5"
+          "node": "7",
+          "status": "wrong",
+          "reason": "7 is not reachable from current node 5"
         },
         {
           "step_index": 3,
           "node": null,
           "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": "6",
+          "status": "wrong",
+          "reason": "6 is not reachable from current node 5"
+        },
+        {
+          "step_index": 5,
+          "node": "8",
+          "status": "wrong",
+          "reason": "8 is not reachable from current node 5"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": "9",
+          "status": "lit",
+          "reason": "9 is a direct successor of 5"
         }
       ]
     },
@@ -2116,7 +2235,7 @@
     "depth": 50.0,
     "cons": 100.0,
     "lit": 2,
-    "time": 3.3,
+    "time": 23.6,
     "states": {
       "unvisited": 4,
       "lit": 2
@@ -2125,7 +2244,7 @@
       "3",
       "4"
     ],
-    "response": "Step 1: The boxer has 4 months until the fight, and loses 3 kg per month. Total weight loss = 4 months × 3 kg/month = 12 kg.\nStep 2: Starting weight is 97 kg. Subtract total loss: 97 kg - 12 kg = 85 kg.\nFinal Answer: 85",
+    "response": "\n\nStep 1: Calculate the total weight loss over 4 months. The boxer loses 3 kg each month, so 3 kg/month × 4 months = 12 kg.  \nStep 2: Subtract the total weight loss from the initial weight. 97 kg - 12 kg = 85 kg.  \nFinal Answer: 85",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -2163,29 +2282,30 @@
     "id": "gsm8k_train_00083",
     "correct": true,
     "depth": 75.0,
-    "cons": 72.5,
-    "lit": 3,
-    "time": 7.8,
+    "cons": 81.667,
+    "lit": 4,
+    "time": 43.3,
     "states": {
-      "wrong": 3,
+      "wrong": 2,
       "unvisited": 4,
-      "lit": 3
+      "lit": 4
     },
     "lit_nodes": [
-      "3",
+      "4",
+      "6",
       "7",
       "8"
     ],
-    "response": "Step 1: Calculate Paityn's total hats: 20 red + 24 blue = 44 hats.\nStep 2: Calculate Zola's red hats: (4/5) × 20 = 16 red hats.\nStep 3: Calculate Zola's blue hats: 2 × 24 = 48 blue hats.\nStep 4: Calculate Zola's total hats: 16 + 48 = 64 hats.\nStep 5: Calculate combined total hats: 44 + 64 = 108 hats.\nStep 6: Divide equally between two people: 108 ÷ 2 = 54 hats each.\n\nFinal Answer: 54",
+    "response": "\n\nStep 1: Calculate the number of red hats Zola has. Zola has 4/5 times as many red hats as Paityn, who has 20 red hats. So, 20 * (4/5) = 16 red hats.  \nStep 2: Calculate the number of blue hats Zola has. Zola has twice the number of blue hats as Paityn, who has 24 blue hats. So, 24 * 2 = 48 blue hats.  \nStep 3: Find the total number of hats Paityn has. 20 red hats + 24 blue hats = 44 hats.  \nStep 4: Find the total number of hats Zola has. 16 red hats + 48 blue hats = 64 hats.  \nStep 5: Calculate the combined total of all hats. 44 hats (Paityn) + 64 hats (Zola) = 108 hats.  \nStep 6: Divide the total number of hats by 2 to share them equally. 108 hats / 2 = 54 hats.  \nFinal Answer: 54",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
         "1": "unvisited",
         "2": "unvisited",
-        "3": "lit",
-        "4": "wrong",
+        "3": "wrong",
+        "4": "lit",
         "5": "wrong",
-        "6": "wrong",
+        "6": "lit",
         "7": "lit",
         "8": "lit",
         "9": "unvisited"
@@ -2194,43 +2314,43 @@
         "0->3": "unused",
         "1->4": "unused",
         "1->5": "unused",
-        "4->6": "unused",
+        "4->6": "used_valid",
         "5->6": "unused",
-        "3->7": "used_valid",
-        "6->7": "unused",
+        "3->7": "unused",
+        "6->7": "used_valid",
         "7->8": "used_valid",
         "8->9": "unused"
       },
       "steps": [
         {
           "step_index": 1,
-          "node": "3",
+          "node": "4",
           "status": "lit",
-          "reason": "first step maps to node 3 (reachable from facts)"
+          "reason": "first step maps to node 4 (reachable from facts)"
         },
         {
           "step_index": 2,
-          "node": "4",
+          "node": "5",
           "status": "wrong",
-          "reason": "4 is not reachable from current node 3"
+          "reason": "5 is not reachable from current node 4"
         },
         {
           "step_index": 3,
-          "node": "5",
+          "node": "3",
           "status": "wrong",
-          "reason": "5 is not reachable from current node 3"
+          "reason": "3 is not reachable from current node 4"
         },
         {
           "step_index": 4,
           "node": "6",
-          "status": "wrong",
-          "reason": "6 is not reachable from current node 3"
+          "status": "lit",
+          "reason": "6 is a direct successor of 4"
         },
         {
           "step_index": 5,
           "node": "7",
           "status": "lit",
-          "reason": "7 is a direct successor of 3"
+          "reason": "7 is a direct successor of 6"
         },
         {
           "step_index": 6,
@@ -2248,24 +2368,25 @@
     "depth": 66.667,
     "cons": 81.667,
     "lit": 2,
-    "time": 22.5,
+    "time": 32.6,
     "states": {
-      "unvisited": 6,
+      "wrong": 1,
+      "unvisited": 5,
       "lit": 2
     },
     "lit_nodes": [
-      "4",
+      "5",
       "6"
     ],
-    "response": "Step 1: The daily average (Monday to Thursday) is 40 books per day.  \nStep 2: On Friday, he borrows 40% more than the daily average, so 40 × 1.4 = 56 books.  \nStep 3: Total books for the week (Monday to Friday) is 4 × 40 + 56 = 160 + 56 = 216.  \n\nFinal Answer: 216",
+    "response": "\n\nStep 1: Calculate the number of books borrowed from Monday to Thursday. Since Krystian borrows 40 books each day for 4 days, the total is 4 * 40 = 160 books.  \nStep 2: Determine the number of books borrowed on Friday. A 40% increase on the daily average of 40 books is 0.4 * 40 = 16 books. Adding this to the daily average gives 40 + 16 = 56 books on Friday.  \nStep 3: Add the books borrowed from Monday to Thursday and the books borrowed on Friday. The total is 160 + 56 = 216 books.  \nFinal Answer: 216",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
         "1": "unvisited",
         "2": "unvisited",
         "3": "unvisited",
-        "4": "lit",
-        "5": "unvisited",
+        "4": "wrong",
+        "5": "lit",
         "6": "lit",
         "7": "unvisited"
       },
@@ -2275,27 +2396,28 @@
         "0->5": "unused",
         "1->5": "unused",
         "3->5": "unused",
-        "4->6": "used_valid",
-        "5->6": "unused",
+        "4->6": "unused",
+        "5->6": "used_valid",
         "6->7": "unused"
       },
       "steps": [
         {
           "step_index": 1,
-          "node": null,
-          "status": "wrong"
+          "node": "5",
+          "status": "lit",
+          "reason": "first step maps to node 5 (reachable from facts)"
         },
         {
           "step_index": 2,
           "node": "4",
-          "status": "lit",
-          "reason": "first step maps to node 4 (reachable from facts)"
+          "status": "wrong",
+          "reason": "4 is not reachable from current node 5"
         },
         {
           "step_index": 3,
           "node": "6",
           "status": "lit",
-          "reason": "6 is a direct successor of 4"
+          "reason": "6 is a direct successor of 5"
         }
       ]
     },
@@ -2307,7 +2429,7 @@
     "depth": 75.0,
     "cons": 81.667,
     "lit": 2,
-    "time": 5.0,
+    "time": 76.2,
     "states": {
       "wrong": 1,
       "unvisited": 7,
@@ -2317,7 +2439,7 @@
       "7",
       "8"
     ],
-    "response": "Step 1: Calculate total daily earnings with bonus. Baseline pay is $80 per day, plus $20 bonus = $100 per day.\nStep 2: Calculate total hours worked. Normal 8 hours plus 2 extra hours = 10 hours.\nStep 3: Divide total earnings by total hours to find hourly rate: $100 ÷ 10 = $10 per hour.\n\nFinal Answer: 10",
+    "response": "\n\nStep 1: Calculate John's total earnings when working hard. He earns $80 a day plus a $20 bonus, so total earnings = $80 + $20 = $100.  \nStep 2: Determine the total hours worked when earning the bonus. He works 8 hours plus 2 extra hours, so total hours = 8 + 2 = 10 hours.  \nStep 3: Compute his hourly wage by dividing total earnings by total hours. Hourly wage = $100 / 10 hours = $10 per hour.  \nFinal Answer: 10",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -2368,19 +2490,19 @@
     "id": "gsm8k_train_00097",
     "correct": true,
     "depth": 50.0,
-    "cons": 81.667,
-    "lit": 2,
-    "time": 19.2,
+    "cons": 67.5,
+    "lit": 1,
+    "time": 54.3,
     "states": {
       "wrong": 1,
       "unvisited": 6,
-      "lit": 2
+      "lit": 1,
+      "redundant": 1
     },
     "lit_nodes": [
-      "1",
-      "7"
+      "1"
     ],
-    "response": "Step 1: Calculate the total books shelved from the top section: 12 history + 8 romance + 4 poetry = 24 books. These were all the books on the top section initially.\n\nStep 2: Let the total books on the bottom section be B. Half were mystery books, so the remaining half consisted of 5 Western novels and 6 biographies. Thus, B/2 = 5 + 6 = 11, so B = 22.\n\nStep 3: Total books on the cart initially = top section books + bottom section books = 24 + 22 = 46.\n\nFinal Answer: 46",
+    "response": "\n\nStep 1: Calculate the total number of books on the top section.  \n12 history books + 8 romance books + 4 poetry books = 24 books.  \n\nStep 2: Determine the total number of books on the bottom section.  \nThe remaining books shelved from the bottom section include 5 Western novels and 6 biographies, totaling 5 + 6 = 11 books. Since these 11 books represent half of the bottom section, the total number of books on the bottom section is 11 × 2 = 22 books.  \n\nStep 3: Add the books from the top and bottom sections to find the total number on the cart.  \n24 (top) + 22 (bottom) = 46 books.  \n\nFinal Answer: 46",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -2388,9 +2510,9 @@
         "2": "unvisited",
         "3": "unvisited",
         "4": "unvisited",
-        "5": "wrong",
-        "6": "unvisited",
-        "7": "lit",
+        "5": "unvisited",
+        "6": "wrong",
+        "7": "redundant",
         "8": "unvisited"
       },
       "edges": {
@@ -2405,21 +2527,37 @@
       "steps": [
         {
           "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
           "node": "1",
           "status": "lit",
           "reason": "first step maps to fact node 1"
         },
         {
-          "step_index": 2,
-          "node": "5",
-          "status": "wrong",
-          "reason": "5 is not reachable from current node 1"
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
         },
         {
-          "step_index": 3,
+          "step_index": 4,
+          "node": "6",
+          "status": "wrong",
+          "reason": "6 is not reachable from current node 1"
+        },
+        {
+          "step_index": 5,
           "node": "7",
           "status": "lit",
           "reason": "7 is a direct successor of 1"
+        },
+        {
+          "step_index": 6,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
         }
       ]
     },
@@ -2427,23 +2565,21 @@
   },
   {
     "id": "gsm8k_train_00103",
-    "correct": false,
-    "depth": 33.333,
-    "cons": 42.917,
-    "lit": 3,
-    "time": 13.5,
+    "correct": true,
+    "depth": 66.667,
+    "cons": 76.875,
+    "lit": 2,
+    "time": 40.9,
     "states": {
-      "wrong": 1,
-      "unvisited": 11,
-      "lit": 3,
-      "redundant": 1
+      "jump": 1,
+      "unvisited": 13,
+      "lit": 2
     },
     "lit_nodes": [
       "11",
-      "12",
-      "13"
+      "12"
     ],
-    "response": "Step 1: Calculate sentences typed in the first session: 20 minutes × 6 sentences per minute = 120 sentences.\nStep 2: Second session is 15 minutes longer than the first, so 20 + 15 = 35 minutes. Sentences typed: 35 × 6 = 210.\nStep 3: Third session after the meeting: 18 minutes × 6 = 108 sentences.\nStep 4: Total typed today: 120 + 210 + 108 = 438 sentences.\nStep 5: Erased 40 sentences, so net added: 438 - 40 = 398 sentences.\nStep 6: Let S be the number of sentences at start of today. Then S + 398 = 536, so S = 536 - 398 = 138.\n\nFinal Answer: 138",
+    "response": "\n\nStep 1: Calculate the total time Janice spent typing today. She typed for 20 minutes, then 15 minutes longer, and then 18 minutes more. Total time = 20 + 15 + 18 = 53 minutes.  \nStep 2: Determine the total number of sentences typed during these sessions. At 6 sentences per minute, total sentences typed = 53 * 6 = 318 sentences.  \nStep 3: Subtract the number of sentences erased. Net sentences added today = 318 - 40 = 278 sentences.  \nStep 4: The final total sentences in the paper is 536. To find the starting number, subtract the net sentences added today from the final total. Starting sentences = 536 - 278 = 258.  \nFinal Answer: 258",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -2454,13 +2590,13 @@
         "5": "unvisited",
         "6": "unvisited",
         "7": "unvisited",
-        "8": "redundant",
+        "8": "unvisited",
         "9": "unvisited",
-        "10": "wrong",
+        "10": "unvisited",
         "11": "lit",
         "12": "lit",
-        "13": "lit",
-        "14": "unvisited",
+        "13": "unvisited",
+        "14": "jump",
         "15": "unvisited"
       },
       "edges": {
@@ -2477,53 +2613,40 @@
         "2->9": "unused",
         "0->10": "unused",
         "4->10": "unused",
-        "8->11": "used_valid",
+        "8->11": "unused",
         "9->11": "unused",
         "10->11": "unused",
         "3->12": "unused",
         "11->12": "used_valid",
         "5->13": "unused",
         "7->13": "unused",
-        "12->13": "used_valid",
+        "12->13": "unused",
         "13->14": "unused",
         "14->15": "unused"
       },
       "steps": [
         {
           "step_index": 1,
-          "node": "8",
-          "status": "lit",
-          "reason": "first step maps to node 8 (reachable from facts)"
+          "node": null,
+          "status": "wrong"
         },
         {
           "step_index": 2,
-          "node": "8",
-          "status": "redundant",
-          "reason": "node 8 was already visited"
+          "node": "11",
+          "status": "lit",
+          "reason": "first step maps to node 11 (reachable from facts)"
         },
         {
           "step_index": 3,
-          "node": "10",
-          "status": "wrong",
-          "reason": "10 is not reachable from current node 8"
-        },
-        {
-          "step_index": 4,
-          "node": "11",
-          "status": "lit",
-          "reason": "11 is a direct successor of 8"
-        },
-        {
-          "step_index": 5,
           "node": "12",
           "status": "lit",
           "reason": "12 is a direct successor of 11"
         },
         {
-          "step_index": 6,
-          "node": "13",
-          "status": "lit",
-          "reason": "13 is a direct successor of 12"
+          "step_index": 4,
+          "node": "14",
+          "status": "jump",
+          "reason": "14 is reachable from 12 (may span intermediate nodes)"
         }
       ]
     },
@@ -2535,7 +2658,7 @@
     "depth": 66.667,
     "cons": 100.0,
     "lit": 2,
-    "time": 3.4,
+    "time": 16.0,
     "states": {
       "unvisited": 4,
       "lit": 2
@@ -2544,7 +2667,7 @@
       "3",
       "4"
     ],
-    "response": "Step 1: Calculate the number of people transported per day. There are 4 trips per day, and each trip can take up to 12 people. So, per day: \\(4 \\times 12 = 48\\) people.\n\nStep 2: Calculate the number of people transported in 2 days. Multiply the daily capacity by 2: \\(48 \\times 2 = 96\\) people.\n\nFinal Answer: 96",
+    "response": "\n\nStep 1: Calculate the number of people transported in one day by multiplying the number of trips per day by the capacity of the boat per trip: 4 trips/day * 12 people/trip = 48 people/day.  \nStep 2: Multiply the daily capacity by the number of days to find the total number of people transported in 2 days: 48 people/day * 2 days = 96 people.  \nFinal Answer: 96",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -2580,25 +2703,31 @@
   {
     "id": "gsm8k_train_00108",
     "correct": false,
-    "depth": 0.0,
-    "cons": 22.5,
-    "lit": 0,
-    "time": 7.2,
+    "depth": 33.333,
+    "cons": 28.417,
+    "lit": 2,
+    "time": 61.1,
     "states": {
-      "unvisited": 9
+      "wrong": 3,
+      "jump": 1,
+      "unvisited": 3,
+      "lit": 2
     },
-    "lit_nodes": [],
-    "response": "Step 1: Calculate total number of pills. Henry took 9 pills per day for 14 days, so total pills = 9 × 14 = 126.  \nStep 2: Determine the cost per day. Of the 9 pills daily, 4 cost $1.50 each, so cost for those 4 = 4 × 1.50 = $6.00. The remaining 5 pills each cost $1.50 + $5.50 = $7.00, so cost for those 5 = 5 × 7.00 = $35.00. Total cost per day = 6.00 + 35.00 = $41.00.  \nStep 3: Calculate total cost over 14 days: 41.00 × 14 = $574.00. Alternatively, total cost from $1.50 pills: 4 × 14 = 56 pills, cost = 56 × 1.50 = $84.00; total cost from $7.00 pills: 5 × 14 = 70 pills, cost = 70 × 7.00 = $490.00; sum = 84 + 490 = $574.00.  \n\nFinal Answer: 574",
+    "lit_nodes": [
+      "0",
+      "5"
+    ],
+    "response": "\n\nStep 1: Calculate the total number of pills taken.  \nHenry took 9 pills per day for 14 days:  \n$ 9 \\text{ pills/day} \\times 14 \\text{ days} = 126 \\text{ pills} $\n\nStep 2: Determine the cost per pill for each type.  \n4 pills cost $1.50 each. The remaining 5 pills cost $5.50 more than $1.50:  \n$ 1.50 + 5.50 = 7.00 $  \nSo, the 5 pills cost $7.00 each.\n\nStep 3: Calculate the daily cost of the pills.  \nCost for 4 pills:  \n$ 4 \\times 1.50 = 6.00 $  \nCost for 5 pills:  \n$ 5 \\times 7.00 = 35.00 $  \nTotal daily cost:  \n$ 6.00 + 35.00 = 41.00 $\n\nStep 4: Multiply the daily cost by the number of days.  \nTotal cost over 14 days:  \n$ 41.00 \\times 14 = 574.00 $\n\nFinal Answer: 574.00",
     "lighted_graph": {
       "nodes": {
-        "0": "unvisited",
+        "0": "lit",
         "1": "unvisited",
         "2": "unvisited",
-        "3": "unvisited",
-        "4": "unvisited",
-        "5": "unvisited",
-        "6": "unvisited",
-        "7": "unvisited",
+        "3": "jump",
+        "4": "wrong",
+        "5": "lit",
+        "6": "wrong",
+        "7": "wrong",
         "8": "unvisited"
       },
       "edges": {
@@ -2608,7 +2737,7 @@
         "3->5": "unused",
         "4->5": "unused",
         "1->6": "unused",
-        "5->7": "unused",
+        "5->7": "wrong",
         "6->7": "unused",
         "7->8": "unused"
       },
@@ -2620,11 +2749,75 @@
         },
         {
           "step_index": 2,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 3,
           "node": null,
           "status": "wrong"
         },
         {
-          "step_index": 3,
+          "step_index": 4,
+          "node": "4",
+          "status": "wrong",
+          "reason": "4 is not reachable from current node 0"
+        },
+        {
+          "step_index": 5,
+          "node": "4",
+          "status": "wrong",
+          "reason": "4 is not reachable from current node 0"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": "6",
+          "status": "wrong",
+          "reason": "6 is not reachable from current node 0"
+        },
+        {
+          "step_index": 8,
+          "node": "6",
+          "status": "wrong",
+          "reason": "6 is not reachable from current node 0"
+        },
+        {
+          "step_index": 9,
+          "node": "5",
+          "status": "jump",
+          "reason": "5 is reachable from 0 (may span intermediate nodes)"
+        },
+        {
+          "step_index": 10,
+          "node": "5",
+          "status": "lit",
+          "reason": "7 is a direct successor of 5"
+        },
+        {
+          "step_index": 11,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
+        },
+        {
+          "step_index": 12,
+          "node": "7",
+          "status": "wrong",
+          "reason": "no mapped DAG node"
+        },
+        {
+          "step_index": 13,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 14,
           "node": null,
           "status": "wrong"
         }
@@ -2635,19 +2828,21 @@
   {
     "id": "gsm8k_train_00109",
     "correct": true,
-    "depth": 66.667,
-    "cons": 81.25,
-    "lit": 1,
-    "time": 3.7,
+    "depth": 100.0,
+    "cons": 100.0,
+    "lit": 4,
+    "time": 28.8,
     "states": {
-      "jump": 1,
-      "unvisited": 6,
-      "lit": 1
+      "unvisited": 4,
+      "lit": 4
     },
     "lit_nodes": [
-      "4"
+      "4",
+      "5",
+      "6",
+      "7"
     ],
-    "response": "Step 1: Let A represent the number of chicken nuggets Alyssa ate. Keely and Kendall each ate twice as many as Alyssa, so they each ate 2A nuggets. The total number of nuggets is the sum: A + 2A + 2A = 5A.\nStep 2: The total is given as 100, so we have 5A = 100. Dividing both sides by 5 gives A = 20.\nFinal Answer: 20",
+    "response": "\n\nStep 1: Let the number of chicken nuggets Alyssa ate be represented by $ A $. Since Keely and Kendall each ate twice as many as Alyssa, their amounts are $ 2A $ and $ 2A $ respectively.  \nStep 2: The total number of chicken nuggets ordered is 100, so the equation becomes $ A + 2A + 2A = 100 $. Simplifying the left side gives $ 5A = 100 $.  \nStep 3: Solve for $ A $ by dividing both sides of the equation by 5: $ A = \\frac{100}{5} $.  \nStep 4: Calculate $ A = 20 $.  \n\nFinal Answer: 20",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -2655,9 +2850,9 @@
         "2": "unvisited",
         "3": "unvisited",
         "4": "lit",
-        "5": "unvisited",
-        "6": "jump",
-        "7": "unvisited"
+        "5": "lit",
+        "6": "lit",
+        "7": "lit"
       },
       "edges": {
         "0->3": "unused",
@@ -2666,9 +2861,9 @@
         "3->4": "unused",
         "0->5": "unused",
         "1->5": "unused",
-        "4->5": "unused",
-        "5->6": "unused",
-        "6->7": "unused"
+        "4->5": "used_valid",
+        "5->6": "used_valid",
+        "6->7": "used_valid"
       },
       "steps": [
         {
@@ -2679,9 +2874,21 @@
         },
         {
           "step_index": 2,
+          "node": "5",
+          "status": "lit",
+          "reason": "5 is a direct successor of 4"
+        },
+        {
+          "step_index": 3,
           "node": "6",
-          "status": "jump",
-          "reason": "6 is reachable from 4 (may span intermediate nodes)"
+          "status": "lit",
+          "reason": "6 is a direct successor of 5"
+        },
+        {
+          "step_index": 4,
+          "node": "7",
+          "status": "lit",
+          "reason": "7 is a direct successor of 6"
         }
       ]
     },
@@ -2693,7 +2900,7 @@
     "depth": 50.0,
     "cons": 100.0,
     "lit": 3,
-    "time": 4.6,
+    "time": 25.2,
     "states": {
       "unvisited": 5,
       "lit": 3
@@ -2703,7 +2910,7 @@
       "5",
       "6"
     ],
-    "response": "Step 1: Calculate the cost of juice: juice is two times the price of bread, which is $2, so juice costs 2 × $2 = $4.\nStep 2: Calculate total spent: bread $2 + butter $3 + juice $4 = $2 + $3 + $4 = $9.\nStep 3: Subtract total spent from the amount he had: $15 - $9 = $6.\nFinal Answer: 6",
+    "response": "\n\nStep 1: Calculate the price of the juice, which is two times the price of the bread. Since the bread costs $2, the juice costs 2 * $2 = $4.  \nStep 2: Add the prices of all the groceries: $2 (bread) + $3 (butter) + $4 (juice) = $9.  \nStep 3: Subtract the total cost of groceries from the amount Paul had: $15 - $9 = $6.  \nFinal Answer: 6",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -2753,7 +2960,7 @@
     "depth": 66.667,
     "cons": 86.25,
     "lit": 3,
-    "time": 5.1,
+    "time": 22.5,
     "states": {
       "unvisited": 5,
       "lit": 3
@@ -2763,7 +2970,7 @@
       "5",
       "6"
     ],
-    "response": "Step 1: The gallery initially has 400 photos. On the first day, they took half as many photos as the gallery has, so first day photos = 400 ÷ 2 = 200.\n\nStep 2: On the second day, they took 120 more photos than the first day, so second day photos = 200 + 120 = 320.\n\nStep 3: Total photos added = first day + second day = 200 + 320 = 520.\n\nStep 4: Total photos in gallery after adding = initial gallery photos + photos added = 400 + 520 = 920.\n\nFinal Answer: 920",
+    "response": "\n\nStep 1: Calculate the number of photos taken on the first day. Half of 400 is 400 / 2 = 200.  \nStep 2: Determine the number of photos taken on the second day. This is 120 more than the first day: 200 + 120 = 320.  \nStep 3: Add the photos from both days to the original gallery count. The total new photos are 200 + 320 = 520.  \nStep 4: Combine the original gallery photos with the new ones: 400 + 520 = 920.  \nFinal Answer: 920",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -2814,35 +3021,32 @@
   },
   {
     "id": "gsm8k_train_00118",
-    "correct": true,
-    "depth": 66.667,
-    "cons": 86.25,
-    "lit": 3,
-    "time": 6.5,
+    "correct": false,
+    "depth": 0.0,
+    "cons": 28.0,
+    "lit": 1,
+    "time": 149.9,
     "states": {
-      "wrong": 1,
-      "unvisited": 2,
-      "lit": 3
+      "unvisited": 5,
+      "lit": 1
     },
     "lit_nodes": [
-      "2",
-      "3",
-      "4"
+      "2"
     ],
-    "response": "Step 1: Identify the initial number of objects Jeanette can juggle, which is 3.\nStep 2: Determine the weekly increase: she learns 2 more objects each week.\nStep 3: Calculate the total increase over 5 weeks: 2 objects/week × 5 weeks = 10 objects.\nStep 4: Add the total increase to the initial amount: 3 + 10 = 13.\n\nFinal Answer: 13",
+    "response": "\n\nStep 1: Jeanette starts with 3 objects in week 1.  \nStep 2: After week 1, she adds 2 objects for week 2: 3 + 2 = 5.  \nStep 3: After week 2, she adds another 2 objects for week 3: 5 + 2 = 7.  \nStep 4: After week 3, she adds another 2 objects for week 4: 7 + 2 = 9.  \nStep 5: After week 4, she adds another 2 objects for week 5: 9 + 2 = 11.  \nFinal Answer: 11",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
-        "1": "wrong",
+        "1": "unvisited",
         "2": "lit",
-        "3": "lit",
-        "4": "lit",
+        "3": "unvisited",
+        "4": "unvisited",
         "5": "unvisited"
       },
       "edges": {
         "1->3": "unused",
-        "2->3": "used_valid",
-        "3->4": "used_valid",
+        "2->3": "unused",
+        "3->4": "unused",
         "4->5": "unused"
       },
       "steps": [
@@ -2854,21 +3058,23 @@
         },
         {
           "step_index": 2,
-          "node": "1",
-          "status": "wrong",
-          "reason": "1 is not reachable from current node 2"
+          "node": null,
+          "status": "wrong"
         },
         {
           "step_index": 3,
-          "node": "3",
-          "status": "lit",
-          "reason": "3 is a direct successor of 2"
+          "node": null,
+          "status": "wrong"
         },
         {
           "step_index": 4,
-          "node": "4",
-          "status": "lit",
-          "reason": "4 is a direct successor of 3"
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
         }
       ]
     },
@@ -2878,18 +3084,18 @@
     "id": "gsm8k_train_00124",
     "correct": true,
     "depth": 50.0,
-    "cons": 81.667,
-    "lit": 2,
-    "time": 5.4,
+    "cons": 90.0,
+    "lit": 1,
+    "time": 51.3,
     "states": {
       "unvisited": 6,
-      "lit": 2
+      "lit": 1,
+      "redundant": 1
     },
     "lit_nodes": [
-      "5",
       "6"
     ],
-    "response": "Step 1: Let the amount of yarn for the first ball be x feet. Since the first ball is half the size of the second, the second ball requires 2x feet. The third ball is three times as large as the first, so it requires 3x feet.\n\nStep 2: Given that the third ball used 27 feet, we have 3x = 27. Solving for x gives x = 27 / 3 = 9 feet.\n\nStep 3: The second ball uses 2x = 2 * 9 = 18 feet.\n\nFinal Answer: 18",
+    "response": "\n\nStep 1: Let the size of the first ball be represented as S1, the second as S2, and the third as S3. According to the problem, S1 = (1/2) S2 and S3 = 3 * S1. Since S3 is given as 27 feet, we can substitute into the second equation: 27 = 3 * S1.  \nStep 2: Solving for S1, divide both sides of the equation by 3: S1 = 27 / 3 = 9 feet.  \nStep 3: Now that we know S1 = 9 feet, substitute this value into the first equation to find S2: S2 = 2 * S1 = 2 * 9 = 18 feet.  \nFinal Answer: 18",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -2897,7 +3103,7 @@
         "2": "unvisited",
         "3": "unvisited",
         "4": "unvisited",
-        "5": "lit",
+        "5": "redundant",
         "6": "lit",
         "7": "unvisited"
       },
@@ -2911,14 +3117,15 @@
       "steps": [
         {
           "step_index": 1,
-          "node": null,
-          "status": "wrong"
+          "node": "5",
+          "status": "lit",
+          "reason": "first step maps to node 5 (reachable from facts)"
         },
         {
           "step_index": 2,
           "node": "5",
-          "status": "lit",
-          "reason": "first step maps to node 5 (reachable from facts)"
+          "status": "redundant",
+          "reason": "node 5 was already visited"
         },
         {
           "step_index": 3,
@@ -2934,88 +3141,21 @@
     "id": "gsm8k_train_00134",
     "correct": true,
     "depth": 50.0,
-    "cons": 86.25,
-    "lit": 3,
-    "time": 4.5,
+    "cons": 89.0,
+    "lit": 4,
+    "time": 39.7,
     "states": {
       "wrong": 1,
-      "unvisited": 5,
-      "lit": 3
-    },
-    "lit_nodes": [
-      "5",
-      "6",
-      "7"
-    ],
-    "response": "Step 1: Calculate the cost of one adult ticket: $109. Since there are two adults, the total cost for adults is 2 × $109 = $218.\nStep 2: Calculate the discounted price for a child under 12: $109 - $5 = $104. With two children, the total cost for children is 2 × $104 = $208.\nStep 3: Sum the total cost for all tickets: $218 + $208 = $426.\nStep 4: Subtract the total cost from the $500 given: $500 - $426 = $74.\nFinal Answer: 74",
-    "lighted_graph": {
-      "nodes": {
-        "0": "unvisited",
-        "1": "unvisited",
-        "2": "unvisited",
-        "3": "unvisited",
-        "4": "wrong",
-        "5": "lit",
-        "6": "lit",
-        "7": "lit",
-        "8": "unvisited"
-      },
-      "edges": {
-        "1->3": "unused",
-        "3->4": "unused",
-        "1->5": "unused",
-        "4->6": "unused",
-        "5->6": "used_valid",
-        "2->7": "unused",
-        "6->7": "used_valid",
-        "7->8": "unused"
-      },
-      "steps": [
-        {
-          "step_index": 1,
-          "node": "5",
-          "status": "lit",
-          "reason": "first step maps to node 5 (reachable from facts)"
-        },
-        {
-          "step_index": 2,
-          "node": "4",
-          "status": "wrong",
-          "reason": "4 is not reachable from current node 5"
-        },
-        {
-          "step_index": 3,
-          "node": "6",
-          "status": "lit",
-          "reason": "6 is a direct successor of 5"
-        },
-        {
-          "step_index": 4,
-          "node": "7",
-          "status": "lit",
-          "reason": "7 is a direct successor of 6"
-        }
-      ]
-    },
-    "_rebuilt": true
-  },
-  {
-    "id": "gsm8k_train_00135",
-    "correct": true,
-    "depth": 75.0,
-    "cons": 100.0,
-    "lit": 3,
-    "time": 4.0,
-    "states": {
       "unvisited": 4,
-      "lit": 3
+      "lit": 4
     },
     "lit_nodes": [
       "3",
       "4",
-      "5"
+      "6",
+      "7"
     ],
-    "response": "Step 1: Let B represent the square footage of Benedict's house. According to the problem, Kennedy's house is 600 square feet larger than 4 times Benedict's house, so Kennedy's = 4B + 600. We are given Kennedy's house is 10000 square feet, so the equation is 4B + 600 = 10000.\n\nStep 2: Subtract 600 from both sides: 4B = 10000 - 600 = 9400.\n\nStep 3: Divide both sides by 4: B = 9400 / 4 = 2350.\n\nFinal Answer: 2350",
+    "response": "\n\nStep 1: Calculate the cost of each child's ticket. Each child's ticket is $109 - $5 = $104.  \nStep 2: Calculate the total cost for the two children. 2 children * $104 = $208.  \nStep 3: Calculate the total cost for the two adults. 2 adults * $109 = $218.  \nStep 4: Add the total costs for adults and children. $208 + $218 = $426.  \nStep 5: Subtract the total cost from the amount paid to find the change. $500 - $426 = $74.  \nFinal Answer: 74",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",
@@ -3023,17 +3163,20 @@
         "2": "unvisited",
         "3": "lit",
         "4": "lit",
-        "5": "lit",
-        "6": "unvisited"
+        "5": "wrong",
+        "6": "lit",
+        "7": "lit",
+        "8": "unvisited"
       },
       "edges": {
-        "0->2": "unused",
-        "0->3": "unused",
         "1->3": "unused",
-        "2->3": "unused",
         "3->4": "used_valid",
-        "4->5": "used_valid",
-        "5->6": "unused"
+        "1->5": "unused",
+        "4->6": "used_valid",
+        "5->6": "unused",
+        "2->7": "unused",
+        "6->7": "used_valid",
+        "7->8": "unused"
       },
       "steps": [
         {
@@ -3051,8 +3194,109 @@
         {
           "step_index": 3,
           "node": "5",
+          "status": "wrong",
+          "reason": "5 is not reachable from current node 4"
+        },
+        {
+          "step_index": 4,
+          "node": "6",
+          "status": "lit",
+          "reason": "6 is a direct successor of 4"
+        },
+        {
+          "step_index": 5,
+          "node": "7",
+          "status": "lit",
+          "reason": "7 is a direct successor of 6"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "gsm8k_train_00135",
+    "correct": true,
+    "depth": 75.0,
+    "cons": 81.875,
+    "lit": 1,
+    "time": 33.0,
+    "states": {
+      "wrong": 1,
+      "unvisited": 2,
+      "lit": 1,
+      "redundant": 3
+    },
+    "lit_nodes": [
+      "2"
+    ],
+    "response": "\n\nStep 1: Let Benedict's house size be $ B $ square feet. According to the problem, Kennedy's house is 600 square feet larger than 4 times Benedict's house. This can be written as the equation:  \n$ K = 4B + 600 $  \nGiven $ K = 10,000 $, substitute into the equation:  \n$ 10,000 = 4B + 600 $  \n\nStep 2: Subtract 600 from both sides to isolate the term with $ B $:  \n$ 10,000 - 600 = 4B $  \n$ 9,400 = 4B $  \n\nStep 3: Divide both sides of the equation by 4 to solve for $ B $:  \n$ B = \\frac{9,400}{4} $  \n$ B = 2,350 $  \n\nFinal Answer: 2350",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "wrong",
+        "2": "lit",
+        "3": "redundant",
+        "4": "redundant",
+        "5": "redundant",
+        "6": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "0->3": "unused",
+        "1->3": "unused",
+        "2->3": "used_valid",
+        "3->4": "used_valid",
+        "4->5": "used_valid",
+        "5->6": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "2",
+          "status": "lit",
+          "reason": "first step maps to node 2 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "3",
+          "status": "lit",
+          "reason": "3 is a direct successor of 2"
+        },
+        {
+          "step_index": 3,
+          "node": "1",
+          "status": "wrong",
+          "reason": "1 is not reachable from current node 3"
+        },
+        {
+          "step_index": 4,
+          "node": "3",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        },
+        {
+          "step_index": 5,
+          "node": "4",
+          "status": "lit",
+          "reason": "4 is a direct successor of 3"
+        },
+        {
+          "step_index": 6,
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
+        },
+        {
+          "step_index": 7,
+          "node": "5",
           "status": "lit",
           "reason": "5 is a direct successor of 4"
+        },
+        {
+          "step_index": 8,
+          "node": "5",
+          "status": "redundant",
+          "reason": "node 5 was already visited"
         }
       ]
     },
@@ -3064,7 +3308,7 @@
     "depth": 66.667,
     "cons": 81.667,
     "lit": 2,
-    "time": 4.5,
+    "time": 23.5,
     "states": {
       "wrong": 1,
       "unvisited": 4,
@@ -3074,7 +3318,7 @@
       "3",
       "5"
     ],
-    "response": "Step 1: Calculate total flights walked up: 5 trips up × 3 flights per trip = 15 flights.\nStep 2: Calculate total flights walked down: 3 trips down × 3 flights per trip = 9 flights.\nStep 3: Sum the up and down flights: 15 + 9 = 24 flights.\nFinal Answer: 24",
+    "response": "\n\nStep 1: Calculate the total flights Janice walks up. She goes up 3 flights 5 times: 3 * 5 = 15 flights.  \nStep 2: Calculate the total flights Janice walks down. She goes down 3 flights 3 times: 3 * 3 = 9 flights.  \nStep 3: Add the flights walked up and down to find the total: 15 + 9 = 24 flights.  \nFinal Answer: 24",
     "lighted_graph": {
       "nodes": {
         "0": "unvisited",

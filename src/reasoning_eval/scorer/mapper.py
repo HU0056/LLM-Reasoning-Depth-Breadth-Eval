@@ -59,6 +59,54 @@ def _extract_json(text):
     raise ValueError(f"No parseable JSON: {text[:200]}")
 
 
+def _extract_computed_value(text: str) -> str | None:
+    """Extract the final computed numeric result from a step or gold node.
+
+    GSM8K gold nodes: "80/100 * 10 = <<80/100*10=8>>8 more" → "8"
+    Model steps: "80% of 10 is 8, so 10 + 8 = 18." → "18" (last = value)
+    """
+    # Try <<calc=result>> format first (GSM8K gold nodes)
+    m = re.findall(r'<<[^>]*?=\s*([0-9]+(?:\.[0-9]+)?)\s*>>', text)
+    if m:
+        return m[-1]  # Last <<>> result is the node's output
+    # Try last = <integer> pattern
+    m = re.findall(r'=\s*([0-9]+(?:\.[0-9]+)?)', text)
+    if m:
+        return m[-1]  # Last = value is the computed result
+    return None
+
+
+def _math_value_match(steps: list[str],
+                      nodes: list[dict]) -> dict[int, tuple[str, str]]:
+    """Match steps to gold nodes where the computed numeric value is unique.
+
+    Each gold reasoning step computes a specific value (e.g. "10+8=18" → 18).
+    If a model step computes the same value AND that value is unique across
+    all gold nodes, it's a deterministic match — no LLM needed.
+
+    Returns {step_index: (node_id, matched_value)}.
+    """
+    # Build {value: [node_ids]} from gold nodes
+    val_to_nodes: dict[str, list[str]] = {}
+    for n in nodes:
+        prop = n.get('proposition', '') or ''
+        val = _extract_computed_value(prop)
+        if val is not None:
+            val_to_nodes.setdefault(val, []).append(n.get('id', ''))
+
+    # Only uniquely-valued nodes can be matched deterministically
+    unique_vals = {v: ids[0] for v, ids in val_to_nodes.items()
+                   if len(ids) == 1}
+
+    matches: dict[int, tuple[str, str]] = {}
+    for i, step in enumerate(steps):
+        val = _extract_computed_value(step)
+        if val is not None and val in unique_vals:
+            matches[i] = (unique_vals[val], val)
+
+    return matches
+
+
 def _build_proposition_map(nodes: list[dict]) -> dict[str, list[str]]:
     """Build {proposition: [node_id, ...]} for single-letter props."""
     import re
@@ -110,6 +158,19 @@ def map_all_steps(steps: list[str], graph: dict, *, client=None) -> list[Mapping
         nid = _proposition_fast_match(step, prop_map, nodes)
         if nid:
             edge_matches[i] = MappingResult(step, nid, 0.80, f"prop→{nid}")
+
+    # Fast path 3: math value uniqueness match
+    #   "80% of 10 is 8, so 10+8=18" → last computed value = "18"
+    #   If "18" is uniquely computed by gold node 6 → deterministic match
+    math_matches = _math_value_match(steps, nodes)
+    for i, step in enumerate(steps):
+        if i in edge_matches:
+            continue
+        if i in math_matches:
+            nid, val = math_matches[i]
+            edge_matches[i] = MappingResult(
+                step, nid, 0.85,
+                f"math: computes {val}→{nid}")
 
     # No LLM client → return fast-path matches only
     if client is None or client.demo_mode:

@@ -1,0 +1,3374 @@
+[
+  {
+    "id": "omni_math_test_00026",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 88.3,
+    "states": {
+      "unvisited": 23
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "1->3": "unused",
+        "2->4": "unused",
+        "3->4": "unused",
+        "2->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "5->10": "unused",
+        "9->10": "unused",
+        "6->11": "unused",
+        "7->11": "unused",
+        "11->12": "unused",
+        "12->13": "unused",
+        "12->14": "unused",
+        "13->14": "unused",
+        "14->15": "unused",
+        "15->16": "unused",
+        "16->17": "unused",
+        "17->18": "unused",
+        "18->19": "unused",
+        "4->20": "unused",
+        "19->20": "unused",
+        "20->21": "unused",
+        "21->22": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00102",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 103.1,
+    "states": {
+      "unvisited": 25
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited",
+        "24": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "2->3": "unused",
+        "2->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "7->9": "unused",
+        "8->10": "unused",
+        "9->10": "unused",
+        "10->11": "unused",
+        "11->12": "unused",
+        "12->13": "unused",
+        "13->14": "unused",
+        "14->15": "unused",
+        "12->16": "unused",
+        "15->16": "unused",
+        "16->17": "unused",
+        "17->18": "unused",
+        "15->19": "unused",
+        "18->19": "unused",
+        "15->20": "unused",
+        "18->20": "unused",
+        "18->21": "unused",
+        "19->21": "unused",
+        "20->21": "unused",
+        "21->22": "unused",
+        "10->23": "unused",
+        "22->23": "unused",
+        "23->24": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00108",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 74.0,
+    "states": {
+      "unvisited": 33
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited",
+        "24": "unvisited",
+        "25": "unvisited",
+        "26": "unvisited",
+        "27": "unvisited",
+        "28": "unvisited",
+        "29": "unvisited",
+        "30": "unvisited",
+        "31": "unvisited",
+        "32": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "1->2": "unused",
+        "2->3": "unused",
+        "2->4": "unused",
+        "2->5": "unused",
+        "2->6": "unused",
+        "2->7": "unused",
+        "2->8": "unused",
+        "2->9": "unused",
+        "2->10": "unused",
+        "2->11": "unused",
+        "2->12": "unused",
+        "2->13": "unused",
+        "2->14": "unused",
+        "2->15": "unused",
+        "15->16": "unused",
+        "16->17": "unused",
+        "17->18": "unused",
+        "16->19": "unused",
+        "18->20": "unused",
+        "19->20": "unused",
+        "20->21": "unused",
+        "21->22": "unused",
+        "22->23": "unused",
+        "15->24": "unused",
+        "24->25": "unused",
+        "24->26": "unused",
+        "25->27": "unused",
+        "26->27": "unused",
+        "27->28": "unused",
+        "27->29": "unused",
+        "23->30": "unused",
+        "29->30": "unused",
+        "30->31": "unused",
+        "31->32": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00122",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 92.5,
+    "states": {
+      "unvisited": 24
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited"
+      },
+      "edges": {
+        "0->5": "unused",
+        "3->6": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "1->8": "unused",
+        "0->9": "unused",
+        "8->9": "unused",
+        "9->10": "unused",
+        "0->11": "unused",
+        "11->12": "unused",
+        "12->13": "unused",
+        "13->14": "unused",
+        "9->15": "unused",
+        "15->16": "unused",
+        "9->17": "unused",
+        "17->18": "unused",
+        "18->19": "unused",
+        "14->20": "unused",
+        "16->20": "unused",
+        "19->20": "unused",
+        "20->21": "unused",
+        "21->22": "unused",
+        "22->23": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00130",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 105.8,
+    "states": {
+      "unvisited": 18
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited"
+      },
+      "edges": {
+        "0->5": "unused",
+        "1->6": "unused",
+        "2->6": "unused",
+        "3->7": "unused",
+        "4->8": "unused",
+        "8->9": "unused",
+        "9->10": "unused",
+        "9->11": "unused",
+        "10->12": "unused",
+        "11->12": "unused",
+        "12->13": "unused",
+        "13->14": "unused",
+        "14->15": "unused",
+        "15->16": "unused",
+        "16->17": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00177",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 94.3,
+    "states": {
+      "unvisited": 35
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited",
+        "24": "unvisited",
+        "25": "unvisited",
+        "26": "unvisited",
+        "27": "unvisited",
+        "28": "unvisited",
+        "29": "unvisited",
+        "30": "unvisited",
+        "31": "unvisited",
+        "32": "unvisited",
+        "33": "unvisited",
+        "34": "unvisited"
+      },
+      "edges": {
+        "0->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "8->5": "unused",
+        "9->5": "unused",
+        "4->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "5->10": "unused",
+        "3->11": "unused",
+        "11->12": "unused",
+        "5->13": "unused",
+        "12->13": "unused",
+        "13->14": "unused",
+        "14->15": "unused",
+        "14->16": "unused",
+        "15->17": "unused",
+        "16->17": "unused",
+        "17->18": "unused",
+        "19->18": "unused",
+        "20->18": "unused",
+        "26->18": "unused",
+        "2->19": "unused",
+        "17->20": "unused",
+        "20->21": "unused",
+        "21->22": "unused",
+        "22->23": "unused",
+        "23->24": "unused",
+        "23->25": "unused",
+        "14->26": "unused",
+        "26->27": "unused",
+        "27->28": "unused",
+        "26->29": "unused",
+        "28->30": "unused",
+        "29->30": "unused",
+        "30->31": "unused",
+        "14->32": "unused",
+        "18->32": "unused",
+        "32->33": "unused",
+        "32->34": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00187",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 80.1,
+    "states": {
+      "unvisited": 15
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "1->3": "unused",
+        "2->4": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "4->6": "unused",
+        "5->7": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "9->10": "unused",
+        "10->11": "unused",
+        "8->12": "unused",
+        "11->12": "unused",
+        "12->13": "unused",
+        "13->14": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00285",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 88.0,
+    "states": {
+      "unvisited": 24
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "2->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "3->7": "unused",
+        "7->8": "unused",
+        "7->9": "unused",
+        "8->10": "unused",
+        "9->10": "unused",
+        "10->11": "unused",
+        "11->12": "unused",
+        "12->13": "unused",
+        "3->14": "unused",
+        "14->15": "unused",
+        "15->16": "unused",
+        "16->17": "unused",
+        "13->18": "unused",
+        "17->18": "unused",
+        "18->19": "unused",
+        "19->20": "unused",
+        "20->21": "unused",
+        "21->22": "unused",
+        "21->23": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00323",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 95.3,
+    "states": {
+      "unvisited": 26
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited",
+        "24": "unvisited",
+        "25": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "2->3": "unused",
+        "2->4": "unused",
+        "1->5": "unused",
+        "2->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "2->8": "unused",
+        "8->9": "unused",
+        "9->10": "unused",
+        "10->11": "unused",
+        "11->12": "unused",
+        "12->13": "unused",
+        "13->14": "unused",
+        "13->15": "unused",
+        "8->16": "unused",
+        "16->17": "unused",
+        "16->18": "unused",
+        "18->19": "unused",
+        "18->20": "unused",
+        "20->21": "unused",
+        "20->22": "unused",
+        "20->23": "unused",
+        "21->24": "unused",
+        "22->24": "unused",
+        "23->24": "unused",
+        "7->25": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00327",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 90.4,
+    "states": {
+      "unvisited": 19
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "1->2": "unused",
+        "2->3": "unused",
+        "2->4": "unused",
+        "2->5": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "5->7": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "6->9": "unused",
+        "8->9": "unused",
+        "6->10": "unused",
+        "9->10": "unused",
+        "9->11": "unused",
+        "10->11": "unused",
+        "7->12": "unused",
+        "5->13": "unused",
+        "12->13": "unused",
+        "6->14": "unused",
+        "12->14": "unused",
+        "13->14": "unused",
+        "6->15": "unused",
+        "14->15": "unused",
+        "14->16": "unused",
+        "15->16": "unused",
+        "11->17": "unused",
+        "16->17": "unused",
+        "17->18": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00357",
+    "correct": true,
+    "depth": 50.0,
+    "cons": 100.0,
+    "lit": 3,
+    "time": 16.7,
+    "states": {
+      "lit": 3,
+      "unvisited": 2
+    },
+    "lit_nodes": [
+      "0",
+      "2",
+      "3"
+    ],
+    "response": "Step 1: Let \\(p\\) be the probability to find. For a point uniformly chosen from the square \\([0,1]^2\\), the probability that at least one coordinate exceeds \\(p\\) is \\(1 - P(X \\le p \\text{ and } Y \\le p)\\). Since \\(X\\) and \\(Y\\) are independent uniform on \\([0,1]\\), we have \\(P(X \\le p \\text{ and } Y \\le p) = p^2\\) for \\(0 \\le p \\le 1\\). Thus the probability is \\(1 - p^2\\).\n\nStep 2: By definition, this probability equals \\(p\\). So we set up the equation \\(1 - p^2 = p\\), which rearranges to \\(p^2 + p - 1 = 0\\).\n\nStep 3: Solve the quadratic: \\(p = \\frac{-1 \\pm \\sqrt{1^2 - 4 \\cdot 1 \\cdot (-1)}}{2 \\cdot 1} = \\frac{-1 \\pm \\sqrt{5}}{2}\\). The positive root is \\(p = \\frac{\\sqrt{5} - 1}{2} \\approx 0.618\\), and the negative root is invalid for a probability. Hence the solution is \\(p = \\frac{\\sqrt{5} - 1}{2}\\).\n\nFinal Answer: \\(\\frac{\\sqrt{5}-1}{2}\\)",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "unvisited",
+        "2": "lit",
+        "3": "lit",
+        "4": "unvisited"
+      },
+      "edges": {
+        "0->2": "used_valid",
+        "1->2": "unused",
+        "0->3": "unused",
+        "2->3": "used_valid",
+        "3->4": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 2,
+          "node": "2",
+          "status": "lit",
+          "reason": "2 is a direct successor of 0"
+        },
+        {
+          "step_index": 3,
+          "node": "3",
+          "status": "lit",
+          "reason": "3 is a direct successor of 2"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00380",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 87.0,
+    "states": {
+      "unvisited": 9
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited"
+      },
+      "edges": {
+        "4->6": "unused",
+        "6->7": "unused",
+        "6->8": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00384",
+    "correct": false,
+    "depth": 75.0,
+    "cons": 43.75,
+    "lit": 2,
+    "time": 46.3,
+    "states": {
+      "lit": 2,
+      "jump": 1,
+      "unvisited": 4
+    },
+    "lit_nodes": [
+      "0",
+      "2"
+    ],
+    "response": "Step 1: Interpret the problem. A \"consistent k-configuration of order 1\" means a collection of k-element subsets (blocks) of the n-element set A such that each element of A appears in exactly one block (order 1 indicates that each element belongs to one block). This is a partition of A into n/k blocks of size k, where k divides n.\n\nStep 2: Count the number of such partitions. First, arrange all n elements in a sequence (n! ways). Then, partition the sequence into n/k consecutive groups of k elements each, but this overcounts because the order within each group does not matter (each group has k! permutations) and the order of the groups themselves does not matter ((n/k)! permutations). Thus, the total number is n! divided by (k!)^{n/k} and by (n/k)!.\n\nStep 3: The number is therefore given by the formula \\(\\frac{n!}{(k!)^{n/k} (n/k)!}\\).\n\nFinal Answer: \\(\\frac{n!}{(k!)^{n/k} (n/k)!}\\)",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "unvisited",
+        "2": "lit",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "jump",
+        "6": "unvisited"
+      },
+      "edges": {
+        "0->2": "used_valid",
+        "1->2": "unused",
+        "0->3": "unused",
+        "1->3": "unused",
+        "2->4": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 2,
+          "node": "2",
+          "status": "lit",
+          "reason": "2 is a direct successor of 0"
+        },
+        {
+          "step_index": 3,
+          "node": "5",
+          "status": "jump",
+          "reason": "5 is reachable from 2 (may span intermediate nodes)"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00397",
+    "correct": true,
+    "depth": 0.0,
+    "cons": 100.0,
+    "lit": 1,
+    "time": 12.0,
+    "states": {
+      "lit": 1,
+      "unvisited": 2
+    },
+    "lit_nodes": [
+      "0"
+    ],
+    "response": "The number of valid combinations is the number of nonnegative integer solutions to \\(r + b + k = 4\\) with constraints \\(0 \\le r \\le 5\\), \\(0 \\le b \\le 4\\), and \\(0 \\le k \\le 2\\). Since \\(r\\) and \\(b\\) cannot exceed 4 due to the total sum, only the constraint \\(k \\le 2\\) is binding. The total unrestricted solutions are \\(\\binom{4+3-1}{3-1} = \\binom{6}{2} = 15\\). Subtract solutions with \\(k \\ge 3\\): let \\(k' = k-3\\), then \\(r + b + k' = 1\\), giving \\(\\binom{1+3-1}{3-1} = \\binom{3}{2} = 3\\) solutions. Thus valid solutions: \\(15 - 3 = 12\\). Verification by enumeration: for \\(k = 0, 1, 2\\), we get 5, 4, and 3 combinations respectively, totaling 12.\n\nFinal Answer: 12",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "unvisited",
+        "2": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "1->2": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00419",
+    "correct": false,
+    "depth": 50.0,
+    "cons": 29.0,
+    "lit": 0,
+    "time": 11.2,
+    "states": {
+      "redundant": 1,
+      "unvisited": 3
+    },
+    "lit_nodes": [],
+    "response": "Step 1: Use Vieta's formulas for the cubic \\(x^3 + a x^2 + b x + c = 0\\) with roots \\(r, s, t\\):\n\\[\nr + s + t = -a, \\quad rs + st + tr = b, \\quad rst = -c.\n\\]\n\nStep 2: Expand the square of the sum of pairwise products:\n\\[\n(rs + st + tr)^2 = (rs)^2 + (st)^2 + (tr)^2 + 2(rs)(st) + 2(st)(tr) + 2(tr)(rs).\n\\]\n\nStep 3: Note that \\((rs)(st) = r s^2 t = rst \\cdot s\\), and similarly for the other terms, so the sum of the three cross terms is \\(2rst(r + s + t)\\). Thus:\n\\[\n(rs + st + tr)^2 = (rs)^2 + (st)^2 + (tr)^2 + 2rst(r + s + t).\n\\]\n\nStep 4: Rearrange to isolate the desired expression:\n\\[\n(rs)^2 + (st)^2 + (tr)^2 = (rs + st + tr)^2 - 2rst(r + s + t).\n\\]\n\nStep 5: Substitute the Vieta expressions:\n\\[\n(rs)^2 + (st)^2 + (tr)^2 = b^2 - 2(-c)(-a) = b^2 - 2ac.\n\\]\n\nFinal Answer: \\(b^2 - 2ac\\)",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "redundant",
+        "3": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "2->3": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "2",
+          "status": "lit",
+          "reason": "first step maps to node 2 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": "2",
+          "status": "redundant",
+          "reason": "node 2 was already visited"
+        },
+        {
+          "step_index": 8,
+          "node": "2",
+          "status": "redundant",
+          "reason": "node 2 was already visited"
+        },
+        {
+          "step_index": 9,
+          "node": "2",
+          "status": "redundant",
+          "reason": "node 2 was already visited"
+        },
+        {
+          "step_index": 10,
+          "node": null,
+          "status": "wrong"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00420",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 92.9,
+    "states": {
+      "unvisited": 10
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "1->2": "unused",
+        "2->3": "unused",
+        "3->4": "unused",
+        "2->5": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00457",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 85.8,
+    "states": {
+      "unvisited": 12
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "5->7": "unused",
+        "6->8": "unused",
+        "7->8": "unused",
+        "0->9": "unused",
+        "8->10": "unused",
+        "9->10": "unused",
+        "10->11": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00512",
+    "correct": true,
+    "depth": 66.667,
+    "cons": 53.167,
+    "lit": 1,
+    "time": 20.8,
+    "states": {
+      "lit": 1,
+      "jump": 1,
+      "redundant": 1,
+      "wrong": 1,
+      "unvisited": 1
+    },
+    "lit_nodes": [
+      "0"
+    ],
+    "response": "We are given four points \\(A, B, C, D\\) in the plane. Let \\(Q, R, S, T, U, V\\) be the midpoints of \\(AB, AC, AD, BC, BD, CD\\) respectively. Given \\(QR = 2001\\), \\(SU = 2002\\), \\(TV = 2003\\), we need the distance between the midpoints of \\(QU\\) and \\(RV\\).\n\n**Step 1: Represent points with vectors.**  \nLet \\(\\mathbf{a}, \\mathbf{b}, \\mathbf{c}, \\mathbf{d}\\) be the position vectors of \\(A, B, C, D\\).  \nThen:  \n\\(Q = \\frac{\\mathbf{a}+\\mathbf{b}}{2}\\), \\(R = \\frac{\\mathbf{a}+\\mathbf{c}}{2}\\), \\(S = \\frac{\\mathbf{a}+\\mathbf{d}}{2}\\),  \n\\(T = \\frac{\\mathbf{b}+\\mathbf{c}}{2}\\), \\(U = \\frac{\\mathbf{b}+\\mathbf{d}}{2}\\), \\(V = \\frac{\\mathbf{c}+\\mathbf{d}}{2}\\).\n\n**Step 2: Compute the given lengths in vector form.**  \n\\(QR = R - Q = \\frac{\\mathbf{a}+\\mathbf{c}}{2} - \\frac{\\mathbf{a}+\\mathbf{b}}{2} = \\frac{\\mathbf{c}-\\mathbf{b}}{2}\\).  \nThus \\(|QR| = \\frac{|\\mathbf{c}-\\mathbf{b}|}{2} = 2001 \\implies |\\mathbf{c}-\\mathbf{b}| = 4002\\).  \n\n\\(SU = U - S = \\frac{\\mathbf{b}+\\mathbf{d}}{2} - \\frac{\\mathbf{a}+\\mathbf{d}}{2} = \\frac{\\mathbf{b}-\\mathbf{a}}{2}\\).  \nThus \\(|SU| = \\frac{|\\mathbf{b}-\\mathbf{a}|}{2} = 2002 \\implies |\\mathbf{b}-\\mathbf{a}| = 4004\\).  \n\n\\(TV = V - T = \\frac{\\mathbf{c}+\\mathbf{d}}{2} - \\frac{\\mathbf{b}+\\mathbf{c}}{2} = \\frac{\\mathbf{d}-\\mathbf{b}}{2}\\).  \nThus \\(|TV| = \\frac{|\\mathbf{d}-\\mathbf{b}|}{2} = 2003 \\implies |\\mathbf{d}-\\mathbf{b}| = 4006\\).\n\n**Step 3: Find the midpoints of \\(QU\\) and \\(RV\\).**  \nLet \\(M\\) be the midpoint of \\(QU\\):  \n\\(M = \\frac{Q+U}{2} = \\frac{1}{2}\\left(\\frac{\\mathbf{a}+\\mathbf{b}}{2} + \\frac{\\mathbf{b}+\\mathbf{d}}{2}\\right) = \\frac{1}{2}\\cdot\\frac{\\mathbf{a}+2\\mathbf{b}+\\mathbf{d}}{2} = \\frac{\\mathbf{a}+2\\mathbf{b}+\\mathbf{d}}{4}\\).  \n\nLet \\(N\\) be the midpoint of \\(RV\\):  \n\\(N = \\frac{R+V}{2} = \\frac{1}{2}\\left(\\frac{\\mathbf{a}+\\mathbf{c}}{2} + \\frac{\\mathbf{c}+\\mathbf{d}}{2}\\right) = \\frac{1}{2}\\cdot\\frac{\\mathbf{a}+2\\mathbf{c}+\\mathbf{d}}{2} = \\frac{\\mathbf{a}+2\\mathbf{c}+\\mathbf{d}}{4}\\).\n\n**Step 4: Compute the vector from \\(M\\) to \\(N\\).**  \n\\(N - M = \\frac{\\mathbf{a}+2\\mathbf{c}+\\mathbf{d}}{4} - \\frac{\\mathbf{a}+2\\mathbf{b}+\\mathbf{d}}{4} = \\frac{2\\mathbf{c}-2\\mathbf{b}}{4} = \\frac{\\mathbf{c}-\\mathbf{b}}{2}\\).\n\n**Step 5: Relate to \\(QR\\).**  \nWe already have \\(QR = \\frac{\\mathbf{c}-\\mathbf{b}}{2}\\), so \\(N-M = QR\\).  \nThus the distance \\(|MN| = |QR| = 2001\\).\n\nThe given lengths \\(SU\\) and \\(TV\\) are not needed for this result.\n\n**Final Answer:** 2001",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "wrong",
+        "2": "redundant",
+        "3": "jump",
+        "4": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "2->3": "unused",
+        "3->4": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 2,
+          "node": "1",
+          "status": "wrong",
+          "reason": "1 is not reachable from current node 0"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 8,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 9,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 10,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 11,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 12,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 13,
+          "node": "3",
+          "status": "jump",
+          "reason": "3 is reachable from 0 (may span intermediate nodes)"
+        },
+        {
+          "step_index": 14,
+          "node": "2",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00572",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 75.3,
+    "states": {
+      "unvisited": 5
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "1->2": "unused",
+        "0->3": "unused",
+        "2->4": "unused",
+        "3->4": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00637",
+    "correct": true,
+    "depth": 66.667,
+    "cons": 78.125,
+    "lit": 1,
+    "time": 19.2,
+    "states": {
+      "lit": 1,
+      "wrong": 1,
+      "redundant": 2,
+      "unvisited": 1
+    },
+    "lit_nodes": [
+      "3"
+    ],
+    "response": "Step 1: Since the squares of x, y, z form an arithmetic progression with common difference 2, we have:\n\\[\ny^2 = x^2 + 2, \\quad z^2 = x^2 + 4.\n\\]\nGiven \\(0 \\le x \\le y \\le z \\le 4\\), we note that \\(y = \\sqrt{x^2+2}\\) and \\(z = \\sqrt{x^2+4}\\). The condition \\(z \\le 4\\) gives \\(x^2+4 \\le 16\\), so \\(x^2 \\le 12\\), i.e., \\(0 \\le x \\le \\sqrt{12} = 2\\sqrt{3}\\).\n\nStep 2: The expression to minimize is \\(|x-y| + |y-z|\\). Because \\(x \\le y \\le z\\), this simplifies to:\n\\[\n(y - x) + (z - y) = z - x = \\sqrt{x^2+4} - x.\n\\]\nDefine \\(f(x) = \\sqrt{x^2+4} - x\\) on the interval \\(0 \\le x \\le 2\\sqrt{3}\\).\n\nStep 3: Compute the derivative: \\(f'(x) = \\frac{x}{\\sqrt{x^2+4}} - 1\\). Since \\(\\frac{x}{\\sqrt{x^2+4}} < 1\\) for all finite x, \\(f'(x) < 0\\). Thus \\(f\\) is strictly decreasing. The minimum occurs at the largest possible \\(x\\), which is \\(x = 2\\sqrt{3}\\).\n\nStep 4: Evaluate \\(f(2\\sqrt{3}) = \\sqrt{(2\\sqrt{3})^2+4} - 2\\sqrt{3} = \\sqrt{12+4} - 2\\sqrt{3} = \\sqrt{16} - 2\\sqrt{3} = 4 - 2\\sqrt{3}\\). This value is attainable: \\(x = 2\\sqrt{3}\\), \\(y = \\sqrt{12+2} = \\sqrt{14}\\), \\(z = 4\\) satisfy all conditions.\n\nFinal Answer: \\(4 - 2\\sqrt{3}\\)",
+    "lighted_graph": {
+      "nodes": {
+        "0": "wrong",
+        "1": "redundant",
+        "2": "redundant",
+        "3": "lit",
+        "4": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "1->2": "used_valid",
+        "2->3": "used_valid",
+        "3->4": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "1",
+          "status": "lit",
+          "reason": "first step maps to fact node 1"
+        },
+        {
+          "step_index": 2,
+          "node": "1",
+          "status": "redundant",
+          "reason": "node 1 was already visited"
+        },
+        {
+          "step_index": 3,
+          "node": "0",
+          "status": "wrong",
+          "reason": "0 is not reachable from current node 1"
+        },
+        {
+          "step_index": 4,
+          "node": "2",
+          "status": "lit",
+          "reason": "2 is a direct successor of 1"
+        },
+        {
+          "step_index": 5,
+          "node": "2",
+          "status": "redundant",
+          "reason": "node 2 was already visited"
+        },
+        {
+          "step_index": 6,
+          "node": "2",
+          "status": "redundant",
+          "reason": "node 2 was already visited"
+        },
+        {
+          "step_index": 7,
+          "node": "2",
+          "status": "redundant",
+          "reason": "node 2 was already visited"
+        },
+        {
+          "step_index": 8,
+          "node": "3",
+          "status": "lit",
+          "reason": "3 is a direct successor of 2"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00654",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 75.0,
+    "states": {
+      "unvisited": 26
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited",
+        "24": "unvisited",
+        "25": "unvisited"
+      },
+      "edges": {
+        "24->2": "unused",
+        "0->3": "unused",
+        "1->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "6->10": "unused",
+        "9->10": "unused",
+        "6->11": "unused",
+        "11->12": "unused",
+        "10->13": "unused",
+        "12->13": "unused",
+        "13->14": "unused",
+        "15->14": "unused",
+        "4->15": "unused",
+        "14->16": "unused",
+        "13->17": "unused",
+        "16->17": "unused",
+        "1->18": "unused",
+        "17->18": "unused",
+        "14->19": "unused",
+        "18->19": "unused",
+        "19->20": "unused",
+        "13->21": "unused",
+        "20->21": "unused",
+        "14->22": "unused",
+        "21->22": "unused",
+        "13->23": "unused",
+        "19->23": "unused",
+        "22->23": "unused",
+        "23->24": "unused",
+        "24->25": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00788",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 74.8,
+    "states": {
+      "unvisited": 12
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "1->4": "unused",
+        "2->4": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "4->9": "unused",
+        "4->10": "unused",
+        "9->10": "unused",
+        "10->11": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00815",
+    "correct": false,
+    "depth": 50.0,
+    "cons": 28.594,
+    "lit": 1,
+    "time": 19.8,
+    "states": {
+      "lit": 1,
+      "wrong": 1,
+      "jump": 2,
+      "unvisited": 7
+    },
+    "lit_nodes": [
+      "0"
+    ],
+    "response": "Step 1: Set up coordinate system with centers O1 (small circle) at (0,0) and O2 (large circle) at (41,0). Radii: small 13, large 30. The line through centers is x-axis. Intersection of x-axis with small circle gives points (13,0) and (-13,0). Distance from (13,0) to O2 is 28 (<30), inside large circle; from (-13,0) to O2 is 54 (>30), outside. Thus A = (-13,0).\n\nStep 2: Let B = (x, y) on small circle: \\(x^2 + y^2 = 169\\). Since B is midpoint of A and C, C = 2B - A = (2x + 13, 2y). C lies on large circle: \\((2x + 13 - 41)^2 + (2y)^2 = 900\\) → \\((2x - 28)^2 + 4y^2 = 900\\).\n\nStep 3: Simplify the large circle condition: \\((2x-28)^2 = 4(x-14)^2\\), so \\(4(x-14)^2 + 4y^2 = 900\\) → divide by 4: \\((x-14)^2 + y^2 = 225\\).\n\nStep 4: Solve system:\n\\[\n\\begin{cases}\nx^2 + y^2 = 169 \\\\\n(x-14)^2 + y^2 = 225\n\\end{cases}\n\\]\nSubtract first from second: \\((x-14)^2 - x^2 = 56\\) → \\((x^2 - 28x + 196) - x^2 = -28x + 196 = 56\\) → \\(-28x = -140\\) → \\(x = 5\\). Then \\(5^2 + y^2 = 169\\) → \\(y^2 = 144\\) → \\(y = \\pm 12\\).\n\nStep 5: Compute AB = distance from A(-13,0) to B(5,12) or (5,-12): \\(\\Delta x = 18\\), \\(\\Delta y = \\pm 12\\), so \\(AB = \\sqrt{18^2 + 12^2} = \\sqrt{324 + 144} = \\sqrt{468} = \\sqrt{4 \\cdot 117} = 2\\sqrt{117} = 2\\sqrt{9 \\cdot 13} = 6\\sqrt{13}\\).\n\nStep 6: Since B is midpoint, \\(AC = 2 \\cdot AB = 2 \\cdot 6\\sqrt{13} = 12\\sqrt{13}\\).\n\nFinal Answer: 12√13",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "unvisited",
+        "2": "wrong",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "jump",
+        "8": "unvisited",
+        "9": "jump",
+        "10": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "1->4": "unused",
+        "0->5": "unused",
+        "1->5": "unused",
+        "2->5": "unused",
+        "2->6": "unused",
+        "5->6": "unused",
+        "0->7": "unused",
+        "5->7": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "1->9": "unused",
+        "8->9": "unused",
+        "9->10": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 2,
+          "node": "2",
+          "status": "wrong",
+          "reason": "2 is not reachable from current node 0"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 7,
+          "node": "9",
+          "status": "jump",
+          "reason": "9 is reachable from 0 (may span intermediate nodes)"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00882",
+    "correct": false,
+    "depth": 66.667,
+    "cons": 40.833,
+    "lit": 2,
+    "time": 24.3,
+    "states": {
+      "lit": 2,
+      "unvisited": 3
+    },
+    "lit_nodes": [
+      "2",
+      "3"
+    ],
+    "response": "Step 1: Define \\(S_k = x_1 + x_2 + \\cdots + x_k\\) for \\(k = 1, \\dots, 100\\). Since each \\(x_i \\ge 1\\), the sums are strictly increasing: \\(S_1 < S_2 < \\cdots < S_{100}\\). Therefore the set \\(\\{S_1, S_2, \\dots, S_{100}\\}\\) has exactly 100 distinct integers, so no duplicate values need to be accounted for.\n\nStep 2: For each \\(k\\), consider the residue \\(S_k \\bmod 6\\). Each \\(x_i\\) is uniformly distributed over \\(\\{1,2,3,4,5,6\\}\\), so \\(x_i \\bmod 6\\) is uniform over \\(\\{1,2,3,4,5,0\\}\\) (since \\(6 \\equiv 0\\)). The sum of independent uniform residues modulo 6 is again uniform; hence \\(S_k \\bmod 6\\) is uniform over \\(\\{0,1,2,3,4,5\\}\\). Thus \\(\\Pr(S_k \\equiv 0 \\pmod{6}) = \\frac{1}{6}\\).\n\nStep 3: The expected number of multiples of 6 in the set is the sum of the indicators for each \\(k\\): \\(\\mathbb{E}\\left[\\sum_{k=1}^{100} \\mathbf{1}_{\\{S_k \\equiv 0 \\pmod{6}\\}}\\right] = \\sum_{k=1}^{100} \\Pr(S_k \\equiv 0 \\pmod{6}) = 100 \\cdot \\frac{1}{6} = \\frac{50}{3}\\).\n\nFinal Answer: 50/3",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "lit",
+        "3": "lit",
+        "4": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "2->3": "used_valid",
+        "3->4": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": "2",
+          "status": "lit",
+          "reason": "first step maps to node 2 (reachable from facts)"
+        },
+        {
+          "step_index": 3,
+          "node": "3",
+          "status": "lit",
+          "reason": "3 is a direct successor of 2"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00896",
+    "correct": true,
+    "depth": 25.0,
+    "cons": 63.0,
+    "lit": 1,
+    "time": 24.6,
+    "states": {
+      "lit": 1,
+      "jump": 1,
+      "wrong": 1,
+      "unvisited": 4
+    },
+    "lit_nodes": [
+      "0"
+    ],
+    "response": "We are given \\(x^2 - xy + 2y^2 = 8\\) with \\(x, y > 0\\) and need to maximize \\(x^2 + xy + 2y^2\\). Let \\(A = x^2 + 2y^2\\) and \\(u = xy\\). Then the constraint is \\(A - u = 8\\) so \\(A = 8 + u\\), and the target is \\(f = A + u = 8 + 2u\\). Thus maximizing \\(f\\) is equivalent to maximizing \\(u = xy\\) under the constraint.\n\nUsing the AM–GM inequality, \\(x^2 + 2y^2 \\ge 2\\sqrt{2}\\, xy\\), i.e., \\(A \\ge 2\\sqrt{2}\\, u\\). Substituting \\(A = 8 + u\\) gives \\(8 + u \\ge 2\\sqrt{2}\\, u\\), hence \\(8 \\ge (2\\sqrt{2} - 1)u\\) and \\(u \\le \\frac{8}{2\\sqrt{2} - 1}\\). This bound is attainable when equality holds in AM–GM, i.e., \\(x^2 = 2y^2\\) or \\(x = \\sqrt{2}\\, y\\) (positive). Substituting into the constraint gives \\(y^2 = \\frac{8}{4 - \\sqrt{2}}\\), and then \\(u = xy = \\sqrt{2}\\, y^2 = \\frac{8\\sqrt{2}}{4 - \\sqrt{2}} = \\frac{8}{2\\sqrt{2} - 1}\\), confirming attainability.\n\nThus the maximum value of \\(f\\) is\n\\[\nf_{\\text{max}} = 8 + 2u_{\\text{max}} = 8 + \\frac{16}{2\\sqrt{2} - 1} = 8 + \\frac{16(2\\sqrt{2} + 1)}{(2\\sqrt{2})^2 - 1} = 8 + \\frac{32\\sqrt{2} + 16}{7} = \\frac{56 + 32\\sqrt{2} + 16}{7} = \\frac{72 + 32\\sqrt{2}}{7}.\n\\]\n\nWe can also verify using Lagrange multipliers, which yields the same condition \\(x = \\sqrt{2}\\, y\\) and the same result.\n\nFinal Answer: \\(\\frac{72+32\\sqrt{2}}{7}\\)",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "jump",
+        "4": "unvisited",
+        "5": "wrong",
+        "6": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "2->3": "unused",
+        "2->4": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 2,
+          "node": "3",
+          "status": "jump",
+          "reason": "3 is reachable from 0 (may span intermediate nodes)"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": "5",
+          "status": "wrong",
+          "reason": "no mapped DAG node"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00903",
+    "correct": true,
+    "depth": 66.667,
+    "cons": 81.667,
+    "lit": 2,
+    "time": 9.2,
+    "states": {
+      "lit": 2,
+      "wrong": 1,
+      "unvisited": 2
+    },
+    "lit_nodes": [
+      "1",
+      "3"
+    ],
+    "response": "Step 1: Total four-digit numbers range from 1000 to 9999. The first digit can be 1–9 (9 options), and each of the other three digits can be 0–9 (10 options each). So total = 9 × 10 × 10 × 10 = 9000.\n\nStep 2: Count four-digit numbers with all digits distinct. The first digit has 9 options (1–9). The second digit can be any digit except the first, so 9 options (0–9 minus one). The third digit can be any except the first two, so 8 options. The fourth digit can be any except the first three, so 7 options. Multiply: 9 × 9 × 8 × 7 = 4536.\n\nStep 3: Subtract the distinct-digit count from the total to get the number with at least one digit repeated: 9000 – 4536 = 4464.\n\nFinal Answer: 4464",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "lit",
+        "2": "wrong",
+        "3": "lit",
+        "4": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "0->2": "unused",
+        "1->3": "used_valid",
+        "2->3": "unused",
+        "3->4": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "1",
+          "status": "lit",
+          "reason": "first step maps to node 1 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "2",
+          "status": "wrong",
+          "reason": "2 is not reachable from current node 1"
+        },
+        {
+          "step_index": 3,
+          "node": "3",
+          "status": "lit",
+          "reason": "3 is a direct successor of 1"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00915",
+    "correct": true,
+    "depth": 66.667,
+    "cons": 77.778,
+    "lit": 2,
+    "time": 30.2,
+    "states": {
+      "lit": 2,
+      "wrong": 1,
+      "redundant": 2,
+      "unvisited": 1
+    },
+    "lit_nodes": [
+      "0",
+      "2"
+    ],
+    "response": "Step 1: Understand the property. The condition requires integers \\(a<b<c\\) with \\(a\\in S\\), \\(b\\notin S\\), \\(c\\in S\\). This means \\(S\\) must contain at least two elements, and there must be a gap (a missing integer) between some two elements of \\(S\\).\n\nStep 2: Determine subsets that do NOT satisfy the property. If \\(S\\) has 0 or 1 element, no triple \\(a<c\\) exists, so the property fails. If \\(S\\) has at least 2 elements, the only way to avoid a gap is for all elements of \\(S\\) to be consecutive integers (an interval); otherwise, there would be some integer between two elements of \\(S\\) not in \\(S\\). Thus the non‑property subsets are exactly the empty set, singletons, and intervals of consecutive integers.\n\nStep 3: Total number of subsets of \\(\\{1,2,\\dots,10\\}\\) is \\(2^{10}=1024\\).\n\nStep 4: Count the non‑property subsets.\n- Empty set: \\(1\\) subset.\n- Singletons: \\(10\\) subsets.\n- Intervals of length \\(L\\) ( \\(2\\le L\\le 10\\) ): number of intervals is \\(10-L+1 = 11-L\\). Summing from \\(L=2\\) to \\(10\\) gives \\(9+8+\\cdots+1 = 45\\).\nTotal non‑property subsets = \\(1+10+45=56\\).\n\nStep 5: Subtract from total to get subsets with the property: \\(1024-56=968\\).\n\nFinal Answer: 968",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "wrong",
+        "2": "lit",
+        "3": "redundant",
+        "4": "redundant",
+        "5": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "0->2": "used_valid",
+        "2->3": "used_valid",
+        "1->4": "unused",
+        "2->4": "unused",
+        "3->4": "used_valid",
+        "4->5": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 2,
+          "node": "2",
+          "status": "lit",
+          "reason": "2 is a direct successor of 0"
+        },
+        {
+          "step_index": 3,
+          "node": "1",
+          "status": "wrong",
+          "reason": "1 is not reachable from current node 2"
+        },
+        {
+          "step_index": 4,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 5,
+          "node": "3",
+          "status": "lit",
+          "reason": "3 is a direct successor of 2"
+        },
+        {
+          "step_index": 6,
+          "node": "3",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        },
+        {
+          "step_index": 7,
+          "node": "3",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        },
+        {
+          "step_index": 8,
+          "node": "4",
+          "status": "lit",
+          "reason": "4 is a direct successor of 3"
+        },
+        {
+          "step_index": 9,
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00934",
+    "correct": true,
+    "depth": 75.0,
+    "cons": 78.75,
+    "lit": 1,
+    "time": 29.4,
+    "states": {
+      "lit": 1,
+      "wrong": 1,
+      "redundant": 1,
+      "unvisited": 3
+    },
+    "lit_nodes": [
+      "4"
+    ],
+    "response": "The condition that all six lines have positive slope is equivalent to the four points being such that when ordered by increasing \\(x\\)-coordinate, their \\(y\\)-coordinates are also strictly increasing. Since the points are independent and uniformly distributed in the unit square, the \\(x\\)-coordinates and \\(y\\)-coordinates are independent sets of i.i.d. uniform random variables. The orderings (permutations) of the \\(x\\)'s and \\(y\\)'s are therefore independent and uniformly distributed over the \\(4! = 24\\) permutations. The probability that they match is \\(1/24\\).\n\nStep 1: For any two points, the slope is positive if and only if the point with larger \\(x\\) also has larger \\(y\\). This must hold for all pairs, which forces the points to be totally ordered by both coordinates consistently, i.e., when sorted by \\(x\\), the \\(y\\) values must be increasing.\n\nStep 2: The \\(x\\)-coordinates and \\(y\\)-coordinates are independent and continuously distributed, so the ranks of the \\(x\\)'s and the ranks of the \\(y\\)'s are independent random permutations of \\(\\{1,2,3,4\\}\\), each uniformly over the \\(24\\) possibilities.\n\nStep 3: The condition holds exactly when these two permutations are equal. The probability of this is \\(1/24\\).\n\nFinal Answer: \\(\\frac{1}{24}\\)",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "wrong",
+        "3": "redundant",
+        "4": "lit",
+        "5": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "2->3": "unused",
+        "3->4": "used_valid",
+        "4->5": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "3",
+          "status": "lit",
+          "reason": "first step maps to node 3 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "3",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        },
+        {
+          "step_index": 3,
+          "node": "2",
+          "status": "wrong",
+          "reason": "2 is not reachable from current node 3"
+        },
+        {
+          "step_index": 4,
+          "node": "4",
+          "status": "lit",
+          "reason": "4 is a direct successor of 3"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_00953",
+    "correct": true,
+    "depth": 100.0,
+    "cons": 48.667,
+    "lit": 1,
+    "time": 63.2,
+    "states": {
+      "lit": 1,
+      "wrong": 5,
+      "unvisited": 4
+    },
+    "lit_nodes": [
+      "3"
+    ],
+    "response": "We decompose the term into partial fractions and use telescoping.\n\nStep 1: Factor the denominator: \\(n^4+2n^3-n^2-2n = n(n-1)(n+1)(n+2)\\). The term becomes\n\\[\na_n = \\frac{n^2+n+1}{n(n-1)(n+1)(n+2)}.\n\\]\n\nStep 2: Write the partial fraction decomposition:\n\\[\n\\frac{n^2+n+1}{n(n-1)(n+1)(n+2)} = \\frac{A}{n-1} + \\frac{B}{n} + \\frac{C}{n+1} + \\frac{D}{n+2}.\n\\]\nSolve for constants by substituting convenient values:\n- \\(n=1\\): \\(3 = 6A \\Rightarrow A = \\frac12\\).\n- \\(n=0\\): \\(1 = -2B \\Rightarrow B = -\\frac12\\).\n- \\(n=-1\\): \\(1 = 2C \\Rightarrow C = \\frac12\\).\n- \\(n=-2\\): \\(3 = -6D \\Rightarrow D = -\\frac12\\).\nThus\n\\[\na_n = \\frac12\\left(\\frac1{n-1} - \\frac1n + \\frac1{n+1} - \\frac1{n+2}\\right).\n\\]\n\nStep 3: Sum from \\(n=2\\) to \\(17\\):\n\\[\nS = \\frac12\\sum_{n=2}^{17}\\left(\\frac1{n-1} - \\frac1n + \\frac1{n+1} - \\frac1{n+2}\\right).\n\\]\nThe telescoping sum simplifies to\n\\[\n\\sum_{n=2}^{17} \\left(\\frac1{n-1} - \\frac1n + \\frac1{n+1} - \\frac1{n+2}\\right) = 1 + \\frac13 - \\frac1{17} - \\frac1{19}.\n\\]\n\nStep 4: Compute the value:\n\\[\n1 + \\frac13 = \\frac43,\\quad \\frac1{17}+\\frac1{19} = \\frac{36}{323}.\n\\]\n\\[\n\\frac43 - \\frac{36}{323} = \\frac{4\\cdot323 - 36\\cdot3}{3\\cdot323} = \\frac{1292-108}{969} = \\frac{1184}{969}.\n\\]\n\\[\nS = \\frac12\\cdot\\frac{1184}{969} = \\frac{592}{969}.\n\\]\n\nFinal Answer: \\(\\frac{592}{969}\\)",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "wrong",
+        "2": "wrong",
+        "3": "lit",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "wrong",
+        "7": "wrong",
+        "8": "wrong",
+        "9": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "1->2": "unused",
+        "2->3": "unused",
+        "2->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "3",
+          "status": "lit",
+          "reason": "first step maps to node 3 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "1",
+          "status": "wrong",
+          "reason": "1 is not reachable from current node 3"
+        },
+        {
+          "step_index": 3,
+          "node": "2",
+          "status": "wrong",
+          "reason": "2 is not reachable from current node 3"
+        },
+        {
+          "step_index": 4,
+          "node": "6",
+          "status": "wrong",
+          "reason": "6 is not reachable from current node 3"
+        },
+        {
+          "step_index": 5,
+          "node": "6",
+          "status": "wrong",
+          "reason": "6 is not reachable from current node 3"
+        },
+        {
+          "step_index": 6,
+          "node": "6",
+          "status": "wrong",
+          "reason": "6 is not reachable from current node 3"
+        },
+        {
+          "step_index": 7,
+          "node": "6",
+          "status": "wrong",
+          "reason": "6 is not reachable from current node 3"
+        },
+        {
+          "step_index": 8,
+          "node": "7",
+          "status": "wrong",
+          "reason": "7 is not reachable from current node 3"
+        },
+        {
+          "step_index": 9,
+          "node": "7",
+          "status": "wrong",
+          "reason": "7 is not reachable from current node 3"
+        },
+        {
+          "step_index": 10,
+          "node": "8",
+          "status": "wrong",
+          "reason": "8 is not reachable from current node 3"
+        },
+        {
+          "step_index": 11,
+          "node": "6",
+          "status": "wrong",
+          "reason": "6 is not reachable from current node 3"
+        },
+        {
+          "step_index": 12,
+          "node": "8",
+          "status": "wrong",
+          "reason": "8 is not reachable from current node 3"
+        },
+        {
+          "step_index": 13,
+          "node": "8",
+          "status": "wrong",
+          "reason": "8 is not reachable from current node 3"
+        },
+        {
+          "step_index": 14,
+          "node": "8",
+          "status": "wrong",
+          "reason": "8 is not reachable from current node 3"
+        },
+        {
+          "step_index": 15,
+          "node": "8",
+          "status": "wrong",
+          "reason": "8 is not reachable from current node 3"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01004",
+    "correct": true,
+    "depth": 20.0,
+    "cons": 72.5,
+    "lit": 1,
+    "time": 59.8,
+    "states": {
+      "lit": 1,
+      "wrong": 1,
+      "unvisited": 8
+    },
+    "lit_nodes": [
+      "2"
+    ],
+    "response": "We need all eight quadratics \\(\\pm x^2 \\pm p x \\pm c\\) to have rational roots. This is equivalent to both discriminants \\(p^2 - 4c\\) and \\(p^2 + 4c\\) being perfect squares. Let \\(p^2 - 4c = u^2\\) and \\(p^2 + 4c = v^2\\) with integers \\(u, v \\ge 0\\). Adding gives \\(u^2 + v^2 = 2p^2\\), and subtracting gives \\(v^2 - u^2 = 8c > 0\\), so \\(v > u\\).\n\nSince \\(p = 2^{24036583} - 1\\) is a Mersenne prime, \\(p \\equiv 3 \\pmod{4}\\). For such a prime, the only integer solutions to \\(u^2 + v^2 = 2p^2\\) are \\(u = v = \\pm p\\) (up to sign). This forces \\(u = v\\), contradicting \\(v > u\\). Hence no positive integer \\(c\\) exists.\n\nFinal Answer: 0",
+    "lighted_graph": {
+      "nodes": {
+        "0": "wrong",
+        "1": "unvisited",
+        "2": "lit",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "1->2": "unused",
+        "2->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "0->7": "unused",
+        "5->8": "unused",
+        "7->8": "unused",
+        "8->9": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "2",
+          "status": "lit",
+          "reason": "first step maps to node 2 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "0",
+          "status": "wrong",
+          "reason": "0 is not reachable from current node 2"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01084",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 84.9,
+    "states": {
+      "unvisited": 12
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited"
+      },
+      "edges": {
+        "2->4": "unused",
+        "4->5": "unused",
+        "0->6": "unused",
+        "6->7": "unused",
+        "6->8": "unused",
+        "7->8": "unused",
+        "5->9": "unused",
+        "1->10": "unused",
+        "8->10": "unused",
+        "9->10": "unused",
+        "10->11": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01127",
+    "correct": true,
+    "depth": 80.0,
+    "cons": 81.25,
+    "lit": 1,
+    "time": 25.4,
+    "states": {
+      "lit": 1,
+      "jump": 1,
+      "unvisited": 6
+    },
+    "lit_nodes": [
+      "0"
+    ],
+    "response": "Step 1: For a $9 \\times 9$ chessboard, a rectangle is defined by choosing two vertical grid lines (from 10) and two horizontal grid lines (from 10). For a unit square at row $i$ and column $j$ (both 1-indexed), the number of rectangles containing it equals the number of ways to choose the left and right boundaries such that the square lies between them, which is $j \\times (10-j)$, times the analogous horizontal count $i \\times (10-i)$. So marks per square $= i(10-i) \\cdot j(10-j)$.\n\nStep 2: The number of marks is even unless both factors $i(10-i)$ and $j(10-j)$ are odd. Since $10$ is even, $i(10-i)$ is odd exactly when $i$ is odd. Thus odd factors occur for $i = 1,3,5,7,9$ (5 values). Similarly for $j$, there are 5 odd values. So squares with an odd number of marks are those where both $i$ and $j$ are odd, totaling $5 \\times 5 = 25$ squares. The remaining squares have an even number of marks: $81 - 25 = 56$.\n\nFinal Answer: 56",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "jump",
+        "7": "unvisited"
+      },
+      "edges": {
+        "0->3": "unused",
+        "1->3": "unused",
+        "2->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 2,
+          "node": "6",
+          "status": "jump",
+          "reason": "6 is reachable from 0 (may span intermediate nodes)"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01139",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 92.0,
+    "states": {
+      "unvisited": 14
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "1->4": "unused",
+        "2->4": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "9->10": "unused",
+        "10->11": "unused",
+        "11->12": "unused",
+        "12->13": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01140",
+    "correct": true,
+    "depth": 0.0,
+    "cons": 72.5,
+    "lit": 3,
+    "time": 75.5,
+    "states": {
+      "lit": 3,
+      "wrong": 3,
+      "unvisited": 6
+    },
+    "lit_nodes": [
+      "0",
+      "2",
+      "3"
+    ],
+    "response": "Step 1: For a polyhedron, Euler's formula gives V - E + F = 2. The total number we need is V + E + F. Adding Euler's formula gives (V + E + F) = 2E + 2, so the total must be even.\n\nStep 2: The ant's walk that traverses every edge exactly once and starts and ends at different vertices is an Eulerian trail, which requires exactly two vertices of odd degree in the graph.\n\nStep 3: In a convex polyhedron, each vertex has degree at least 3. The smallest polyhedron is a tetrahedron (V=4, E=6, F=4, total=14), but all its vertices have degree 3 (odd), so four odd vertices — no Eulerian trail.\n\nStep 4: Next consider polyhedra with V=5. There are two: the square pyramid (V=5, E=8, F=5, total=18) and the triangular bipyramid (V=5, E=9, F=6, total=20). The square pyramid has one vertex of degree 4 (even) and four vertices of degree 3 (odd) — four odd vertices, no Eulerian trail.\n\nStep 5: The triangular bipyramid has two apices of degree 3 (odd) and three equatorial vertices of degree 4 (even) — exactly two odd vertices, so an Eulerian trail exists. Its total is 5+9+6=20.\n\nStep 6: Any polyhedron with V=6 or more has total at least 20 (e.g., triangular prism total=20 but all vertices degree 3 odd; pentagonal pyramid total=22; etc.). No polyhedron with total 16 exists because that would require E=7, which is impossible for a convex polyhedron. Thus the smallest total is 20.\n\nFinal Answer: 20",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "wrong",
+        "2": "lit",
+        "3": "lit",
+        "4": "wrong",
+        "5": "wrong",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited"
+      },
+      "edges": {
+        "0->2": "used_valid",
+        "1->2": "unused",
+        "2->3": "used_valid",
+        "0->4": "unused",
+        "1->4": "unused",
+        "0->5": "unused",
+        "4->6": "unused",
+        "5->6": "unused",
+        "4->7": "unused",
+        "4->8": "unused",
+        "6->8": "unused",
+        "7->8": "unused",
+        "0->9": "unused",
+        "8->10": "unused",
+        "9->10": "unused",
+        "10->11": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 2,
+          "node": "1",
+          "status": "wrong",
+          "reason": "1 is not reachable from current node 0"
+        },
+        {
+          "step_index": 3,
+          "node": "2",
+          "status": "lit",
+          "reason": "2 is a direct successor of 0"
+        },
+        {
+          "step_index": 4,
+          "node": "3",
+          "status": "lit",
+          "reason": "3 is a direct successor of 2"
+        },
+        {
+          "step_index": 5,
+          "node": "4",
+          "status": "wrong",
+          "reason": "4 is not reachable from current node 3"
+        },
+        {
+          "step_index": 6,
+          "node": "5",
+          "status": "wrong",
+          "reason": "5 is not reachable from current node 3"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01186",
+    "correct": false,
+    "depth": 75.0,
+    "cons": 30.75,
+    "lit": 3,
+    "time": 11.9,
+    "states": {
+      "lit": 3,
+      "wrong": 1,
+      "unvisited": 1
+    },
+    "lit_nodes": [
+      "1",
+      "2",
+      "3"
+    ],
+    "response": "The series can be rewritten using partial fractions, leading to a telescoping sum.\n\nStep 1: Factor the denominator: \\(n^2 + 2n = n(n+2)\\). So the term becomes \\(\\frac{1}{n(n+2)}\\).\n\nStep 2: Decompose into partial fractions: \\(\\frac{1}{n(n+2)} = \\frac{A}{n} + \\frac{B}{n+2}\\). Multiply both sides by \\(n(n+2)\\): \\(1 = A(n+2) + B n = (A+B)n + 2A\\). Equate coefficients: \\(A+B = 0\\) and \\(2A = 1\\), so \\(A = \\frac{1}{2}\\), \\(B = -\\frac{1}{2}\\). Hence \\(\\frac{1}{n(n+2)} = \\frac{1}{2}\\left(\\frac{1}{n} - \\frac{1}{n+2}\\right)\\).\n\nStep 3: Write the partial sum \\(S_N = \\sum_{n=1}^{N} \\frac{1}{n(n+2)} = \\frac{1}{2} \\sum_{n=1}^{N} \\left(\\frac{1}{n} - \\frac{1}{n+2}\\right)\\).\n\nStep 4: Expand the sum:\n\\[\n\\sum_{n=1}^{N} \\left(\\frac{1}{n} - \\frac{1}{n+2}\\right) = \\left(1 - \\frac{1}{3}\\right) + \\left(\\frac{1}{2} - \\frac{1}{4}\\right) + \\left(\\frac{1}{3} - \\frac{1}{5}\\right) + \\cdots + \\left(\\frac{1}{N-1} - \\frac{1}{N+1}\\right) + \\left(\\frac{1}{N} - \\frac{1}{N+2}\\right).\n\\]\n\nStep 5: Cancel the telescoping terms. The positive terms \\(1, \\frac{1}{2}, \\frac{1}{3}, \\dots, \\frac{1}{N}\\) and negative terms \\(-\\frac{1}{3}, -\\frac{1}{4}, \\dots, -\\frac{1}{N}, -\\frac{1}{N+1}, -\\frac{1}{N+2}\\) cancel except for \\(1\\) and \\(\\frac{1}{2}\\) from the positive side and \\(-\\frac{1}{N+1}\\) and \\(-\\frac{1}{N+2}\\) from the negative side. Thus,\n\\[\n\\sum_{n=1}^{N} \\left(\\frac{1}{n} - \\frac{1}{n+2}\\right) = 1 + \\frac{1}{2} - \\frac{1}{N+1} - \\frac{1}{N+2}.\n\\]\n\nStep 6: Therefore, \\(S_N = \\frac{1}{2} \\left(1 + \\frac{1}{2} - \\frac{1}{N+1} - \\frac{1}{N+2}\\right)\\).\n\nStep 7: Take the limit as \\(N \\to \\infty\\): \\(\\frac{1}{N+1} \\to 0\\) and \\(\\frac{1}{N+2} \\to 0\\), so the sum converges to \\(\\frac{1}{2} \\left(1 + \\frac{1}{2}\\right) = \\frac{1}{2} \\cdot \\frac{3}{2} = \\frac{3}{4}\\).\n\nFinal Answer: 3/4",
+    "lighted_graph": {
+      "nodes": {
+        "0": "wrong",
+        "1": "lit",
+        "2": "lit",
+        "3": "lit",
+        "4": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "1->2": "used_valid",
+        "2->3": "used_valid",
+        "3->4": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 2,
+          "node": "1",
+          "status": "lit",
+          "reason": "first step maps to node 1 (reachable from facts)"
+        },
+        {
+          "step_index": 3,
+          "node": "0",
+          "status": "wrong",
+          "reason": "0 is not reachable from current node 1"
+        },
+        {
+          "step_index": 4,
+          "node": "0",
+          "status": "wrong",
+          "reason": "0 is not reachable from current node 1"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": "0",
+          "status": "wrong",
+          "reason": "0 is not reachable from current node 1"
+        },
+        {
+          "step_index": 7,
+          "node": "2",
+          "status": "lit",
+          "reason": "2 is a direct successor of 1"
+        },
+        {
+          "step_index": 8,
+          "node": "0",
+          "status": "wrong",
+          "reason": "0 is not reachable from current node 2"
+        },
+        {
+          "step_index": 9,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 10,
+          "node": "3",
+          "status": "lit",
+          "reason": "3 is a direct successor of 2"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01201",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 72.5,
+    "states": {
+      "unvisited": 12
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited"
+      },
+      "edges": {
+        "0->3": "unused",
+        "0->4": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "0->6": "unused",
+        "3->7": "unused",
+        "0->8": "unused",
+        "7->8": "unused",
+        "5->9": "unused",
+        "6->9": "unused",
+        "8->9": "unused",
+        "9->10": "unused",
+        "10->11": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01379",
+    "correct": false,
+    "depth": 100.0,
+    "cons": 42.5,
+    "lit": 3,
+    "time": 70.9,
+    "states": {
+      "lit": 3,
+      "redundant": 1,
+      "unvisited": 5
+    },
+    "lit_nodes": [
+      "5",
+      "6",
+      "8"
+    ],
+    "response": "The expected total cost is computed by noting that the removal process corresponds to a uniformly random permutation of the blocks. The total cost equals the sum over all ordered pairs \\((i,j)\\) of the indicator that at the moment block \\(i\\) is removed, block \\(j\\) is still present and all blocks between \\(i\\) and \\(j\\) are still present. For \\(i \\neq j\\), this occurs exactly when block \\(i\\) is the first among the interval \\(\\{\\min(i,j),\\dots,\\max(i,j)\\}\\) to be removed, which has probability \\(1/(|i-j|+1)\\). For \\(i=j\\), the probability is \\(1\\). Hence the expected total cost is\n\\[\n\\sum_{i=1}^6 \\sum_{j=1}^6 \\frac{1}{|i-j|+1}.\n\\]\nEvaluating this sum by the distance \\(d = |i-j|\\):\n- \\(d=0\\): \\(6\\) pairs, contribution \\(6 \\cdot 1 = 6\\).\n- \\(d=1\\): \\(2 \\cdot 5 = 10\\) pairs, contribution \\(10 \\cdot \\frac{1}{2} = 5\\).\n- \\(d=2\\): \\(2 \\cdot 4 = 8\\) pairs, contribution \\(8 \\cdot \\frac{1}{3} = \\frac{8}{3}\\).\n- \\(d=3\\): \\(2 \\cdot 3 = 6\\) pairs, contribution \\(6 \\cdot \\frac{1}{4} = \\frac{3}{2}\\).\n- \\(d=4\\): \\(2 \\cdot 2 = 4\\) pairs, contribution \\(4 \\cdot \\frac{1}{5} = \\frac{4}{5}\\).\n- \\(d=5\\): \\(2 \\cdot 1 = 2\\) pairs, contribution \\(2 \\cdot \\frac{1}{6} = \\frac{1}{3}\\).\nSumming these fractions with common denominator \\(30\\):\n\\[\n6 + 5 = 11 = \\frac{330}{30},\\quad \\frac{8}{3} = \\frac{80}{30},\\quad \\frac{3}{2} = \\frac{45}{30},\\quad \\frac{4}{5} = \\frac{24}{30},\\quad \\frac{1}{3} = \\frac{10}{30},\n\\]\ntotal \\(\\frac{330+80+45+24+10}{30} = \\frac{489}{30} = \\frac{163}{10}\\).\n\nThus the expected total cost is \\(\\frac{163}{10}\\).\n\nFinal Answer: 163/10",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "lit",
+        "6": "lit",
+        "7": "redundant",
+        "8": "lit"
+      },
+      "edges": {
+        "0->5": "unused",
+        "1->5": "unused",
+        "2->5": "unused",
+        "3->5": "unused",
+        "4->5": "unused",
+        "0->6": "unused",
+        "1->6": "unused",
+        "2->6": "unused",
+        "5->6": "used_valid",
+        "6->7": "used_valid",
+        "7->8": "used_valid"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "5",
+          "status": "lit",
+          "reason": "first step maps to node 5 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "6",
+          "status": "lit",
+          "reason": "6 is a direct successor of 5"
+        },
+        {
+          "step_index": 3,
+          "node": "7",
+          "status": "lit",
+          "reason": "7 is a direct successor of 6"
+        },
+        {
+          "step_index": 4,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
+        },
+        {
+          "step_index": 5,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
+        },
+        {
+          "step_index": 6,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
+        },
+        {
+          "step_index": 7,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
+        },
+        {
+          "step_index": 8,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
+        },
+        {
+          "step_index": 9,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
+        },
+        {
+          "step_index": 10,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
+        },
+        {
+          "step_index": 11,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
+        },
+        {
+          "step_index": 12,
+          "node": "7",
+          "status": "redundant",
+          "reason": "node 7 was already visited"
+        },
+        {
+          "step_index": 13,
+          "node": "8",
+          "status": "lit",
+          "reason": "8 is a direct successor of 7"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01394",
+    "correct": false,
+    "depth": 100.0,
+    "cons": 36.25,
+    "lit": 2,
+    "time": 62.0,
+    "states": {
+      "lit": 2,
+      "unvisited": 1
+    },
+    "lit_nodes": [
+      "1",
+      "2"
+    ],
+    "response": "Step 1: Recognize that \\(7,999,999,999 = 2000^3 - 1\\). Using the difference of cubes formula, \\(a^3 - 1 = (a-1)(a^2 + a + 1)\\), with \\(a = 2000\\). Thus \\(7,999,999,999 = (2000-1)(2000^2 + 2000 + 1) = 1999 \\times (4,000,000 + 2000 + 1) = 1999 \\times 4,002,001\\).\n\nStep 2: Check if 1999 is prime. Its square root is approximately 44.7. Test divisibility by all primes up to 43: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43. None divide 1999 (e.g., 1999 ÷ 7 = 285 remainder 4, ÷ 13 = 153 remainder 10, ÷ 17 = 117 remainder 10, ÷ 19 = 105 remainder 4, ÷ 37 = 54 remainder 1). Thus 1999 is prime.\n\nStep 3: The problem states that \\(7,999,999,999\\) has at most two prime factors. Since it factors as \\(1999 \\times 4,002,001\\), and 1999 is prime, the other factor \\(4,002,001\\) must also be prime. (If \\(4,002,001\\) were composite, the total number of distinct prime factors would be at least three, contradicting the given condition.)\n\nStep 4: Compare the two prime factors: \\(1999\\) and \\(4,002,001\\). The",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "lit",
+        "2": "lit"
+      },
+      "edges": {
+        "0->1": "unused",
+        "1->2": "used_valid"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "1",
+          "status": "lit",
+          "reason": "first step maps to node 1 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": "2",
+          "status": "lit",
+          "reason": "2 is a direct successor of 1"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01409",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 67.4,
+    "states": {
+      "unvisited": 7
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited"
+      },
+      "edges": {
+        "0->3": "unused",
+        "1->3": "unused",
+        "1->4": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01471",
+    "correct": true,
+    "depth": 33.333,
+    "cons": 100.0,
+    "lit": 1,
+    "time": 5.1,
+    "states": {
+      "lit": 1,
+      "unvisited": 4
+    },
+    "lit_nodes": [
+      "2"
+    ],
+    "response": "An icosidodecahedron has 20 triangular faces and 12 pentagonal faces, totaling 32 faces. The number of edges is calculated from the faces: each triangle contributes 3 edges, each pentagon contributes 5 edges, but each edge is shared by two faces, so total edges E = (20×3 + 12×5)/2 = (60 + 60)/2 = 120/2 = 60. Using Euler's formula V - E + F = 2, we have V - 60 + 32 = 2, so V = 30.\n\nFinal Answer: 30",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "lit",
+        "3": "unvisited",
+        "4": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "2->3": "unused",
+        "3->4": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "2",
+          "status": "lit",
+          "reason": "first step maps to node 2 (reachable from facts)"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01482",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 82.3,
+    "states": {
+      "unvisited": 8
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "1->4": "unused",
+        "2->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01551",
+    "correct": true,
+    "depth": 60.0,
+    "cons": 85.0,
+    "lit": 0,
+    "time": 37.3,
+    "states": {
+      "redundant": 3,
+      "unvisited": 3
+    },
+    "lit_nodes": [],
+    "response": "Step 1: Change the order of summation. The double sum is \\(\\sum_{k=1}^{60}\\sum_{n=1}^{k}\\frac{n^{2}}{61-2n}\\). Since \\(n\\) ranges from 1 to \\(k\\) and \\(k\\) from 1 to 60, the region is \\(1\\le n\\le k\\le 60\\). Interchanging the order gives \\(\\sum_{n=1}^{60}\\sum_{k=n}^{60}\\frac{n^{2}}{61-2n}\\). The inner sum is over \\(k\\) and the term does not depend on \\(k\\), so it equals \\((60-n+1)\\frac{n^{2}}{61-2n}=(61-n)\\frac{n^{2}}{61-2n}\\). Thus,\n\\[\nS = \\sum_{n=1}^{60} \\frac{n^{2}(61-n)}{61-2n}.\n\\]\n\nStep 2: Pair terms using symmetry. Observe that for \\(n\\) and \\(61-n\\) (with \\(n=1,\\dots,30\\)), we have:\n\\[\nT(n)=\\frac{n^{2}(61-n)}{61-2n},\\quad T(61-n)=\\frac{(61-n)^{2}n}{61-2(61-n)} = \\frac{(61-n)^{2}n}{2n-61} = -\\frac{(61-n)^{2}n}{61-2n}.\n\\]\nAdding them:\n\\[\nT(n)+T(61-n)=\\frac{n^{2}(61-n)-n(61-n)^{2}}{61-2n}=\\frac{n(61-n)[n-(61-n)]}{61-2n}=\\frac{n(61-n)(2n-61)}{61-2n}=-n(61-n).\n\\]\nSince the sum runs over \\(n=1\\) to \\(60\\), we can pair each \\(n=1,\\dots,30\\) with \\(61-n=60,\\dots,31\\). There is no middle term because \\(61\\) is odd. Therefore,\n\\[\nS = \\sum_{n=1}^{30}\\bigl[T(n)+T(61-n)\\bigr] = \\sum_{n=1}^{30}\\bigl(-n(61-n)\\bigr) = -\\sum_{n=1}^{30}n(61-n).\n\\]\n\nStep 3: Compute the sum \\(\\sum_{n=1}^{30}n(61-n)=\\sum_{n=1}^{30}(61n-n^{2})=61\\sum_{n=1}^{30}n-\\sum_{n=1}^{30}n^{2}\\). Use formulas:\n\\[\n\\sum_{n=1}^{30}n = \\frac{30\\cdot31}{2}=465,\n\\qquad\n\\sum_{n=1}^{30}n^{2} = \\frac{30\\cdot31\\cdot61}{6}=5\\cdot31\\cdot61=9455.\n\\]\nThen \\(61\\cdot465=28365\\) (since \\(465\\cdot60=27900\\) plus \\(465=28365\\)). So,\n\\[\n\\sum_{n=1}^{30}n(61-n)=28365-9455=18910.\n\\]\n\nStep 4: Therefore, \\(S = -18910\\).\n\nFinal Answer: -18910",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "redundant",
+        "2": "redundant",
+        "3": "redundant",
+        "4": "unvisited",
+        "5": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "1->2": "used_valid",
+        "2->3": "used_valid",
+        "3->4": "unused",
+        "4->5": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "1",
+          "status": "lit",
+          "reason": "first step maps to node 1 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "1",
+          "status": "redundant",
+          "reason": "node 1 was already visited"
+        },
+        {
+          "step_index": 3,
+          "node": "2",
+          "status": "lit",
+          "reason": "2 is a direct successor of 1"
+        },
+        {
+          "step_index": 4,
+          "node": "2",
+          "status": "redundant",
+          "reason": "node 2 was already visited"
+        },
+        {
+          "step_index": 5,
+          "node": "2",
+          "status": "redundant",
+          "reason": "node 2 was already visited"
+        },
+        {
+          "step_index": 6,
+          "node": "2",
+          "status": "redundant",
+          "reason": "node 2 was already visited"
+        },
+        {
+          "step_index": 7,
+          "node": "2",
+          "status": "redundant",
+          "reason": "node 2 was already visited"
+        },
+        {
+          "step_index": 8,
+          "node": "3",
+          "status": "lit",
+          "reason": "3 is a direct successor of 2"
+        },
+        {
+          "step_index": 9,
+          "node": "3",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        },
+        {
+          "step_index": 10,
+          "node": "3",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        },
+        {
+          "step_index": 11,
+          "node": "3",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        },
+        {
+          "step_index": 12,
+          "node": "3",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        },
+        {
+          "step_index": 13,
+          "node": "3",
+          "status": "redundant",
+          "reason": "node 3 was already visited"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01557",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 80.1,
+    "states": {
+      "unvisited": 7
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited"
+      },
+      "edges": {
+        "4->5": "unused",
+        "5->6": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01719",
+    "correct": true,
+    "depth": 80.0,
+    "cons": 61.0,
+    "lit": 0,
+    "time": 65.3,
+    "states": {
+      "wrong": 2,
+      "redundant": 1,
+      "unvisited": 14
+    },
+    "lit_nodes": [],
+    "response": "The condition that every monotonic path from bottom-left to top-right contains exactly 3 red, 3 white, and 3 blue cells forces each anti-diagonal (constant i+j) to be monochromatic, with exactly three anti-diagonals of each color. The number of such colorings is the number of ways to assign the three colors to the nine anti-diagonals with three each: \\(\\frac{9!}{3!3!3!} = 1680\\).\n\nStep 1: Any path from (1,1) to (5,5) moves only up or right, so it increases the sum \\(i+j\\) by 1 each step. Hence the path visits exactly one cell from each anti-diagonal \\(i+j = 2,3,\\ldots,10\\) (9 cells total).\n\nStep 2: To ensure the count of red cells is constant (3) on every path, compare two paths that differ only in a 2×2 block: one goes up then right, the other right then up. Their red sums differ by \\(r(i+1,j) - r(i,j+1)\\). For equality, we need \\(r(i+1,j) = r(i,j+1)\\) for all \\(i,j=1,\\ldots,4\\). This implies all cells on the same anti-diagonal have the same red indicator. The same reasoning applies to white and blue, so each anti-diagonal must be monochromatic.\n\nStep 3: Since each path takes one cell from each anti-diagonal, the number of red cells on any path equals the number of anti-diagonals colored red. To have exactly 3 red cells, exactly 3 anti-diagonals must be red. Similarly, exactly 3 white and 3 blue anti-diagonals are needed.\n\nStep 4: There are 9 anti-diagonals; choose 3 to be red, then 3 of the remaining to be white, the rest blue. The number of ways is \\(\\binom{9}{3}\\binom{6}{3} = 84 \\times 20 = 1680\\).\n\nFinal Answer: 1680",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "wrong",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "wrong",
+        "14": "unvisited",
+        "15": "redundant",
+        "16": "unvisited"
+      },
+      "edges": {
+        "0->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "6->7": "unused",
+        "4->8": "unused",
+        "8->9": "unused",
+        "9->10": "unused",
+        "10->11": "unused",
+        "6->12": "unused",
+        "11->12": "unused",
+        "4->13": "unused",
+        "12->13": "unused",
+        "12->14": "unused",
+        "13->14": "unused",
+        "14->15": "unused",
+        "15->16": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "15",
+          "status": "lit",
+          "reason": "first step maps to node 15 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "13",
+          "status": "wrong",
+          "reason": "13 is not reachable from current node 15"
+        },
+        {
+          "step_index": 3,
+          "node": "6",
+          "status": "wrong",
+          "reason": "6 is not reachable from current node 15"
+        },
+        {
+          "step_index": 4,
+          "node": "13",
+          "status": "wrong",
+          "reason": "13 is not reachable from current node 15"
+        },
+        {
+          "step_index": 5,
+          "node": "15",
+          "status": "redundant",
+          "reason": "node 15 was already visited"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01729",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 75.6,
+    "states": {
+      "unvisited": 9
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited"
+      },
+      "edges": {
+        "0->3": "unused",
+        "1->3": "unused",
+        "3->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "5->7": "unused",
+        "6->7": "unused",
+        "7->8": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01732",
+    "correct": true,
+    "depth": 100.0,
+    "cons": 71.333,
+    "lit": 2,
+    "time": 27.1,
+    "states": {
+      "lit": 2,
+      "wrong": 2,
+      "redundant": 2,
+      "unvisited": 1
+    },
+    "lit_nodes": [
+      "3",
+      "6"
+    ],
+    "response": "Step 1: Let the three integers be \\(a\\), \\(b\\), \\(c\\). The three possible results from Alex's operations are:\n\\[\na + \\frac{b+c}{2}, \\quad b + \\frac{a+c}{2}, \\quad c + \\frac{a+b}{2}.\n\\]\nThese results are given as 42, 13, and 37 in some order.\n\nStep 2: Multiply each expression by 2 to clear denominators:\n\\[\n2a + b + c = 2R_a, \\quad 2b + a + c = 2R_b, \\quad 2c + a + b = 2R_c,\n\\]\nwhere \\(R_a, R_b, R_c\\) are the three results.\n\nStep 3: Add the three equations:\n\\[\n(2a+b+c) + (2b+a+c) + (2c+a+b) = 2(R_a+R_b+R_c).\n\\]\nSimplify the left side: \\(4a + 4b + 4c = 4(a+b+c)\\). Thus,\n\\[\n4(a+b+c) = 2(R_a+R_b+R_c) \\quad \\Rightarrow \\quad a+b+c = \\frac{R_a+R_b+R_c}{2}.\n\\]\nThe sum of the given results is \\(42+13+37 = 92\\), so\n\\[\na+b+c = \\frac{92}{2} = 46.\n\\]\n\nStep 4: From each equation, solve for the variable:\n\\[\n2a + b + c = 2R_a \\quad \\Rightarrow \\quad 2a + (S - a) = 2R_a \\quad \\Rightarrow \\quad a + S = 2R_a \\quad \\Rightarrow \\quad a = 2R_a - S,\n\\]\nwhere \\(S = 46\\). Similarly,\n\\[\nb = 2R_b - 46, \\quad c = 2R_c - 46.\n\\]\n\nStep 5: Substitute the given results (in any order) into these formulas:\n\\[\n\\begin{aligned}\n\\text{For } 42: & \\quad 2 \\times 42 - 46 = 84 - 46 = 38, \\\\\n\\text{For } 13: & \\quad 2 \\times 13 - 46 = 26 - 46 = -20, \\\\\n\\text{For } 37: & \\quad 2 \\times 37 - 46 = 74 - 46 = 28.\n\\end{aligned}\n\\]\nThus the three integers are 38, -20, and 28.\n\nStep 6: Verify: With \\(a=38\\), \\(b=-20\\), \\(c=28\\), compute the results:\n\\[\n\\begin{aligned}\na + \\frac{b+c}{2} &= 38 + \\frac{-20+28}{2} = 38 + \\frac{8}{2} = 38+4 = 42, \\\\\nb + \\frac{a+c}{2} &= -20 + \\frac{38+28}{2} = -20 + \\frac{66}{2} = -20+33 = 13, \\\\\nc + \\frac{a+b}{2} &= 28 + \\frac{38-20}{2} = 28 + \\frac{18}{2} = 28+9 = 37.\n\\end{aligned}\n\\]\nThese match the given results.\n\nFinal Answer: -20, 28, 38",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "wrong",
+        "2": "wrong",
+        "3": "lit",
+        "4": "redundant",
+        "5": "redundant",
+        "6": "lit"
+      },
+      "edges": {
+        "0->3": "unused",
+        "1->4": "unused",
+        "2->4": "unused",
+        "3->4": "used_valid",
+        "4->5": "used_valid",
+        "5->6": "used_valid"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "3",
+          "status": "lit",
+          "reason": "first step maps to node 3 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "1",
+          "status": "wrong",
+          "reason": "1 is not reachable from current node 3"
+        },
+        {
+          "step_index": 3,
+          "node": "2",
+          "status": "wrong",
+          "reason": "2 is not reachable from current node 3"
+        },
+        {
+          "step_index": 4,
+          "node": "4",
+          "status": "lit",
+          "reason": "4 is a direct successor of 3"
+        },
+        {
+          "step_index": 5,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 6,
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
+        },
+        {
+          "step_index": 7,
+          "node": "5",
+          "status": "lit",
+          "reason": "5 is a direct successor of 4"
+        },
+        {
+          "step_index": 8,
+          "node": "5",
+          "status": "redundant",
+          "reason": "node 5 was already visited"
+        },
+        {
+          "step_index": 9,
+          "node": "6",
+          "status": "lit",
+          "reason": "6 is a direct successor of 5"
+        },
+        {
+          "step_index": 10,
+          "node": "5",
+          "status": "redundant",
+          "reason": "node 5 was already visited"
+        },
+        {
+          "step_index": 11,
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
+        },
+        {
+          "step_index": 12,
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
+        },
+        {
+          "step_index": 13,
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
+        },
+        {
+          "step_index": 14,
+          "node": "4",
+          "status": "redundant",
+          "reason": "node 4 was already visited"
+        },
+        {
+          "step_index": 15,
+          "node": null,
+          "status": "wrong"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01840",
+    "correct": true,
+    "depth": 100.0,
+    "cons": 81.667,
+    "lit": 2,
+    "time": 7.9,
+    "states": {
+      "lit": 2,
+      "wrong": 1,
+      "unvisited": 3
+    },
+    "lit_nodes": [
+      "2",
+      "5"
+    ],
+    "response": "Step 1: The number of digits in the decimal representation of a positive integer \\(N\\) is given by \\(\\lfloor \\log_{10} N \\rfloor + 1\\). For \\(N = 2^{41}\\), this becomes \\(\\lfloor \\log_{10}(2^{41}) \\rfloor + 1 = \\lfloor 41 \\cdot \\log_{10} 2 \\rfloor + 1\\).\n\nStep 2: Using the approximation \\(\\log_{10} 2 \\approx 0.30102999566\\), compute \\(41 \\times 0.30102999566 = 12.34222982206\\). The floor of this value is \\(12\\).\n\nStep 3: Therefore, the number of digits is \\(12 + 1 = 13\\).\n\nFinal Answer: 13",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "lit",
+        "3": "wrong",
+        "4": "unvisited",
+        "5": "lit"
+      },
+      "edges": {
+        "0->1": "unused",
+        "0->2": "unused",
+        "0->3": "unused",
+        "0->4": "unused",
+        "1->5": "unused",
+        "2->5": "used_valid",
+        "3->5": "unused",
+        "4->5": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "2",
+          "status": "lit",
+          "reason": "first step maps to node 2 (reachable from facts)"
+        },
+        {
+          "step_index": 2,
+          "node": "3",
+          "status": "wrong",
+          "reason": "3 is not reachable from current node 2"
+        },
+        {
+          "step_index": 3,
+          "node": "5",
+          "status": "lit",
+          "reason": "5 is a direct successor of 2"
+        }
+      ]
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_01882",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 84.6,
+    "states": {
+      "unvisited": 19
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited"
+      },
+      "edges": {
+        "0->2": "unused",
+        "2->3": "unused",
+        "0->4": "unused",
+        "2->4": "unused",
+        "4->5": "unused",
+        "5->6": "unused",
+        "5->7": "unused",
+        "6->7": "unused",
+        "7->8": "unused",
+        "8->9": "unused",
+        "9->10": "unused",
+        "9->11": "unused",
+        "10->11": "unused",
+        "11->12": "unused",
+        "11->13": "unused",
+        "12->13": "unused",
+        "13->14": "unused",
+        "11->15": "unused",
+        "14->16": "unused",
+        "15->16": "unused",
+        "8->17": "unused",
+        "16->17": "unused",
+        "17->18": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_02069",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 84.5,
+    "states": {
+      "unvisited": 25
+    },
+    "lit_nodes": [],
+    "response": "",
+    "lighted_graph": {
+      "nodes": {
+        "0": "unvisited",
+        "1": "unvisited",
+        "2": "unvisited",
+        "3": "unvisited",
+        "4": "unvisited",
+        "5": "unvisited",
+        "6": "unvisited",
+        "7": "unvisited",
+        "8": "unvisited",
+        "9": "unvisited",
+        "10": "unvisited",
+        "11": "unvisited",
+        "12": "unvisited",
+        "13": "unvisited",
+        "14": "unvisited",
+        "15": "unvisited",
+        "16": "unvisited",
+        "17": "unvisited",
+        "18": "unvisited",
+        "19": "unvisited",
+        "20": "unvisited",
+        "21": "unvisited",
+        "22": "unvisited",
+        "23": "unvisited",
+        "24": "unvisited"
+      },
+      "edges": {
+        "0->1": "unused",
+        "0->2": "unused",
+        "0->3": "unused",
+        "2->3": "unused",
+        "5->4": "unused",
+        "6->4": "unused",
+        "2->5": "unused",
+        "3->5": "unused",
+        "5->6": "unused",
+        "8->7": "unused",
+        "0->8": "unused",
+        "2->8": "unused",
+        "3->8": "unused",
+        "4->9": "unused",
+        "7->9": "unused",
+        "0->10": "unused",
+        "9->10": "unused",
+        "3->11": "unused",
+        "4->11": "unused",
+        "10->11": "unused",
+        "3->12": "unused",
+        "9->12": "unused",
+        "10->12": "unused",
+        "11->12": "unused",
+        "12->13": "unused",
+        "13->14": "unused",
+        "12->15": "unused",
+        "15->16": "unused",
+        "2->17": "unused",
+        "3->17": "unused",
+        "9->17": "unused",
+        "16->17": "unused",
+        "17->18": "unused",
+        "2->19": "unused",
+        "3->19": "unused",
+        "9->19": "unused",
+        "16->19": "unused",
+        "19->20": "unused",
+        "9->21": "unused",
+        "14->21": "unused",
+        "18->21": "unused",
+        "20->21": "unused",
+        "21->22": "unused",
+        "1->23": "unused",
+        "22->23": "unused",
+        "23->24": "unused"
+      },
+      "steps": []
+    },
+    "_rebuilt": true
+  },
+  {
+    "id": "omni_math_test_02196",
+    "correct": false,
+    "depth": 50.0,
+    "cons": 44.5,
+    "lit": 4,
+    "time": 8.8,
+    "states": {
+      "lit": 4,
+      "unvisited": 2
+    },
+    "lit_nodes": [
+      "0",
+      "2",
+      "3",
+      "4"
+    ],
+    "response": "Step 1: Place triangle ABC in a coordinate system with B at the origin, BC along the x-axis, and BA along the y-axis. Thus B = (0,0), C = (c,0) where c = BC, and A = (0,a) where a = AB. Since ∠B = 90°, AC is the hypotenuse.\n\nStep 2: D is on AC with AD = DC, so D is the midpoint of AC. Coordinates of D are ((0+c)/2, (a+0)/2) = (c/2, a/2).\n\nStep 3: Compute the distances: BD = √((c/2)² + (a/2)²) = (1/2)√(a² + c²). BC = c.\n\nStep 4: Given BD = BC, so (1/2)√(a² + c²) = c. Multiply both sides by 2: √(a² + c²) = 2c. Square both sides: a² + c² = 4c² ⇒ a² = 3c² ⇒ a = c√3 (positive lengths).\n\nStep 5: The ratio AB/BC = a/c = √3.\n\nFinal Answer: √3",
+    "lighted_graph": {
+      "nodes": {
+        "0": "lit",
+        "1": "unvisited",
+        "2": "lit",
+        "3": "lit",
+        "4": "lit",
+        "5": "unvisited"
+      },
+      "edges": {
+        "0->2": "used_valid",
+        "1->2": "unused",
+        "1->3": "unused",
+        "2->3": "used_valid",
+        "0->4": "unused",
+        "3->4": "used_valid",
+        "4->5": "unused"
+      },
+      "steps": [
+        {
+          "step_index": 1,
+          "node": "0",
+          "status": "lit",
+          "reason": "first step maps to fact node 0"
+        },
+        {
+          "step_index": 2,
+          "node": "2",
+          "status": "lit",
+          "reason": "2 is a direct successor of 0"
+        },
+        {
+          "step_index": 3,
+          "node": null,
+          "status": "wrong"
+        },
+        {
+          "step_index": 4,
+          "node": "3",
+          "status": "lit",
+          "reason": "3 is a direct successor of 2"
+        },
+        {
+          "step_index": 5,
+          "node": "4",
+          "status": "lit",
+          "reason": "4 is a direct successor of 3"
+        }
+      ]
+    },
+    "_rebuilt": true
+  }
+]
