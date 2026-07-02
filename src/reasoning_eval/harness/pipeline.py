@@ -198,17 +198,22 @@ class HarnessPipeline:
         CrossValidationResult,
     ]:
         """Iteratively repair until valid or fatal exhaustion."""
+        import time
+
         while True:
             # Termination condition
             if verification.all_passed and audit.invalid_edge_count == 0:
-                loop.record_success()
                 return solution, verification, audit, cross_val
 
-            # Check exhaustion BEFORE spending another round
-            loop.check_round_exhaustion()
-            loop.raise_if_fatal()
-
+            # Exhaustion check
             loop.round_number += 1
+            if loop.round_number > loop.max_rounds:
+                raise HarnessExhaustedError(
+                    f"Repair loop exhausted after {loop.max_rounds} rounds",
+                    phase="repair",
+                    detail={"summary": verification.summary},
+                )
+
             print(
                 f"[harness] Repair round {loop.round_number}/{loop.max_rounds} — "
                 f"verification={'PASS' if verification.all_passed else 'FAIL'}, "
@@ -216,51 +221,42 @@ class HarnessPipeline:
                 file=sys.stderr,
             )
 
-            # Attempt repair
+            # Attempt repair — timeout = FATAL
             try:
+                t0 = time.time()
                 solution = run_repairer(
                     question, solution, verification, audit, cross_val,
                     self._client,
                 )
-                loop.record_success()
-            except HarnessParseError as e:
-                loop.record_json_failure()
-                loop.raise_if_fatal()
-                # Propagate immediately — JSON failures don't self-heal
-                raise
+                elapsed = time.time() - t0
+                if elapsed > 20:
+                    print(f"[harness] Repairer slow: {elapsed:.0f}s", file=sys.stderr)
+            except HarnessParseError:
+                raise  # JSON failures → fatal immediately
             except HarnessError:
                 raise
             except Exception as e:
-                loop.record_verification_failure()
-                loop.check_round_exhaustion()
-                loop.raise_if_fatal()
-                print(
-                    f"[harness] Repairer unexpected error: {e}",
-                    file=sys.stderr,
-                )
-                # Keep current solution and re-verify; maybe checks improved
-                # from audit/cross-val changes
+                msg = str(e).lower()
+                if "timeout" in msg or "timed out" in msg or "connection" in msg:
+                    raise HarnessError(
+                        f"Repairer timeout/network error: {e}",
+                        phase="repair",
+                    ) from e
+                # Non-timeout error: keep solution, let loop decide
+                print(f"[harness] Repairer error (non-fatal): {e}", file=sys.stderr)
 
             # Re-verify
-            verification = self._run_phase("verification", lambda: run_all_checks(solution))
+            verification = run_all_checks(solution)
 
-            # Re-audit (with JSON failure tracking)
+            # Re-audit (non-critical — keep prior on failure)
             try:
                 audit = run_auditor(question, solution, self._client)
-            except HarnessParseError as e:
-                loop.record_json_failure()
-                loop.raise_if_fatal()
-                print(
-                    f"[harness] Auditor parse failure, keeping prior audit: {e}",
-                    file=sys.stderr,
-                )
-                # Keep prior audit — better than dying for a non-critical phase
+            except HarnessParseError:
+                raise
+            except Exception as e:
+                print(f"[harness] Auditor failed, keeping prior: {e}", file=sys.stderr)
 
-            # Re-cross-validate
-            cross_val = self._run_phase(
-                "cross_validate",
-                lambda: self._cross_validate(solution, verification),
-            )
+            cross_val = self._cross_validate(solution, verification)
 
     # ------------------------------------------------------------------
     # Final assembly
