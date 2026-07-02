@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from reasoning_graph.omni_math import build_arg_parser, run_omni_math_build
+import _bootstrap  # noqa: F401
 
+from reasoning_graph.omni_math import build_arg_parser, run_omni_math_build
 
 def main() -> None:
     args = build_arg_parser().parse_args()
