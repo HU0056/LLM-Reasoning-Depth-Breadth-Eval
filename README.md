@@ -1,179 +1,146 @@
 # LLM Reasoning Depth/Breadth Eval
 
-LLM 推理过程深度/广度评估框架。不只评估 final answer 的正确性，而是将模型输出的 Chain-of-Thought 拆成原子步骤，映射到黄金推理 DAG 上，从多个维度评估推理过程的质量。
+LLM 推理过程评估框架。不仅评估 final answer 正确性，更将模型 Chain-of-Thought
+拆为原子步骤，映射到黄金推理 DAG，从 Depth、Consistency、Breadth 三维度评估推理质量。
 
-## 数据集支持
+## 技术路线
 
-| 数据集 | 规模 | DAG 构建方式 |
-|---|---|---|
-| **Demo 规则逻辑题** | 5 题 | 规则引擎前向闭包（确定性） |
-| **GSM8K** | 7,473 train + 1,319 test | LLM Harness Agent Framework |
-| **Omni-MATH** | 2,000 test | DeepSeek 依赖标注 (omni_math.py) 或 Harness |
+### 黄金 DAG 构造：LLM Harness Agent Framework
 
-### 生产线 A：规则逻辑题
-
-用于 toy 级规则逻辑推理的原型验证。5 道手工构造的逻辑题，包含显式 facts/rules/goal，支持 distractor 规则和反事实分支标注。DAG 由规则引擎确定性构建。
-
-### 生产线 B：数学题（LLM Harness Agent Framework）
-
-从 ground truth 出发，使用多 Agent LLM pipeline 构造带数学依据的推理 DAG。支持 GSM8K 和 Omni-MATH。**这是项目的核心贡献。**
-
-**Harness 六阶段流水线**：
+从 ground truth (question + reference answer) 出发，**纯 LLM 驱动**构造推理 DAG，
+零代码启发式匹配，零 Jaccard，零正则。
 
 ```
 (question, answer)
-  → Structurer (LLM) → 声明原子步骤 + 依赖 + 数学依据
-  → Verification (Code) → 计算/依据/use-def/贡献度/拓扑/类型 六项检查
-  → Auditor (LLM) → 语义边验证 + 依据正确性 + 缺失依赖检测
-  → Cross-Validate (Code) → 调和 LLM 声明与代码检测
-  → Repair Loop (LLM+Code) → 迭代修复直到验证通过或致命退出
-  → Verified Gold DAG → 兼容 scorer
+  → Structurer (LLM)    — 分解为原子步骤 + 声明依赖 + 数学依据
+  → Verification (Code) — 六项确定性检查：计算/依据/use-def/贡献度/拓扑/类型
+  → Auditor (LLM)       — 语义边验证 + 依据正确性检测
+  → Cross-Validate      — 调和 LLM 声明与代码检测
+  → Repair Loop         — 迭代修复直至通过或致命退出
+  → Verified Gold DAG   — 兼容 scorer pipeline
 ```
 
-**Loop Engineering**：修复失败达到阈值时抛出 `HarnessError` 致命错误，不静默回退。
+**Loop Engineering**：超时/网络错误立即致命。修复轮次用尽 → `HarnessExhaustedError`。不静默回退。
 
-### Omni-MATH 额外支持
+### 步骤到节点映射：LLM-only Mapper
 
-`src/reasoning_graph/omni_math.py` 提供独立的 DeepSeek 依赖标注管线（单次调用 + JSON mode），生成的图与 scorer 完全兼容。```bash
-python scripts/build_omni_math_graphs.py --mode std --limit 20
+模型输出中的每个推理步骤，通过 **LLM 判断逻辑等价性**来匹配 gold DAG 节点：
 
-## 四个模块
+```
+模型步骤文本 + 所有 gold 节点列表
+  → 双判共识（两次独立 LLM 调用，seed 不同，必须一致）
+  → 数学验证（math_verifier.py — 唯一的确定性检查：验证所有 = 和 <<>> 表达式）
+  → 匹配结果（node_id 或 no_match）
+```
 
-| 模块 | 目录 | 核心能力 |
+- **不做**文本相似度匹配、不做方程解析、不做正则提取
+- **只做** LLM 推理 + 数学计算交叉验证
+- 幻觉自动驳回：输出 node_id 不在候选列表中 → reject
+
+### 评分三维度
+
+| 指标 | 定义 | 方法 |
 |---|---|---|
-| **Dataset** | `src/reasoning_eval/dataset/` | 规则逻辑题 DAG 构建（规则引擎前向闭包） |
-| **Harness** | `src/reasoning_eval/harness/` | LLM Agent Framework：结构化 DAG 声明 → 六项确定性验证 → 语义审计 → 交叉验证 → 修复循环 |
-| **Model Test** | `src/reasoning_eval/model_test/` | Prompt 构建（math/deduction）、OpenAI 兼容客户端、批量 API 生成 |
-| **Scorer** | `src/reasoning_eval/scorer/` | 步骤拆分 → 防编造节点映射 → 图验证 → 三维评分 → DAG 可视化点亮 |
-| **Analysis** | `src/reasoning_eval/analysis/` | 统计报告、DAG 点亮图、总体柱状图 |
+| **Depth** | `1 − D_remain/D_total` | 难度加权最短路径进度 |
+| **Consistency** | 四维加权模型 | 逻辑非矛盾(.30) + 依赖完整(.35) + 目标对齐(.20) + 结构连贯(.15) |
+| **Breadth** | `covered/total` 关键分叉 | 仅评估标注了 key_branch_nodes 的样本 |
 
-额外独立包 `src/reasoning_graph/` 提供 GSM8K 下载与句子级建图（legacy，已被 harness 替代）。
+### 模型选择
 
-## 核心指标
-
-### Depth（推理深度）— 难度加权进度
-
-```
-depth = 1 − D_remain / D_total
-
-D_total  = 从起点到 goal 的最小难度加权路径长度
-D_remain = 从模型已点亮的节点集到 goal 的剩余最小难度
-```
-
-每条边附有数学依据 (Justification)，不同依据类型有不同基础难度：
-
-```
-arithmetic = 1.0    algebra = 1.5    theorem = 3.0
-axiom = 1.0         definition = 1.0  substitution = 1.0
-simplification = 1.0  equivalence = 2.0  induction = 5.0
-```
-
-### Breadth（推理广度）— 关键分叉覆盖率
-
-```
-breadth = covered_successors / total_successors
-```
-
-只统计样本中标注了 `key_branch_nodes` 的关键分支节点。无标注时返回 None。
-
-### Consistency（推理一致性）— 四维评估
-
-替代旧的减分制，采用加权多维模型：
-
-| 维度 | 权重 | 含义 |
+| 用途 | 推荐模型 | 原因 |
 |---|---|---|
-| 逻辑非矛盾性 | 0.30 | 推理过程中无相互矛盾的陈述 |
-| 依赖完整性 | 0.35 | 每步依赖有效，无缺失前提 |
-| 目标对齐性 | 0.20 | 每步缩短到目标的距离 |
-| 结构连贯性 | 0.15 | 无冗余/重复/循环模式 |
+| **问题求解** | `deepseek-v4-flash` (reasoning_effort=low) | 数学推理能力强 |
+| **Harness structurer/auditor** | `deepseek-chat` 或 `Qwen2.5-7B-Instruct` | 需要可靠的结构化 JSON 输出 |
+| **Mapper 匹配** | `deepseek-chat` 或 `Qwen2.5-7B-Instruct` | 需稳定的 JSON，推理模型隐藏推理会导致输出截断 |
+| **Omni-MATH 图构建** | `deepseek-chat` (omni_math.py) | 单调用 JSON mode |
 
-最终分数 = 加权和 × 答案一致性因子（正确 → 1.0，错误 → 0.5）。
+> `deepseek-v4-flash` 是推理模型，隐藏 reasoning_content 与可见 content 共享 max_tokens 预算。
+> 可通过 `extra_body={'reasoning_effort': 'low'}` 限制隐藏推理（~480 chars），但不能完全关闭。
+> **不要**对结构化 JSON 输出任务使用 `reasoning_effort=high/max/xhigh`。
 
-### DAG Lighting — 推理过程可视化
+## 数据集
 
-将模型步骤映射到 gold DAG 节点，标记每步状态：
+| 数据集 | 规模 | DAG 来源 |
+|---|---|---|
+| **Demo 规则逻辑** | 5 题 | 规则引擎前向闭包 |
+| **GSM8K** | 7,473 train / 1,319 test | Harness Agent Framework |
+| **Omni-MATH** | 1,600 test (已处理) | DeepSeek 依赖标注 (omni_math.py) 或 Harness |
 
-```
-lit / jump / redundant / wrong / contradiction / unvisited
-```
+## 冒烟测试结果 (2026-07-02, deepseek-chat)
 
-## 边的定义
+| 数据集 | 样本 | correct | depth | cons | lit | 耗时 |
+|---|---|---|---|---|---|---|
+| **GSM8K** | gsm8k_train_00000 | ✅ True | **100** | 61 | 2/4 | 24s |
+| **Omni-MATH** | omni_math_test_00000 | ✗ False | 0 | 23 | 1/17 | 80s |
 
-```
-Edge = (premises: list[节点ID], target: 节点ID, justification: Justification)
-```
-
-每条推理边必须：
-- 附带数学依据（9 种类型）
-- 结论可从前提独立推出
-- 满足原子性（单步推理）。豁免：若定理不是题目要证的定理且等价于多步原子推理，可视为原子边。
-
-## 防编造三层保护
-
-Mapper 含三层门控防止模型步骤误匹配到 gold DAG 节点：
-
-1. **阈值门**：confidence < 0.25 直接驳回，< 0.35 不足驳回
-2. **方向检查**：gold 节点 token 也必须被模型 step 覆盖（双向重叠），低重叠 → 伪匹配驳回
-3. **结构门**：映射到的节点必须从当前验证状态可达
-
-## 技术栈
-
-Python 3.10+, Pydantic, networkx, pandas, matplotlib, pytest, python-dotenv, OpenAI-compatible API
+> GSM8K 满分通过全链路（harness 建图 → 模型推理 → mapper 匹配 → scorer 评分）。
+> Omni-MATH 因竞赛几何难度过高，模型答错。Mapper 本身功能正常（1/17 节点被正确点亮）。
 
 ## 快速开始
 
 ```bash
 pip install -r requirements.txt
 
+# 运行测试 (37 tests)
+pytest
+
 # 规则逻辑题 Demo（无需 API）
 python scripts/run_all_demo.py
 
-# 使用真实 LLM API 为 GSM8K 构建 DAG
+# Harness 构建 GSM8K DAG
 python scripts/build_harness_dag.py \
     --input data/raw/gsm8k/train.jsonl \
     --output data/processed/gsm8k/train_harness_graphs.jsonl \
     --limit 20
 
-# 为 Omni-MATH 构建图（DeepSeek 依赖标注）
+# Omni-MATH 图构建
 python scripts/build_omni_math_graphs.py --mode std --limit 20
-
-# 运行测试 (37 tests)
-pytest
 ```
 
 ## 环境配置
 
-`.env` 文件：
-
+`.env`:
 ```
-API_KEY=sk-...
+API_KEY=sk-...                    # DeepSeek API key
 BASE_URL=https://api.deepseek.com
-MODEL_NAME=deepseek-v4-flash
+MODEL_NAME=deepseek-chat          # 推荐，非推理模型
+SILICON_FLOW_API_KEY=sk-...       # (可选) SiliconFlow Qwen
 ```
 
-## Demo 类型
+## 模块结构
 
-- `correct_full`：答案正确，推理完整
-- `correct_jump`：答案正确，但跳过中间前提
-- `verbose_redundant`：答案正确，但重复啰嗦
-- `wrong`：答案错误或使用错误规则
-- `broad`：覆盖多个关键分支，Breadth 高
-- `narrow_repeated`：多次采样但反复走同一分支
+```
+src/reasoning_eval/
+├── harness/              # LLM Agent Framework (DAG 构造)
+│   ├── agents.py         # Structurer, Auditor, Repairer
+│   ├── pipeline.py       # 编排层 + Loop Engineering
+│   ├── verifiers.py      # 六项确定性验证
+│   ├── math_verifier.py  # 数学计算验证 (唯一保留的确定性检查)
+│   ├── schemas.py        # Pydantic DSL
+│   └── prompts.py        # Few-shot prompt 模板
+├── scorer/               # 评分管道
+│   ├── mapper.py         # LLM-only 步骤→节点映射
+│   ├── verifier.py       # 图结构验证器
+│   ├── depth_scorer.py   # 难度加权深度
+│   ├── consistency_scorer.py  # 四维一致性
+│   ├── breadth_scorer.py # 分叉覆盖率
+│   └── step_splitter.py  # 模型输出→步骤拆分
+├── model_test/           # LLM 客户端 + prompt 构建
+├── dataset/              # 规则逻辑题 DAG 构建
+└── analysis/             # 统计报告 + DAG 可视化
+```
 
 ## 当前局限
 
-- 规则逻辑题仅 5 道 demo，非大规模评测
-- Harness 的 DAG 质量依赖 LLM 输出质量（通过验证+审计+修复循环减轻）
+- LLM-only mapper 成本高（每步 2 次 LLM 调用），大样本评测需优化
+- Harness structurer/repairer 对 instruct 模型 prompt 长度敏感
+- Omni-MATH 代数变量步骤的匹配完全依赖 LLM，数学验证对其无约束力
 - Use-def 链仅追踪数值，不追踪变量名
-- GSM8K / Omni-MATH 无 distractor/反事实分支标注
-- 仅支持 OpenAI-compatible API（已适配 DeepSeek）
-- Omni-MATH 的 DAG 边标注（omni_math.py）较简单，未使用多 Agent 验证
+- 仅支持 OpenAI-compatible API
 
-## 后续扩展
+## 后续
 
-- Use-def 链扩展至变量名追踪
-- 支持更多数学数据集 (MATH, FOLIO, ProofWriter)
-- 接入 SMT solver (Z3) 做形式化依赖验证
-- Few-shot example 库扩充，提升 LLM 输出稳定性
-- 交互式 DAG 展示 (Streamlit / Gradio)
-- 多模型横向评测报告
+- Mapper 批量化（一次 LLM 调用匹配所有步骤）
+- 变量感知的数学验证
+- MATH / FOLIO / ProofWriter 数据集扩展
+- 交互式 DAG 展示 (Streamlit)
