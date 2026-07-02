@@ -1,0 +1,721 @@
+{
+  "id": "omni_math_test_00001",
+  "correct": true,
+  "depth": 0.0,
+  "cons": 45.0,
+  "states": {
+    "unvisited": 17
+  },
+  "lit_nodes": [],
+  "response": "We are told triangle \\(ABC\\) is acute and scalene, with altitudes \\(AD, BE, CF\\) meeting at orthocenter \\(H\\).  \nPoints \\(P\\) and \\(Q\\) lie on segment \\(EF\\) such that \\(AP \\perp EF\\) and \\(HQ \\perp EF\\).  \nLines \\(DP\\) and \\(QH\\) intersect at \\(R\\).  \nWe need \\(HQ/HR\\).\n\n---\n\n**Step 1: Understand the geometry setup**  \nIn an acute triangle, \\(E\\) and \\(F\\) are feet of altitudes from \\(B\\) and \\(C\\) respectively.  \nSegment \\(EF\\) is part of the orthic triangle.  \n\\(AP\\) is perpendicular to \\(EF\\), so \\(P\\) is the foot of the perpendicular from \\(A\\) to line \\(EF\\).  \n\\(Q\\) is the foot of the perpendicular from \\(H\\) to line \\(EF\\).  \nSo both \\(P\\) and \\(Q\\) lie on \\(EF\\), with \\(AP \\perp EF\\) and \\(HQ \\perp EF\\).\n\n---\n\n**Step 2: Recognize properties of the orthic triangle**  \nIn an acute triangle, \\(H\\) is the incenter of the orthic triangle \\(DEF\\).  \nThus \\(H\\) lies inside triangle \\(DEF\\), and \\(EF\\) is a side of that orthic triangle.  \nThe line through \\(H\\) perpendicular to \\(EF\\) goes to point \\(Q\\) on \\(EF\\).  \nAlso, \\(A\\) is the excenter opposite \\(D\\) in triangle \\(DEF\\), so \\(A\\) lies on the external angle bisector at \\(E\\) and \\(F\\).  \nThe foot from \\(A\\) to \\(EF\\) is \\(P\\).\n\n---\n\n**Step 3: Relate \\(P\\) and \\(Q\\) positions**  \nSince \\(H\\) is the incenter of \\(\\triangle DEF\\), the distance from \\(H\\) to side \\(EF\\) is the inradius \\(r\\) of \\(\\triangle DEF\\).  \nSo \\(HQ = r\\) (the inradius of the orthic triangle).  \nAlso, \\(A\\) is the excenter opposite \\(D\\) in \\(\\triangle DEF\\), so the distance from \\(A\\) to line \\(EF\\) is the exradius \\(r_a\\) (relative to vertex \\(D\\)).\n\n---\n\n**Step 4: Find ratio \\(HQ/HR\\)**  \nPoints \\(D, P, R\\) are collinear, and \\(Q, H, R\\) are collinear (since \\(R\\) is intersection of \\(DP\\) and \\(QH\\)).  \nWe have \\(QH \\perp EF\\) and \\(AP \\perp EF\\), so \\(AP \\parallel QH\\).  \nThus in triangle \\(DPR\\)? Let's consider triangles \\(DPA\\) and \\(DRH\\):  \n- \\(AP \\parallel QH\\) and \\(QH\\) is part of line \\(HR\\) (since \\(R\\) lies on \\(QH\\) extended).  \n- So \\(AP \\parallel HR\\).  \n- Triangles \\(DAP\\) and \\(DRH\\) share angle at \\(D\\) and have parallel sides \\(AP\\) and \\(HR\\), so they are similar.\n\n---\n\n**Step 5: Use similarity**  \nFrom \\(\\triangle DAP \\sim \\triangle DRH\\):  \n\\[\n\\frac{HR}{AP} = \\frac{DH}{DA}.\n\\]  \nWe want \\(HQ/HR\\). But \\(HQ\\) is the distance from \\(H\\) to \\(EF\\), and \\(AP\\) is distance from \\(A\\) to \\(EF\\).  \nIn the orthic triangle, known fact: \\(AH = 2R\\cos A\\), and \\(HD = 2R\\cos B \\cos C\\) etc.  \nBut more directly: In any acute triangle, the distances from vertices to the orthic triangle sides have known ratios.\n\n---\n\n**Step 6: Known ratio**  \nIn the orthic triangle \\(DEF\\):  \n- \\(A\\) is the excenter opposite \\(D\\), so \\(AP = r_a\\).  \n- \\(H\\) is the incenter, so \\(HQ = r\\).  \nFor triangle \\(DEF\\), the inradius \\(r\\) and exradius \\(r_a\\) satisfy \\(r_a = \\frac{\\Delta}{s - a'}\\) where \\(a' = EF\\).  \nBut there is a known relation: In the orthic triangle, \\(AH = 2R\\cos A\\) and \\(HD = 2R\\cos B \\cos C\\).  \nAlso \\(AP = \\frac{2\\Delta_{ABC}}{BC} \\cdot \\sin A\\)? Let's use simpler:  \nFrom similarity \\(\\triangle DAP \\sim \\triangle DRH\\):  \n\\[\n\\frac{HR}{AP} = \\frac{DH}{DA}.\n\\]  \nWe want \\(HQ/HR = \\frac{HQ}{AP} \\cdot \\frac{AP}{HR} = \\frac{HQ}{AP} \\cdot \\frac{DA}{DH}\\).\n\n---\n\n**Step 7: Compute \\(HQ/AP\\)**  \n\\(HQ\\) = distance from \\(H\\) to \\(EF\\). In triangle \\(AEF\\), \\(H\\) is the orthocenter of triangle \\(AEF\\)? Actually \\(H\\) is the orthocenter of \\(ABC\\), and \\(EF\\) is antiparallel to \\(BC\\). Known: \\(AH = 2R\\cos A\\), and the distance from \\(H\\) to \\(EF\\) equals \\(2R\\cos B \\cos C\\).  \nDistance from \\(A\\) to \\(EF\\) equals \\(2R \\cos A\\)? Let's check: In triangle \\(AEF\\), \\(EF\\) is side opposite \\(A\\), and altitude from \\(A\\) to \\(EF\\) is \\(AP\\). Known: \\(AP = 2R \\cos B \\cos C\\)? Wait, let's recall: In acute triangle, \\(EF = BC \\cos A\\), and area of \\(AEF = \\frac12 AB \\cdot AC \\cdot \\sin^2 A\\)? Better:  \nCoordinates approach: Place \\(A=(0,0)\\), \\(B=(c,0)\\), \\(C=(b\\cos A, b\\sin A)\\). Then compute \\(E,F\\) as feet, find \\(EF\\) line equation, compute distances. But known result:  \n\\(AP = \\frac{2\\Delta}{BC} \\cdot \\cos A\\)? Let's do systematic.\n\n---\n\n**Step 8: Use known orthic distances**  \nIn any acute triangle,  \n- \\(AH = 2R\\cos A\\)  \n- \\(HD = 2R\\cos B \\cos C\\)  \n- \\(AD = AH + HD = 2R\\cos A + 2R\\cos B\\cos C = 2R(\\cos A + \\cos B \\cos C)\\).  \nBut \\(\\cos A = -\\cos(B+C) = \\sin B \\sin C - \\cos B \\cos C\\). So \\(\\cos A + \\cos B \\cos C = \\sin B \\sin C\\).  \nThus \\(AD = 2R \\sin B \\sin C\\).\n\n---\n\n**Step 9: Distance from \\(H\\) to \\(EF\\)**  \nLine \\(EF\\) is at distance from \\(H\\) equal to the inradius of orthic triangle. Known: In \\(\\triangle DEF\\), sides are \\(a\\cos A\\), etc., and area = \\(\\frac12 abc \\cos A \\cos B \\cos C / R\\)? Let's recall:  \nArea of orthic triangle = \\(2R^2 \\cos A \\cos B \\cos C \\cdot (\\sin 2A + \\sin 2B + \\sin 2C)/?\\) Simpler:  \nArea(\\(DEF\\)) = \\(\\frac12 (abc) \\cos A \\cos B \\cos C / (2R)\\)? Actually:  \nArea(\\(DEF\\)) = \\(2\\Delta \\cos A \\cos B \\cos C\\).  \nSemiperimeter \\(s'\\) of \\(DEF\\) = \\(R(\\sin 2A + \\sin 2B + \\sin 2C)/2\\)?  \nInradius \\(r\\) = \\(\\frac{\\text{Area}}{s'} = \\frac{2\\Delta \\cos A \\cos B \\cos C}{s'}\\).  \nBut known neat result: \\(HQ = 2R \\cos A \\cos B \\cos C\\).  \nCheck: For equilateral, \\(R = a/\\sqrt{3}\\), \\(\\cos 60 = 1/2\\), product = 1/8, \\(2R/8 = a/(4\\sqrt{3})\\), and orthic inradius = \\(a/(2\\sqrt{3})\\)? Actually equilateral orthic is medial triangle with inradius half of big = \\(a\\sqrt{3}/12\\). Our formula gives \\(a/(4\\sqrt{3}) = a\\sqrt{3}/12\\), matches. So yes:  \n\\(HQ = 2R \\cos A \\cos B \\cos C\\).\n\n---\n\n**Step 10: Distance from \\(A\\) to \\(EF\\)**  \n\\(AP\\) is altitude from \\(A\\) in triangle \\(AEF\\). Known: \\(AP = 2R \\cos B \\cos C\\).  \nCheck equilateral: \\(2R \\cdot \\frac14 = R/2 = a/(2\\sqrt{3})\\), altitude from vertex to opposite side in medial triangle is \\(a\\sqrt{3}/4\\)? Wait medial triangle side = a/2, altitude from vertex A to EF (midsegment) is height of small triangle = (height of big)/2 = \\((a\\sqrt{3}/2)/2 = a\\sqrt{3}/4\\). Our formula gives \\(a/(2\\sqrt{3}) \\approx 0.288675a\\), but \\(a\\sqrt{3}/4 \\approx 0.433012a\\). So mismatch — so my guess is wrong.\n\n---\n\n**Step 11: Correct \\(AP\\)**  \nIn triangle \\(AEF\\), points: \\(E\\) on AC, \\(F\\) on AB.  \nCoordinates: Let \\(A=(0,0)\\), \\(B=(c,0)\\), \\(C=(b\\cos A, b\\sin A)\\).  \nThen \\(E\\) is foot from B to AC: line AC: \\(y = (\\tan A)x\\).  \nFoot from \\(B=(c,0)\\):  \n\\(E = \\left( \\frac{c}{1+\\tan^2 A}, \\frac{c \\tan A}{1+\\tan^2 A} \\right) = (c\\cos^2 A, c\\cos A \\sin A)\\).  \n\\(F\\) is foot from C to AB (x-axis): \\(F = (b\\cos A, 0)\\).  \nLine EF: slope = \\(\\frac{c\\cos A \\sin A - 0}{c\\cos^2 A - b\\cos A} = \\frac{c\\sin A}{c\\cos A - b}\\).  \nBut \\(b =\\)? Law of sines: \\(b = 2R \\sin B\\), \\(c = 2R \\sin C\\).  \nSo slope = \\(\\frac{2R\\sin C \\sin A}{2R\\sin C \\cos A - 2R\\sin B} = \\frac{\\sin C \\sin A}{\\sin C \\cos A - \\sin B}\\).  \nSince \\(\\sin B = \\sin(A+C) = \\sin A \\cos C + \\cos A \\sin C\\), denominator = \\(\\sin C \\cos A - (\\sin A \\cos C + \\cos A \\sin C) = -\\sin A \\cos C\\).  \nSo slope = \\(\\frac{\\sin C \\sin A}{-\\sin A \\cos C} = -\\tan C\\).  \nThus EF has slope \\(-\\tan C\\), so it's perpendicular to slope \\(\\cot C\\).  \nLine through A perpendicular to EF has slope \\(\\cot C\\). Equation: \\(y = (\\cot C)x\\).  \nDistance from A to EF = distance from (0,0) to line through E with slope \\(-\\tan C\\).  \nLine EF through \\(F=(b\\cos A,0)\\): \\(y = -\\tan C (x - b\\cos A)\\).  \nIn standard form: \\(y = -(\\tan C)x + b\\cos A \\tan C\\).  \nMultiply by \\(\\cos C\\): \\(y\\cos C = -x\\sin C + b\\cos A \\sin C\\).  \nSo \\(x\\sin C + y\\cos C - b\\cos A \\sin C = 0\\).  \nDistance from A(0,0) = \\(\\frac{| - b\\cos A \\sin C|}{\\sqrt{\\sin^2 C + \\cos^2 C}} = b\\cos A \\sin C\\).  \n\\(b = 2R\\sin B\\), so \\(AP = 2R \\sin B \\cos A \\sin C\\).\n\n---\n\n**Step 12: Ratio \\(HQ/AP\\)**  \n\\(HQ = 2R \\cos A \\cos B \\cos C\\).  \n\\(AP = 2R \\sin B \\cos A \\sin C\\).  \nSo  \n\\[\n\\frac{HQ}{AP} = \\frac{\\cos B \\cos C}{\\sin B \\sin C} = \\cot B \\cot C.\n\\]\n\n---\n\n**Step 13: Ratio \\(DA/DH\\)**  \n\\(AD = 2R \\sin B \\sin C\\) (from step 8).  \n\\(DH = 2R \\cos B \\cos C\\) (from step 8).  \nSo  \n\\[\n\\frac{DA}{DH} = \\frac{\\sin B \\sin C}{\\cos B \\cos C} = \\tan B \\tan C.\n\\]\n\n---\n\n**Step 14: Compute \\(HQ/HR\\)**  \nFrom similarity:  \n\\[\n\\frac{HR}{AP} = \\frac{DH}{DA} \\quad\\Rightarrow\\quad \\frac{AP}{HR} = \\frac{DA}{DH}.\n\\]  \nThus  \n\\[\n\\frac{HQ}{HR} = \\frac{HQ}{AP} \\cdot \\frac{AP}{HR} = (\\cot B \\cot C) \\cdot (\\tan B \\tan C) = 1.\n\\]\n\n---\n\n**Step 15: Conclusion**  \n\\(HQ = HR\\), so ratio is 1.\n\n---\n\nFinal Answer: 1",
+  "lighted_graph": {
+    "nodes": {
+      "0": "unvisited",
+      "1": "unvisited",
+      "2": "unvisited",
+      "3": "unvisited",
+      "4": "unvisited",
+      "5": "unvisited",
+      "6": "unvisited",
+      "7": "unvisited",
+      "8": "unvisited",
+      "9": "unvisited",
+      "10": "unvisited",
+      "11": "unvisited",
+      "12": "unvisited",
+      "13": "unvisited",
+      "14": "unvisited",
+      "15": "unvisited",
+      "16": "unvisited"
+    },
+    "edges": {
+      "0->5": "unused",
+      "1->6": "unused",
+      "2->7": "unused",
+      "3->8": "unused",
+      "4->9": "unused",
+      "5->10": "unused",
+      "6->10": "unused",
+      "7->10": "unused",
+      "10->11": "unused",
+      "11->12": "unused",
+      "8->13": "unused",
+      "12->13": "unused",
+      "13->14": "unused",
+      "14->15": "unused",
+      "15->16": "unused"
+    },
+    "steps": [
+      {
+        "step_index": 1,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 2,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 3,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 4,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 5,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 6,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 7,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 8,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 9,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 10,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 11,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 12,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 13,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 14,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 15,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 16,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 17,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 18,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 19,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 20,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 21,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 22,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 23,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 24,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 25,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 26,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 27,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 28,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 29,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 30,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 31,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 32,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 33,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 34,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 35,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 36,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 37,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 38,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 39,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 40,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 41,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 42,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 43,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 44,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 45,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 46,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 47,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 48,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 49,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 50,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 51,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 52,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 53,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 54,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 55,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 56,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 57,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 58,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 59,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 60,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 61,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 62,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 63,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 64,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 65,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 66,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 67,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 68,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 69,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 70,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 71,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 72,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 73,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 74,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 75,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 76,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 77,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 78,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 79,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 80,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 81,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 82,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 83,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 84,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 85,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 86,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 87,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 88,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 89,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 90,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 91,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 92,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 93,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 94,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 95,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 96,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 97,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 98,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 99,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 100,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 101,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 102,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 103,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 104,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 105,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 106,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 107,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 108,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 109,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 110,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 111,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 112,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 113,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 114,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 115,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 116,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 117,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 118,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 119,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 120,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 121,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 122,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 123,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 124,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 125,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 126,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 127,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 128,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 129,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 130,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 131,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 132,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 133,
+        "node": null,
+        "status": "wrong"
+      },
+      {
+        "step_index": 134,
+        "node": null,
+        "status": "wrong"
+      }
+    ]
+  }
+}
