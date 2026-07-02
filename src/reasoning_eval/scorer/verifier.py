@@ -46,8 +46,9 @@ class RuleBasedVerifier:
             return VerificationResult(True, False, False, False, f"{node} is a direct successor of {previous_node}")
 
         if is_reachable(self.nx_graph, previous_node, node):
-            dist = nx.shortest_path_length(self.nx_graph, source=previous_node, target=node)
-            missing = dist > 1 or contains_inference_word(mapping.step_text)
-            return VerificationResult(False, False, missing, False, f"{node} is reachable from {previous_node} but skipped intermediate nodes")
+            # Model steps often span multiple gold-level sentences in Omni-MATH.
+            # Reachable-through-path means the step is logically valid — just
+            # coarser-grained than the gold graph.  Light the node.
+            return VerificationResult(True, False, True, False, f"{node} is reachable from {previous_node} (may span intermediate nodes)")
 
         return VerificationResult(False, False, False, False, f"{node} is not reachable from current node {previous_node}")

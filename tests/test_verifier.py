@@ -12,5 +12,6 @@ def test_verifier_detects_jump_from_a_to_c():
     assert first.valid
     jump = verifier.verify(MappingResult("所以 C 成立", "C", 0.8, "contains C"), "A", {"A"})
     assert jump.missing_premise
-    assert not jump.valid
+    # v3: reachable-through-path is valid (model steps coarser than gold granularity)
+    assert jump.valid
 

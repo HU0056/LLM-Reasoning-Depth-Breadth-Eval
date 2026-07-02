@@ -14,6 +14,8 @@ from __future__ import annotations
 
 from dataclasses import asdict
 
+import networkx as nx
+
 from reasoning_eval.common.io_utils import read_jsonl, write_jsonl
 from reasoning_eval.common.schema import EvaluationResult, MappingResult
 from reasoning_eval.dataset.graph_utils import normalize_graph
@@ -91,6 +93,18 @@ def evaluate_one(
                 fabrication_count += 1
 
             if verification.valid and mapping.matched_node_id:
+                # Auto-light intermediate nodes on the path when a step
+                # spans multiple sentence-level gold nodes (Omni-MATH format)
+                if verification.missing_premise and previous_node is not None:
+                    try:
+                        path = nx.shortest_path(verifier.nx_graph, source=previous_node, target=mapping.matched_node_id)
+                        for nid in path[1:-1]:  # exclude endpoints
+                            if nid not in history:
+                                history.add(nid)
+                                mappings.append(MappingResult("auto-lit", nid, 0.85, f"spans {previous_node}→{mapping.matched_node_id}"))
+                                verifications.append(VerificationResult(True, False, True, False, "auto-lit intermediate node"))
+                    except (nx.NetworkXNoPath, nx.NodeNotFound, Exception):
+                        pass  # path unavailable
                 history.add(mapping.matched_node_id)
                 if not verification.redundant:
                     previous_node = mapping.matched_node_id
