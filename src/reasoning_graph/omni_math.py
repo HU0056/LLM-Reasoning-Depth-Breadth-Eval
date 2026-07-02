@@ -19,7 +19,7 @@ except ModuleNotFoundError:
 
 from .dataset import ensure_directory, write_jsonl
 from .schemas import GraphPayload, SamplePayload
-from .sentence_parser import split_sentences
+from .sentence_parser import extract_final_answer, split_sentences
 
 
 OMNI_MATH_DATASET = "KbsdJames/Omni-MATH"
@@ -27,8 +27,12 @@ OMNI_MATH_SPLIT = "test"
 OMNI_MATH_MIRROR_URL = (
     "https://hf-mirror.com/datasets/KbsdJames/Omni-MATH/resolve/main/test.jsonl"
 )
+GSM8K_DATASET_CANDIDATES = ("openai/gsm8k", "gsm8k")
+GSM8K_CONFIG = "main"
 DEFAULT_DEEPSEEK_BASE_URL = "https://api.deepseek.com"
-DEFAULT_DEEPSEEK_MODEL = "deepseek-chat"
+DEFAULT_DEEPSEEK_MODEL = "deepseek-v4-flash"
+DEFAULT_DEEPSEEK_THINKING = "disabled"
+DEFAULT_DEEPSEEK_REASONING_EFFORT = "high"
 JSON_FENCE_RE = re.compile(r"^\s*```(?:json)?\s*(.*?)\s*```\s*$", re.DOTALL)
 
 
@@ -60,6 +64,41 @@ def _download_omni_math_jsonl() -> list[dict[str, Any]]:
     return rows
 
 
+def read_jsonl(path: Path) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    with path.open("r", encoding="utf-8") as handle:
+        for line in handle:
+            line = line.strip()
+            if line:
+                rows.append(json.loads(line))
+    return rows
+
+
+def load_gsm8k_rows(raw_path: Path, split: str) -> list[dict[str, Any]]:
+    if raw_path.exists():
+        return read_jsonl(raw_path)
+
+    os.environ.setdefault("HF_ENDPOINT", "https://hf-mirror.com")
+    last_error: Exception | None = None
+    for dataset_name in GSM8K_DATASET_CANDIDATES:
+        try:
+            dataset = load_dataset(dataset_name, GSM8K_CONFIG, split=split)
+            rows = [
+                {
+                    "gsm8k_id": f"gsm8k_{split}_{index:05d}",
+                    "question": row["question"],
+                    "answer": row["answer"],
+                }
+                for index, row in enumerate(dataset)
+            ]
+            write_jsonl(raw_path, rows)
+            return rows
+        except Exception as exc:
+            last_error = exc
+
+    raise RuntimeError(f"failed to load GSM8K {split} split: {last_error}") from last_error
+
+
 def build_omni_math_payload(row: dict[str, Any], index: int) -> dict[str, Any]:
     sample_id = f"omni_math_test_{index:05d}"
     problem = _required_str(row, "problem")
@@ -79,11 +118,37 @@ def build_omni_math_payload(row: dict[str, Any], index: int) -> dict[str, Any]:
     ).to_dict()
 
 
+def build_gsm8k_payload(row: dict[str, Any], index: int, split: str) -> dict[str, Any]:
+    sample_id = _optional_str(row, "gsm8k_id") or f"gsm8k_{split}_{index:05d}"
+    question = _required_str(row, "question")
+    answer_text = _required_str(row, "answer")
+
+    question_nodes = split_sentences(question)
+    answer_nodes = split_sentences(answer_text)
+    gold_answer = extract_final_answer(answer_nodes)
+    graph = GraphPayload(nodes=question_nodes + answer_nodes, edges=[])
+    return SamplePayload(
+        id=sample_id,
+        gsm8k_id=sample_id,
+        task_type="math",
+        question=question,
+        gold_answer=gold_answer,
+        gold_reasoning_graph=graph,
+    ).to_dict()
+
+
 def _required_str(row: dict[str, Any], field_name: str) -> str:
     value = row.get(field_name)
     if not isinstance(value, str) or not value.strip():
         raise ValueError(f"Omni-MATH row is missing non-empty string field: {field_name}")
     return value.strip()
+
+
+def _optional_str(row: dict[str, Any], field_name: str) -> str | None:
+    value = row.get(field_name)
+    if isinstance(value, str) and value.strip():
+        return value.strip()
+    return None
 
 
 def parse_dependency_response(content: str) -> dict[str, Any]:
@@ -263,25 +328,48 @@ def build_dependency_prompt(
 
 
 class DeepSeekClient:
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        *,
+        model: str | None = None,
+        thinking: str | None = None,
+        reasoning_effort: str | None = None,
+    ) -> None:
         if load_dotenv is not None:
             load_dotenv()
         self.api_key = os.getenv("DEEPSEEK_API_KEY") or os.getenv("API_KEY")
         self.base_url = os.getenv("DEEPSEEK_BASE_URL", DEFAULT_DEEPSEEK_BASE_URL).rstrip("/")
-        self.model = os.getenv("DEEPSEEK_MODEL", DEFAULT_DEEPSEEK_MODEL)
+        self.model = model or os.getenv("DEEPSEEK_MODEL", DEFAULT_DEEPSEEK_MODEL)
+        self.thinking = (
+            thinking
+            or os.getenv("DEEPSEEK_THINKING", DEFAULT_DEEPSEEK_THINKING)
+        ).lower()
+        self.reasoning_effort = (
+            reasoning_effort
+            or os.getenv("DEEPSEEK_REASONING_EFFORT", DEFAULT_DEEPSEEK_REASONING_EFFORT)
+        ).lower()
         if not self.api_key or self.api_key == "your_api_key_here":
             raise RuntimeError("DEEPSEEK_API_KEY or API_KEY is not configured.")
+        if self.thinking not in {"enabled", "disabled"}:
+            raise ValueError("DEEPSEEK_THINKING must be 'enabled' or 'disabled'")
+        if self.reasoning_effort not in {"high", "max"}:
+            raise ValueError("DEEPSEEK_REASONING_EFFORT must be 'high' or 'max'")
+
+    def _request_payload(self, messages: list[dict[str, str]]) -> dict[str, Any]:
+        payload: dict[str, Any] = {
+            "model": self.model,
+            "messages": messages,
+            "response_format": {"type": "json_object"},
+            "thinking": {"type": self.thinking},
+        }
+        if self.thinking == "enabled":
+            payload["reasoning_effort"] = self.reasoning_effort
+        else:
+            payload["temperature"] = 0
+        return payload
 
     def chat_json(self, messages: list[dict[str, str]]) -> str:
-        body = json.dumps(
-            {
-                "model": self.model,
-                "messages": messages,
-                "temperature": 0,
-                "response_format": {"type": "json_object"},
-            },
-            ensure_ascii=False,
-        ).encode("utf-8")
+        body = json.dumps(self._request_payload(messages), ensure_ascii=False).encode("utf-8")
         request = urllib.request.Request(
             f"{self.base_url}/chat/completions",
             data=body,
@@ -332,9 +420,11 @@ def annotate_payload_edges(
                 mode=mode,
             )
             payload["gold_reasoning_graph"]["edges"] = edges
+            print(f"success at attempt {attempt}")
             return payload
         except Exception as exc:
             last_error = exc
+            print(f"attempt {attempt} unqualified, continuing...")
             if attempt < max_retries and sleep_seconds > 0:
                 time.sleep(sleep_seconds)
 
@@ -374,23 +464,57 @@ def error_output_path(output_path: Path) -> Path:
     return output_path.with_name(f"{output_path.stem}_errors.jsonl")
 
 
+def load_rows_for_args(args: argparse.Namespace, raw_path: Path) -> list[dict[str, Any]]:
+    if args.dataset == "omni_math":
+        if args.split != OMNI_MATH_SPLIT:
+            raise ValueError("Omni-MATH only supports the test split")
+        return load_omni_math_rows(raw_path)
+    return load_gsm8k_rows(raw_path, args.split)
+
+
+def build_payload_for_args(
+    args: argparse.Namespace,
+    row: dict[str, Any],
+    index: int,
+) -> dict[str, Any]:
+    if args.dataset == "omni_math":
+        return build_omni_math_payload(row, index)
+    return build_gsm8k_payload(row, index, args.split)
+
+
+def raw_path_for_args(root: Path, args: argparse.Namespace) -> Path:
+    return root / "data" / "raw" / args.dataset / f"{args.split}.jsonl"
+
+
+def output_path_for_args(root: Path, args: argparse.Namespace) -> Path:
+    return (
+        root
+        / "data"
+        / "processed"
+        / args.dataset
+        / f"{args.split}_graphs_{args.mode}.jsonl"
+    )
+
+
 def run_omni_math_build(args: argparse.Namespace) -> Path:
     root = args.root
-    raw_path = root / "data" / "raw" / "omni_math" / "test.jsonl"
-    output_path = (
-        root / "data" / "processed" / "omni_math" / f"test_graphs_{args.mode}.jsonl"
-    )
-    rows = load_omni_math_rows(raw_path)
+    raw_path = raw_path_for_args(root, args)
+    output_path = output_path_for_args(root, args)
+    rows = load_rows_for_args(args, raw_path)
     existing_ids = {
         row.get("id") for row in read_existing_jsonl(output_path)
     } if args.resume else set()
-    client = DeepSeekClient()
+    client = DeepSeekClient(
+        model=args.model,
+        thinking=args.thinking,
+        reasoning_effort=args.reasoning_effort,
+    )
 
     if not args.resume and output_path.exists():
         output_path.unlink()
 
     for index, row in iter_selected_rows(rows, start=args.start, limit=args.limit):
-        payload = build_omni_math_payload(row, index)
+        payload = build_payload_for_args(args, row, index)
         if payload["id"] in existing_ids:
             continue
         try:
@@ -419,14 +543,52 @@ def run_omni_math_build(args: argparse.Namespace) -> Path:
 
 
 def build_arg_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Build Omni-MATH DeepSeek reasoning graphs.")
+    parser = argparse.ArgumentParser(description="Build DeepSeek reasoning graphs.")
     parser.add_argument("--root", type=Path, default=Path.cwd())
+    parser.add_argument(
+        "--dataset",
+        choices=["omni_math", "gsm8k"],
+        default="omni_math",
+        help="Dataset to process. Defaults to omni_math.",
+    )
+    parser.add_argument(
+        "--split",
+        choices=["train", "test"],
+        default="test",
+        help="Dataset split. Omni-MATH only has test; GSM8K supports train/test.",
+    )
     parser.add_argument("--mode", choices=["std", "test"], default="std")
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--start", type=int, default=0)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--max-retries", type=int, default=3)
     parser.add_argument("--sleep", type=float, default=0.0)
+    parser.add_argument(
+        "--model",
+        default=None,
+        help=(
+            "DeepSeek model name. Defaults to DEEPSEEK_MODEL or "
+            f"{DEFAULT_DEEPSEEK_MODEL}."
+        ),
+    )
+    parser.add_argument(
+        "--thinking",
+        choices=["enabled", "disabled"],
+        default=None,
+        help=(
+            "DeepSeek thinking mode. Use 'enabled' for reasoning mode. "
+            "Defaults to DEEPSEEK_THINKING or disabled."
+        ),
+    )
+    parser.add_argument(
+        "--reasoning-effort",
+        choices=["high", "max"],
+        default=None,
+        help=(
+            "Reasoning effort when thinking is enabled. Defaults to "
+            "DEEPSEEK_REASONING_EFFORT or high."
+        ),
+    )
     parser.add_argument(
         "--on-error",
         choices=["stop", "skip"],

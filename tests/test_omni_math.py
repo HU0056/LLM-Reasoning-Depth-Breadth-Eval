@@ -1,11 +1,18 @@
+import argparse
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
 from reasoning_graph.omni_math import (
+    DeepSeekClient,
     DependencyValidationError,
     build_dependency_prompt,
+    build_gsm8k_payload,
     build_omni_math_payload,
     dependencies_to_edges,
+    output_path_for_args,
     parse_dependency_response,
+    raw_path_for_args,
 )
 
 
@@ -31,6 +38,48 @@ class OmniMathPayloadTest(unittest.TestCase):
                 "nodes": ["What is 1+1", "Compute 1+1=2", "#### 2"],
                 "edges": [],
             },
+        )
+
+    def test_build_gsm8k_payload_maps_raw_sample_to_project_schema(self) -> None:
+        payload = build_gsm8k_payload(
+            {
+                "gsm8k_id": "gsm8k_test_00001",
+                "question": "A robe takes 2 bolts. How many bolts?",
+                "answer": (
+                    "It takes 1 bolt of white fiber.\n"
+                    "So the total amount is 3 bolts.\n"
+                    "#### 3"
+                ),
+            },
+            1,
+            "test",
+        )
+
+        self.assertEqual(payload["id"], "gsm8k_test_00001")
+        self.assertEqual(payload["gsm8k_id"], "gsm8k_test_00001")
+        self.assertEqual(payload["gold_answer"], "3")
+        self.assertEqual(
+            payload["gold_reasoning_graph"],
+            {
+                "nodes": [
+                    "A robe takes 2 bolts",
+                    "How many bolts",
+                    "It takes 1 bolt of white fiber",
+                    "So the total amount is 3 bolts",
+                    "#### 3",
+                ],
+                "edges": [],
+            },
+        )
+
+    def test_dataset_paths_are_parameterized(self) -> None:
+        args = argparse.Namespace(dataset="gsm8k", split="train", mode="std")
+        root = Path("repo")
+
+        self.assertEqual(raw_path_for_args(root, args), Path("repo/data/raw/gsm8k/train.jsonl"))
+        self.assertEqual(
+            output_path_for_args(root, args),
+            Path("repo/data/processed/gsm8k/train_graphs_std.jsonl"),
         )
 
 
@@ -155,6 +204,29 @@ class OmniMathDependencyParsingTest(unittest.TestCase):
         prompt = messages[1]["content"]
         self.assertIn("must not also depend on the claim", prompt)
         self.assertIn("remove or redirect the weakest edge", prompt)
+
+    def test_deepseek_payload_uses_thinking_mode(self) -> None:
+        with patch.dict("os.environ", {"DEEPSEEK_API_KEY": "key"}, clear=True):
+            client = DeepSeekClient(
+                model="deepseek-v4-flash",
+                thinking="enabled",
+                reasoning_effort="max",
+            )
+        payload = client._request_payload([{"role": "user", "content": "x"}])
+
+        self.assertEqual(payload["model"], "deepseek-v4-flash")
+        self.assertEqual(payload["thinking"], {"type": "enabled"})
+        self.assertEqual(payload["reasoning_effort"], "max")
+        self.assertNotIn("temperature", payload)
+
+    def test_deepseek_payload_uses_non_thinking_mode_by_default(self) -> None:
+        with patch.dict("os.environ", {"DEEPSEEK_API_KEY": "key"}, clear=True):
+            client = DeepSeekClient()
+        payload = client._request_payload([{"role": "user", "content": "x"}])
+
+        self.assertEqual(payload["thinking"], {"type": "disabled"})
+        self.assertEqual(payload["temperature"], 0)
+        self.assertNotIn("reasoning_effort", payload)
 
 
 if __name__ == "__main__":
