@@ -98,7 +98,7 @@ class LLMClient:
         system: str | None = None,
         n: int = 1,
         temperature: float = 0.7,
-        max_tokens: int = 8192,
+        max_tokens: int = 262144,
         seed: int | None = None,
     ) -> list[str]:
         """Send a chat completion request, return *n* response texts.

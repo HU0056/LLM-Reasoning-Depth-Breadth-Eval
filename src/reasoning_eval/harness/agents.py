@@ -160,7 +160,7 @@ def run_structurer(question: str, answer: str, client) -> StructuredSolution:
     prompt = STRUCTURER_USER.format(question=question, answer=answer)
     responses = client.generate(
         prompt=prompt, system=STRUCTURER_SYSTEM,
-        n=1, temperature=0.3, max_tokens=8192,
+        n=1, temperature=0.3, max_tokens=262144,
     )
     text = responses[0]
     json_str = extract_json(text)
@@ -222,7 +222,7 @@ def run_auditor(
 
     responses = client.generate(
         prompt=prompt, system=AUDITOR_SYSTEM,
-        n=1, temperature=0.3, max_tokens=8192,
+        n=1, temperature=0.3, max_tokens=262144,
     )
     text = responses[0]
     json_str = extract_json(text)
@@ -278,7 +278,7 @@ def run_repairer(
 
     responses = client.generate(
         prompt=prompt, system=REPAIRER_SYSTEM,
-        n=1, temperature=0.3, max_tokens=8192,
+        n=1, temperature=0.3, max_tokens=262144,
     )
     text = responses[0]
     json_str = extract_json(text)
