@@ -1,0 +1,227 @@
+{
+  "DeepSeek-v4-Flash-00000": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Flash-00005": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Flash-00010": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Flash-00015": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Flash-00020": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Flash-00025": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Flash-00030": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Flash-00035": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Flash-00040": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Flash-00045": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Flash-omni.json": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 20.0,
+    "depth": 0.0,
+    "cons": 42.9,
+    "lit": 0.2
+  },
+  "DeepSeek-v4-Pro-00000": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Pro-00005": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Pro-00010": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Pro-00015": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Pro-00020": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Pro-00025": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Pro-00030": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Pro-00035": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Pro-00040": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Pro-00045": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "DeepSeek-v4-Pro-omni.json": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 40.0,
+    "depth": 30.0,
+    "cons": 53.8,
+    "lit": 1.2
+  },
+  "Qwen2-5-7B-omni.json": {
+    "n": 4,
+    "total": 5,
+    "errors": 1,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 29.4,
+    "lit": 0.2
+  },
+  "Qwen3-5-4B-omni.json": {
+    "n": 5,
+    "total": 5,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0.0
+  },
+  "test-00000": {
+    "n": 1,
+    "total": 1,
+    "errors": 0,
+    "acc": 0.0,
+    "depth": 0.0,
+    "cons": 22.5,
+    "lit": 0.0
+  }
+}

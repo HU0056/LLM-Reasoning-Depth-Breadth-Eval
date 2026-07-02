@@ -1,0 +1,42 @@
+[
+  {
+    "id": "omni_math_test_01757",
+    "correct": false,
+    "depth": 0.0,
+    "cons": 40.0,
+    "lit": 0,
+    "time": 54.3
+  },
+  {
+    "id": "omni_math_test_00656",
+    "correct": true,
+    "depth": 100.0,
+    "cons": 62.069,
+    "lit": 2,
+    "time": 20.3
+  },
+  {
+    "id": "omni_math_test_00949",
+    "correct": false,
+    "depth": 75.0,
+    "cons": 26.944,
+    "lit": 0,
+    "time": 13.5
+  },
+  {
+    "id": "omni_math_test_01584",
+    "correct": true,
+    "depth": 100.0,
+    "cons": 72.308,
+    "lit": 1,
+    "time": 18.4
+  },
+  {
+    "id": "omni_math_test_01440",
+    "correct": true,
+    "depth": 66.667,
+    "cons": 71.25,
+    "lit": 0,
+    "time": 21.8
+  }
+]
