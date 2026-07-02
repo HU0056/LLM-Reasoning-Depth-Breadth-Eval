@@ -1,0 +1,2 @@
+{"id": "omni_math_test_00070", "index": 70, "error": "failed to annotate omni_math_test_00070: dependency graph contains a cycle: 30 -> 31 -> 30. Remove or redirect at least one of these edges: 30->31, 31->30"}
+{"id": "omni_math_test_00239", "index": 239, "error": "failed to annotate omni_math_test_00239: dependency graph contains a cycle: 16 -> 17 -> 19 -> 20 -> 21 -> 22 -> 23 -> 24 -> 5 -> 6 -> 7 -> 16. Remove or redirect at least one of these edges: 16->17, 17->19, 19->20, 20->21, 21->22, 22->23, 23->24, 24->5, 5->6, 6->7, 7->16"}
